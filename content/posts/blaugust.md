@@ -1,7 +1,7 @@
 +++
 date = '2025-08-01T10:00:00+08:00'
 draft = false
-title = 'Microservice APIs'
+title = 'Blaugust'
 +++
 🎈 Oh hello, August! It's time for Blaugust.
 ### Blaugust Begins: Writing as a Develpoer Habit
