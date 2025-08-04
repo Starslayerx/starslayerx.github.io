@@ -166,5 +166,4 @@ with open("polyglot.py", "wb") as f:
 # 运行提示
 print("✅ polyglot.py 生成完毕。运行它即可执行嵌入的 __main__.py 内容：")
 print("  $ python3 polyglot.py")
-
 ```

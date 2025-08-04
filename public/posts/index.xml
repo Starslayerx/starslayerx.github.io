@@ -1,19 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Posts on Starslayerx&#39; Blog</title>
-    <link>http://localhost:1313/posts/</link>
-    <description>Recent content in Posts on Starslayerx&#39; Blog</description>
-    <generator>Hugo</generator>
-    <language>en-US</language>
-    <lastBuildDate>Mon, 04 Aug 2025 10:30:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Executing arbitrary Python code from a comment</title>
-      <link>http://localhost:1313/posts/executing-arbitrary-python-code-from-a-comment/</link>
-      <pubDate>Mon, 04 Aug 2025 10:30:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/executing-arbitrary-python-code-from-a-comment/</guid>
-      <description>&lt;p&gt;通过注释执行任意Python代码&lt;/p&gt;&#xA;&lt;h3 id=&#34;问题描述&#34;&gt;问题描述&lt;/h3&gt;&#xA;&lt;p&gt;Q: 只能控制一行的.py代码中注释的内容(\n\r均会被替换为空字符), 如何执行任意代码?&lt;br&gt;&#xA;A: 在注释#中, 构造一个.zip 文件, python 会将该内容当成一个zip包执行, 触发任意代码执行&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Starslayerx' Blog</title><link>https://starslayerx.github.io/posts/</link><description>Recent content in Posts on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Mon, 04 Aug 2025 10:30:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Executing arbitrary Python code from a comment</title><link>https://starslayerx.github.io/posts/executing-arbitrary-python-code-from-a-comment/</link><pubDate>Mon, 04 Aug 2025 10:30:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/executing-arbitrary-python-code-from-a-comment/</guid><description>&lt;p>通过注释执行任意Python代码&lt;/p>
+&lt;h3 id="问题描述">问题描述&lt;/h3>
+&lt;p>Q: 只能控制一行的.py代码中注释的内容(\n\r均会被替换为空字符), 如何执行任意代码?&lt;br>
+A: 在注释#中, 构造一个.zip 文件, python 会将该内容当成一个zip包执行, 触发任意代码执行&lt;/p></description></item></channel></rss>
