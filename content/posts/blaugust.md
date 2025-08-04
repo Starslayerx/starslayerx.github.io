@@ -24,8 +24,4 @@ This blog is build with **Hugo + Github Pages**, using the `narrow` theme.
 Markdown keeps things simple, and version control is headled vai Git.
 
 - RSS feed is available (blogroll exchange is welcome!)  
-    If you're blogging too or joining Blaugust, feel free to connect 👋
-
-
-
-
+    If you're blogging too or joining Blaugust, feel free to [connect](https://github.com/Starslayerx/starslayerx.github.io/issues) 👋
