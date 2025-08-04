@@ -1,3 +1,9 @@
 [submodule "themes/ananke"]
 	path = themes/ananke
 	url = https://github.com/theNewDynamic/gohugo-theme-ananke.git
+[submodule "reveal-hugo-nord"]
+	path = reveal-hugo-nord
+	url = https://github.com/mbhall88/reveal-hugo-nord.git
+[submodule "themes/hugo-narrow"]
+	path = themes/hugo-narrow
+	url = https://github.com/tom2almighty/hugo-narrow.git

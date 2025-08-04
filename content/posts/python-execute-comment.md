@@ -7,7 +7,7 @@ draft: false
 
 ### 问题描述
 Q: 只能控制一行的.py代码中注释的内容(\n\r均会被替换为空字符), 如何执行任意代码?  
-A: 在注释#中, 构造一个.zip 文件, python 会将该内容当城一个zip包执行, 触发任意代码执行  
+A: 在注释#中, 构造一个.zip 文件, python 会将该内容当成一个zip包执行, 触发任意代码执行  
 
 ### 解决方案
 - 从 Python 3.5 起, 可以直接执行一个 .zip 文件
@@ -39,7 +39,7 @@ ZIP 文件头包含**二进制字段**，比如
 
 
 
-下面是`generate_polygloy_zip.py`代码, 会生成一个符合要求的`polygloy.py`代码, 最后运行该代码, 可以执行Body里面的内容`BODY = b"print('FROM MAIN.py FILE!!!')#"
+下面是`generate_polygloy_zip.py`代码, 会生成一个符合要求的`polygloy.py`代码, 最后运行该代码, 可以执行Body里面的内容`BODY = b"print('FROM MAIN.py FILE!!!')#"`
 
 ```python3
 # struct: 按字节结构打包数据，方便构造 ZIP 文件二进制头
