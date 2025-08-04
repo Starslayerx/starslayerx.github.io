@@ -5,8 +5,8 @@ title = 'How FastAPI Works'
 +++
 FastAPI 的工作原理: 从 routing 到 lifecycle 以及在现实中的使用
 
-### Fastapi
-Fastapi 是一个现代的 Python Web 框架, 注重**高性能**和**开发者效率**. 旨在帮助开发者编写结构清晰、可靠的API, 同时尽量减少样板代码 (boilerplate)
+### FastAPI
+FastAPI 是一个现代的 Python Web 框架, 注重**高性能**和**开发者效率**. 旨在帮助开发者编写结构清晰、可靠的API, 同时尽量减少样板代码 (boilerplate)
 
 其由以下两个库驱动:
 - **Starlette**: 负责 Web 服务器逻辑、路由、中间件和异步能力
@@ -49,6 +49,11 @@ FastAPI App
 1. 在应用对象上定义  
     适合小项目或原型验证
     ```python
+    from fastapi import FastAPI
+
+    app = FastAPI()
+
+    @app.get("/items/{item_id}")
     def read_item():
         return {"item_id": item_id}
     ```
