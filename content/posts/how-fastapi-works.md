@@ -1,12 +1,12 @@
 +++
-date = '2025-08-04T13:30:28+08:00'
+date = '2025-08-03T10:30:00+08:00'
 draft = false
 title = 'How FastAPI Works'
 +++
 FastAPI 的工作原理: 从 routing 到 lifecycle 以及在现实中的使用
 
 ### FastAPI
-FastAPI 是一个现代的 Python Web 框架, 注重**高性能**和**开发者效率**. 旨在帮助开发者编写结构清晰、可靠的API, 同时尽量减少样板代码 (boilerplate)
+FastAPI 是一个现代的 Python Web 框架, 注重**高性能**和**开发效率**. 旨在帮助开发者编写结构清晰、可靠的API, 同时尽量减少样板代码 (boilerplate)
 
 其由以下两个库驱动:
 - **Starlette**: 负责 Web 服务器逻辑、路由、中间件和异步能力

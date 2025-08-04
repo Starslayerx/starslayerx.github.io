@@ -1,0 +1,31 @@
++++
+date = '2025-08-01T10:00:00+08:00'
+draft = false
+title = 'Microservice APIs'
++++
+🎈 Oh hello, August! It's time for Blaugust.
+### Blaugust Begins: Writing as a Develpoer Habit
+This year, I'm joining **Blaugust** - a month-long blogging challenge that encourage consistent writing throught August.
+For develpoers, blogging isn't just sharing, it's about orgainzing thoughts, documenting ideas, and creating term references.
+
+### What I Plan to Write
+Here is what I aim to cover this month:
+
+- Daily dev partices: tools, logging, project structure patterns
+- Python ecosystem: FastAPI, Pydantic, Langchain, Pytest and more
+- AI project logs: buliding AI agents and orchestration workflows
+- Architecture notes: async patterns, micorservice, data flow
+- Learning notes & translation of blogs: deep dive into code and quality tech atricles
+
+I'm not necessarily writing one post per day - some days I might write multiple posts in advance - but the goal is to publish daily with a focus on consistency, reusability, and value.
+
+### Writing Platform and Setup
+This blog is build with **Hugo + Github Pages**, using the `narrow` theme.
+Markdown keeps things simple, and version control is headled vai Git.
+
+- RSS feed is available (blogroll exchange is welcome!)  
+    If you're blogging too or joining Blaugust, feel free to connect 👋
+
+
+
+

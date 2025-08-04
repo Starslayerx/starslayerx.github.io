@@ -1,7 +1,7 @@
 ---
-title: "Executing arbitrary Python code from a comment"
 date: 2025-08-04T10:30:00+08:00
 draft: false
+title: "Executing arbitrary Python code from a comment"
 ---
 通过注释执行任意Python代码
 
