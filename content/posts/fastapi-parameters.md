@@ -5,7 +5,7 @@ title = 'FastAPI Parameters'
 +++
 FastAPI 是一个现代、快速（高性能）的 Python Web 框架, 它自动处理参数的解析、验证和文档生成
 
-本文将介绍 FastAPI 中三类最常用的参数: **路径参数（Path Parameters）**、**查询参数（Query Parameters）**和**请求体（Request Body）**的用法与原理
+本文将介绍 FastAPI 中三类最常用的参数: **路径参数 (Path Parameters)**、**查询参数 (Query Parameters)** 和 **请求体(Request Body)** 的用法与原理
 
 
 
@@ -49,7 +49,7 @@ async def read_user(user_id: str):
 必须先声明 `/users/me`, 否则会被 `/users/{user_id}` 捕获
 
 
-#### Predefined enum values
+#### Predefined enum values 预定义枚举值
 使用 Python 的 `Enum` 定义一组可选的路径参数值
 ```python
 from enum import Enum
