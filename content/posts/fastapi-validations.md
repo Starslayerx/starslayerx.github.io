@@ -1,6 +1,6 @@
 +++
 date = '2025-08-07T10:30:00+08:00'
-draft = true
+draft = false
 title = 'FastAPI Parameters and Validations'
 +++
 
@@ -320,10 +320,3 @@ async def read_items(
     ```
     - `item_id` 必须在 [0, 1000] 区间内
     - `size` 必须在 (0, 10.5) 区间内
-
-
-
-
-
-
-
