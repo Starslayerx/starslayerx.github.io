@@ -6,7 +6,7 @@ title = 'Git Whitelist'
 
 有时你开启了一个新的项目, 运行了 `cargo init`、`uv init` 和 `go mod init`
 
-这些命令创建了工作所需要的必要文件, 同时也在 `.gitignore` 文件中添加了一下内容
+这些命令创建了工作所需要的必要文件, 同时也在 `.gitignore` 文件中添加了以下内容
 ```
 target
 __pycache__
@@ -45,7 +45,7 @@ bin
 .vscode
 .idea
 ```
-多年后, `.gitignore` 已经有了上百行, 但是仍然是不是有各种奇怪的文件, 例如 `testscripts`、`foo`、`a`、`qux`、`data.tar.gz`、`start.sh`、`cat` ......
+多年后, `.gitignore` 已经有了上百行, 但是仍然时不时有各种奇怪的文件, 例如 `testscripts`、`foo`、`a`、`qux`、`data.tar.gz`、`start.sh`、`cat` ......
 
 你就像西西弗斯一样, 因欺骗死亡和冥界而受到永无止境的惩罚
 
