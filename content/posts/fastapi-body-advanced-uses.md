@@ -1,6 +1,6 @@
 +++
 date = '2025-08-09T10:00:00+08:00'
-draft = true
+draft = false
 title = 'FastAPI Body Advanced Uses'
 +++
 本篇文章介绍的 FastAPI Request Body 的进阶用法
