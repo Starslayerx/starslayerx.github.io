@@ -3,7 +3,7 @@ date = '2025-08-09T10:00:00+08:00'
 draft = false
 title = 'FastAPI Body Advanced Uses'
 +++
-本篇文章介绍的 FastAPI Request Body 的进阶用法
+本篇文章介绍 FastAPI Request Body 的进阶用法
 
 ### Body - Multiple Parameters
 首先, 可以将`Path`, `Query` 和 request body 参数声明自由的写在一起
@@ -178,7 +178,7 @@ async def update_item(
 
 
 ### Body - Fields
-除了可以在*path* operation (路径操作)函数参数中使用 `Query`、`Path`和`Body`来声明额外的验证和数据, 还可以在 Pydantic 模型内部的 `Field` 的字段验证规则和元数据
+除了可以在 *path* operation (路径操作)函数参数中使用 `Query`、`Path`和`Body`来声明额外的验证和数据, 还可以在 Pydantic 模型内部的 `Field` 的字段验证规则和元数据
 
 #### Declare model attributes 声明模型字段属性
 首先要导入 Filed
