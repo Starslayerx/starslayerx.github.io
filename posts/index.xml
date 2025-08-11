@@ -11,7 +11,9 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="s2">&amp;#34;ads_id&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">ads_id&lt;/span>&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="cookie-parameters-models">Cookie Parameters Models&lt;/h4>
 &lt;p>如果有一组相关的 cookies, 可以使用 Pydantic model 来声明.&lt;/p>
-&lt;p>这样可以在多个部分复用这个模型, 同时还能一次性为所有参数声明验证规则和元数据.&lt;/p></description></item><item><title>FastAPI Body Advanced Uses</title><link>https://starslayerx.github.io/posts/fastapi-body-advanced-uses/</link><pubDate>Sat, 09 Aug 2025 10:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-body-advanced-uses/</guid><description>&lt;p>本篇文章介绍 FastAPI Request Body 的进阶用法&lt;/p>
+&lt;p>这样可以在多个部分复用这个模型, 同时还能一次性为所有参数声明验证规则和元数据.&lt;/p></description></item><item><title>Python Function Parameters</title><link>https://starslayerx.github.io/posts/python-function-parameters/</link><pubDate>Sun, 10 Aug 2025 10:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-function-parameters/</guid><description>&lt;p>今天是周日, 简单写点吧, 简单总结一下 Python 中函数参数&lt;/p>
+&lt;h2 id="python-function-parameters">Python Function Parameters&lt;/h2>
+&lt;p>Python 函数参数机制非常灵活丰富, 理解各种参数类型及其用法对于写出优雅、易维护的代码非常重要. 本文将介绍 Python 中函数参数的种类与用法, 并详细讲解 Python 3.8 引入的参数分隔符 / 和 *, 帮助你更好地设计函数接口.&lt;/p></description></item><item><title>FastAPI Body Advanced Uses</title><link>https://starslayerx.github.io/posts/fastapi-body-advanced-uses/</link><pubDate>Sat, 09 Aug 2025 10:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-body-advanced-uses/</guid><description>&lt;p>本篇文章介绍 FastAPI Request Body 的进阶用法&lt;/p>
 &lt;h3 id="body---multiple-parameters">Body - Multiple Parameters&lt;/h3>
 &lt;p>首先, 可以将&lt;code>Path&lt;/code>, &lt;code>Query&lt;/code> 和 request body 参数声明自由的写在一起&lt;/p>
 &lt;p>对于 request body 参数可以是可选的, 并且可设置为默认的 &lt;code>None&lt;/code>&lt;/p>
