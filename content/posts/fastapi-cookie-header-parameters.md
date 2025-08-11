@@ -144,7 +144,7 @@ X-Token: bar
 ```
 
 返回类似这样
-```Python
+```JSON
 {
     "X-Token values": [
         "bar",
@@ -202,7 +202,7 @@ tool: plumbus
 }
 ```
 
-#### Disable convert undersocres
+#### Disable convert undersocres 禁止转换下划线
 同样可以禁用自动下换线转换
 
 与普通的 Header 参数一样, 如果参数名中包含下划线 undersocre (\_), FastAPI 会自动将其转换为连字符 hypens (-)
