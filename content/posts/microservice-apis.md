@@ -41,4 +41,80 @@ James Lewis 和 Martin Fowler 撰写的一篇开创性文章提供了一个更�
 
 除了 API endpoints, 还有 data models (在 OpenAPI 中被称为 *schemas*). Schemas 告诉客户端需要什么样的数据载荷(payload)以及什么是类型.
 
+例如,**OrderItemSchema** 指定了 **product** 和 **size** 是必填的, 而 **quantity** 属性是可选的, 当这个属性消失的时候, 默认值为 1
+```yaml
+# file: oas.yaml
+ 
+OrderItemSchema:
+  type: object
+  required:
+    - product
+    - size
+  properties:
+    product:
+      type: string
+    size:
+      type: string
+      enum:
+        - small
+        - medium
+        - big
+    quantity:
+      type: integer
+      default: 1
+      minimum: 1
+```
+
+请求处理流大概下面这样:
+HTTP request -> Uvicorn -> FastAPI(Starlette routing -> data -> api endpoints) -> Pydantic
+
+下面是一个 orders API 的最小实现
+```Python
+from datetime import datetime
+from uuid import UUID
+from starlette.responses import Response
+from starlette import status
+from orders.app import app
+
+order = {
+    "id": "ff0f1355-e821-4178-9567-550dec27a373",
+    "status": "delivered",
+    "created": datetime.utcnow(),
+    "order": [
+        {
+            "product": "cappuccino",
+            "size": "medium",
+            "quantity": 1,
+        }
+    ]
+}
+
+@app.get("/orders")
+def get_orders():
+    return {"orders": [orders]}
+
+@app.post("/orders", status_code=status.HTTP_201_CREATED)
+def create_order():
+    return order
+
+@app.get("/orders/{order_id}")
+def get_order(order_id: UUID):
+    return order
+
+@app.get("/orders/{order_id}")
+def update_order(order_id: UUID):
+    return order
+
+@app.delete("/orders/{order_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_order(order: UUID):
+    return Response(status_code=HTTPStatus.NO_CONTENT.value)
+
+@app.post("/orders/{order_id}/cancel")
+def cancel_order(order_id: UUID):
+    return order
+
+@app.post("/orders/{order_id}/pay")
+def pay_order(order_id: UUID):
+    return order
+```
 
