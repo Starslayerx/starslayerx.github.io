@@ -1,6 +1,6 @@
 +++
 date = '2025-08-12T10:00:00+08:00'
-draft = true
+draft = false
 title = 'FastAPI Response Model'
 +++
 本篇文章介绍 FastAPI 的返回类型 response model
