@@ -1,5 +1,5 @@
 +++
-date = '2025-08-12T10:00:00+08:00'
+date = '2025-08-12T8:00:00+08:00'
 draft = false
 title = 'FastAPI Response Model'
 +++
