@@ -1,11 +1,11 @@
 +++
 date = '2025-08-02T10:00:00+08:00'
 draft = true
-title = 'Microservice APIs'
+title = 'Microservice with FastAPI'
 +++
 
-### What are microservices ?
-什么是 microservices? 微服务可以有多种不同的定义方式, 具体取决于希望强调微服务架构的哪个方面, 不同作者会给出略有不同但相关的定义
+## What are microservices ?
+什么是微服务? 微服务可以有多种不同的定义方式, 具体取决于希望强调微服务架构的哪个方面, 不同作者会给出略有不同但相关的定义
 
 Sam Newman, 微服务领域最有影响力的作者之一, 给出了一个极简的定义:
 
@@ -28,7 +28,7 @@ James Lewis 和 Martin Fowler 撰写的一篇开创性文章提供了一个更�
 
 
 
-### A basic API implementation
+## A basic API implementation
 这里通过一个 CoffeeMesh 项目的 orders service (订单服务) api 介绍微服务
 
 首先给出 OpenAPI 格式的 API 定义文档 [oas.yaml](https://github.com/abunuwas/microservice-apis/blob/master/ch02/oas.yaml), 可以通过 [Swagger UI](https://editor.swagger.io/) 来查看该文档内容 (OAS 代表 OpenAPI specification/规范, 是一种标准的 REST API 文档)
@@ -117,4 +117,130 @@ def cancel_order(order_id: UUID):
 def pay_order(order_id: UUID):
     return order
 ```
+现在有了 API 的基本骨架, 后面将继续实现 incoming payload 和 outgoing response 的验证
+
+
+### Implementing data validation models with pydantic
+这里介绍 data validation 和 marshalling
+
+> "Marshalling" 指的是将一个内存中的数据结构转换成一种适合存储或通过网络传输的格式. 
+> 在 Web API 的上下文中, Marshalling 特指将一个对象转换为一个数据结构(比如 JSON 或 XML). 
+> 以便将其序列化为所选的内容类型, 同时明确指定对象属性的映射关系
+
+点单系统包含了3个shcemas: `CreateOrderSchema`, `GetOrderSchema` 和 `OrderItemSchema`, 可以在[oas.yaml](https://github.com/abunuwas/microservice-apis/blob/master/ch02/oas.yaml#L211)查看
+
+下面使用 Pydantic 实现对应 schema, 可以在 [schema.py](https://github.com/abunuwas/microservice-apis/blob/master/ch02/orders/api/schemas.py)找到
+
+```Python
+from enum import Enum
+
+class Size(Enum):
+    small = "small"
+    medium = "medium"
+    big = "big"
+
+class StatusEnum(Enum):
+    created = "created"
+    paid = "paid"
+    progress = "progress"
+    cancelled = "cancelled"
+    dispatched = "dispatched"
+    delivered = "delivered"
+```
+对于只能从特定值中选择的类型, 定义枚举类型 `Size` 和 `StatusEnum`
+
+
+```Python
+class OrderItemSchema(BaseModel):
+    product: str
+    size: Size
+    quantity: conint(ge=1, strict=True) | None = 1
+```
+将 `OrderItemSchema` 的属性设置为 `conint`, 这将强制使用整数值, 并且规定数值要大于等于1, 以及默认值1
+
+
+```Python
+class CreateOrderSchema(BaseModel):
+    order: conlist(OrderItemSchema, min_items=1)
+
+class GetOrderSchema(CreateOrderSchema):
+    id: UUID
+    created: datetime
+    status: StatusEnum
+
+class GetOrdersSchema(BaseModel):
+    orders: List[GetOrderSchema]
+```
+使用 pydantic 的 `conlist` 类型定义了 `CreateOrderSchema` 的 `order` 属性, 要求列表至少有一个元素
+
+### Validating request payloads with pydantic
+上面实现了模型定义, 现在通过将其声明为视图函数的一个参数来拦截请求负载, 并通过将其类型设置为相关的 Pydantic 模型进行验证
+
+代码可以在[api.py](https://github.com/abunuwas/microservice-apis/blob/master/ch02/orders/api/api.py)里找到
+```Python
+from uuid import UUID
+
+from starlette.response import Response
+from starlette import status
+
+from orders.app import app
+from orders.api.schemas import CreateOrderSchema # 导入数据模型
+
+@app.post("/orders", status_code=status.HTTP_201_CREATED)
+def create_order(order_details: CreateOrderSchema):
+    return order
+
+@app.get("/orders/{order_id}")
+def get_order(order_id: UUID):
+    return order
+
+@app.put("/orders/{order_id}")
+def update_order(order_id: UUID, order_details: CreateOrderSchema):
+    return order
+```
+
+如果发送一个有问题的数据(例如移除 product 字段), FastAPI 将会生成一份错误消息.
+```JSON
+{
+  "detail": [
+    {
+      "loc": [
+        "body",
+        "order",
+        0,
+        "product"
+      ],
+      "msg": "field required",
+      "type": "value_error.missing"
+    }
+  ]
+}
+```
+该错误消息使用 JSON Pointer 来指示问题所在, JSON Pointer 是一种语法, 用来表示 JSON 文档中特定值的路径
+
+例如, `loc: /body/order/0/product` 大概等同于 Pytohn 中的以下表示法 `loc['body']['order'][0]['product']`
+- body 指的是请求的主体部分
+- order 指的是主体中的 order 键
+- 0 指的是 order 列表中的第一个元素
+- product 指的是这个元素中的 product 键
+
+有时候参数可能是可选的, 但是并不能为 null. 这里使用 Pydantic 的 `validator()` 装饰器来添加额外的规则
+
+```Python
+from pydantic import BaseModel, conint, validator
+
+...
+
+class OrderItemSchema(BaseModel):
+    product: int
+    size: Size
+    quantity: conint(ge=1, strict=True) | None = 1
+
+    @validator('quantity')
+    def quantity_non_nullable():
+        assert value is not None, "quantity may not be None"
+        return value
+```
+
+### Marshalling and validating response payloads with pydantic
 

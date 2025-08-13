@@ -320,5 +320,61 @@ async def read_item_public_data(item_id: str):
     return items[item_id]
 ```
 
+### Response Status Code 响应状态码
+就像可以指定响应模型一样, 也可以在任何路径操作中使用 `status_code` 参数声明用于响应:
+- `@app.get()`
+- `@app.post()`
+- `@app.put()`
+- `@app.delete()`
 
+```Python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+
+@app.post("/items/", status_code=201)
+async def create_item(name: str):
+    return {"name": name}
+```
+
+`status_code` 是"装饰器"方法的一个参数, 而不是你的路径操作函数 *path operation function* 的参数
+
+`status_code` 参数接收一个表示 HTTP 状态码的数字, 也可以接收一个 `IntEnum`, 比如 Python 中的 `http.HTTPStatus`
+
+- 将在响应中返回该状态码
+- 并在 OpenAPI 模式中也如此记录
+
+#### About HTTP status codes
+在 HTTP 协议中, 会在响应中发送一个3位数的数字状态码
+
+这些状态码又一个相关联的名称便于识别, 但重要的是数字本身
+
+- 100~199: 用于"信息", 很少会直接使用它们, 这些状态码的响应不能有响应体
+- 200~299: 用于"成功"的响应, 这些是最常用的
+    - 200 的默认的"成功"响应, 表示一切 OK
+    - 201 表示已创建, 通常在数据库中创建新记录后使用
+    - 204 表示无内容, 当没有内容返回给客户端时使用此响应, 因此不能有响应体
+- 300~399: 用于"重定向", 这些状态码的响应可能有也可能没有响应体. 但 304 (未修改) 除外, 它必须没有响应体
+- 400~499: 用于"客户端错误"响应,
+    - 404 用于"未找到"的响应
+    - 400 客户端通用错误
+- 500~599: 用于服务器错误, 几乎从不直接使用它们. 当的应用代码或服务器的某个部分出错时, 它会自动返回这些状态码之一
+
+要了解更多关于每个状态码的信息以及哪个代码用于什么目的，请查阅 [MDN 关于 HTTP 状态码的文档](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status)
+
+#### Shortcut to remember the names
+除了直接使用数字外, 还可以使用 `fastapi.status` 中的便捷变量
+```Python
+from fastapi import FastAPI, status
+
+app = FastAPI()
+
+@app.post("/items/", status_code=status.HTTP_201_CREATED)
+async def create_item(name: str):
+    return {"name": name}
+```
+这只是一直便利, 都是一样的树枝, 但这样可以使用编辑器的自动补全功能
+
+> 也可以使用 `from starlette import status`
 
