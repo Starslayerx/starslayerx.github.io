@@ -243,4 +243,161 @@ class OrderItemSchema(BaseModel):
 ```
 
 ### Marshalling and validating response payloads with pydantic
+这里定义一下返回类型 [api.py](https://github.com/abunuwas/microservice-apis/blob/master/ch02/orders/api/api.py)
+```Python
+from starlette.responses import Response
+from starlette import status
+from orders.api.schemas import (
+    GetOrderSchema,
+    CreateOrderSchema,
+    GetOrdersSchema,
+)
+
+@app.get("/orders", response_model=GetOrdersSchema)
+def get_orders():
+    return [
+        order
+    ]
+
+@app.post(
+    "/orders",
+    status_code=status.HTTP_201_CREATED,
+    response_model=GetOrderSchema
+)
+def create_order(order_details: CreateOrderSchema):
+    return order
+```
+现在, 如果 response payload 中缺少了返回类型需要的属性, FastAPI 则会报错, 如果有多的属性, 则会被去除
+
+
+### Adding an in-memory list of orders to the API
+现在通过一个简单的内存列表来管理订单状态
+```Python
+import time
+import uuid
+from datetime import datetime
+from uuid import UUID
+
+from fastapi import HTTPException
+from starlette.responses import Response
+from starlette import status
+
+from orders.app import app
+from orders.api.schemas import GetOrderSchema, CreateOrderSchema
+
+ORDERS = [] # in memory list
+
+# 获取订单列表
+@app.get("/orders", respones_model=GetOrderSchema)
+def get_orders():
+    return ORDERS # return order list
+
+# 创建订单
+@app.post(
+    "/orders",
+    status_code=status.HTTP_201_CREATED,
+    response_model=GetOrderSchema,
+)
+def create_order(order_details: CreateOrderSchema):
+    # convert Pydantic model -> dict: v1 use .dict(); v2 use .model_dump()
+    order = order_details.model_dump()
+    order["id"] = uuid.uuid4()
+
+# 获取订单
+@app.get("/orders/{order_id}", response_model=GetOrderSchema)
+def get_order(order_id: UUID):
+    for order in ORDERS:
+        if order["id"] == order_id:
+            return order
+    raise HTTPException(
+        status_code=404,
+        detail=f"Order with ID {order_id} not found",
+    )
+
+# 更新订单
+@app.put("/orders/{order_id}", response_model=GetOrderSchema)
+def update_order(order_id: UUID, order_details: CreateOrderSchema):
+    for order in ORDERS:
+        if order["id"] == order_id:
+            order.update(order_details.model_dump())
+            return order
+    raise HTTPException(
+        status_code=404,
+        detail=f"Order with ID {order_id} not found",
+    )
+
+# 删除订单
+@app.delete(
+    "/orders/{order_id}",
+    status_code=status.HTTP_204_NO_CONTENT,
+    response_class=Response
+)
+def delete_order(order_id: UUID):
+    for index, order in enumerate(ORDERS):
+        if order["id"] == order_id:
+            ORDERS.pop(index)
+            return Response(status_code=HTTPStatus.NO_CONTENT.value)
+    raise HTTPException(
+        status_code=404,
+        detail=f"Order with ID {order_id} not found",
+    )
+
+# 取消订单
+@app.post("/orders/{order_id}/cancel", response_model=GetOrderSchema)
+def cancel_order(order_id: UUID):
+    for order in ORDERS:
+        if order["id"] == order_id:
+            order["status"] = "cancelled"
+            return order
+    raise HTTPException(
+        status_code=404,
+        detail=f"Order with ID {order_id} not found",
+    )
+
+# 支付订单
+@app.get("/orders/{order_id}/pay", response_model=GetOrderSchema)
+def pay_order(order_id: UUID):
+    for order in ORDERS:
+        if order["id"] == order_id:
+            order["status"] = "progress"
+            return order
+    raise HTTPException(
+        status_code=404,
+        detail=f"Order with ID {order_id} not found"<>
+    )
+```
+
+
+### Microservice Principles
+微服务设计原则: 如何将系统拆分为微服务 *serivce decomposition*, 以及如何估计其质量
+下面是三个设计原则:
+- Database-per-service principle 服务独立数据库原则
+- Loose coupling principle  松耦合原则
+- Single Responsibility Principle (SRP) 单一职责原则
+
+遵循这些原则将帮助你避免构建一个"分布式单体应用"(distributed monolith)的风险
+
+#### Data-per-service principle
+服务独立数据库原则是指, 每个微服务拥有一系列具体的数据, 并且其他微服务只能通过 API 访问.
+
+这并不意味着每个微服务都要连接到不同的数据库中, 可以是关系数据库中的不同 tables, 或者非关系数据库中的 collections, 关键是数据被某个服务拥有, 不能被其他服务直接访问.
+
+例如, 为了计算价格, orders service 从 Production database 中获取每个物品的价格, 它也需要知道用户是否有折扣优惠, 这个需要从 User database 获取. 然而, 不能直接诶访问这两个数据库, order service 需要从 products service 和 users service 获取数据.
+
+#### Loose coupling principle
+松耦合原则要求在设计服务的时候, 必须清晰的关注分离点, 松耦合的服务不依赖另一个服务的实现细节, 这项原则有两个实际的应用:
+- 每个服务都可以独立于其他服务工作: 如果一个服务在不调用另一个服务的情况下无法完成一个简单的请求, 那么这两个服务之间没有清晰的关注点分离, 他们应被视为一个整体
+- 每个服务都可以在不影响其他服务工作的情况下进行更新: 如果一个服务的更新需要其他服务, 那么这些服务之间存在紧密耦合, 需要重新设计
+
+例如, 一个基于历史数据计算销售预测的服务(Sales Forecast Service), 以及一个拥有历史销售数据的服务(Historical Data Service), 为了计算预测, 销售服务会调用历史数据服务的API来获取历史数据. 在这种情况下, 销售预测服务在不调用历史数据服务的情况下无法响应任何请求, 因此两个服务之间存在紧密耦合.
+
+解决方案是重新设计这两个服务, 使它们不相互依赖, 或者将它们合并成一个单一的服务.
+
+
+#### Single responsibility principle
+单一职责原则(SRP)指出, 我们要设计职责少、理想情况下只有一个职责的组件.
+当应用于微服务设计架构时, 这意味着我们应努力围绕单一的业务能力或子域来设计服务.
+
+
+
 

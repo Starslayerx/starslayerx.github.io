@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Starslayerx' Blog</title><link>https://starslayerx.github.io/</link><description>Recent content in Home on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Wed, 13 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Python Strings</title><link>https://starslayerx.github.io/posts/python-strings/</link><pubDate>Wed, 13 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-strings/</guid><description>&lt;p>这篇文章总结一下 Python 中字符串的类型&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Starslayerx' Blog</title><link>https://starslayerx.github.io/</link><description>Recent content in Home on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Thu, 14 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Python Generics</title><link>https://starslayerx.github.io/posts/python-generics/</link><pubDate>Thu, 14 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-generics/</guid><description>&lt;p>本篇文件介绍 Python 中的 泛型(Generics)&lt;/p>
+&lt;h3 id="intro">Intro&lt;/h3>
+&lt;p>在没有泛型的情况下, 会遇上一下几个问题:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>难以表达意图
+假设你编写了一个函数, 它接受一个列表, 并返回列表中的第一个元素.
+在不使用类型提示的情况下, 这个函数可以处理任何类型的列表, 但我们无法在函数签名中表达&amp;quot;返回的元素的类型与列表中的元素类型相同&amp;quot;这个意图&lt;/p></description></item><item><title>Python Strings</title><link>https://starslayerx.github.io/posts/python-strings/</link><pubDate>Wed, 13 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-strings/</guid><description>&lt;p>这篇文章总结一下 Python 中字符串的类型&lt;/p>
 &lt;h3 id="unicode-string-字符串">Unicode String 字符串&lt;/h3>
 &lt;p>u 在 Python3 中是多余的, 因为所有的普通字符串默认都是 Unicode, 但在 Python2 中, u 用来显示的表示 Unicode 字符串, 现在保留这个是为了向后兼容&lt;/p></description></item><item><title>FastAPI Response Model</title><link>https://starslayerx.github.io/posts/fastapi-response-model/</link><pubDate>Tue, 12 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-response-model/</guid><description>&lt;p>本篇文章介绍 FastAPI 的返回类型 response model&lt;/p>
 &lt;p>可以在返回函数的类型注解中声明该接口的响应数据类型&lt;/p>
