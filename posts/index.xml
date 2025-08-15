@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Starslayerx' Blog</title><link>https://starslayerx.github.io/posts/</link><description>Recent content in Posts on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Thu, 14 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Python Generics</title><link>https://starslayerx.github.io/posts/python-generics/</link><pubDate>Thu, 14 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-generics/</guid><description>&lt;p>本篇文件介绍 Python 中的 泛型(Generics)&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Starslayerx' Blog</title><link>https://starslayerx.github.io/posts/</link><description>Recent content in Posts on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Fri, 15 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Microservice with FastAPI</title><link>https://starslayerx.github.io/posts/microservice-with-fastapi/</link><pubDate>Fri, 15 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/microservice-with-fastapi/</guid><description>&lt;h2 id="what-are-microservices-">What are microservices ?&lt;/h2>
+&lt;p>什么是微服务? 微服务可以有多种不同的定义方式, 具体取决于希望强调微服务架构的哪个方面, 不同作者会给出略有不同但相关的定义&lt;/p>
+&lt;p>Sam Newman, 微服务领域最有影响力的作者之一, 给出了一个极简的定义:&lt;/p></description></item><item><title>Python Generics</title><link>https://starslayerx.github.io/posts/python-generics/</link><pubDate>Thu, 14 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-generics/</guid><description>&lt;p>本篇文件介绍 Python 中的 泛型(Generics)&lt;/p>
 &lt;h3 id="intro">Intro&lt;/h3>
-&lt;p>在没有泛型的情况下, 会遇上一下几个问题:&lt;/p>
+&lt;p>在没有泛型的情况下, 会遇上以下几个问题:&lt;/p>
 &lt;ol>
 &lt;li>
-&lt;p>难以表达意图
+&lt;p>难以表达意图&lt;br>
 假设你编写了一个函数, 它接受一个列表, 并返回列表中的第一个元素.
 在不使用类型提示的情况下, 这个函数可以处理任何类型的列表, 但我们无法在函数签名中表达&amp;quot;返回的元素的类型与列表中的元素类型相同&amp;quot;这个意图&lt;/p></description></item><item><title>Python Strings</title><link>https://starslayerx.github.io/posts/python-strings/</link><pubDate>Wed, 13 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-strings/</guid><description>&lt;p>这篇文章总结一下 Python 中字符串的类型&lt;/p>
 &lt;h3 id="unicode-string-字符串">Unicode String 字符串&lt;/h3>
