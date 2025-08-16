@@ -2,6 +2,7 @@
 date = '2025-08-01T8:00:00+08:00'
 draft = false
 title = 'Blaugust'
+tags = ["essay"]
 +++
 🎈 Oh hello, August! It's time for Blaugust.
 ### Blaugust Begins: Writing as a Develpoer Habit

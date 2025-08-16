@@ -2,6 +2,7 @@
 date = '2025-08-13T8:00:00+08:00'
 draft = false
 title = 'Python Strings'
+tags = ["python"]
 +++
 
 这篇文章总结一下 Python 中字符串的类型

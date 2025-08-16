@@ -1,8 +1,9 @@
----
-date: 2025-08-04T8:00:00+08:00
-draft: false
-title: "Executing arbitrary Python code from a comment"
----
++++
+date = '2025-08-04T8:00:00+08:00'
+draft = false
+title = 'Executing arbitrary Python code from a comment'
+tags = ["python"]
++++
 通过注释执行任意Python代码
 
 ### 问题描述

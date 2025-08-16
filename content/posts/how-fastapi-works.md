@@ -2,6 +2,7 @@
 date = '2025-08-03T8:30:00+08:00'
 draft = false
 title = 'How FastAPI Works'
+tags = ["fastapi"]
 +++
 FastAPI 的工作原理: 从 routing 到 lifecycle 以及在现实中的使用
 

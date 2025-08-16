@@ -2,6 +2,7 @@
 date = '2025-08-12T8:00:00+08:00'
 draft = false
 title = 'FastAPI Response Model'
+tags = ["fastapi"]
 +++
 本篇文章介绍 FastAPI 的返回类型 response model
 
@@ -377,4 +378,3 @@ async def create_item(name: str):
 这只是一直便利, 都是一样的树枝, 但这样可以使用编辑器的自动补全功能
 
 > 也可以使用 `from starlette import status`
-
