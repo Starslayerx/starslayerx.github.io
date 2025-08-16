@@ -455,7 +455,7 @@ def pay_order(order_id: UUID):
 
 
 ### Wrapping Up
-上面介绍了微服务的概念, 并通过一个 CoffeeMesh 的项目解释了如何设计一个微服务, 分别通过业务分解和通过子领域分解, 以及设计微服务的3条原则:
+上面介绍了微服务的概念, 并通过一个 CoffeeMesh 的项目解释了如何将其分解(decompose)为微服务架构, 分别通过业务分解和通过子领域分解, 以及设计微服务的3条原则:
 - Database-per-service principle 数据库独享原则
 - Loose coupling principle 松耦合原则
 - Single responsibility principle 单一责任原则

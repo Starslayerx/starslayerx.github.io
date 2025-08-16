@@ -1,0 +1,63 @@
++++
+date = '2025-08-16T8:00:00+08:00'
+draft = false
+title = 'Intorduce UUID'
++++
+
+UUID(Universally Unique Identifier, 通用唯一标识符) 是一种标准化的128位标识符, 用于在分布式系统中生成几乎不会重复的唯一 ID. 最早于 IETF 制定为 RFC 4122 标准, 保证在不同机器、不同时间生成的 ID 也能保持全局唯一.
+
+UUID 通常以16进制表示, 采用5段结构, 用连字符 `-` 分隔, 例如:
+```
+550e8400-e29b-41d4-a716-446655440000
+```
+
+有如下特点:
+- 全局唯一
+- 无中心依赖
+- 不可预测
+- 跨平台通用
+
+UUID 有以下不同版本:
+
+| 版本 | 生成 | 特点 |
+| :--- | :--- | :--- |
+| v1 | 基于时间戳 + MAC 地址 | 按时间排序，含生成设备信息 |
+| v3 | 基于命名空间的 MD5 哈希 | 输入相同则输出相同(MD5 已不再安全) |
+| v4 | 基于操作系统的随机数生成 | 完全随机, 最常用 |
+| v5 | 基于命名空间的 SHA-1 哈希 | 与 v3 类似, 但使用 SHA-1 |
+| v6~v8 | 现代版本(草案) | 提高排序性能和隐私保护 |
+
+其中, 对于需要时间有序的使用 v1, 大多数通用场景使用 v4
+
+UUID 的应用场景
+- 数据库主键(分布式环境避免冲突)
+- 会话标识(Session ID、Token)
+- 文件命名(防止重名)
+- 分布式系统节点 ID
+- 追踪请求链路(Trace ID)
+
+示例代码
+```Python
+import uuid
+
+# 生成 UUID v1
+u1 = uuid.uuid1()
+print("UUID v1:", u1)
+
+# 生成 UUID v4（随机）
+u4 = uuid.uuid4()
+print("UUID v4:", u4)
+
+# 生成 UUID v3（命名空间 + MD5）
+u3 = uuid.uuid3(uuid.NAMESPACE_DNS, "example.com")
+print("UUID v3:", u3)
+
+# 生成 UUID v5（命名空间 + SHA-1）
+u5 = uuid.uuid5(uuid.NAMESPACE_DNS, "example.com")
+print("UUID v5:", u5)
+```
+> UUID v1: 9f7a1f7e-9e87-11ee-b15d-0242ac120002  
+> UUID v4: 5f9b44e4-62af-4d13-bd4c-52de5f028f33  
+> UUID v3: 9073926b-929f-31c2-abc9-fad77ae3e8eb  
+> UUID v5: 2ed6657d-e927-568b-95e1-2665a8aea6a2  
+
