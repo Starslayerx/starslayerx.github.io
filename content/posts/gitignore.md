@@ -2,7 +2,7 @@
 date = '2025-08-08T8:00:00+08:00'
 draft = false
 title = 'Git Whitelist'
-tags = ["git"]
+tags = ["Git"]
 +++
 
 有时你开启了一个新的项目, 运行了 `cargo init`、`uv init` 和 `go mod init`

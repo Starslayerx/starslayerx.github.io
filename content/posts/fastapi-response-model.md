@@ -2,7 +2,7 @@
 date = '2025-08-12T8:00:00+08:00'
 draft = false
 title = 'FastAPI Response Model'
-tags = ["fastapi"]
+tags = ["FastAPI"]
 +++
 本篇文章介绍 FastAPI 的返回类型 response model
 

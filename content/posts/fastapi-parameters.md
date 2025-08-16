@@ -2,7 +2,7 @@
 date = '2025-08-06T8:00:00+08:00'
 draft = false
 title = 'FastAPI Parameters'
-tags = ["fastapi"]
+tags = ["FastAPI"]
 +++
 FastAPI 是一个现代、快速（高性能）的 Python Web 框架, 它自动处理参数的解析、验证和文档生成
 

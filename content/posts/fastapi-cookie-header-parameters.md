@@ -2,7 +2,7 @@
 date = '2025-08-11T8:00:00+08:00'
 draft = false
 title = 'Fastapi Cookie and Header Parameters'
-tags = ["fastapi"]
+tags = ["FastAPI"]
 +++
 这篇文章介绍 Fastapi 的 Cookie 和 Header 参数
 

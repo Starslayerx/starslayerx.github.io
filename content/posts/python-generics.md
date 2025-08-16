@@ -2,7 +2,7 @@
 date = '2025-08-14T8:00:00+08:00'
 draft = false
 title = 'Python Generics'
-tags = ["python"]
+tags = ["Python"]
 +++
 本篇文件介绍 Python 中的 泛型(Generics)
 

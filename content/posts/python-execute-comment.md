@@ -2,7 +2,7 @@
 date = '2025-08-04T8:00:00+08:00'
 draft = false
 title = 'Executing arbitrary Python code from a comment'
-tags = ["python"]
+tags = ["Python", "Hack"]
 +++
 通过注释执行任意Python代码
 

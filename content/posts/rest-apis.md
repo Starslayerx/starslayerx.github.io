@@ -2,7 +2,7 @@
 date = '2025-08-17T8:00:00+08:00'
 draft = true
 title = 'Designing and Building REST APIs'
-tags = ["rest"]
+tags = ["API-deisgn", "REST"]
 +++
 这篇文章延续之前微服务的内容, 将介绍关于 REST API 的以下几个方面:
 - REST API 的设计原则

@@ -2,7 +2,7 @@
 date = '2025-08-10T8:00:00+08:00'
 draft = false
 title = 'Python Function Parameters'
-tags = ["python"]
+tags = ["Python"]
 +++
 今天是周日, 简单写点吧, 简单总结一下 Python 中函数参数
 

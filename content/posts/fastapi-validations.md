@@ -2,7 +2,7 @@
 date = '2025-08-07T8:00:00+08:00'
 draft = false
 title = 'FastAPI Parameters and Validations'
-tags = ["fastapi"]
+tags = ["FastAPI"]
 +++
 
 这篇文章介绍 FastAPI 中的参数验证功能

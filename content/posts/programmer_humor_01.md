@@ -1,10 +1,10 @@
 +++
 date = '2025-08-02T8:00:00+08:00'
 draft = false
-title = 'Chaos Enginnering In Partice'
-tags = ["humor"]
+title = '"Chaos Enginnering" In Partice'
+tags = ['Story']
 +++
-##＃“混沌工程”实践
+### “混沌工程”实践
 
 项目延期，开发说时间不够干不完
 老板：“不够就招人”

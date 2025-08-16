@@ -2,7 +2,7 @@
 date = '2025-08-16T8:00:00+08:00'
 draft = false
 title = 'Intorduce UUID'
-tags = ["python"]
+tags = ["Python"]
 +++
 
 UUID(Universally Unique Identifier, 通用唯一标识符) 是一种标准化的128位标识符, 用于在分布式系统中生成几乎不会重复的唯一 ID. 最早于 IETF 制定为 RFC 4122 标准, 保证在不同机器、不同时间生成的 ID 也能保持全局唯一.

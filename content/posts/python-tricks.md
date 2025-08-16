@@ -2,7 +2,7 @@
 date = '2025-08-05T8:00:00+08:00'
 draft = false
 title = 'Python Tricks'
-tags = ["python"]
+tags = ["Python"]
 +++
 
 ### 1. The Self-Replicating Trick

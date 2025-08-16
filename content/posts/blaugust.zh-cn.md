@@ -2,7 +2,7 @@
 date = '2025-08-01T8:00:00+08:00'
 draft = false
 title = 'Blaugust'
-tags = ["essay"]
+tags = ["Essay"]
 +++
 
 🎈 八月你好! 是时候开启 Blaugust 了。
