@@ -1,6 +1,6 @@
 +++
 date = '2025-08-02T8:00:00+08:00'
-draft = true
+draft = false
 title = 'Chaos Enginnering In Partice'
 +++
 ##＃“混沌工程”实践
@@ -15,5 +15,5 @@ title = 'Chaos Enginnering In Partice'
 - A：啊？我也不知道
 - 我：不是???(一脸震惊)
 
-理想：Plan Do      Check  Act
+理想：Plan Do    Check  Act
 现实：Plan Delay Cancel Apologize
