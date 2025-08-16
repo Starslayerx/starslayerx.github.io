@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/git/</link><description>Recent content in Git on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Fri, 08 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>Git Whitelist</title><link>https://starslayerx.github.io/posts/git-whitelist/</link><pubDate>Fri, 08 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/git-whitelist/</guid><description>&lt;p>有时你开启了一个新的项目, 运行了 &lt;code>cargo init&lt;/code>、&lt;code>uv init&lt;/code> 和 &lt;code>go mod init&lt;/code>&lt;/p>
+&lt;p>这些命令创建了工作所需要的必要文件, 同时也在 &lt;code>.gitignore&lt;/code> 文件中添加了以下内容&lt;/p>
+&lt;pre tabindex="0">&lt;code>target
+__pycache__
+bin
+&lt;/code>&lt;/pre>&lt;p>一切都很顺利, 你继续开发新功能, 等到时机成熟时就将项目发布到了 Git 托管平台上&lt;/p></description></item></channel></rss>

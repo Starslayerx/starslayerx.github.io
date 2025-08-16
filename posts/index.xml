@@ -107,12 +107,11 @@ A: 在注释#中, 构造一个.zip 文件, python 会将该内容当成一个zip
 &lt;ul>
 &lt;li>Q：你这个代码不要这样写，因为&amp;hellip;&amp;hellip;&lt;/li>
 &lt;li>A：哦，懂了&lt;/li>
-&lt;li>Q：唉？你这个 .idea/ 文件是什么？&lt;/li>
+&lt;li>Q：唉？你这个 &lt;code>.idea/&lt;/code> 文件是什么？&lt;/li>
 &lt;li>A：啊？我也不知道&lt;/li>
 &lt;li>我：不是???(一脸震惊)&lt;/li>
 &lt;/ul>
-&lt;p>理想：Plan Do Check Act
-现实：Plan Delay Cancel Apologize&lt;/p></description></item><item><title>Blaugust</title><link>https://starslayerx.github.io/posts/blaugust/</link><pubDate>Fri, 01 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/blaugust/</guid><description>&lt;p>🎈 Oh hello, August! It&amp;rsquo;s time for Blaugust.&lt;/p>
+&lt;p>理想：Plan Do Check Act&lt;/p></description></item><item><title>Blaugust</title><link>https://starslayerx.github.io/posts/blaugust/</link><pubDate>Fri, 01 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/blaugust/</guid><description>&lt;p>🎈 Oh hello, August! It&amp;rsquo;s time for Blaugust.&lt;/p>
 &lt;h3 id="blaugust-begins-writing-as-a-develpoer-habit">Blaugust Begins: Writing as a Develpoer Habit&lt;/h3>
 &lt;p>This year, I&amp;rsquo;m joining &lt;strong>Blaugust&lt;/strong> - a month-long blogging challenge that encourage consistent writing throught August.
 For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orgainzing thoughts, documenting ideas, and creating term references.&lt;/p>
