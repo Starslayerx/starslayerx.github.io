@@ -1,8 +1,8 @@
 +++
 date = '2025-08-17T8:00:00+08:00'
-draft = true
+draft = false
 title = 'Designing and Building REST APIs'
-tags = ["API-deisgn", "REST"]
+tags = ["REST"]
 +++
 这篇文章延续之前微服务的内容, 将介绍关于 REST API 的以下几个方面:
 - REST API 的设计原则
@@ -214,7 +214,8 @@ HATEOAS 是 REST API 设计中的一种范式(paradigm), 它强调可发现性. 
 
 
 ### Level 1: Intorducing the concept of resource
-1级引入了资源 URL 的概念, 服务器不再使用通用的 `/api` 端点, 而是暴露表示资源的 URL. 例如:
+第1级引入了资源 URL 的概念, 服务器不再使用通用的 `/api` 端点, 而是暴露表示资源的 URL. 例如:
+
 - `/orders` 表示订单集和
 - `/order/{order_id}` 表示单个订单
 
@@ -235,7 +236,64 @@ HATEOAS 是 REST API 设计中的一种范式(paradigm), 它强调可发现性. 
 
 
 ### Level 2: Using HTTP methods and status codes
+第2级引入了 HTTP 请求方法verbs 和 状态码status 的概念, 这一层, HTTP verbs 用于表示具体操作.
+例如, 要下订单, 客户端向 `/orders` 端点发送一个 POST 请求, 内容如下:
+```Python
+{
+  "order": [
+      {
+          "product": "mocha",
+          "size": "medium",
+          "quantity": 2
+      }
+  ]
+}
+```
+
+在这个例子中, HTTP 方法 POST 表示要执行的操作, 而请求体仅包含想要下的订单的具体信息
+
+类似地, 如果要获取某个订单的详细信息, 我们会向该订单的 URI 发送 GET 请求: `/orders/{order_id}`. 这里使用 GET 告诉服务器, 希望获取 URI 指定资源的详细信息
+
+前几个级别的响应通常都使用相同的状态码(通常为 200), 而第二级引入了 HTTP 状态码的语义化使用, 用来报告客户端请求处理的结果. 例如:
+- 使用 POST 创建资源时, 服务器会返回 201 Created 状态码
+- 请求不存在的资源时, 会返回 404 Not Found 状态码
 
 
+### Level 3: API discoverability
+第3级引入了可发现性的概念, 通过 HATEOAS 原则, 并在响应中添加表示可对资源执行操作的链接来实现.
 
+例如, 对 `/orders/{order_id}` 端点发送 GET 请求, 会返回该订单的表示(representation), 并包含一系列相关链接
+```Python
+{
+  "id": 8,
+  "status": "progress",
+  "created": "2023-09-01",
+  "order": [
+      {
+          "product": "cappuccino",
+          "size": "small",
+          "quantity": 1
+      },
+      {
+          "product": "croissant",
+          "size": "medium",
+          "quantity": 2
+      }
+  ],
+  "links": [
+      {
+          "href": "/orders/8/cancel",
+          "description": "Cancels the order",
+          "type": "POST"
+      },
+      {
+          "href": "/orders/8/pay",
+          "description": "Pays for the order",
+          "type": "GET"
+      }
+  ]
+}
+```
+在 Richardson 成熟度模型中, 第三级代表了他所称的 "REST 的荣耀(Glory of REST)" 的最后一步
 
+该模型为我们提供了一个框架, 用来思考 API 设计在 REST 原则体系中的位置. 它的目的不是衡量 API 在多大程度上"符合"REST 原则, 也不是评估 API 设计的质量; 而是帮助我们思考如何充分利用 HTTP 协议, 创建表达力强、易理解、易使用的 API.
