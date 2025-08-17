@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>REST on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/rest/</link><description>Recent content in REST on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Sun, 17 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/rest/index.xml" rel="self" type="application/rss+xml"/><item><title>Designing and Building REST APIs</title><link>https://starslayerx.github.io/posts/designing-and-building-rest-apis/</link><pubDate>Sun, 17 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/designing-and-building-rest-apis/</guid><description>&lt;p>这篇文章延续之前微服务的内容, 将介绍关于 REST API 的以下几个方面:&lt;/p>
+&lt;ul>
+&lt;li>REST API 的设计原则&lt;/li>
+&lt;li>Richardson maturity model (RMM) 如何帮助理解 REST 的优势和设计原则&lt;/li>
+&lt;li>REST API 中资源(resource)和端点(endpoints)设计的概念&lt;/li>
+&lt;li>使用 HTTP 请求方法(verb)和HTTP状态码(status code)来创建高解释性的REST API&lt;/li>
+&lt;li>为REST API 设计高质量的载荷(payload)和URL查询参数(query parameters)&lt;/li>
+&lt;/ul>
+&lt;p>表达性状态转移 representational state transfer (REST) 描述了一种通过网络进行通信的应用程序架构风格.
+最初, REST 的概念包含了一组用于设计分布式、可扩展 Web 应用的约束条件.
+随着时间推移, 出现了更为细致的协议和规范, 为 REST API 的设计提供了明确的指导方针.
+如今, REST 已经成为构建 Web API 的最流行选择.&lt;/p></description></item></channel></rss>
