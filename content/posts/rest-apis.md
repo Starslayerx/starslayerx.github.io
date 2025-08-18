@@ -8,8 +8,6 @@ tags = ["REST"]
 - REST API 的设计原则
 - Richardson maturity model (RMM) 如何帮助理解 REST 的优势和设计原则
 - REST API 中资源(resource)和端点(endpoints)设计的概念
-- 使用 HTTP 请求方法(verb)和HTTP状态码(status code)来创建高解释性的REST API
-- 为REST API 设计高质量的载荷(payload)和URL查询参数(query parameters)
 
 表达性状态转移 representational state transfer (REST) 描述了一种通过网络进行通信的应用程序架构风格.
 最初, REST 的概念包含了一组用于设计分布式、可扩展 Web 应用的约束条件.
@@ -145,17 +143,17 @@ HATEOAS 是 REST API 设计中的一种范式(paradigm), 它强调可发现性. 
 
 提供关联链接可以使 API 具有可导航性, 更易于使用, 因为每个资源都会附带与之交互所需的所有 URL.
 然而在实际中, 许多 API 并没有这样实现, 原因包括:
-1. 超链接提供的信息在 API 文档中已经可用
+- 超链接提供的信息在 API 文档中已经可用  
     - 实际上, OpenAPI 规范中包含的信息比单独为特定资源提供的相关链接列表要丰富和结构化得多
-2. 不总是清楚应该返回哪些链接
+- 不总是清楚应该返回哪些链接  
     - 不同用户拥有不同的权限和角色, 可以执行不同操作和访问不同资源
     - 例如，CoffeeMesh API 的外部用户可以使用 `POST /orders` 下单, 也可以使用 `GET /orders/{order_id}` 查询订单详情, 但不能使用 `DELETE /orders/{order_id}` 删除订单, 因为该接口仅限内部用户
     - 如果 HATEOAS 的目标是让 API 可以从单一入口导航, 那么向外部用户返回他们无法使用的 DELETE 链接显然没有意义
     - 因此, 需要根据用户权限返回不同的相关链接列表, 但这会增加 API 设计和实现的复杂性, 并将授权层与 API 层耦合
-3. 资源状态可能限制某些操作
+- 资源状态可能限制某些操作  
     - 例如, `POST /orders/1234/cancel` 只能在活跃订单上调用, 而无法对已取消订单调用
     - 这种不确定性会增加遵循 HATEOAS 原则的接口设计和实现难度
-4. 响应负载可能过大
+- 响应负载可能过大  
     - 在一些 API 中, 相关链接列表可能非常庞大, 使响应体变大, 从而影响 API 性能, 以及对网络连接较差的小设备的可靠性
 
 在设计自己的 API 时, 可以根据实际情况决定是否遵循 HATEOAS 原则, 在某些情况下是有用的, 例如:
