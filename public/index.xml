@@ -1,4 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Starslayerx' Blog</title><link>https://starslayerx.github.io/</link><description>Recent content in Home on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Sun, 17 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Designing and Building REST APIs</title><link>https://starslayerx.github.io/posts/designing-and-building-rest-apis/</link><pubDate>Sun, 17 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/designing-and-building-rest-apis/</guid><description>&lt;p>这篇文章延续之前微服务的内容, 将介绍关于 REST API 的以下几个方面:&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Starslayerx' Blog</title><link>https://starslayerx.github.io/</link><description>Recent content in Home on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Tue, 19 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>IEEE-754 Introduce</title><link>https://starslayerx.github.io/posts/ieee-754-introduce/</link><pubDate>Tue, 19 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/ieee-754-introduce/</guid><description>&lt;p>IEEE 754 标准数值类型及分类&lt;/p>
+&lt;h2 id="整数-integer">整数 Integer&lt;/h2>
+&lt;p>整数是没有小数部分的值, 在计算机内通常有两种表示方式:&lt;/p>
+&lt;ul>
+&lt;li>有符号整数: 可以表示正数和负数, 最常用的是二补码表示. 例如 8 位二进制的范围为[-2^7, 2^7-1]&lt;/li>
+&lt;li>无符号整数: 仅表示非负数, 8 位二进制的范围为 [0, 2^8-1]&lt;/li>
+&lt;/ul>
+&lt;p>其中补码(Two&amp;rsquo;s Complement)用于表示负数&lt;/p></description></item><item><title>Redis String</title><link>https://starslayerx.github.io/posts/redis-string/</link><pubDate>Tue, 19 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-string/</guid><description>&lt;p>介绍Redis中的字符串键&lt;/p>
+&lt;h2 id="字符串">字符串&lt;/h2>
+&lt;p>字符串建是 Redis 最基本的键值对类型, 这种类型的键值对会在数据库中把单独的一个值关联起来, 被关联的键和值可以为文本, 也可以是图片, 视屏, 音频等二进制数据.&lt;/p></description></item><item><title>Designing and Building REST APIs</title><link>https://starslayerx.github.io/posts/designing-and-building-rest-apis/</link><pubDate>Sun, 17 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/designing-and-building-rest-apis/</guid><description>&lt;p>这篇文章延续之前微服务的内容, 将介绍关于 REST API 的以下几个方面:&lt;/p>
 &lt;ul>
 &lt;li>REST API 的设计原则&lt;/li>
 &lt;li>Richardson maturity model (RMM) 如何帮助理解 REST 的优势和设计原则&lt;/li>
