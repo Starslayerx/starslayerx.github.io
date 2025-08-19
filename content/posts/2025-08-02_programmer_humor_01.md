@@ -4,6 +4,8 @@ draft = false
 title = '"Chaos Enginnering" In Partice'
 tags = ['story']
 +++
+记录一个小故事 hhh
+
 ### “混沌工程”实践
 
 项目延期，开发说时间不够干不完
