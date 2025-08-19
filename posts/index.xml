@@ -143,4 +143,26 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
 &lt;li>Architecture notes: async patterns, micorservice, data flow&lt;/li>
 &lt;li>Learning notes &amp;amp; translation of blogs: deep dive into code and quality tech atricles&lt;/li>
 &lt;/ul>
-&lt;p>I&amp;rsquo;m not necessarily writing one post per day - some days I might write multiple posts in advance - but the goal is to publish daily with a focus on consistency, reusability, and value.&lt;/p></description></item></channel></rss>
+&lt;p>I&amp;rsquo;m not necessarily writing one post per day - some days I might write multiple posts in advance - but the goal is to publish daily with a focus on consistency, reusability, and value.&lt;/p></description></item><item><title>Dive into DeepLearning - Preliminaries</title><link>https://starslayerx.github.io/posts/dive-into-deeplearning-preliminaries/</link><pubDate>Sun, 21 Mar 2021 05:05:25 +0800</pubDate><guid>https://starslayerx.github.io/posts/dive-into-deeplearning-preliminaries/</guid><description>&lt;ul>
+&lt;li>Course Note: d2l-video-04 - 数据操作+数据预处理&lt;/li>
+&lt;li>Jupyter Notebook: chapter_preliminaries&lt;/li>
+&lt;/ul>
+&lt;h3 id="介绍">介绍&lt;/h3>
+&lt;p>&lt;strong>N 纬数组介绍&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>0-d (标量)&lt;/p>
+&lt;pre tabindex="0">&lt;code>1.0 
+&lt;/code>&lt;/pre>&lt;p>一个类别&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>1-d (向量)&lt;/p>
+&lt;pre tabindex="0">&lt;code>[1.0, 2.7, 3.4] 
+&lt;/code>&lt;/pre>&lt;p>一个特征向量&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>2-d (矩阵)&lt;/p>
+&lt;pre tabindex="0">&lt;code>[[1.0, 2.7, 3.4],
+ [1.0, 2.7, 3.4],
+ [1.0, 2.7, 3.4]]
+&lt;/code>&lt;/pre>&lt;p>一个样本 - 特征矩阵&lt;/p></description></item></channel></rss>
