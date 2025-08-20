@@ -145,10 +145,32 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
 &lt;li>Architecture notes: async patterns, micorservice, data flow&lt;/li>
 &lt;li>Learning notes &amp;amp; translation of blogs: deep dive into code and quality tech atricles&lt;/li>
 &lt;/ul>
-&lt;p>I&amp;rsquo;m not necessarily writing one post per day - some days I might write multiple posts in advance - but the goal is to publish daily with a focus on consistency, reusability, and value.&lt;/p></description></item><item><title>Dive into DeepLearning - Preliminaries</title><link>https://starslayerx.github.io/posts/dive-into-deeplearning-preliminaries/</link><pubDate>Sun, 21 Mar 2021 05:05:25 +0800</pubDate><guid>https://starslayerx.github.io/posts/dive-into-deeplearning-preliminaries/</guid><description>&lt;ul>
-&lt;li>Course Note: d2l-video-04 - 数据操作+数据预处理&lt;/li>
-&lt;li>Jupyter Notebook: chapter_preliminaries/&lt;/li>
+&lt;p>I&amp;rsquo;m not necessarily writing one post per day - some days I might write multiple posts in advance - but the goal is to publish daily with a focus on consistency, reusability, and value.&lt;/p></description></item><item><title>Dive into DeepLearning - Preliminaries</title><link>https://starslayerx.github.io/posts/dive-into-deeplearning-preliminaries/</link><pubDate>Sun, 21 Mar 2021 05:20:08 +0800</pubDate><guid>https://starslayerx.github.io/posts/dive-into-deeplearning-preliminaries/</guid><description>&lt;ul>
+&lt;li>Course Note: d2l-video-05 - 线性代数&lt;/li>
+&lt;li>Jupyter Notebook: chapter_preliminaries/linear-algebra.ipynb&lt;/li>
 &lt;/ul>
+&lt;p>预备知识中 Liner Algebra 的部分&lt;/p>
+&lt;h3 id="线性代数">线性代数&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>Scalars 标量: 指只有一个元素的张量 tensors&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">torch&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tensor&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mf">3.0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># scalar&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">y&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tensor&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mf">2.0&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>Vectors 向量: 可以视作标量构成的列表&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">arange&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">x&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="c1"># 通过张量索引访问任一元素&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 访问张量长度&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">x&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">shape&lt;/span> &lt;span class="c1"># torch.Size([4]) 只有一个轴的张量, 形状只有一个元素&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>Matrices 矩阵: 类似向量的推广, 可以构建更多轴的数据结构&lt;/p></description></item><item><title>Dive into DeepLearning - Preliminaries</title><link>https://starslayerx.github.io/posts/dive-into-deeplearning-preliminaries/</link><pubDate>Sun, 21 Mar 2021 05:05:25 +0800</pubDate><guid>https://starslayerx.github.io/posts/dive-into-deeplearning-preliminaries/</guid><description>&lt;ul>
+&lt;li>Course Note: d2l-video-04 - 数据操作+数据预处理&lt;/li>
+&lt;li>Jupyter Notebook: chapter_preliminaries/pandas.ipynb&lt;/li>
+&lt;/ul>
+&lt;p>预备知识中 Data Manipulation 和 Data Preprocessing 的部分&lt;/p>
 &lt;h3 id="介绍">介绍&lt;/h3>
 &lt;p>&lt;strong>N 纬数组介绍&lt;/strong>&lt;/p>
 &lt;ul>
