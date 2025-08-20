@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Starslayerx' Blog</title><link>https://starslayerx.github.io/</link><description>Recent content in Home on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Tue, 19 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Redis String</title><link>https://starslayerx.github.io/posts/redis-string/</link><pubDate>Tue, 19 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-string/</guid><description>&lt;p>介绍Redis中的字符串键&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Starslayerx' Blog</title><link>https://starslayerx.github.io/</link><description>Recent content in Home on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Wed, 20 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>HTTP Methods, Status Codes and Payloads</title><link>https://starslayerx.github.io/posts/http-methods-status-codes-and-payloads/</link><pubDate>Wed, 20 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/http-methods-status-codes-and-payloads/</guid><description>&lt;p>本篇文章基于 REST api 介绍HTTP请求方法、HTTP响应码和API数据载荷, 是之前介绍 REST 那篇文章的延伸&lt;/p>
+&lt;h2 id="http-methods">HTTP Methods&lt;/h2>
+&lt;h2 id="http-status-codes">HTTP Status Codes&lt;/h2></description></item><item><title>Redis String</title><link>https://starslayerx.github.io/posts/redis-string/</link><pubDate>Tue, 19 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-string/</guid><description>&lt;p>介绍Redis中的字符串键&lt;/p>
 &lt;h2 id="字符串">字符串&lt;/h2>
 &lt;p>字符串建是 Redis 最基本的键值对类型, 这种类型的键值对会在数据库中把单独的一个值关联起来, 被关联的键和值可以为文本, 也可以是图片, 视屏, 音频等二进制数据.&lt;/p></description></item><item><title>IEEE-754 Introduce</title><link>https://starslayerx.github.io/posts/ieee-754-introduce/</link><pubDate>Mon, 18 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/ieee-754-introduce/</guid><description>&lt;p>IEEE 754 标准数值类型及分类&lt;/p>
 &lt;h2 id="整数-integer">整数 Integer&lt;/h2>
@@ -145,7 +147,7 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
 &lt;/ul>
 &lt;p>I&amp;rsquo;m not necessarily writing one post per day - some days I might write multiple posts in advance - but the goal is to publish daily with a focus on consistency, reusability, and value.&lt;/p></description></item><item><title>Dive into DeepLearning - Preliminaries</title><link>https://starslayerx.github.io/posts/dive-into-deeplearning-preliminaries/</link><pubDate>Sun, 21 Mar 2021 05:05:25 +0800</pubDate><guid>https://starslayerx.github.io/posts/dive-into-deeplearning-preliminaries/</guid><description>&lt;ul>
 &lt;li>Course Note: d2l-video-04 - 数据操作+数据预处理&lt;/li>
-&lt;li>Jupyter Notebook: chapter_preliminaries&lt;/li>
+&lt;li>Jupyter Notebook: chapter_preliminaries/&lt;/li>
 &lt;/ul>
 &lt;h3 id="介绍">介绍&lt;/h3>
 &lt;p>&lt;strong>N 纬数组介绍&lt;/strong>&lt;/p>

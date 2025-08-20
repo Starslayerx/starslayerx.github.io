@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DeepLearning on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/deeplearning/</link><description>Recent content in DeepLearning on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Sun, 21 Mar 2021 05:05:25 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/deeplearning/index.xml" rel="self" type="application/rss+xml"/><item><title>Dive into DeepLearning - Preliminaries</title><link>https://starslayerx.github.io/posts/dive-into-deeplearning-preliminaries/</link><pubDate>Sun, 21 Mar 2021 05:05:25 +0800</pubDate><guid>https://starslayerx.github.io/posts/dive-into-deeplearning-preliminaries/</guid><description>&lt;ul>
 &lt;li>Course Note: d2l-video-04 - 数据操作+数据预处理&lt;/li>
-&lt;li>Jupyter Notebook: chapter_preliminaries&lt;/li>
+&lt;li>Jupyter Notebook: chapter_preliminaries/&lt;/li>
 &lt;/ul>
 &lt;h3 id="介绍">介绍&lt;/h3>
 &lt;p>&lt;strong>N 纬数组介绍&lt;/strong>&lt;/p>
