@@ -1,6 +1,6 @@
 +++
 date = '2025-08-20T8:00:00+08:00'
-draft = true
+draft = false
 title = 'HTTP Methods, Status Codes and Payloads'
 tags = ["HTTP"]
 +++
