@@ -249,14 +249,14 @@ params:
 
 
   katex:
-    enabled: false
+    enabled: true
     delimiters:
       - left: "$$"
         right: "$$"
         display: true
       - left: "$"
         right: "$"
-        display: false
+        display: true
       - left: "\\("
         right: "\\)"
         display: false
