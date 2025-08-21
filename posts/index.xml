@@ -145,7 +145,7 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
 &lt;li>Architecture notes: async patterns, micorservice, data flow&lt;/li>
 &lt;li>Learning notes &amp;amp; translation of blogs: deep dive into code and quality tech atricles&lt;/li>
 &lt;/ul>
-&lt;p>I&amp;rsquo;m not necessarily writing one post per day - some days I might write multiple posts in advance - but the goal is to publish daily with a focus on consistency, reusability, and value.&lt;/p></description></item><item><title>Dive into DeepLearning - Preliminaries</title><link>https://starslayerx.github.io/posts/dive-into-deeplearning-preliminaries/</link><pubDate>Sun, 21 Mar 2021 05:20:08 +0800</pubDate><guid>https://starslayerx.github.io/posts/dive-into-deeplearning-preliminaries/</guid><description>&lt;ul>
+&lt;p>I&amp;rsquo;m not necessarily writing one post per day - some days I might write multiple posts in advance - but the goal is to publish daily with a focus on consistency, reusability, and value.&lt;/p></description></item><item><title>Dive into DeepLearning - 02 - Preliminaries</title><link>https://starslayerx.github.io/posts/dive-into-deeplearning-02-preliminaries/</link><pubDate>Sun, 21 Mar 2021 05:20:08 +0800</pubDate><guid>https://starslayerx.github.io/posts/dive-into-deeplearning-02-preliminaries/</guid><description>&lt;ul>
 &lt;li>Course Note: d2l-video-05 - 线性代数&lt;/li>
 &lt;li>Jupyter Notebook: chapter_preliminaries/linear-algebra.ipynb&lt;/li>
 &lt;/ul>
@@ -166,7 +166,7 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">x&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">shape&lt;/span> &lt;span class="c1"># torch.Size([4]) 只有一个轴的张量, 形状只有一个元素&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>
-&lt;p>Matrices 矩阵: 类似向量的推广, 可以构建更多轴的数据结构&lt;/p></description></item><item><title>Dive into DeepLearning - Preliminaries</title><link>https://starslayerx.github.io/posts/dive-into-deeplearning-preliminaries/</link><pubDate>Sun, 21 Mar 2021 05:05:25 +0800</pubDate><guid>https://starslayerx.github.io/posts/dive-into-deeplearning-preliminaries/</guid><description>&lt;ul>
+&lt;p>Matrices 矩阵: 类似向量的推广, 可以构建更多轴的数据结构&lt;/p></description></item><item><title>Dive into DeepLearning - 01 - Preliminaries</title><link>https://starslayerx.github.io/posts/dive-into-deeplearning-01-preliminaries/</link><pubDate>Sun, 21 Mar 2021 05:05:25 +0800</pubDate><guid>https://starslayerx.github.io/posts/dive-into-deeplearning-01-preliminaries/</guid><description>&lt;ul>
 &lt;li>Course Note: d2l-video-04 - 数据操作+数据预处理&lt;/li>
 &lt;li>Jupyter Notebook: chapter_preliminaries/pandas.ipynb&lt;/li>
 &lt;/ul>
