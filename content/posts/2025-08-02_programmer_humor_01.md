@@ -21,3 +21,5 @@ tags = ['story']
 理想：Plan Do    Check  Act
 
 现实：Plan Delay Cancel Apologize
+
+> Why wouldn't programmers like nature? It has too many bugs...

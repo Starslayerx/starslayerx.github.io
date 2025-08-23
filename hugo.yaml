@@ -256,7 +256,7 @@ params:
         display: true
       - left: "$"
         right: "$"
-        display: true
+        display: false
       - left: "\\("
         right: "\\)"
         display: false
