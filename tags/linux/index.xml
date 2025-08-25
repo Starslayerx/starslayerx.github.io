@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Starslayerx&#39; Blog</title>
+    <link>http://localhost:1313/tags/linux/</link>
+    <description>Recent content in Linux on Starslayerx&#39; Blog</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 22 Aug 2025 08:00:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rust Alternaitves for Linux Tools</title>
+      <link>http://localhost:1313/posts/rust-alternaitves-for-linux-tools/</link>
+      <pubDate>Fri, 22 Aug 2025 08:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/rust-alternaitves-for-linux-tools/</guid>
+      <description>&lt;p&gt;常用 Linux 工具的 rust 替代品.&lt;/p&gt;&#xA;&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;&#xA;&lt;p&gt;在 Linux 生态中, 许多命令行工具都是用 C 编写的, 经过几十年的优化, 性能和稳定性都非常优秀.&#xA;然而, 近年来, Rust 以其安全性、内存管理优势和现代化开发体验, 成为系统级工具开发的理想选择.&#xA;本文介绍了一些常见 Linux 工具及其 Rust 替代品, 并分析其特点.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
