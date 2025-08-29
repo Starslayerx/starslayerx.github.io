@@ -2,7 +2,7 @@
 date = '2025-08-22T8:00:00+08:00'
 draft = false
 title = 'Tokei'
-tags = ['Tools']
+tags = ['Rust']
 +++
 
 ### Tokei 介绍
