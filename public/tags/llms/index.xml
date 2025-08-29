@@ -1,17 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/python/</link><description>Recent content in Python on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Wed, 27 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>From Python to Go</title><link>https://starslayerx.github.io/posts/from-python-to-go/</link><pubDate>Wed, 27 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/from-python-to-go/</guid><description>&lt;p>&lt;a href="https://telemetryharbor.com/blog/from-python-to-go-why-we-rewrote-our-ingest-pipeline-at-telemetry-harbor/">From Python to Go: Why We Rewrote Our Ingest Pipeline at Telemetry Harbor&lt;/a>&lt;/p>
-&lt;p>我们将 Telemetry Harbor 的摄取管道从 Python FastAPI 重写为 Go，原因是遇到了严重的性能瓶颈。迁移后，效率提升了 10 倍，数据完整性因严格类型检查而得到加强，系统也拥有了稳定、可扩展的高并发时间序列数据摄取基础。&lt;/p></description></item><item><title>Intorduce UUID</title><link>https://starslayerx.github.io/posts/intorduce-uuid/</link><pubDate>Sat, 16 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/intorduce-uuid/</guid><description>&lt;p>UUID(Universally Unique Identifier, 通用唯一标识符) 是一种标准化的128位标识符, 用于在分布式系统中生成几乎不会重复的唯一 ID. 最早于 IETF 制定为 RFC 4122 标准, 保证在不同机器、不同时间生成的 ID 也能保持全局唯一.&lt;/p></description></item><item><title>Python Generics</title><link>https://starslayerx.github.io/posts/python-generics/</link><pubDate>Thu, 14 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-generics/</guid><description>&lt;p>本篇文件介绍 Python 中的 泛型(Generics)&lt;/p>
-&lt;h3 id="intro">Intro&lt;/h3>
-&lt;p>在没有泛型的情况下, 会遇上以下几个问题:&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>难以表达意图&lt;br>
-假设你编写了一个函数, 它接受一个列表, 并返回列表中的第一个元素.
-在不使用类型提示的情况下, 这个函数可以处理任何类型的列表, 但我们无法在函数签名中表达&amp;quot;返回的元素的类型与列表中的元素类型相同&amp;quot;这个意图&lt;/p></description></item><item><title>Python Strings</title><link>https://starslayerx.github.io/posts/python-strings/</link><pubDate>Wed, 13 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-strings/</guid><description>&lt;p>这篇文章总结一下 Python 中字符串的类型&lt;/p>
-&lt;h3 id="unicode-string-字符串">Unicode String 字符串&lt;/h3>
-&lt;p>u 在 Python3 中是多余的, 因为所有的普通字符串默认都是 Unicode, 但在 Python2 中, u 用来显示的表示 Unicode 字符串, 现在保留这个是为了向后兼容&lt;/p></description></item><item><title>Python Function Parameters</title><link>https://starslayerx.github.io/posts/python-function-parameters/</link><pubDate>Sun, 10 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-function-parameters/</guid><description>&lt;p>今天是周日, 简单写点吧, 简单总结一下 Python 中函数参数&lt;/p>
-&lt;h2 id="python-function-parameters">Python Function Parameters&lt;/h2>
-&lt;p>Python 函数参数机制非常灵活丰富, 理解各种参数类型及其用法对于写出优雅、易维护的代码非常重要. 本文将介绍 Python 中函数参数的种类与用法, 并详细讲解 Python 3.8 引入的参数分隔符 / 和 *, 帮助你更好地设计函数接口.&lt;/p></description></item><item><title>Python Tricks</title><link>https://starslayerx.github.io/posts/python-tricks/</link><pubDate>Tue, 05 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-tricks/</guid><description>&lt;h3 id="1-the-self-replicating-trick">1. The Self-Replicating Trick&lt;/h3>
-&lt;p>将一个含有空列表的列表乘5, 得到有5个空列表的列表&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>LLMs on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/llms/</link><description>Recent content in LLMs on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Thu, 28 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/llms/index.xml" rel="self" type="application/rss+xml"/><item><title>Prompt Origanization</title><link>https://starslayerx.github.io/posts/prompt-origanization/</link><pubDate>Thu, 28 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/prompt-origanization/</guid><description>&lt;p>这篇文章旨在介绍 Python 中常用的提示词组织方式&lt;/p>
+&lt;h3 id="f-string">f-string&lt;/h3>
+&lt;p>使用 f 字符串填充变量得到提示词&lt;/p>
 &lt;div
  class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md">
  
@@ -77,8 +66,19 @@
 
  
  &lt;div class="code-block-content relative" id="code-0">
- &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[[]]&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="mi">5&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">x&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+ &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">get_prompt&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">query&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="nb">list&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nb">dict&lt;/span>&lt;span class="p">]:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">SYSTEM_PROMPT&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;...
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">...
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">多行提示词, 也可以填充变量
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">USER_PROMPT&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;INPUT:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">query&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">....
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>&lt;span class="s2">&amp;#34;role&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;system&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;content&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">SYSTEM_PROMPT&lt;/span>&lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>&lt;span class="s2">&amp;#34;role&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;user&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;content&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">USER_PROMPT&lt;/span>&lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">]&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
  
  &lt;div
  class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300">
@@ -311,11 +311,4 @@
  }
 })();
 &lt;/script>
-
- &lt;blockquote
- class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1">
- &lt;div class="prose prose-sm max-w-none">
- &lt;p>[[], [], [], [], []]&lt;/p></description></item><item><title>Executing arbitrary Python code from a comment</title><link>https://starslayerx.github.io/posts/executing-arbitrary-python-code-from-a-comment/</link><pubDate>Mon, 04 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/executing-arbitrary-python-code-from-a-comment/</guid><description>&lt;p>通过注释执行任意Python代码&lt;/p>
-&lt;h3 id="问题描述">问题描述&lt;/h3>
-&lt;p>Q: 只能控制一行的.py代码中注释的内容(\n\r均会被替换为空字符), 如何执行任意代码?&lt;br>
-A: 在注释#中, 构造一个.zip 文件, python 会将该内容当成一个zip包执行, 触发任意代码执行&lt;/p></description></item></channel></rss>
+&lt;p>这种方法实现简单, 速度快, 但是:&lt;/p></description></item></channel></rss>
