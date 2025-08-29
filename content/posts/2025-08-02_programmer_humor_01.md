@@ -2,9 +2,9 @@
 date = '2025-08-02T8:00:00+08:00'
 draft = false
 title = '"Chaos Enginnering" In Partice'
-tags = ['story']
+tags = ['Essay']
 +++
-记录一个小故事 hhh
+记录一个小故事 HHH
 
 ### “混沌工程”实践
 
@@ -21,5 +21,3 @@ tags = ['story']
 理想：Plan Do    Check  Act
 
 现实：Plan Delay Cancel Apologize
-
-> Why wouldn't programmers like nature? It has too many bugs...
