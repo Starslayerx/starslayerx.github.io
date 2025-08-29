@@ -84,7 +84,7 @@ def get_prompt(user_input: str) -> list[dict]:
     user_template = env.get_template("user_template.j2")
 
     system_data = {"var": val, ...}
-        user_data = {
+    user_data = {
         "examples": [
             {"input": "示例输入1", "output": "示例输出1"}, # 具体样例也可以通过函数传入
             {"input": "示例输入2", "output": "示例输出2"},
