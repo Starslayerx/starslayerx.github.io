@@ -175,7 +175,7 @@ bin
 &lt;p>Q: 只能控制一行的.py代码中注释的内容(\n\r均会被替换为空字符), 如何执行任意代码?&lt;br>
 A: 在注释#中, 构造一个.zip 文件, python 会将该内容当成一个zip包执行, 触发任意代码执行&lt;/p></description></item><item><title>How FastAPI Works</title><link>https://starslayerx.github.io/posts/how-fastapi-works/</link><pubDate>Sun, 03 Aug 2025 08:30:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/how-fastapi-works/</guid><description>&lt;p>FastAPI 的工作原理: 从 routing 到 lifecycle 以及在现实中的使用&lt;/p>
 &lt;h3 id="fastapi">FastAPI&lt;/h3>
-&lt;p>FastAPI 是一个现代的 Python Web 框架, 注重&lt;strong>高性能&lt;/strong>和&lt;strong>开发效率&lt;/strong>. 旨在帮助开发者编写结构清晰、可靠的API, 同时尽量减少样板代码 (boilerplate)&lt;/p></description></item><item><title>"Chaos Enginnering" In Partice</title><link>https://starslayerx.github.io/posts/chaos-enginnering-in-partice/</link><pubDate>Sat, 02 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/chaos-enginnering-in-partice/</guid><description>&lt;p>记录一个小故事 hhh&lt;/p>
+&lt;p>FastAPI 是一个现代的 Python Web 框架, 注重&lt;strong>高性能&lt;/strong>和&lt;strong>开发效率&lt;/strong>. 旨在帮助开发者编写结构清晰、可靠的API, 同时尽量减少样板代码 (boilerplate)&lt;/p></description></item><item><title>"Chaos Enginnering" In Partice</title><link>https://starslayerx.github.io/posts/chaos-enginnering-in-partice/</link><pubDate>Sat, 02 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/chaos-enginnering-in-partice/</guid><description>&lt;p>记录一个小故事 HHH&lt;/p>
 &lt;h3 id="混沌工程实践">“混沌工程”实践&lt;/h3>
 &lt;p>项目延期，开发说时间不够干不完
 老板：“不够就招人”&lt;/p>
