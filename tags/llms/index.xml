@@ -26,7 +26,15 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">]&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这种方法实现简单, 速度快, 但是:&lt;/p>
 &lt;ol>
-&lt;li>多行字符串由于填充变量的需要, 需写在函数内, 导致代码格式混乱&lt;/li>
+&lt;li>多行字符串由于填充变量的需要, 需写在函数内, 导致代码格式混乱
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 实际上, 多行字符串还可以这样实现, 但也不太时候提示词太多的时候, 但这样代码格式会更加优雅&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">system_prompt&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;你是一名&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">role&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">负责...&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;具体规则:&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;1. ....&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;2. ....&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>上面这种方法会将多行字符串合并, 注意不要加逗号, 不然就变成元组了&lt;/li>
 &lt;li>通过代码构造提示词, 任何修改都需要修改代码, 扩展性差&lt;/li>
 &lt;/ol>
 &lt;h3 id="stringtemplate">string.Template&lt;/h3>

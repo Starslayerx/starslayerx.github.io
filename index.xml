@@ -1,4 +1,7 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Starslayerx' Blog</title><link>https://starslayerx.github.io/</link><description>Recent content in Home on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Mon, 01 Sep 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Make an AI Coding Agent in python</title><link>https://starslayerx.github.io/posts/make-an-ai-coding-agent-in-python/</link><pubDate>Mon, 01 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/make-an-ai-coding-agent-in-python/</guid><description>&lt;p>这篇文件介绍如何使用 Python 制作一个基础的 AI 编程助手&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Starslayerx' Blog</title><link>https://starslayerx.github.io/</link><description>Recent content in Home on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Tue, 02 Sep 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Dealing With Grabage in Python</title><link>https://starslayerx.github.io/posts/dealing-with-grabage-in-python/</link><pubDate>Tue, 02 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/dealing-with-grabage-in-python/</guid><description>&lt;h2 id="grabage-collection-in-python">Grabage Collection In Python&lt;/h2>
+&lt;p>本篇文章介绍 Python 中的 Grabage Collection (GC) 机制介绍&lt;/p>
+&lt;h3 id="whats-python-object">What&amp;rsquo;s Python Object?&lt;/h3>
+&lt;p>Python 对象中有三样东西: 类型(Type)、值(value)和引用计数(reference count), 当给变量命名时, Python 会自动检测其类型, 值在定义对象时声明, 引用计数是指该对象名称的数量.&lt;/p></description></item><item><title>Make an AI Coding Agent in python</title><link>https://starslayerx.github.io/posts/make-an-ai-coding-agent-in-python/</link><pubDate>Mon, 01 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/make-an-ai-coding-agent-in-python/</guid><description>&lt;p>这篇文件介绍如何使用 Python 制作一个基础的 AI 编程助手&lt;/p>
 &lt;h2 id="minimal-ai-coding-agent">Minimal AI Coding Agent&lt;/h2>
 &lt;p>下面是一个 AI Coding Agent 至少需要的功能&lt;/p>
 &lt;ol>
@@ -32,7 +35,15 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">]&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这种方法实现简单, 速度快, 但是:&lt;/p>
 &lt;ol>
-&lt;li>多行字符串由于填充变量的需要, 需写在函数内, 导致代码格式混乱&lt;/li>
+&lt;li>多行字符串由于填充变量的需要, 需写在函数内, 导致代码格式混乱
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 实际上, 多行字符串还可以这样实现, 但也不太时候提示词太多的时候, 但这样代码格式会更加优雅&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">system_prompt&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;你是一名&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">role&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">负责...&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;具体规则:&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;1. ....&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;2. ....&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>上面这种方法会将多行字符串合并, 注意不要加逗号, 不然就变成元组了&lt;/li>
 &lt;li>通过代码构造提示词, 任何修改都需要修改代码, 扩展性差&lt;/li>
 &lt;/ol>
 &lt;h3 id="stringtemplate">string.Template&lt;/h3>
