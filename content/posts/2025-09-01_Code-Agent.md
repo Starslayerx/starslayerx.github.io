@@ -2,7 +2,7 @@
 date = '2025-09-01T8:00:00+08:00'
 draft = false
 title = 'Make an AI Coding Agent in python'
-tags = ['LLMs']
+tags = ['LLMs', 'Agent']
 +++
 这篇文件介绍如何使用 Python 制作一个基础的 AI 编程助手
 
