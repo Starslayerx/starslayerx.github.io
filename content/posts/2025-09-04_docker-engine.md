@@ -1,11 +1,11 @@
 +++
 date = '2025-09-04T8:00:00+08:00'
 draft = false
-title = 'Docker - Engine'
+title = 'Docker - Engine and Netowrking'
 tags = ['Docker']
 +++
 
-Docker 引擎(Docker Engine), 顾名思义，是 Docker 的核心.
+Docker 引擎(Docker Engine), 顾名思意，是 Docker 的核心.
 它为 Docker 提供动力, 并承担所有繁重的工作.
 本文将深入探讨这一关键组件的内部运作, 以便了解 Docker 在内核下是如何工作的.
 
@@ -122,11 +122,44 @@ docker-init 会捕捉这些信号, 并适当地转发, 保证容器内的应用�
 
 总之, docker-init 确保容器保持干净, 响应迅速并得到良好管理. 它不一定显眼, 但正是这些细小的贡献让容器变得可靠且高效.
 
-#### Conclusion 结论
+### Network Ports and Unix Sockets 网络端口和Unix套节字
+Docker CLI 和 docker daemon 可以通过 Unix Sockets 和 network ports 沟通. Docker, Inc. 已经向 Internet Assigned Numbers Authority(IANA)注册了3个端口, 用于Docker daemon 和 client:  
+- TCP port 2375 用于未加密连接
+- port 2376 用于 SSL 加密连接
+- port 2377 用于 Docker Swarm mode
+
+在需要使用不同设置的场景下, 更换端口配置很容易.
+Docker 安装程序的默认设置是只使用 Unix 套接字与本地 Docker 守护进程通信.
+这样做可以确保系统默认采用尽可能安全的安装方式.
+这个选项同样可以方便地修改, 但强烈建议不要用网络端口来暴露 Docker, 因为 Docker 守护进程内部并没有用户认证和基于角色的访问控制.
+Unix 套接字在不同操作系统的路径可能不同, 但在大多数情况下可以在 `/var/run/docker.sock` 找到.
+
+### Container Networking 容器网络
+尽管 Linux 容器在很大程度上是宿主机上运行的进程, 但在网络层他们通常表现得与其他进程很不一样.
+Docker 最初只支持一种网络模型, 但现在提供了多种稳健的配置, 可以曼珠大多数应用的需求.
+大多数人以默认配置运行容器, 这称为桥接模式 Bridge Mode.
+
+要理解桥接模式, 最容易是把每个 Linux 容器看作是在私有网络上的一台主机.
+Docker 服务器充当一个虚拟桥 virtual bridge, 容器则是作为桥后的客户端.
+桥只是一个把一侧流量转发到另一侧的网络设备.
+因此, 可以将它想象成一个虚拟网络, 每个容器像附着在该网络上的主机.
+实际上是: 每个容器都有一个虚拟以太网接口连接到 Docker 桥, 并未该虚拟接口分配一个 IP 地址.
+Docker 运行在宿主机上绑定并暴露单个或一组端口到容器, 以便外部世界可以通过这些端口访问容器, 流量很大程度上由 vpnkit 库来管理.
+
+Docker 从 未使用的 RFC 1918 私有子网块中分配私有子网, 它检测主机上有哪些网络块未被使用, 并把其中一个分配给虚拟网络.
+该网络通过服务器上的一个名为 docker0 的接口桥接到宿主机的本地网络.
+这意味着默认情况下, 所有容器都在同一个网络中, 可以直接相互通信.
+但要达到宿主机或外部网络, 他们会通过 docker0 虚拟桥接接口转发出去.
+
+![docker container network](../render-image/2025-09-04_docker-container-network.png)
+
+有多种方式配置 Docker 的网络层, 从分配自己的网络块到配置自定义桥接接口, 方式繁多让人眼花缭乱.
+人们通常使用默认机制, 但有时需要更复杂或更贴合应用的配置.
+
+### Summary 总结
 Docker 引擎不仅仅是一款软件, 它是一套精心设计的模块化组件系统, 这些组件协同工作以实现容器的高效、可扩展与可移植.
 从 CLI 中敲下命令, 到 runc、shim、docker-init 所处理的底层操作, 每个元素都扮演者明确且重要的角色.
 
 通过遵守严格的 OCI 标准, Docker 确保其生态系统不仅强大, 且具备通用兼容性. 这种遵循标准的做法建立了信任, 为开发者与企业提供了稳定的基础, 模块化架构简化了容器管理, 并鼓励创新, 允许每个组件独立演进与改善.
 
 理解 Docker 引擎不仅是知道容器如何工作, 更是认识其背后经过深思熟虑的工程设计. 正是这种工程让现代软件开发更快、更高效、更容易上手.
-Docker 不只是一个工具, 它是一个赋能平台, 开启无限可能.
