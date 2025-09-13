@@ -1,9 +1,10 @@
 +++
-date = '2025-09-10T8:00:00+08:00'
+date = '2025-09-11T8:00:00+08:00'
 draft = false
 title = 'The Evolution of Coding in the AI Era'
 tags = ['LLMs']
 +++
+
 文章翻译: [The Evolution of Coding in the AI Era](https://thebootstrappedfounder.com/the-evolution-of-coding-in-the-ai-era/)
 
 ## 人工智能时代的编码演变
