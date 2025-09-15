@@ -110,3 +110,28 @@ Me: ???
 | **Train-Case 标题式 / Header-Case** | `User-Profile` | 文档标题、部分配置(HTTP Header: `Content-Type`) | 类似 PascalCase, 但用 `-` 分隔 |
 | **dot.case** | `user.profile` | 部分配置文件、键路径(MongoDB、Elasticsearch) | 用 `.` 分隔单词 |
 | **Space Case** | `User Profile` | UI 文本、自然语言 | 单词直接空格分隔(不用于代码)|
+
+
+### listening syntax
+你的朋友正在为你介绍一门新语言的语法 syntax (rule defining the structure of the symbols, punctuation and words of a programming language)
+
+音频在[这里](https://drive.google.com/file/d/1nJ5_EXkGJpP-LA9sIi_9u_fKWGEbYMeM/view)
+
+文本如下
+```
+Let me explain the syntax of my programming language.
+
+So firstly, variable names aren't case sensitive and only contain alphanumberic characters.
+Secondly, comments can be denoted using an ampersand at the beginning.
+Thirdly, indentation is not mandatory but it is encouraged for readability.
+Fourthly, function names must start with a verb and be descriptive of purpose.
+And finally then, mathematical symbols are not allowed to be used.
+```
+词汇:  
+- case sensitive: 大小写明感
+- alphanumberic: 字母数字
+- denote: 代表
+- ampersand: &
+- indentation: 缩进
+- mandatory: 强制的
+- descriptive 描述的
