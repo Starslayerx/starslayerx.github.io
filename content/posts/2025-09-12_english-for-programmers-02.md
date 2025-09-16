@@ -23,7 +23,7 @@ Testing 测试是软件开发中的重要短语, 用于检查软件是否达到�
 | stress test | a method to assess a system's performance under heavy loads | - simulate 1000 users accessing the login page at the same time |
 | sanity check 健全性测试 | a quick check to verify that something is as expected | - are the units of the output value correct? |
 | ad hoc test 临时测试 | a test performed without predefined test cases or plans | - input unexpected characters into a search bar |
-| edge case | a problem that only happens in extreme situations | upload an empty, 0-byte file |
+| edge case | a problem that only happens in extreme situations | - upload an empty, 0-byte file |
 
 一些名词短语也可以当作动词使用:  
 - Can you *sanity check* my email before I send it? I want to make sure there aren't any errors.
@@ -84,6 +84,8 @@ Let's take a closer look at three different techniques that your can use while a
 
 
 ## Code Review
+
+```
 Tom: Hey Sophie!
 
 Sophie: Hi! How are you?
@@ -115,6 +117,7 @@ Sophie: Perfect. Thank you. Thanks for the feedback. I'll get started on those a
 Tom: Alright. Thanks! Have a great day. Bye.
 
 Sophie: Yep and you! Bye.
+```
 
 词汇解释  
 - **go over**: discuss
