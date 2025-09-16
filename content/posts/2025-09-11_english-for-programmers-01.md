@@ -69,10 +69,11 @@ Me: ???
 | `^` | caret |
 | `&` | ampersand |
 | `*` | asterisk |
-| `(` | bracket |
+| `(` | bracket / parentheses |
 | `~` | tilde |
 | `\|` | pipe |
 | `\` | backslash |
+| \` | backtick |
 
 | Symbol | English |
 | :-: | :-: |
@@ -83,7 +84,7 @@ Me: ???
 | `;` | semicolon |
 | `<` | angle bracket |
 | `,` | comma |
-| `{` | curly bracket |
+| `{` | curly bracket / braces |
 | `[` | square bracket |
 | `_` | underscore |
 | `-` | hypen |
