@@ -1,5 +1,5 @@
 +++
-date = '2025-09-16T8:00:00+08:00'
+date = '2025-09-17T8:00:00+08:00'
 draft = false
 title = 'Morden Javascript Tutorial Part 1- Fundamentals :06~10'
 tags = ['JavaScript']
