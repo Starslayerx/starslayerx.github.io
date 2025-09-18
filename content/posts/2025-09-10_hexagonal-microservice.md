@@ -1,6 +1,6 @@
 +++
 date = '2025-09-10T8:00:00+08:00'
-draft = true
+draft = false
 title = 'Service Implementation Patterns for Microservice'
 tags = ['Microservice']
 +++
@@ -25,6 +25,4 @@ tags = ['Microservice']
 
 依赖反转的概念经常同控制反转与依赖注入的概念一同出现, 这些是相关但是不同的概念. 
 
-
-
-
+依赖反转原则反转了什么? 这个原则改变了构建软件的思路, 与传统先实现底层细节然后再在其上构建接口的做饭相反, 依赖倒置原则鼓励我们先考虑接口, 然后再针对这些接口实现底层细节.
