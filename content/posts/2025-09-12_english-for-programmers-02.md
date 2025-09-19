@@ -85,7 +85,6 @@ Let's take a closer look at three different techniques that your can use while a
 
 ## Code Review
 
-```
 Tom: Hey Sophie!
 
 Sophie: Hi! How are you?
@@ -117,7 +116,6 @@ Sophie: Perfect. Thank you. Thanks for the feedback. I'll get started on those a
 Tom: Alright. Thanks! Have a great day. Bye.
 
 Sophie: Yep and you! Bye.
-```
 
 词汇解释  
 - **go over**: discuss
