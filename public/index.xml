@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Starslayerx' Blog</title><link>https://starslayerx.github.io/</link><description>Recent content in Home on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Fri, 19 Sep 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Redis Bitmap</title><link>https://starslayerx.github.io/posts/redis-bitmap/</link><pubDate>Fri, 19 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-bitmap/</guid><description>&lt;h2 id="bitmap-位图">Bitmap 位图&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Starslayerx' Blog</title><link>https://starslayerx.github.io/</link><description>Recent content in Home on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Mon, 22 Sep 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>uv - Python package manager</title><link>https://starslayerx.github.io/posts/uv-python-package-manager/</link><pubDate>Mon, 22 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/uv-python-package-manager/</guid><description>&lt;p>这篇文章深入介绍 uv 管理 Python 项目的使用&lt;/p>
+&lt;h2 id="features">Features&lt;/h2>
+&lt;h3 id="python-versions">Python versions&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>uv python install&lt;/code>: 安装 Python 版本&lt;/li>
+&lt;li>&lt;code>uv python list&lt;/code>: 查看可用的 Python 版本&lt;/li>
+&lt;li>&lt;code>uv python find&lt;/code>: 查找安装的 Python 版本&lt;/li>
+&lt;li>&lt;code>uv python pin&lt;/code>: 固定当前项目的 Python 版本&lt;/li>
+&lt;li>&lt;code>uv python uninstall&lt;/code>: 卸载一个 Python 版本&lt;/li>
+&lt;/ul>
+&lt;h3 id="scripts">Scripts&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>uv run&lt;/code>: 运行一个脚本&lt;/li>
+&lt;li>&lt;code>uv add --script&lt;/code>: 为脚本添加一个依赖&lt;/li>
+&lt;li>&lt;code>uv remove --script&lt;/code>: 移除一个依赖&lt;/li>
+&lt;/ul>
+&lt;h3 id="projects">Projects&lt;/h3>
+&lt;p>使用 &lt;code>pyproject.toml&lt;/code> 配置项目&lt;/p></description></item><item><title>Redis Bitmap</title><link>https://starslayerx.github.io/posts/redis-bitmap/</link><pubDate>Fri, 19 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-bitmap/</guid><description>&lt;h2 id="bitmap-位图">Bitmap 位图&lt;/h2>
 &lt;p>Redis 的位图 bitmap 是由多个二进制位组成的数组,
 数组中的每个二进制都有与之对应的偏移量(索引),
 用户通过这些偏移量可以对位图中指定的一个或多个二进制位进行操作.&lt;/p></description></item><item><title>Redis HyperLogLog</title><link>https://starslayerx.github.io/posts/redis-hyperloglog/</link><pubDate>Thu, 18 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-hyperloglog/</guid><description>&lt;p>之前曾介绍过使用 Redis 集和构建唯一计数器, 并将这个计数器用于计算网站的唯一房客 IP.
@@ -653,7 +670,9 @@ But as it evolved, JavaScript became a fully independent language with its won s
 该架构是说, 在任何应用程序中, 都有一个核心逻辑实现服务, 并且在该服务周围&amp;quot;附加&amp;quot;上一些接口, 用于核心与外部组件的交互.&lt;/p></description></item><item><title>Dealing With Grabage in Python</title><link>https://starslayerx.github.io/posts/dealing-with-grabage-in-python/</link><pubDate>Mon, 08 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/dealing-with-grabage-in-python/</guid><description>&lt;h2 id="grabage-collection-in-python">Grabage Collection In Python&lt;/h2>
 &lt;p>本篇文章介绍 Python 中的 Grabage Collection (GC) 机制介绍&lt;/p>
 &lt;h3 id="whats-python-object">What&amp;rsquo;s Python Object?&lt;/h3>
-&lt;p>Python 对象中有三样东西: 类型(Type)、值(value)和引用计数(reference count), 当给变量命名时, Python 会自动检测其类型, 值在定义对象时声明, 引用计数是指该对象名称的数量.&lt;/p></description></item><item><title>Docker - Workflow</title><link>https://starslayerx.github.io/posts/docker-workflow/</link><pubDate>Sat, 06 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-workflow/</guid><description>&lt;h2 id="the-docker-workflow">The Docker Workflow&lt;/h2>
+&lt;p>Python 对象中有三样东西: 类型(Type)、值(value)和引用计数(reference count), 当给变量命名时, Python 会自动检测其类型, 值在定义对象时声明, 引用计数是指该对象名称的数量.&lt;/p></description></item><item><title>Docker - Images</title><link>https://starslayerx.github.io/posts/docker-images/</link><pubDate>Sun, 07 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-images/</guid><description>&lt;p>每个 Linux 容器都基于一个镜像, 镜像重新构建运行中容器的底层定义.
+要启动一个容器, 需要下载公共镜像或者创建自己的镜像.
+每个镜像由一个或多个相互关联的文件系统层 layer 组成, 这些层通常与创建镜像的每个构建步骤大致一一对应.&lt;/p></description></item><item><title>Docker - Workflow</title><link>https://starslayerx.github.io/posts/docker-workflow/</link><pubDate>Sat, 06 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-workflow/</guid><description>&lt;h2 id="the-docker-workflow">The Docker Workflow&lt;/h2>
 &lt;p>这篇文章介绍 Docker 工作流&lt;/p>
 &lt;h3 id="revision-control-版本控制">Revision Control 版本控制&lt;/h3>
 &lt;p>Docker 有两种版本控制方式. 一个是用来跟踪文件系统层 layers (每个镜像的组成), 另一个是 tagging 标签系统.&lt;/p>
