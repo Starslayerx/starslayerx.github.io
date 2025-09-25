@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/python/</link><description>Recent content in Python on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Mon, 22 Sep 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>uv - Python package manager</title><link>https://starslayerx.github.io/posts/uv-python-package-manager/</link><pubDate>Mon, 22 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/uv-python-package-manager/</guid><description>&lt;p>这篇文章深入介绍 uv 管理 Python 项目的使用&lt;/p>
 &lt;h2 id="features">Features&lt;/h2>
-&lt;h3 id="python-versions">Python versions&lt;/h3>
+&lt;h4 id="python-versions">Python versions&lt;/h4>
 &lt;ul>
 &lt;li>&lt;code>uv python install&lt;/code>: 安装 Python 版本&lt;/li>
 &lt;li>&lt;code>uv python list&lt;/code>: 查看可用的 Python 版本&lt;/li>
@@ -8,13 +8,13 @@
 &lt;li>&lt;code>uv python pin&lt;/code>: 固定当前项目的 Python 版本&lt;/li>
 &lt;li>&lt;code>uv python uninstall&lt;/code>: 卸载一个 Python 版本&lt;/li>
 &lt;/ul>
-&lt;h3 id="scripts">Scripts&lt;/h3>
+&lt;h4 id="scripts">Scripts&lt;/h4>
 &lt;ul>
 &lt;li>&lt;code>uv run&lt;/code>: 运行一个脚本&lt;/li>
 &lt;li>&lt;code>uv add --script&lt;/code>: 为脚本添加一个依赖&lt;/li>
 &lt;li>&lt;code>uv remove --script&lt;/code>: 移除一个依赖&lt;/li>
 &lt;/ul>
-&lt;h3 id="projects">Projects&lt;/h3>
+&lt;h4 id="projects">Projects&lt;/h4>
 &lt;p>使用 &lt;code>pyproject.toml&lt;/code> 配置项目&lt;/p></description></item><item><title>Dealing With Grabage in Python</title><link>https://starslayerx.github.io/posts/dealing-with-grabage-in-python/</link><pubDate>Mon, 08 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/dealing-with-grabage-in-python/</guid><description>&lt;h2 id="grabage-collection-in-python">Grabage Collection In Python&lt;/h2>
 &lt;p>本篇文章介绍 Python 中的 Grabage Collection (GC) 机制介绍&lt;/p>
 &lt;h3 id="whats-python-object">What&amp;rsquo;s Python Object?&lt;/h3>
