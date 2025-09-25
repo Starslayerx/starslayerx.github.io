@@ -800,3 +800,323 @@ CMD ["python", "mastermind.py"]
 这里有两个修改:
 - `#syntax=docker/dockerfile:1` 这个告诉 Docker 使用新版的 [Dockerfile frontend](https://hub.docker.com/r/docker/dockerfile), 这个版本提供了对 BuildKit 的新功能.
 - `RUN --mount=type=cache,target=/root/.cache pip install -r requirements.txt` 这一行告诉 BuildKit 在构建期间, 将缓存层挂载到容器的 `/root/.cache` 目录. 这样既能让最终生成的镜像不包含该目录内容, 又能在后续构建时重新挂载缓存供 pip 使用.
+
+现在基于这些改动, 完整重新镜像, 生成初始缓存目录内容.
+观察构建输出会发现, pip 仍会像之前一样下载所有依赖包:
+```
+time docker bulid --no-cache -t docker.io/spkane/oper-mastermind:latest
+```
+所以, 现在重新打开 `requirements.txt` 文件并添加一行 `py-events`
+```txt
+colorama
+pandas
+flask
+log symbols
+py-events
+```
+改动之后, 重新构建镜像, 会发现仅下载 `py-events` 以其依赖项, 其余包都直接用之前构建的缓存, 这些缓存已在构建过程中挂载至镜像.
+
+由于无需每次重新下载所有依赖, 构建时间得以缩短.
+尽管镜像中添加了新依赖, 但镜像体积反而减小了, 这是因为缓存目录不再直接存储在应用镜像中.
+
+
+### Troubleshooting Borken Builds
+在真实世界中, 构建并非总会成功, 下面讨论构建失败时可以做的处理.
+会展示两种选择, 一种是使用 pre-BuildKit 的方式, 另一种是通过 BuildKit 的方式.
+
+```bash
+git clone https://github.com/spkane/docker-node-hello.git --config core.autocrlf=input
+cd docker-node-hello
+```
+
+#### Debugging Pre-BuildKit Images
+下面需要一个"问题样本", 故意制造一个构建失败的情况, 编辑 Dockerfile 为这样
+```Dockerfile
+RUN apt-get -y update-all
+```
+运行 build 命令可以看到下面错误结果:
+```
+Step 6/14 : ENV SCPATH /etc/supervisor/conf.d
+ ---> Running in e903367eaeb8
+Removing intermediate container e903367eaeb8
+ ---> 2a236efc3f06
+```
+可以直接进入中间镜像调试
+```
+docker container run --rm -ti 2a236efc3f06 /bin/bash
+```
+
+#### Debugging BuildKit Images
+当使用 BuildKit 时, 需要采用略有不同的方法来定位构建失败的位置, 因为这种模式下不会将任何中间构建层导出到 Docker daemon.
+
+先将 Dockerfile 回复, 然后做下面这样的修改:
+```Dockerfile
+RUN npm install
+```
+将其改为
+```Dockerfile
+RUN npm installer
+```
+然后尝试构建容器
+```bash
+docker image build -t example/docker-node-hello:debug --no-cache .
+```
+可以看到下面的报错, 但是要如何进入该层调试呢?
+```
+% docker image build -t example/docker-node-hello:debug --no-cache .
+[+] Building 75.6s (13/13) FINISHED                                                                                 docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                0.0s
+ => => transferring dockerfile: 571B                                                                                                0.0s
+ => [internal] load metadata for docker.io/library/node:18.13.0                                                                     4.3s
+ => [auth] library/node:pull token for registry-1.docker.io                                                                         0.0s
+ => [internal] load .dockerignore                                                                                                   0.0s
+ => => transferring context: 45B                                                                                                    0.0s
+ => [1/8] FROM docker.io/library/node:18.13.0@sha256:d871edd5b68105ebcbfcde3fe8c79d24cbdbb30430d9bd6251c57c56c7bd7646              59.3s
+ => => resolve docker.io/library/node:18.13.0@sha256:d871edd5b68105ebcbfcde3fe8c79d24cbdbb30430d9bd6251c57c56c7bd7646               0.0s
+ => => sha256:59f7398d1dba68c2134d2e01668369079ff301c360bfa587fd574de4e2e5eac4 2.21kB / 2.21kB                                      0.0s
+ => => sha256:b0cef62e090109630d42120f3ccde32e9813a8d1309fa6be2ae7131e355d75e1 7.53kB / 7.53kB                                      0.0s
+ => => sha256:7b716680367d1dac0e54c48f75506323e0bb03628542a0fd6db39efeeee9adf5 5.15MB / 5.15MB                                     10.2s
+ => => sha256:c345c9e441f5f49235768af74b8ab37743652d38958afaa000edd56d7b2f0540 53.68MB / 53.68MB                                   12.0s
+ => => sha256:0855378f8903bde22cfbcee08cd239678716cf01f24a3fca9478ef4121a84d91 10.87MB / 10.87MB                                   19.8s
+ => => sha256:d871edd5b68105ebcbfcde3fe8c79d24cbdbb30430d9bd6251c57c56c7bd7646 1.21kB / 1.21kB                                      0.0s
+ => => sha256:4bfb8dc93d4197860c2bff47f2c2f280c2dd8ed699e7b3241aa325ecee53c7d7 54.68MB / 54.68MB                                   47.1s
+ => => extracting sha256:c345c9e441f5f49235768af74b8ab37743652d38958afaa000edd56d7b2f0540                                           1.5s
+ => => sha256:fb726ea60d28211d1e5e9d6fe76eb9ef9546eb38d107263e2a060a99be9ca41c 189.80MB / 189.80MB                                 53.6s
+ => => extracting sha256:7b716680367d1dac0e54c48f75506323e0bb03628542a0fd6db39efeeee9adf5                                           0.1s
+ => => extracting sha256:0855378f8903bde22cfbcee08cd239678716cf01f24a3fca9478ef4121a84d91                                           0.1s
+ => => sha256:02f41717b6ae3dd1225bd22899da6ae2125098a71c9d17d01e126b4afea77912 4.21kB / 4.21kB                                     20.6s
+ => => sha256:6d99896e8af987dac3892a94d2c45e18132570176d2b2353b64412413655b14a 45.15MB / 45.15MB                                   47.6s
+ => => sha256:40cff91b82ae9705b4e5a8467d36f2b9b2216e1f5f3df7286cced961ce3d0a6c 2.28MB / 2.28MB                                     48.6s
+ => => extracting sha256:4bfb8dc93d4197860c2bff47f2c2f280c2dd8ed699e7b3241aa325ecee53c7d7                                           1.5s
+ => => sha256:5301fac16292b6191f762631ba0429ca19dc854320ceb0ab5f9aadbc6e134367 450B / 450B                                         48.3s
+ => => extracting sha256:fb726ea60d28211d1e5e9d6fe76eb9ef9546eb38d107263e2a060a99be9ca41c                                           3.8s
+ => => extracting sha256:02f41717b6ae3dd1225bd22899da6ae2125098a71c9d17d01e126b4afea77912                                           0.0s
+ => => extracting sha256:6d99896e8af987dac3892a94d2c45e18132570176d2b2353b64412413655b14a                                           1.3s
+ => => extracting sha256:40cff91b82ae9705b4e5a8467d36f2b9b2216e1f5f3df7286cced961ce3d0a6c                                           0.0s
+ => => extracting sha256:5301fac16292b6191f762631ba0429ca19dc854320ceb0ab5f9aadbc6e134367                                           0.0s
+ => [internal] load build context                                                                                                   0.0s
+ => => transferring context: 1.25kB                                                                                                 0.0s
+ => [2/8] RUN apt-get -y update                                                                                                     7.8s
+ => [3/8] RUN apt-get -y install supervisor                                                                                         3.7s
+ => [4/8] RUN mkdir -p /var/log/supervisor                                                                                          0.1s
+ => [5/8] COPY ./supervisord/conf.d/* /etc/supervisor/conf.d/                                                                       0.0s
+ => [6/8] COPY *.js* /data/app/                                                                                                     0.0s
+ => [7/8] WORKDIR /data/app                                                                                                         0.0s
+ => ERROR [8/8] RUN npm installer                                                                                                   0.3s
+------
+ > [8/8] RUN npm installer:
+0.291 Unknown command: "installer"
+0.291
+0.291 Did you mean this?
+0.291     npm install # Install a package
+0.291
+0.291 To see a list of supported npm commands, run:
+0.291   npm help
+------
+Dockerfile:28
+--------------------
+  26 |     WORKDIR $AP
+  27 |
+  28 | >>> RUN npm installer
+  29 |
+  30 |     CMD ["supervisord", "-n"]
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/sh -c npm installer" did not complete successfully: exit code: 1
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/rbv5sp8i9eiite02u0gpny34p
+```
+一种方法是使用分阶段构建和 `--target` 参数, 对 Dockerfile 做如下修改
+```Dockerfile
+FROM docker.io/node:18.13.0 AS deploy
+
+...
+
+FROM deploy
+RUN npm installer
+```
+并告诉 Docker 我们只想构建多阶段 Dockerfile 中的第一个镜像
+```bash
+% docker image build -t example/docker-node-hello:debug --target deploy .
+
+[+] Building 2.2s (13/13) FINISHED                                                                                  docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                0.0s
+ => => transferring dockerfile: 594B                                                                                                0.0s
+ => [internal] load metadata for docker.io/library/node:18.13.0                                                                     2.0s
+ => [auth] library/node:pull token for registry-1.docker.io                                                                         0.0s
+ => [internal] load .dockerignore                                                                                                   0.0s
+ => => transferring context: 45B                                                                                                    0.0s
+ => [deploy 1/7] FROM docker.io/library/node:18.13.0@sha256:d871edd5b68105ebcbfcde3fe8c79d24cbdbb30430d9bd6251c57c56c7bd7646        0.0s
+ => [internal] load build context                                                                                                   0.0s
+ => => transferring context: 233B                                                                                                   0.0s
+ => CACHED [deploy 2/7] RUN apt-get -y update                                                                                       0.0s
+ => CACHED [deploy 3/7] RUN apt-get -y install supervisor                                                                           0.0s
+ => CACHED [deploy 4/7] RUN mkdir -p /var/log/supervisor                                                                            0.0s
+ => CACHED [deploy 5/7] COPY ./supervisord/conf.d/* /etc/supervisor/conf.d/                                                         0.0s
+ => CACHED [deploy 6/7] COPY *.js* /data/app/                                                                                       0.0s
+ => CACHED [deploy 7/7] WORKDIR /data/app                                                                                           0.0s
+ => exporting to image                                                                                                              0.1s
+ => => exporting layers                                                                                                             0.1s
+ => => writing image sha256:ae71d11ef13c04b4f115593fae4ad47653f324aa8eadc14c4198838fa07808ae                                        0.0s
+ => => naming to docker.io/example/docker-node-hello:debug                                                                          0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/b4c9n1kiv17fobm4q5qhndmvw
+```
+然后就可以创建该容器, 并进入调试了
+```bash
+% docker container run --rm -ti docker.io/example/docker-node-hello:debug /bin/bash
+
+root@ce6a659c9171:/data/app# ls
+index.js  package.json
+root@ce6a659c9171:/data/app# npm install
+npm WARN EBADENGINE Unsupported engine {
+npm WARN EBADENGINE   package: 'formidable@1.0.13',
+npm WARN EBADENGINE   required: { node: '<0.9.0' },
+npm WARN EBADENGINE   current: { node: 'v18.13.0', npm: '8.19.3' }
+npm WARN EBADENGINE }
+npm WARN deprecated mkdirp@0.3.4: Legacy versions of mkdirp are no longer supported. Please update to mkdirp 1.x. (Note that the API surface has changed to use Promises in 1.x.)
+npm WARN deprecated formidable@1.0.13: Please upgrade to latest, formidable@v2 or formidable@v3! Check these notes: https://bit.ly/2ZEqIau
+npm WARN deprecated connect@2.7.9: connect 2.x series is deprecated
+npm WARN deprecated express@3.2.4: No longer maintained. Please upgrade to a stable version.
+
+added 18 packages, and audited 19 packages in 4s
+
+8 vulnerabilities (1 low, 1 moderate, 6 high)
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+npm notice
+npm notice New major version of npm available! 8.19.3 -> 11.6.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.1
+npm notice Run npm install -g npm@11.6.1 to update!
+npm notice
+root@ce6a659c9171:/data/app# exit
+exit
+```
+一但发现了错误原因, 就可以修改 Dockerfile 里错误的地方了.
+
+### Multiarchitecture Builds
+在 Docker 诞生之初, 主流的平台都是 AMR64/X86_64 架构.
+然而, 现在越来越多的开发者使用 ARM64/AArch64 架构, 并且由于 ARM 平台更低的计算成本, 云服务商也开始制作基于 ARM 的 VM.
+
+构建多架构平台的镜像, 即有趣又有挑战性.
+如何在支持不同目标架构的同时, 维持一个简洁统一的代码库和流水线?
+
+幸运的是, Docker 发布了一个名为 buildx 的 docker CLI 插件, 能让这个过程变得相当简单.
+在很多情况下 docker-buildx 已经预装在系统上, 使用下面命令验证
+```bash
+% docker buildx version
+
+github.com/docker/buildx v0.28.0-desktop.1 8ad457cf5e291fcb7152ef6946162cc811a2fb29
+```
+默认情况下, docker-buildx 会使用 [QEMU-based virtualizatoin](https://www.qemu.org/) 和 [binfmt_misc](https://docs.kernel.org/admin-guide/binfmt-misc.html) 来支持不同系统架构.
+运行下面命令来确保 QEMU 文件注册且更新了:
+```bash
+docker container run --rm --privileged multiarch/qemu-user-static --reset -p yes
+```
+与直接在服务器上运行的原始嵌入 Docker 构建功能不同, BuildKit 在构建镜像时可以利用一个构建容器, 这意味着该构建容器能够提供极大的功能灵活性, 使用下面条命令, 创建名为"build" 的 build container:
+```bash
+% docker buildx create --name builder --drive docker-container --use
+builder
+
+% docker buildx inspect --bootstrap
+
+[+] Building 0.4s (1/1) FINISHED
+ => [internal] booting buildkit                                                                                                     0.4s
+ => => starting container buildx_buildkit_builder0                                                                                  0.4s
+Name:          builder
+Driver:        docker-container
+Last Activity: 2025-09-25 07:24:07 +0000 UTC
+
+Nodes:
+Name:                  builder0
+Endpoint:              desktop-linux
+Status:                running
+BuildKit daemon flags: --allow-insecure-entitlement=network.host
+BuildKit version:      v0.24.0
+Platforms:             linux/arm64, linux/amd64, linux/amd64/v2, linux/riscv64, linux/ppc64le, linux/s390x, linux/386, linux/arm/v7, linux/arm/v6
+Labels:
+ org.mobyproject.buildkit.worker.executor:         oci
+ org.mobyproject.buildkit.worker.hostname:         41f436ea555f
+ org.mobyproject.buildkit.worker.network:          host
+ org.mobyproject.buildkit.worker.oci.process-mode: sandbox
+ org.mobyproject.buildkit.worker.selinux.enabled:  false
+ org.mobyproject.buildkit.worker.snapshotter:      overlayfs
+GC Policy rule#0:
+ All:            false
+ Filters:        type==source.local,type==exec.cachemount,type==source.git.checkout
+ Keep Duration:  48h0m0s
+ Max Used Space: 488.3MiB
+GC Policy rule#1:
+ All:            false
+ Keep Duration:  1440h0m0s
+ Reserved Space: 5.588GiB
+ Max Used Space: 43.77GiB
+ Min Free Space: 11.18GiB
+GC Policy rule#2:
+ All:            false
+ Reserved Space: 5.588GiB
+ Max Used Space: 43.77GiB
+ Min Free Space: 11.18GiB
+GC Policy rule#3:
+ All:            true
+ Reserved Space: 5.588GiB
+ Max Used Space: 43.77GiB
+ Min Free Space: 11.18GiB
+```
+下面下载 wordchain 的 Git 代码库, 该库包含一个实用工具, 可以生成随机且可确定 (seed) 的词语序列, 可以满足动态命名的需求:
+```bash
+git clone https://github.com/spkane/wordchain.git \
+    --config core.autocrlf=input
+```
+查看里面的 Dockerfile 可以看到这是一个很正常的多阶段构建, 不含有任何关于架构的东西
+```Dockerfile
+FROM golang:1.18-alpine3.15 AS build
+
+RUN apk --no-cache add \
+    bash \
+    gcc \
+    musl-dev \
+    openssl
+
+ENV CGO_ENABLED=0
+
+COPY . /build
+WORKDIR /build
+
+RUN go install github.com/markbates/pkger/cmd/pkger@latest && \
+    pkger -include /data/words.json && \
+    go build .
+
+FROM alpine:3.15 AS deploy
+
+WORKDIR /
+COPY --from=build /build/wordchain /
+
+USER 500
+EXPOSE 8080
+
+ENTRYPOINT ["/wordchain"]
+CMD ["listen"]
+```
+第一步是先构建静态编译好的 go 库, 然后第二步, 将其打包到一个小的镜像部署.
+
+Dockerfile 中的 `ENTRYPOINT` 指令是一项高级功能, 运行将容器运行的默认进程 ENTRYPOINT 与传递给该进程的命令 CMD 分离开来.
+当缺少 ENTRYPOINT 指令时, CMD 指令就需要同时包含进程本身以及其所需要的全部命令行参数.
+
+现在可以构建镜像, 并运行下面命令侧加载到 Docker daemon 中:
+```bash
+docker buildx build --tag wordchain:test --load .
+```
+
+如果要构建多种架构的, 只需要简单的添加 `--platform` 参数即可.
+
+```bash
+docker buildx build --platform linux/amd64, linux/arm64 --tag wordchain:test .
+```
+
+由于在为非本地架构构建镜像时需要模拟运行, 某些步骤比正常情况下花费的时间要长得多, 这是由于模拟运行带来的额外计算开销, 这是正常现象.
+可以通过配置 Docker, 使其在具有匹配架构的工作节点上构建每个镜像, 这在许多情况下应该能显著加快构建速度.
+Docker 博客的[这篇文章](https://www.docker.com/blog/speed-up-building-with-docker-buildx-and-graviton2-ec2/)有相关信息.
+
