@@ -5,7 +5,7 @@ title = 'English for Programmers - 02'
 tags = ['English']
 +++
 
-# Unit2: Code Review & Testing
+# Unit 2. Code Review & Testing
 this unit will cover:
 - Differentiate between various **testing strategies**
 - Write **professional guidelines**

@@ -473,7 +473,7 @@ Docker 默认使用 Docker Hub 作为镜像仓库.
 
 #### Testing the private registry 测试私有注册中心
 运行后首先登陆该 registry
-```Docker
+```bash
 % docker login 127.0.0.1:5001
 
 Username: myuser
@@ -488,7 +488,7 @@ Login Succeeded
 
 在生产环境中, 需要让容器从密钥管理系统中获取密钥, 并且使用某种冗余的外部存储.
 如果希望在开发环境中, 不同容器之间保留 registry 镜像, 可以在运行 docker 容器时加上类似参数:
-```Docker
+```bash
 --mount type=bind, source=/tmp/registry-data, target=/var/lib/registry
 ```
 这里是将宿主机的 `/tmp/registry-data` 目录映射到容器里的 `/var/lib/registry`, 这样镜像就会存储到宿主机, 即使容器被删除也不会丢失
@@ -513,7 +513,7 @@ e971abc09286: Pushed
 latest: digest: sha256:445f229035a87428b9e9dd1f816a29f7aaf8f8eabab220942d1aeae545e3f2f1 size: 2193
 ```
 现在就可以 pull 同样的镜像了
-```Docker
+```bash
 % docker image pull 127.0.0.1:5001/my-registry
 Using default tag: latest
 latest: Pulling from my-registry
@@ -522,7 +522,7 @@ Status: Image is up to date for 127.0.0.1:5001/my-registry:latest
 127.0.0.1:5001/my-registry:latest
 ```
 可以使用下面命令停止该容器
-```Docker
+```bash
 docker container stop registry
 ```
 
@@ -545,11 +545,11 @@ docker container stop registry
 Go 是一门编译语言, 可以很方便地生成静态编译的二进制文件.
 作为示例, 这里使用一个 Go 编写的 Web 应用, 该应用可以在 [Github](https://github.com/spkane/scratch-helloworld) 上找到.
 运行下面命令, 然后在浏览器打开
-```Docker
+```bash
 docker container run --rm -d -p 8080:8080 spkane/scratch-helloworld
 ```
 一般情况下可能认为容器内会有项目文件, 但实际上并不是这样, 使用下面类似命令将容器打包
-```Docker
+```bash
 docker container export 19931dd0fc21 -o web-app.tar
 ```
 再使用 tar 命令, 检查容器内容
@@ -570,11 +570,11 @@ tar -tvf web-app.tar
 如果需要经常查看镜像文件, 可以尝试一下这个工具 [dive](https://github.com/wagoodman/dive), 其提供了一个 CLI 接口便捷地查看镜像内容.
 
 尽管可以使用 `docker container run -ti alpine:latest /bin/sh` 查看 apline image, 但对于 `spkane/scratch-helloworld` 这个镜像不行, 因为这个容器中不含 bash 或者 SSH. 这之前是用 `docker container export` 命令生成了一个 `.tar` 文件, 其中包含容器内所有文件的副本, 但本次将直接连接到 Docker 服务器并查看容器自身的 文件系统来检查它. 要做到这一点, 需要找出文件在服务器磁盘上的存放位置, 可以使用下面命令获取:
-```Docker
+```bash
 docker image inspect <container_name>:<container_tag>
 ```
 下面使用这个例子来演示
-```Docker
+```bash
 docker container run --rm -it --privileged --pid=host debian nsenter -t 1 -m -u -n -i sh
 ```
 alpine 是一个非常小的基础镜像, 只有 4.5 MB, 非常适合在其之上构建容器.  
@@ -651,7 +651,7 @@ CMD ["/helloworld"]
 但问题是这样即使只更新了一行源码, 整个层都需要重新下载.
 
 可以使用 `docker image history <image>` 命令查看镜像构建阶段的文件层信息, 例如下面这样:
-```Docker
+```bash
 % docker image history ...
 IMAGE        CREATED            CREATED BY                             SIZE
 543d61c95677 About a minute ago CMD ["/usr/sbin/httpd" "-DFOREGROU…"]  0B
@@ -849,7 +849,7 @@ docker container run --rm -ti 2a236efc3f06 /bin/bash
 #### Debugging BuildKit Images
 当使用 BuildKit 时, 需要采用略有不同的方法来定位构建失败的位置, 因为这种模式下不会将任何中间构建层导出到 Docker daemon.
 
-先将 Dockerfile 回复, 然后做下面这样的修改:
+先将 Dockerfile 恢复, 然后做下面这样的修改:
 ```Dockerfile
 RUN npm install
 ```
