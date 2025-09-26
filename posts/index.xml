@@ -15,12 +15,25 @@
 &lt;li>&lt;code>uv remove --script&lt;/code>: 移除一个依赖&lt;/li>
 &lt;/ul>
 &lt;h4 id="projects">Projects&lt;/h4>
-&lt;p>使用 &lt;code>pyproject.toml&lt;/code> 配置项目&lt;/p></description></item><item><title>Redis Bitmap</title><link>https://starslayerx.github.io/posts/redis-bitmap/</link><pubDate>Fri, 19 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-bitmap/</guid><description>&lt;h2 id="bitmap-位图">Bitmap 位图&lt;/h2>
+&lt;p>使用 &lt;code>pyproject.toml&lt;/code> 配置项目&lt;/p></description></item><item><title>English for Programmers - 03</title><link>https://starslayerx.github.io/posts/english-for-programmers-03/</link><pubDate>Sat, 20 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/english-for-programmers-03/</guid><description>&lt;h1 id="unit-3-discussing-code">Unit 3. Discussing Code&lt;/h1>
+&lt;h2 id="vocabulary---modifiers">vocabulary - Modifiers&lt;/h2>
+&lt;p>When discussing code, &lt;em>modifiers&lt;/em> can be extremely useful for making your feedback constructive and precise.&lt;/p>
+&lt;ul>
+&lt;li>&lt;em>modifiers&lt;/em>: words that change the meaning of a sentence&lt;/li>
+&lt;/ul>
+&lt;p>For example, a colleague asks:&lt;/p>
+&lt;p>What do you think of the website?&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Response 1: It&amp;rsquo;s good When I click something it loads very quickly and I can navigate it easyily without any instructions.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Response 2: It&amp;rsquo;s good! It&amp;rsquo;s very &lt;em>responsive&lt;/em> and can be navigated &lt;em>intuitively&lt;/em>.&lt;/p></description></item><item><title>Redis Bitmap</title><link>https://starslayerx.github.io/posts/redis-bitmap/</link><pubDate>Fri, 19 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-bitmap/</guid><description>&lt;h2 id="bitmap-位图">Bitmap 位图&lt;/h2>
 &lt;p>Redis 的位图 bitmap 是由多个二进制位组成的数组,
 数组中的每个二进制都有与之对应的偏移量(索引),
 用户通过这些偏移量可以对位图中指定的一个或多个二进制位进行操作.&lt;/p></description></item><item><title>Redis HyperLogLog</title><link>https://starslayerx.github.io/posts/redis-hyperloglog/</link><pubDate>Thu, 18 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-hyperloglog/</guid><description>&lt;p>之前曾介绍过使用 Redis 集和构建唯一计数器, 并将这个计数器用于计算网站的唯一房客 IP.
 虽然使用集和实现唯一计数器可以实现该功能, 但这个方法有一个明显的缺陷:
-随着被计数元素的不断增多, 唯一计数器占用的内存也会越来越大; 计数器越多, 他们的体积越大, 这一情况就会越严峻.&lt;/p></description></item><item><title>Morden Javascript Tutorial Part 1- Fundamentals :06~10</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-06~10/</link><pubDate>Wed, 17 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-06~10/</guid><description>&lt;h2 id="26-interaction-alert-prompt-confirm">2.6 Interaction: alert, prompt, confirm&lt;/h2>
+随着被计数元素的不断增多, 唯一计数器占用的内存也会越来越大; 计数器越多, 他们的体积越大, 这一情况就会越严峻.&lt;/p></description></item><item><title>Morden Javascript Tutorial Part 1- Fundamentals: 06~10</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-06~10/</link><pubDate>Wed, 17 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-06~10/</guid><description>&lt;h2 id="26-interaction-alert-prompt-confirm">2.6 Interaction: alert, prompt, confirm&lt;/h2>
 &lt;p>Will introduce &lt;code>alert&lt;/code>, &lt;code>prompt&lt;/code> and &lt;code>confirm&lt;/code> in this chapter.&lt;/p>
 &lt;h3 id="alert">alert&lt;/h3>
 &lt;p>It shows a message and waits for the user to press &amp;ldquo;OK&amp;rdquo;.&lt;/p>
@@ -30,7 +43,7 @@
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-JavaScript" data-lang="JavaScript">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">result&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">prompt&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">title&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="k">default&lt;/span>&lt;span class="p">]);&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>It shows a modal window with a text message, an input field for the visitor, and the buttons OK/Cancel.&lt;/p>
 &lt;p>&lt;code>title&lt;/code>: The text to show the visitor.
-&lt;code>default&lt;/code>: An optional second parameter, the initial value for the input field.&lt;/p></description></item><item><title>Morden Javascript Tutorial Part 1 - Fundamentals :01~05</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-01~05/</link><pubDate>Tue, 16 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-01~05/</guid><description>&lt;h2 id="21-hellow-wrold">2.1 Hellow Wrold&lt;/h2>
+&lt;code>default&lt;/code>: An optional second parameter, the initial value for the input field.&lt;/p></description></item><item><title>Morden Javascript Tutorial Part 1 - Fundamentals: 01~05</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-01~05/</link><pubDate>Tue, 16 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-01~05/</guid><description>&lt;h2 id="21-hellow-wrold">2.1 Hellow Wrold&lt;/h2>
 &lt;p>Firtly, let&amp;rsquo;s see how to attach a script to a webpage.
 For server-side environments (like Node.js), you can execute this script with a command like &lt;code>node my.js&lt;/code>&lt;/p>
 &lt;h3 id="the-script-tag">The &amp;ldquo;script&amp;rdquo; tag&lt;/h3>
@@ -49,7 +62,7 @@ For server-side environments (like Node.js), you can execute this script with a 
 &lt;p>Let’s see what’s so special about JavaScript, what we can achieve with it, and what other technologies play well with it.&lt;/p>
 &lt;h3 id="why-is-it-call-javascript">Why is it call JavaScript?&lt;/h3>
 &lt;p>JavaScript initially called &amp;ldquo;Live Script&amp;rdquo;. But Java was popular at that time, so it was decided that positioning a new language as a &amp;ldquo;younger brother&amp;rdquo; of Java would help.
-But as it evolved, JavaScript became a fully independent language with its won specification called &lt;a href="http://en.wikipedia.org/wiki/ECMAScript">ECMAScript&lt;/a>, and now it has no relation to Java at all.&lt;/p></description></item><item><title>English for Programmers - 02</title><link>https://starslayerx.github.io/posts/english-for-programmers-02/</link><pubDate>Fri, 12 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/english-for-programmers-02/</guid><description>&lt;h1 id="unit2-code-review--testing">Unit2: Code Review &amp;amp; Testing&lt;/h1>
+But as it evolved, JavaScript became a fully independent language with its won specification called &lt;a href="http://en.wikipedia.org/wiki/ECMAScript">ECMAScript&lt;/a>, and now it has no relation to Java at all.&lt;/p></description></item><item><title>English for Programmers - 02</title><link>https://starslayerx.github.io/posts/english-for-programmers-02/</link><pubDate>Fri, 12 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/english-for-programmers-02/</guid><description>&lt;h1 id="unit-2-code-review--testing">Unit 2. Code Review &amp;amp; Testing&lt;/h1>
 &lt;p>this unit will cover:&lt;/p>
 &lt;ul>
 &lt;li>Differentiate between various &lt;strong>testing strategies&lt;/strong>&lt;/li>
@@ -298,7 +311,7 @@ bin
 &lt;p>Q: 只能控制一行的.py代码中注释的内容(\n\r均会被替换为空字符), 如何执行任意代码?&lt;br>
 A: 在注释#中, 构造一个.zip 文件, python 会将该内容当成一个zip包执行, 触发任意代码执行&lt;/p></description></item><item><title>How FastAPI Works</title><link>https://starslayerx.github.io/posts/how-fastapi-works/</link><pubDate>Sun, 03 Aug 2025 08:30:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/how-fastapi-works/</guid><description>&lt;p>FastAPI 的工作原理: 从 routing 到 lifecycle 以及在现实中的使用&lt;/p>
 &lt;h3 id="fastapi">FastAPI&lt;/h3>
-&lt;p>FastAPI 是一个现代的 Python Web 框架, 注重&lt;strong>高性能&lt;/strong>和&lt;strong>开发效率&lt;/strong>. 旨在帮助开发者编写结构清晰、可靠的API, 同时尽量减少样板代码 (boilerplate)&lt;/p></description></item><item><title>"Chaos Enginnering" In Partice</title><link>https://starslayerx.github.io/posts/chaos-enginnering-in-partice/</link><pubDate>Sat, 02 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/chaos-enginnering-in-partice/</guid><description>&lt;p>记录一个小故事 HHH&lt;/p>
+&lt;p>FastAPI 是一个现代的 Python Web 框架, 注重&lt;strong>高性能&lt;/strong>和&lt;strong>开发效率&lt;/strong>. 旨在帮助开发者编写结构清晰、可靠的API, 同时尽量减少样板代码 (boilerplate)&lt;/p></description></item><item><title>"Chaos Enginnering" In Partice</title><link>https://starslayerx.github.io/posts/chaos-enginnering-in-partice/</link><pubDate>Sat, 02 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/chaos-enginnering-in-partice/</guid><description>&lt;p>记录一个小故事 XD&lt;/p>
 &lt;h3 id="混沌工程实践">“混沌工程”实践&lt;/h3>
 &lt;p>项目延期，开发说时间不够干不完
 老板：“不够就招人”&lt;/p>

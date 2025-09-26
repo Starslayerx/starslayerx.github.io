@@ -1,4 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>English on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/english/</link><description>Recent content in English on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Fri, 12 Sep 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/english/index.xml" rel="self" type="application/rss+xml"/><item><title>English for Programmers - 02</title><link>https://starslayerx.github.io/posts/english-for-programmers-02/</link><pubDate>Fri, 12 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/english-for-programmers-02/</guid><description>&lt;h1 id="unit2-code-review--testing">Unit2: Code Review &amp;amp; Testing&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>English on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/english/</link><description>Recent content in English on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Sat, 20 Sep 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/english/index.xml" rel="self" type="application/rss+xml"/><item><title>English for Programmers - 03</title><link>https://starslayerx.github.io/posts/english-for-programmers-03/</link><pubDate>Sat, 20 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/english-for-programmers-03/</guid><description>&lt;h1 id="unit-3-discussing-code">Unit 3. Discussing Code&lt;/h1>
+&lt;h2 id="vocabulary---modifiers">vocabulary - Modifiers&lt;/h2>
+&lt;p>When discussing code, &lt;em>modifiers&lt;/em> can be extremely useful for making your feedback constructive and precise.&lt;/p>
+&lt;ul>
+&lt;li>&lt;em>modifiers&lt;/em>: words that change the meaning of a sentence&lt;/li>
+&lt;/ul>
+&lt;p>For example, a colleague asks:&lt;/p>
+&lt;p>What do you think of the website?&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Response 1: It&amp;rsquo;s good When I click something it loads very quickly and I can navigate it easyily without any instructions.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Response 2: It&amp;rsquo;s good! It&amp;rsquo;s very &lt;em>responsive&lt;/em> and can be navigated &lt;em>intuitively&lt;/em>.&lt;/p></description></item><item><title>English for Programmers - 02</title><link>https://starslayerx.github.io/posts/english-for-programmers-02/</link><pubDate>Fri, 12 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/english-for-programmers-02/</guid><description>&lt;h1 id="unit-2-code-review--testing">Unit 2. Code Review &amp;amp; Testing&lt;/h1>
 &lt;p>this unit will cover:&lt;/p>
 &lt;ul>
 &lt;li>Differentiate between various &lt;strong>testing strategies&lt;/strong>&lt;/li>
