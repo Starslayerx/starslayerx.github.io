@@ -1,36 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FastAPI on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/fastapi/</link><description>Recent content in FastAPI on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Fri, 15 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/fastapi/index.xml" rel="self" type="application/rss+xml"/><item><title>Microservice with FastAPI</title><link>https://starslayerx.github.io/posts/microservice-with-fastapi/</link><pubDate>Fri, 15 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/microservice-with-fastapi/</guid><description>&lt;h2 id="what-are-microservices-">What are microservices ?&lt;/h2>
-&lt;p>什么是微服务? 微服务可以有多种不同的定义方式, 具体取决于希望强调微服务架构的哪个方面, 不同作者会给出略有不同但相关的定义&lt;/p>
-&lt;p>Sam Newman, 微服务领域最有影响力的作者之一, 给出了一个极简的定义:&lt;/p></description></item><item><title>FastAPI Response Model</title><link>https://starslayerx.github.io/posts/fastapi-response-model/</link><pubDate>Tue, 12 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-response-model/</guid><description>&lt;p>本篇文章介绍 FastAPI 的返回类型 response model&lt;/p>
-&lt;p>可以在返回函数的类型注解中声明该接口的响应数据类型&lt;/p>
-&lt;p>类型注解的用法和输入数据参数一样, 可以使用:&lt;/p>
-&lt;ul>
-&lt;li>Pydantic 模型&lt;/li>
-&lt;li>list 列表&lt;/li>
-&lt;li>dict 字典&lt;/li>
-&lt;li>scalar 标量值 (int, bool &amp;hellip;)&lt;/li>
-&lt;/ul>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>FastAPI on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/fastapi/</link><description>Recent content in FastAPI on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Fri, 15 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/fastapi/index.xml" rel="self" type="application/rss+xml"/><item><title>Microservice with FastAPI</title><link>https://starslayerx.github.io/posts/microservice-with-fastapi/</link><pubDate>Fri, 15 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/microservice-with-fastapi/</guid><description>&lt;h2 id="what-are-microservices-"&gt;What are microservices ?&lt;/h2&gt;
+&lt;p&gt;什么是微服务? 微服务可以有多种不同的定义方式, 具体取决于希望强调微服务架构的哪个方面, 不同作者会给出略有不同但相关的定义&lt;/p&gt;
+&lt;p&gt;Sam Newman, 微服务领域最有影响力的作者之一, 给出了一个极简的定义:&lt;/p&gt;</description></item><item><title>FastAPI Response Model</title><link>https://starslayerx.github.io/posts/fastapi-response-model/</link><pubDate>Tue, 12 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-response-model/</guid><description>&lt;p&gt;本篇文章介绍 FastAPI 的返回类型 response model&lt;/p&gt;
+&lt;p&gt;可以在返回函数的类型注解中声明该接口的响应数据类型&lt;/p&gt;
+&lt;p&gt;类型注解的用法和输入数据参数一样, 可以使用:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pydantic 模型&lt;/li&gt;
+&lt;li&gt;list 列表&lt;/li&gt;
+&lt;li&gt;dict 字典&lt;/li&gt;
+&lt;li&gt;scalar 标量值 (int, bool &amp;hellip;)&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div
- class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md">
+ class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"&gt;
  
  &lt;div
- class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3">
+ class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"&gt;
  
- &lt;div class="flex items-center gap-2">
- &lt;div class="text-muted-foreground flex-shrink-0">
+ &lt;div class="flex items-center gap-2"&gt;
+ &lt;div class="text-muted-foreground flex-shrink-0"&gt;
  
  &lt;svg class="h-4 w-4"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-&lt;/svg>
- &lt;/div>
- &lt;span class="text-muted-foreground text-sm font-medium">
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /&gt;
+&lt;/svg&gt;
+ &lt;/div&gt;
+ &lt;span class="text-muted-foreground text-sm font-medium"&gt;
  PYTHON
- &lt;/span>
- &lt;/div>
+ &lt;/span&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="flex items-center gap-2">
+ &lt;div class="flex items-center gap-2"&gt;
  &lt;button
  class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
@@ -40,60 +40,60 @@
  data-auto-collapse-height="400"
  data-collapsed-height="120"
  title="Collapse"
- aria-label="Collapse">
- &lt;span class="collapse-icon">
+ aria-label="Collapse"&gt;
+ &lt;span class="collapse-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/>&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/&gt;&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="collapse-text hidden sm:inline"
- >Collapse&lt;/span
- >
- &lt;/button>
+ &gt;Collapse&lt;/span
+ &gt;
+ &lt;/button&gt;
  &lt;button
  class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
  title="Copy"
- aria-label="Copy">
- &lt;span class="copy-icon">
+ aria-label="Copy"&gt;
+ &lt;span class="copy-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;
+&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="copy-text hidden sm:inline"
- >Copy&lt;/span
- >
- &lt;/button>
- &lt;/div>
- &lt;/div>
+ &gt;Copy&lt;/span
+ &gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="code-block-content relative" id="code-0">
- &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@app.post&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;/items/&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">async&lt;/span> &lt;span class="k">def&lt;/span> &lt;span class="nf">create_item&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">item&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Item&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">Item&lt;/span>&lt;span class="p">:&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">...&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@app.get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;/items/&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">async&lt;/span> &lt;span class="k">def&lt;/span> &lt;span class="nf">read_items&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="nb">list&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">Item&lt;/span>&lt;span class="p">]:&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">...&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+ &lt;div class="code-block-content relative" id="code-0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.post&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_items&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;...&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  
  &lt;div
- class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300">
+ class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"&gt;
  &lt;div
- class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">
+ class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200"&gt;
  Click to expand and view more
- &lt;/div>
- &lt;/div>
- &lt;/div>
-&lt;/div>
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
 
 
-&lt;script>
+&lt;script&gt;
 (function() {
  const codeId = 'code-0';
  const copyBtn = document.querySelector('.copy-code-btn[data-code-id="' + codeId + '"]');
@@ -125,9 +125,9 @@
  if (hasInlineLineNumbers) {
  
  const codeLines = codeElement.querySelectorAll('.cl');
- if (codeLines.length > 0) {
+ if (codeLines.length &gt; 0) {
  codeText = Array.from(codeLines)
- .map(line => {
+ .map(line =&gt; {
  const text = line.textContent || line.innerText;
  
  return text.replace(/\n+$/, '');
@@ -163,7 +163,7 @@
  copyBtn.classList.add('text-green-600');
 
  
- setTimeout(() => {
+ setTimeout(() =&gt; {
  copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\u0022 \/\u003e\n\u003c\/svg\u003e`;
  if (copyText) {
  copyText.textContent = 'Copy';
@@ -187,7 +187,7 @@
  copyText.textContent = 'Selected';
  }
 
- setTimeout(() => {
+ setTimeout(() =&gt; {
  if (copyText) {
  copyText.textContent = 'Copy';
  }
@@ -234,19 +234,19 @@
  if (codeElement) {
  const lines = codeElement.querySelectorAll('.line, .cl');
  const height = codeElement.offsetHeight;
- return lines.length > autoCollapseLines || height > autoCollapseHeight;
+ return lines.length &gt; autoCollapseLines || height &gt; autoCollapseHeight;
  }
 
  
  const containerHeight = codeContainer.offsetHeight;
- if (containerHeight > autoCollapseHeight) {
+ if (containerHeight &gt; autoCollapseHeight) {
  return true;
  }
 
  
  const textContent = codeContainer.textContent || codeContainer.innerText || '';
  const estimatedLines = textContent.split('\n').length;
- return estimatedLines > autoCollapseLines;
+ return estimatedLines &gt; autoCollapseLines;
  }
 
  function setCollapsed(collapsed, animate = true) {
@@ -286,7 +286,7 @@
  
  if (animate) {
  codeContainer.style.transition = 'max-height 0.3s ease-out';
- setTimeout(() => {
+ setTimeout(() =&gt; {
  codeContainer.style.transition = '';
  }, 300);
  }
@@ -301,7 +301,7 @@
 
  
  if (collapseOverlay) {
- collapseOverlay.addEventListener('click', () => {
+ collapseOverlay.addEventListener('click', () =&gt; {
  if (isCollapsed) {
  setCollapsed(false, true);
  }
@@ -312,32 +312,32 @@
  initCollapse();
  }
 })();
-&lt;/script>
-&lt;p>FastAPI 会使用返回类型完成一下事情:&lt;/p></description></item><item><title>Fastapi Cookie and Header Parameters</title><link>https://starslayerx.github.io/posts/fastapi-cookie-and-header-parameters/</link><pubDate>Mon, 11 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-cookie-and-header-parameters/</guid><description>&lt;p>这篇文章介绍 Fastapi 的 Cookie 和 Header 参数&lt;/p>
-&lt;h3 id="cookie-parameters">Cookie Parameters&lt;/h3>
-&lt;p>通过定义 &lt;code>Query&lt;/code> 和 &lt;code>Path&lt;/code> 参数一样定义 &lt;code>Cookie&lt;/code> 参数&lt;/p>
+&lt;/script&gt;
+&lt;p&gt;FastAPI 会使用返回类型完成一下事情:&lt;/p&gt;</description></item><item><title>Fastapi Cookie and Header Parameters</title><link>https://starslayerx.github.io/posts/fastapi-cookie-and-header-parameters/</link><pubDate>Mon, 11 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-cookie-and-header-parameters/</guid><description>&lt;p&gt;这篇文章介绍 Fastapi 的 Cookie 和 Header 参数&lt;/p&gt;
+&lt;h3 id="cookie-parameters"&gt;Cookie Parameters&lt;/h3&gt;
+&lt;p&gt;通过定义 &lt;code&gt;Query&lt;/code&gt; 和 &lt;code&gt;Path&lt;/code&gt; 参数一样定义 &lt;code&gt;Cookie&lt;/code&gt; 参数&lt;/p&gt;
 &lt;div
- class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md">
+ class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"&gt;
  
  &lt;div
- class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3">
+ class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"&gt;
  
- &lt;div class="flex items-center gap-2">
- &lt;div class="text-muted-foreground flex-shrink-0">
+ &lt;div class="flex items-center gap-2"&gt;
+ &lt;div class="text-muted-foreground flex-shrink-0"&gt;
  
  &lt;svg class="h-4 w-4"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-&lt;/svg>
- &lt;/div>
- &lt;span class="text-muted-foreground text-sm font-medium">
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /&gt;
+&lt;/svg&gt;
+ &lt;/div&gt;
+ &lt;span class="text-muted-foreground text-sm font-medium"&gt;
  PYTHON
- &lt;/span>
- &lt;/div>
+ &lt;/span&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="flex items-center gap-2">
+ &lt;div class="flex items-center gap-2"&gt;
  &lt;button
  class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
@@ -347,61 +347,61 @@
  data-auto-collapse-height="400"
  data-collapsed-height="120"
  title="Collapse"
- aria-label="Collapse">
- &lt;span class="collapse-icon">
+ aria-label="Collapse"&gt;
+ &lt;span class="collapse-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/>&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/&gt;&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="collapse-text hidden sm:inline"
- >Collapse&lt;/span
- >
- &lt;/button>
+ &gt;Collapse&lt;/span
+ &gt;
+ &lt;/button&gt;
  &lt;button
  class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
  title="Copy"
- aria-label="Copy">
- &lt;span class="copy-icon">
+ aria-label="Copy"&gt;
+ &lt;span class="copy-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;
+&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="copy-text hidden sm:inline"
- >Copy&lt;/span
- >
- &lt;/button>
- &lt;/div>
- &lt;/div>
+ &gt;Copy&lt;/span
+ &gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="code-block-content relative" id="code-0">
- &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">typing&lt;/span> &lt;span class="n">Annotated&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">fastapi&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Cookie&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">FastAPI&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">app&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">FastAPI&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@app.get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;/items/&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">async&lt;/span> &lt;span class="k">def&lt;/span> &lt;span class="nf">read_items&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">ads_id&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Annotated&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nb">str&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Cookie&lt;/span>&lt;span class="p">()]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">None&lt;/span>&lt;span class="p">):&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="s2">&amp;#34;ads_id&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">ads_id&lt;/span>&lt;span class="p">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+ &lt;div class="code-block-content relative" id="code-0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;typing&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;fastapi&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Cookie&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_items&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ads_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Cookie&lt;/span&gt;&lt;span class="p"&gt;()]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;ads_id&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ads_id&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  
  &lt;div
- class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300">
+ class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"&gt;
  &lt;div
- class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">
+ class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200"&gt;
  Click to expand and view more
- &lt;/div>
- &lt;/div>
- &lt;/div>
-&lt;/div>
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
 
 
-&lt;script>
+&lt;script&gt;
 (function() {
  const codeId = 'code-0';
  const copyBtn = document.querySelector('.copy-code-btn[data-code-id="' + codeId + '"]');
@@ -433,9 +433,9 @@
  if (hasInlineLineNumbers) {
  
  const codeLines = codeElement.querySelectorAll('.cl');
- if (codeLines.length > 0) {
+ if (codeLines.length &gt; 0) {
  codeText = Array.from(codeLines)
- .map(line => {
+ .map(line =&gt; {
  const text = line.textContent || line.innerText;
  
  return text.replace(/\n+$/, '');
@@ -471,7 +471,7 @@
  copyBtn.classList.add('text-green-600');
 
  
- setTimeout(() => {
+ setTimeout(() =&gt; {
  copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\u0022 \/\u003e\n\u003c\/svg\u003e`;
  if (copyText) {
  copyText.textContent = 'Copy';
@@ -495,7 +495,7 @@
  copyText.textContent = 'Selected';
  }
 
- setTimeout(() => {
+ setTimeout(() =&gt; {
  if (copyText) {
  copyText.textContent = 'Copy';
  }
@@ -542,19 +542,19 @@
  if (codeElement) {
  const lines = codeElement.querySelectorAll('.line, .cl');
  const height = codeElement.offsetHeight;
- return lines.length > autoCollapseLines || height > autoCollapseHeight;
+ return lines.length &gt; autoCollapseLines || height &gt; autoCollapseHeight;
  }
 
  
  const containerHeight = codeContainer.offsetHeight;
- if (containerHeight > autoCollapseHeight) {
+ if (containerHeight &gt; autoCollapseHeight) {
  return true;
  }
 
  
  const textContent = codeContainer.textContent || codeContainer.innerText || '';
  const estimatedLines = textContent.split('\n').length;
- return estimatedLines > autoCollapseLines;
+ return estimatedLines &gt; autoCollapseLines;
  }
 
  function setCollapsed(collapsed, animate = true) {
@@ -594,7 +594,7 @@
  
  if (animate) {
  codeContainer.style.transition = 'max-height 0.3s ease-out';
- setTimeout(() => {
+ setTimeout(() =&gt; {
  codeContainer.style.transition = '';
  }, 300);
  }
@@ -609,7 +609,7 @@
 
  
  if (collapseOverlay) {
- collapseOverlay.addEventListener('click', () => {
+ collapseOverlay.addEventListener('click', () =&gt; {
  if (isCollapsed) {
  setCollapsed(false, true);
  }
@@ -620,34 +620,34 @@
  initCollapse();
  }
 })();
-&lt;/script>
-&lt;h4 id="cookie-parameters-models">Cookie Parameters Models&lt;/h4>
-&lt;p>如果有一组相关的 cookies, 可以使用 Pydantic model 来声明.&lt;/p></description></item><item><title>FastAPI Body Advanced Uses</title><link>https://starslayerx.github.io/posts/fastapi-body-advanced-uses/</link><pubDate>Sat, 09 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-body-advanced-uses/</guid><description>&lt;p>本篇文章介绍 FastAPI Request Body 的进阶用法&lt;/p>
-&lt;h3 id="body---multiple-parameters">Body - Multiple Parameters&lt;/h3>
-&lt;p>首先, 可以将&lt;code>Path&lt;/code>, &lt;code>Query&lt;/code> 和 request body 参数声明自由的写在一起&lt;/p>
-&lt;p>对于 request body 参数可以是可选的, 并且可设置为默认的 &lt;code>None&lt;/code>&lt;/p>
+&lt;/script&gt;
+&lt;h4 id="cookie-parameters-models"&gt;Cookie Parameters Models&lt;/h4&gt;
+&lt;p&gt;如果有一组相关的 cookies, 可以使用 Pydantic model 来声明.&lt;/p&gt;</description></item><item><title>FastAPI Body Advanced Uses</title><link>https://starslayerx.github.io/posts/fastapi-body-advanced-uses/</link><pubDate>Sat, 09 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-body-advanced-uses/</guid><description>&lt;p&gt;本篇文章介绍 FastAPI Request Body 的进阶用法&lt;/p&gt;
+&lt;h3 id="body---multiple-parameters"&gt;Body - Multiple Parameters&lt;/h3&gt;
+&lt;p&gt;首先, 可以将&lt;code&gt;Path&lt;/code&gt;, &lt;code&gt;Query&lt;/code&gt; 和 request body 参数声明自由的写在一起&lt;/p&gt;
+&lt;p&gt;对于 request body 参数可以是可选的, 并且可设置为默认的 &lt;code&gt;None&lt;/code&gt;&lt;/p&gt;
 &lt;div
- class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md">
+ class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"&gt;
  
  &lt;div
- class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3">
+ class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"&gt;
  
- &lt;div class="flex items-center gap-2">
- &lt;div class="text-muted-foreground flex-shrink-0">
+ &lt;div class="flex items-center gap-2"&gt;
+ &lt;div class="text-muted-foreground flex-shrink-0"&gt;
  
  &lt;svg class="h-4 w-4"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-&lt;/svg>
- &lt;/div>
- &lt;span class="text-muted-foreground text-sm font-medium">
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /&gt;
+&lt;/svg&gt;
+ &lt;/div&gt;
+ &lt;span class="text-muted-foreground text-sm font-medium"&gt;
  PYTHON
- &lt;/span>
- &lt;/div>
+ &lt;/span&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="flex items-center gap-2">
+ &lt;div class="flex items-center gap-2"&gt;
  &lt;button
  class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
@@ -657,78 +657,78 @@
  data-auto-collapse-height="400"
  data-collapsed-height="120"
  title="Collapse"
- aria-label="Collapse">
- &lt;span class="collapse-icon">
+ aria-label="Collapse"&gt;
+ &lt;span class="collapse-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/>&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/&gt;&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="collapse-text hidden sm:inline"
- >Collapse&lt;/span
- >
- &lt;/button>
+ &gt;Collapse&lt;/span
+ &gt;
+ &lt;/button&gt;
  &lt;button
  class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
  title="Copy"
- aria-label="Copy">
- &lt;span class="copy-icon">
+ aria-label="Copy"&gt;
+ &lt;span class="copy-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;
+&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="copy-text hidden sm:inline"
- >Copy&lt;/span
- >
- &lt;/button>
- &lt;/div>
- &lt;/div>
+ &gt;Copy&lt;/span
+ &gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="code-block-content relative" id="code-0">
- &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">typing&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Annotated&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">fastapi&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">FastAPI&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Path&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">pydantic&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">BaseModel&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">app&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">FastAPI&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">class&lt;/span> &lt;span class="nc">Item&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">BaseModel&lt;/span>&lt;span class="p">):&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">name&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">str&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">description&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">str&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="kc">None&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">None&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">price&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">float&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">tax&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">float&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="kc">None&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">None&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@app.put&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;/items/&lt;/span>&lt;span class="si">{item_id}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">async&lt;/span> &lt;span class="k">def&lt;/span> &lt;span class="nf">update_item&lt;/span>&lt;span class="p">(&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">item_id&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Annotated&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nb">int&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Path&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">title&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;The ID of the item to get&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">ge&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">le&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">1000&lt;/span>&lt;span class="p">)],&lt;/span> &lt;span class="c1"># Path&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">q&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">str&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="kc">None&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="c1"># Query&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">item&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Item&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="kc">None&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="c1"># body&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">):&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">results&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="s2">&amp;#34;item_id&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">item_id&lt;/span>&lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">q&lt;/span>&lt;span class="p">:&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">results&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">update&lt;/span>&lt;span class="p">({&lt;/span>&lt;span class="s2">&amp;#34;q&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">q&lt;/span>&lt;span class="p">})&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">item&lt;/span>&lt;span class="p">:&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">results&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">update&lt;/span>&lt;span class="p">({&lt;/span>&lt;span class="s2">&amp;#34;item&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">item&lt;/span>&lt;span class="p">})&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">results&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+ &lt;div class="code-block-content relative" id="code-0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;typing&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;fastapi&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pydantic&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;BaseModel&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;price&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;tax&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.put&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&lt;/span&gt;&lt;span class="si"&gt;{item_id}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update_item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;item_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;The ID of the item to get&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ge&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;le&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;)],&lt;/span&gt; &lt;span class="c1"&gt;# Path&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;# Query&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Item&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;# body&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;results&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;item_id&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;item_id&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;q&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;item&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;results&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  
  &lt;div
- class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300">
+ class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"&gt;
  &lt;div
- class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">
+ class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200"&gt;
  Click to expand and view more
- &lt;/div>
- &lt;/div>
- &lt;/div>
-&lt;/div>
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
 
 
-&lt;script>
+&lt;script&gt;
 (function() {
  const codeId = 'code-0';
  const copyBtn = document.querySelector('.copy-code-btn[data-code-id="' + codeId + '"]');
@@ -760,9 +760,9 @@
  if (hasInlineLineNumbers) {
  
  const codeLines = codeElement.querySelectorAll('.cl');
- if (codeLines.length > 0) {
+ if (codeLines.length &gt; 0) {
  codeText = Array.from(codeLines)
- .map(line => {
+ .map(line =&gt; {
  const text = line.textContent || line.innerText;
  
  return text.replace(/\n+$/, '');
@@ -798,7 +798,7 @@
  copyBtn.classList.add('text-green-600');
 
  
- setTimeout(() => {
+ setTimeout(() =&gt; {
  copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\u0022 \/\u003e\n\u003c\/svg\u003e`;
  if (copyText) {
  copyText.textContent = 'Copy';
@@ -822,7 +822,7 @@
  copyText.textContent = 'Selected';
  }
 
- setTimeout(() => {
+ setTimeout(() =&gt; {
  if (copyText) {
  copyText.textContent = 'Copy';
  }
@@ -869,19 +869,19 @@
  if (codeElement) {
  const lines = codeElement.querySelectorAll('.line, .cl');
  const height = codeElement.offsetHeight;
- return lines.length > autoCollapseLines || height > autoCollapseHeight;
+ return lines.length &gt; autoCollapseLines || height &gt; autoCollapseHeight;
  }
 
  
  const containerHeight = codeContainer.offsetHeight;
- if (containerHeight > autoCollapseHeight) {
+ if (containerHeight &gt; autoCollapseHeight) {
  return true;
  }
 
  
  const textContent = codeContainer.textContent || codeContainer.innerText || '';
  const estimatedLines = textContent.split('\n').length;
- return estimatedLines > autoCollapseLines;
+ return estimatedLines &gt; autoCollapseLines;
  }
 
  function setCollapsed(collapsed, animate = true) {
@@ -921,7 +921,7 @@
  
  if (animate) {
  codeContainer.style.transition = 'max-height 0.3s ease-out';
- setTimeout(() => {
+ setTimeout(() =&gt; {
  codeContainer.style.transition = '';
  }, 300);
  }
@@ -936,7 +936,7 @@
 
  
  if (collapseOverlay) {
- collapseOverlay.addEventListener('click', () => {
+ collapseOverlay.addEventListener('click', () =&gt; {
  if (isCollapsed) {
  setCollapsed(false, true);
  }
@@ -947,33 +947,33 @@
  initCollapse();
  }
 })();
-&lt;/script>
-&lt;h4 id="multiple-body-parameters-多参数请求体">Multiple body parameters 多参数请求体&lt;/h4>
-&lt;p>在上面例子中, FastAPI 期望一个包含 &lt;code>Item&lt;/code> 属性的 JSON body, 例如&lt;/p></description></item><item><title>FastAPI Parameters and Validations</title><link>https://starslayerx.github.io/posts/fastapi-parameters-and-validations/</link><pubDate>Thu, 07 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-parameters-and-validations/</guid><description>&lt;p>这篇文章介绍 FastAPI 中的参数验证功能&lt;/p>
-&lt;h3 id="query-parameters-and-string-validations">Query Parameters and String Validations&lt;/h3>
-&lt;p>FastAPI 允许为参数声明额外的信息和验证规则&lt;/p>
+&lt;/script&gt;
+&lt;h4 id="multiple-body-parameters-多参数请求体"&gt;Multiple body parameters 多参数请求体&lt;/h4&gt;
+&lt;p&gt;在上面例子中, FastAPI 期望一个包含 &lt;code&gt;Item&lt;/code&gt; 属性的 JSON body, 例如&lt;/p&gt;</description></item><item><title>FastAPI Parameters and Validations</title><link>https://starslayerx.github.io/posts/fastapi-parameters-and-validations/</link><pubDate>Thu, 07 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-parameters-and-validations/</guid><description>&lt;p&gt;这篇文章介绍 FastAPI 中的参数验证功能&lt;/p&gt;
+&lt;h3 id="query-parameters-and-string-validations"&gt;Query Parameters and String Validations&lt;/h3&gt;
+&lt;p&gt;FastAPI 允许为参数声明额外的信息和验证规则&lt;/p&gt;
 &lt;div
- class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md">
+ class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"&gt;
  
  &lt;div
- class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3">
+ class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"&gt;
  
- &lt;div class="flex items-center gap-2">
- &lt;div class="text-muted-foreground flex-shrink-0">
+ &lt;div class="flex items-center gap-2"&gt;
+ &lt;div class="text-muted-foreground flex-shrink-0"&gt;
  
  &lt;svg class="h-4 w-4"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-&lt;/svg>
- &lt;/div>
- &lt;span class="text-muted-foreground text-sm font-medium">
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /&gt;
+&lt;/svg&gt;
+ &lt;/div&gt;
+ &lt;span class="text-muted-foreground text-sm font-medium"&gt;
  PYTHON
- &lt;/span>
- &lt;/div>
+ &lt;/span&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="flex items-center gap-2">
+ &lt;div class="flex items-center gap-2"&gt;
  &lt;button
  class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
@@ -983,63 +983,63 @@
  data-auto-collapse-height="400"
  data-collapsed-height="120"
  title="Collapse"
- aria-label="Collapse">
- &lt;span class="collapse-icon">
+ aria-label="Collapse"&gt;
+ &lt;span class="collapse-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/>&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/&gt;&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="collapse-text hidden sm:inline"
- >Collapse&lt;/span
- >
- &lt;/button>
+ &gt;Collapse&lt;/span
+ &gt;
+ &lt;/button&gt;
  &lt;button
  class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
  title="Copy"
- aria-label="Copy">
- &lt;span class="copy-icon">
+ aria-label="Copy"&gt;
+ &lt;span class="copy-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;
+&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="copy-text hidden sm:inline"
- >Copy&lt;/span
- >
- &lt;/button>
- &lt;/div>
- &lt;/div>
+ &gt;Copy&lt;/span
+ &gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="code-block-content relative" id="code-0">
- &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">fastapi&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">FastAPI&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">app&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">FastAPI&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@app.get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;/items/&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">async&lt;/span> &lt;span class="k">def&lt;/span> &lt;span class="nf">read_items&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">q&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">str&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="kc">None&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">None&lt;/span>&lt;span class="p">):&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">results&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="s2">&amp;#34;items&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[{&lt;/span>&lt;span class="s2">&amp;#34;item_id&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Foo&amp;#34;&lt;/span>&lt;span class="p">},&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="s2">&amp;#34;item_id&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Bar&amp;#34;&lt;/span>&lt;span class="p">}]}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">q&lt;/span>&lt;span class="p">:&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">results&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">update&lt;/span>&lt;span class="p">({&lt;/span>&lt;span class="s2">&amp;#34;q&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">q&lt;/span>&lt;span class="p">})&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">results&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+ &lt;div class="code-block-content relative" id="code-0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;fastapi&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_items&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;results&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;items&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;item_id&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Foo&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;item_id&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Bar&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;}]}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;q&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;results&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  
  &lt;div
- class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300">
+ class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"&gt;
  &lt;div
- class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">
+ class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200"&gt;
  Click to expand and view more
- &lt;/div>
- &lt;/div>
- &lt;/div>
-&lt;/div>
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
 
 
-&lt;script>
+&lt;script&gt;
 (function() {
  const codeId = 'code-0';
  const copyBtn = document.querySelector('.copy-code-btn[data-code-id="' + codeId + '"]');
@@ -1071,9 +1071,9 @@
  if (hasInlineLineNumbers) {
  
  const codeLines = codeElement.querySelectorAll('.cl');
- if (codeLines.length > 0) {
+ if (codeLines.length &gt; 0) {
  codeText = Array.from(codeLines)
- .map(line => {
+ .map(line =&gt; {
  const text = line.textContent || line.innerText;
  
  return text.replace(/\n+$/, '');
@@ -1109,7 +1109,7 @@
  copyBtn.classList.add('text-green-600');
 
  
- setTimeout(() => {
+ setTimeout(() =&gt; {
  copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\u0022 \/\u003e\n\u003c\/svg\u003e`;
  if (copyText) {
  copyText.textContent = 'Copy';
@@ -1133,7 +1133,7 @@
  copyText.textContent = 'Selected';
  }
 
- setTimeout(() => {
+ setTimeout(() =&gt; {
  if (copyText) {
  copyText.textContent = 'Copy';
  }
@@ -1180,19 +1180,19 @@
  if (codeElement) {
  const lines = codeElement.querySelectorAll('.line, .cl');
  const height = codeElement.offsetHeight;
- return lines.length > autoCollapseLines || height > autoCollapseHeight;
+ return lines.length &gt; autoCollapseLines || height &gt; autoCollapseHeight;
  }
 
  
  const containerHeight = codeContainer.offsetHeight;
- if (containerHeight > autoCollapseHeight) {
+ if (containerHeight &gt; autoCollapseHeight) {
  return true;
  }
 
  
  const textContent = codeContainer.textContent || codeContainer.innerText || '';
  const estimatedLines = textContent.split('\n').length;
- return estimatedLines > autoCollapseLines;
+ return estimatedLines &gt; autoCollapseLines;
  }
 
  function setCollapsed(collapsed, animate = true) {
@@ -1232,7 +1232,7 @@
  
  if (animate) {
  codeContainer.style.transition = 'max-height 0.3s ease-out';
- setTimeout(() => {
+ setTimeout(() =&gt; {
  codeContainer.style.transition = '';
  }, 300);
  }
@@ -1247,7 +1247,7 @@
 
  
  if (collapseOverlay) {
- collapseOverlay.addEventListener('click', () => {
+ collapseOverlay.addEventListener('click', () =&gt; {
  if (isCollapsed) {
  setCollapsed(false, true);
  }
@@ -1258,8 +1258,8 @@
  initCollapse();
  }
 })();
-&lt;/script>
-&lt;p>&lt;code>q&lt;/code> 是类型为 &lt;code>str | None&lt;/code> 的查询参数, 这意味着它可以是字符串, 也可以是 &lt;code>None&lt;/code>. 其默认值是 &lt;code>None&lt;/code>, 因此 FastAPI 会识别它为“可选参数”&lt;/p></description></item><item><title>FastAPI Parameters</title><link>https://starslayerx.github.io/posts/fastapi-parameters/</link><pubDate>Wed, 06 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-parameters/</guid><description>&lt;p>FastAPI 是一个现代、快速（高性能）的 Python Web 框架, 它自动处理参数的解析、验证和文档生成&lt;/p>
-&lt;p>本文将介绍 FastAPI 中三类最常用的参数: &lt;strong>路径参数 (Path Parameters)&lt;/strong>、&lt;strong>查询参数 (Query Parameters)&lt;/strong> 和 &lt;strong>请求体(Request Body)&lt;/strong> 的用法与原理&lt;/p></description></item><item><title>How FastAPI Works</title><link>https://starslayerx.github.io/posts/how-fastapi-works/</link><pubDate>Sun, 03 Aug 2025 08:30:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/how-fastapi-works/</guid><description>&lt;p>FastAPI 的工作原理: 从 routing 到 lifecycle 以及在现实中的使用&lt;/p>
-&lt;h3 id="fastapi">FastAPI&lt;/h3>
-&lt;p>FastAPI 是一个现代的 Python Web 框架, 注重&lt;strong>高性能&lt;/strong>和&lt;strong>开发效率&lt;/strong>. 旨在帮助开发者编写结构清晰、可靠的API, 同时尽量减少样板代码 (boilerplate)&lt;/p></description></item></channel></rss>
+&lt;/script&gt;
+&lt;p&gt;&lt;code&gt;q&lt;/code&gt; 是类型为 &lt;code&gt;str | None&lt;/code&gt; 的查询参数, 这意味着它可以是字符串, 也可以是 &lt;code&gt;None&lt;/code&gt;. 其默认值是 &lt;code&gt;None&lt;/code&gt;, 因此 FastAPI 会识别它为“可选参数”&lt;/p&gt;</description></item><item><title>FastAPI Parameters</title><link>https://starslayerx.github.io/posts/fastapi-parameters/</link><pubDate>Wed, 06 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-parameters/</guid><description>&lt;p&gt;FastAPI 是一个现代、快速（高性能）的 Python Web 框架, 它自动处理参数的解析、验证和文档生成&lt;/p&gt;
+&lt;p&gt;本文将介绍 FastAPI 中三类最常用的参数: &lt;strong&gt;路径参数 (Path Parameters)&lt;/strong&gt;、&lt;strong&gt;查询参数 (Query Parameters)&lt;/strong&gt; 和 &lt;strong&gt;请求体(Request Body)&lt;/strong&gt; 的用法与原理&lt;/p&gt;</description></item><item><title>How FastAPI Works</title><link>https://starslayerx.github.io/posts/how-fastapi-works/</link><pubDate>Sun, 03 Aug 2025 08:30:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/how-fastapi-works/</guid><description>&lt;p&gt;FastAPI 的工作原理: 从 routing 到 lifecycle 以及在现实中的使用&lt;/p&gt;
+&lt;h3 id="fastapi"&gt;FastAPI&lt;/h3&gt;
+&lt;p&gt;FastAPI 是一个现代的 Python Web 框架, 注重&lt;strong&gt;高性能&lt;/strong&gt;和&lt;strong&gt;开发效率&lt;/strong&gt;. 旨在帮助开发者编写结构清晰、可靠的API, 同时尽量减少样板代码 (boilerplate)&lt;/p&gt;</description></item></channel></rss>

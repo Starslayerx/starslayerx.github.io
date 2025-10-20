@@ -1,29 +1,29 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>JavaScript on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/javascript/</link><description>Recent content in JavaScript on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Wed, 17 Sep 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml"/><item><title>Morden Javascript Tutorial Part 1- Fundamentals: 06~10</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-06~10/</link><pubDate>Wed, 17 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-06~10/</guid><description>&lt;h2 id="26-interaction-alert-prompt-confirm">2.6 Interaction: alert, prompt, confirm&lt;/h2>
-&lt;p>Will introduce &lt;code>alert&lt;/code>, &lt;code>prompt&lt;/code> and &lt;code>confirm&lt;/code> in this chapter.&lt;/p>
-&lt;h3 id="alert">alert&lt;/h3>
-&lt;p>It shows a message and waits for the user to press &amp;ldquo;OK&amp;rdquo;.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>JavaScript on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/javascript/</link><description>Recent content in JavaScript on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Wed, 17 Sep 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml"/><item><title>Morden Javascript Tutorial Part 2- Fundamentals: 06~10</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-2-fundamentals-06~10/</link><pubDate>Wed, 17 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-2-fundamentals-06~10/</guid><description>&lt;h2 id="26-interaction-alert-prompt-confirm"&gt;2.6 Interaction: alert, prompt, confirm&lt;/h2&gt;
+&lt;p&gt;Will introduce &lt;code&gt;alert&lt;/code&gt;, &lt;code&gt;prompt&lt;/code&gt; and &lt;code&gt;confirm&lt;/code&gt; in this chapter.&lt;/p&gt;
+&lt;h3 id="alert"&gt;alert&lt;/h3&gt;
+&lt;p&gt;It shows a message and waits for the user to press &amp;ldquo;OK&amp;rdquo;.&lt;/p&gt;
 &lt;div
- class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md">
+ class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"&gt;
  
  &lt;div
- class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3">
+ class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"&gt;
  
- &lt;div class="flex items-center gap-2">
- &lt;div class="text-muted-foreground flex-shrink-0">
+ &lt;div class="flex items-center gap-2"&gt;
+ &lt;div class="text-muted-foreground flex-shrink-0"&gt;
  
  &lt;svg class="h-4 w-4"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-&lt;/svg>
- &lt;/div>
- &lt;span class="text-muted-foreground text-sm font-medium">
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /&gt;
+&lt;/svg&gt;
+ &lt;/div&gt;
+ &lt;span class="text-muted-foreground text-sm font-medium"&gt;
  JAVASCRIPT
- &lt;/span>
- &lt;/div>
+ &lt;/span&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="flex items-center gap-2">
+ &lt;div class="flex items-center gap-2"&gt;
  &lt;button
  class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
@@ -33,54 +33,54 @@
  data-auto-collapse-height="400"
  data-collapsed-height="120"
  title="Collapse"
- aria-label="Collapse">
- &lt;span class="collapse-icon">
+ aria-label="Collapse"&gt;
+ &lt;span class="collapse-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/>&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/&gt;&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="collapse-text hidden sm:inline"
- >Collapse&lt;/span
- >
- &lt;/button>
+ &gt;Collapse&lt;/span
+ &gt;
+ &lt;/button&gt;
  &lt;button
  class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
  title="Copy"
- aria-label="Copy">
- &lt;span class="copy-icon">
+ aria-label="Copy"&gt;
+ &lt;span class="copy-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;
+&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="copy-text hidden sm:inline"
- >Copy&lt;/span
- >
- &lt;/button>
- &lt;/div>
- &lt;/div>
+ &gt;Copy&lt;/span
+ &gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="code-block-content relative" id="code-0">
- &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-JavaScript" data-lang="JavaScript">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">alert&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Hello&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+ &lt;div class="code-block-content relative" id="code-0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-JavaScript" data-lang="JavaScript"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Hello&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  
  &lt;div
- class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300">
+ class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"&gt;
  &lt;div
- class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">
+ class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200"&gt;
  Click to expand and view more
- &lt;/div>
- &lt;/div>
- &lt;/div>
-&lt;/div>
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
 
 
-&lt;script>
+&lt;script&gt;
 (function() {
  const codeId = 'code-0';
  const copyBtn = document.querySelector('.copy-code-btn[data-code-id="' + codeId + '"]');
@@ -112,9 +112,9 @@
  if (hasInlineLineNumbers) {
  
  const codeLines = codeElement.querySelectorAll('.cl');
- if (codeLines.length > 0) {
+ if (codeLines.length &gt; 0) {
  codeText = Array.from(codeLines)
- .map(line => {
+ .map(line =&gt; {
  const text = line.textContent || line.innerText;
  
  return text.replace(/\n+$/, '');
@@ -150,7 +150,7 @@
  copyBtn.classList.add('text-green-600');
 
  
- setTimeout(() => {
+ setTimeout(() =&gt; {
  copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\u0022 \/\u003e\n\u003c\/svg\u003e`;
  if (copyText) {
  copyText.textContent = 'Copy';
@@ -174,7 +174,7 @@
  copyText.textContent = 'Selected';
  }
 
- setTimeout(() => {
+ setTimeout(() =&gt; {
  if (copyText) {
  copyText.textContent = 'Copy';
  }
@@ -221,19 +221,19 @@
  if (codeElement) {
  const lines = codeElement.querySelectorAll('.line, .cl');
  const height = codeElement.offsetHeight;
- return lines.length > autoCollapseLines || height > autoCollapseHeight;
+ return lines.length &gt; autoCollapseLines || height &gt; autoCollapseHeight;
  }
 
  
  const containerHeight = codeContainer.offsetHeight;
- if (containerHeight > autoCollapseHeight) {
+ if (containerHeight &gt; autoCollapseHeight) {
  return true;
  }
 
  
  const textContent = codeContainer.textContent || codeContainer.innerText || '';
  const estimatedLines = textContent.split('\n').length;
- return estimatedLines > autoCollapseLines;
+ return estimatedLines &gt; autoCollapseLines;
  }
 
  function setCollapsed(collapsed, animate = true) {
@@ -273,7 +273,7 @@
  
  if (animate) {
  codeContainer.style.transition = 'max-height 0.3s ease-out';
- setTimeout(() => {
+ setTimeout(() =&gt; {
  codeContainer.style.transition = '';
  }, 300);
  }
@@ -288,7 +288,7 @@
 
  
  if (collapseOverlay) {
- collapseOverlay.addEventListener('click', () => {
+ collapseOverlay.addEventListener('click', () =&gt; {
  if (isCollapsed) {
  setCollapsed(false, true);
  }
@@ -299,35 +299,35 @@
  initCollapse();
  }
 })();
-&lt;/script>
-&lt;h3 id="prompt">prompt&lt;/h3>
-&lt;p>This function &lt;code>prompt&lt;/code> accepts two arguments&lt;/p></description></item><item><title>Morden Javascript Tutorial Part 1 - Fundamentals: 01~05</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-01~05/</link><pubDate>Tue, 16 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-01~05/</guid><description>&lt;h2 id="21-hellow-wrold">2.1 Hellow Wrold&lt;/h2>
-&lt;p>Firtly, let&amp;rsquo;s see how to attach a script to a webpage.
-For server-side environments (like Node.js), you can execute this script with a command like &lt;code>node my.js&lt;/code>&lt;/p>
-&lt;h3 id="the-script-tag">The &amp;ldquo;script&amp;rdquo; tag&lt;/h3>
-&lt;p>JavaScript programs can be inserted almost anywhere into an HTML docuemnt using the &lt;code>&amp;lt;script&amp;gt;&lt;/code> tag&lt;/p>
+&lt;/script&gt;
+&lt;h3 id="prompt"&gt;prompt&lt;/h3&gt;
+&lt;p&gt;This function &lt;code&gt;prompt&lt;/code&gt; accepts two arguments&lt;/p&gt;</description></item><item><title>Morden Javascript Tutorial Part 1 - Fundamentals: 01~05</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-01~05/</link><pubDate>Tue, 16 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-01~05/</guid><description>&lt;h2 id="21-hellow-wrold"&gt;2.1 Hellow Wrold&lt;/h2&gt;
+&lt;p&gt;Firtly, let&amp;rsquo;s see how to attach a script to a webpage.
+For server-side environments (like Node.js), you can execute this script with a command like &lt;code&gt;node my.js&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id="the-script-tag"&gt;The &amp;ldquo;script&amp;rdquo; tag&lt;/h3&gt;
+&lt;p&gt;JavaScript programs can be inserted almost anywhere into an HTML docuemnt using the &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tag&lt;/p&gt;
 &lt;div
- class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md">
+ class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"&gt;
  
  &lt;div
- class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3">
+ class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"&gt;
  
- &lt;div class="flex items-center gap-2">
- &lt;div class="text-muted-foreground flex-shrink-0">
+ &lt;div class="flex items-center gap-2"&gt;
+ &lt;div class="text-muted-foreground flex-shrink-0"&gt;
  
  &lt;svg class="h-4 w-4"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-&lt;/svg>
- &lt;/div>
- &lt;span class="text-muted-foreground text-sm font-medium">
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /&gt;
+&lt;/svg&gt;
+ &lt;/div&gt;
+ &lt;span class="text-muted-foreground text-sm font-medium"&gt;
  HTML
- &lt;/span>
- &lt;/div>
+ &lt;/span&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="flex items-center gap-2">
+ &lt;div class="flex items-center gap-2"&gt;
  &lt;button
  class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
@@ -337,63 +337,63 @@ For server-side environments (like Node.js), you can execute this script with a 
  data-auto-collapse-height="400"
  data-collapsed-height="120"
  title="Collapse"
- aria-label="Collapse">
- &lt;span class="collapse-icon">
+ aria-label="Collapse"&gt;
+ &lt;span class="collapse-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/>&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/&gt;&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="collapse-text hidden sm:inline"
- >Collapse&lt;/span
- >
- &lt;/button>
+ &gt;Collapse&lt;/span
+ &gt;
+ &lt;/button&gt;
  &lt;button
  class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
  title="Copy"
- aria-label="Copy">
- &lt;span class="copy-icon">
+ aria-label="Copy"&gt;
+ &lt;span class="copy-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;
+&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="copy-text hidden sm:inline"
- >Copy&lt;/span
- >
- &lt;/button>
- &lt;/div>
- &lt;/div>
+ &gt;Copy&lt;/span
+ &gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="code-block-content relative" id="code-0">
- &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&amp;lt;!DOCTYPE HTML&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> Before this script...&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">alert&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="s1">&amp;#39;Hello, World!&amp;#39;&lt;/span> &lt;span class="p">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>...After the script...&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+ &lt;div class="code-block-content relative" id="code-0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-html" data-lang="html"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&amp;lt;!DOCTYPE HTML&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; Before this script...&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Hello, World!&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;...After the script...&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  
  &lt;div
- class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300">
+ class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"&gt;
  &lt;div
- class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">
+ class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200"&gt;
  Click to expand and view more
- &lt;/div>
- &lt;/div>
- &lt;/div>
-&lt;/div>
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
 
 
-&lt;script>
+&lt;script&gt;
 (function() {
  const codeId = 'code-0';
  const copyBtn = document.querySelector('.copy-code-btn[data-code-id="' + codeId + '"]');
@@ -425,9 +425,9 @@ For server-side environments (like Node.js), you can execute this script with a 
  if (hasInlineLineNumbers) {
  
  const codeLines = codeElement.querySelectorAll('.cl');
- if (codeLines.length > 0) {
+ if (codeLines.length &gt; 0) {
  codeText = Array.from(codeLines)
- .map(line => {
+ .map(line =&gt; {
  const text = line.textContent || line.innerText;
  
  return text.replace(/\n+$/, '');
@@ -463,7 +463,7 @@ For server-side environments (like Node.js), you can execute this script with a 
  copyBtn.classList.add('text-green-600');
 
  
- setTimeout(() => {
+ setTimeout(() =&gt; {
  copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\u0022 \/\u003e\n\u003c\/svg\u003e`;
  if (copyText) {
  copyText.textContent = 'Copy';
@@ -487,7 +487,7 @@ For server-side environments (like Node.js), you can execute this script with a 
  copyText.textContent = 'Selected';
  }
 
- setTimeout(() => {
+ setTimeout(() =&gt; {
  if (copyText) {
  copyText.textContent = 'Copy';
  }
@@ -534,19 +534,19 @@ For server-side environments (like Node.js), you can execute this script with a 
  if (codeElement) {
  const lines = codeElement.querySelectorAll('.line, .cl');
  const height = codeElement.offsetHeight;
- return lines.length > autoCollapseLines || height > autoCollapseHeight;
+ return lines.length &gt; autoCollapseLines || height &gt; autoCollapseHeight;
  }
 
  
  const containerHeight = codeContainer.offsetHeight;
- if (containerHeight > autoCollapseHeight) {
+ if (containerHeight &gt; autoCollapseHeight) {
  return true;
  }
 
  
  const textContent = codeContainer.textContent || codeContainer.innerText || '';
  const estimatedLines = textContent.split('\n').length;
- return estimatedLines > autoCollapseLines;
+ return estimatedLines &gt; autoCollapseLines;
  }
 
  function setCollapsed(collapsed, animate = true) {
@@ -586,7 +586,7 @@ For server-side environments (like Node.js), you can execute this script with a 
  
  if (animate) {
  codeContainer.style.transition = 'max-height 0.3s ease-out';
- setTimeout(() => {
+ setTimeout(() =&gt; {
  codeContainer.style.transition = '';
  }, 300);
  }
@@ -601,7 +601,7 @@ For server-side environments (like Node.js), you can execute this script with a 
 
  
  if (collapseOverlay) {
- collapseOverlay.addEventListener('click', () => {
+ collapseOverlay.addEventListener('click', () =&gt; {
  if (isCollapsed) {
  setCollapsed(false, true);
  }
@@ -612,9 +612,9 @@ For server-side environments (like Node.js), you can execute this script with a 
  initCollapse();
  }
 })();
-&lt;/script>
-&lt;p>The &lt;code>&amp;lt;script&amp;gt;&lt;/code> tag contains JavaScript code which is automatically executed when the browser process the tag.&lt;/p></description></item><item><title>Morden Javascript Tutorial Part 1 - An Introduction</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-an-introduction/</link><pubDate>Mon, 15 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-an-introduction/</guid><description>&lt;h2 id="an-introduction-to-javascript">An Introduction to JavaScript&lt;/h2>
-&lt;p>Let’s see what’s so special about JavaScript, what we can achieve with it, and what other technologies play well with it.&lt;/p>
-&lt;h3 id="why-is-it-call-javascript">Why is it call JavaScript?&lt;/h3>
-&lt;p>JavaScript initially called &amp;ldquo;Live Script&amp;rdquo;. But Java was popular at that time, so it was decided that positioning a new language as a &amp;ldquo;younger brother&amp;rdquo; of Java would help.
-But as it evolved, JavaScript became a fully independent language with its won specification called &lt;a href="http://en.wikipedia.org/wiki/ECMAScript">ECMAScript&lt;/a>, and now it has no relation to Java at all.&lt;/p></description></item></channel></rss>
+&lt;/script&gt;
+&lt;p&gt;The &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tag contains JavaScript code which is automatically executed when the browser process the tag.&lt;/p&gt;</description></item><item><title>Morden Javascript Tutorial Part 1 - An Introduction</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-an-introduction/</link><pubDate>Mon, 15 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-an-introduction/</guid><description>&lt;h2 id="an-introduction-to-javascript"&gt;An Introduction to JavaScript&lt;/h2&gt;
+&lt;p&gt;Let’s see what’s so special about JavaScript, what we can achieve with it, and what other technologies play well with it.&lt;/p&gt;
+&lt;h3 id="why-is-it-call-javascript"&gt;Why is it call JavaScript?&lt;/h3&gt;
+&lt;p&gt;JavaScript initially called &amp;ldquo;Live Script&amp;rdquo;. But Java was popular at that time, so it was decided that positioning a new language as a &amp;ldquo;younger brother&amp;rdquo; of Java would help.
+But as it evolved, JavaScript became a fully independent language with its won specification called &lt;a href="http://en.wikipedia.org/wiki/ECMAScript"&gt;ECMAScript&lt;/a&gt;, and now it has no relation to Java at all.&lt;/p&gt;</description></item></channel></rss>

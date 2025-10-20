@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>HTTP on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/http/</link><description>Recent content in HTTP on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Wed, 20 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/http/index.xml" rel="self" type="application/rss+xml"/><item><title>HTTP Methods, Status Codes and Payloads</title><link>https://starslayerx.github.io/posts/http-methods-status-codes-and-payloads/</link><pubDate>Wed, 20 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/http-methods-status-codes-and-payloads/</guid><description>&lt;p>本篇文章基于 REST api 介绍HTTP请求方法、HTTP响应码和API数据载荷, 是之前介绍 REST 那篇文章的延伸&lt;/p>
-&lt;h2 id="http-status-codes">HTTP Status Codes&lt;/h2>
-&lt;ul>
-&lt;li>1xx group: Signals that an operation is in progress&lt;/li>
-&lt;li>2xx group: Signals that a request was successfully processed&lt;/li>
-&lt;li>3xx group: Signals that a resource has been moved to a new location&lt;/li>
-&lt;li>4xx group: Signals that someting was wrong with the request&lt;/li>
-&lt;li>5xx group: Signals that there was an error while processing the request&lt;/li>
-&lt;/ul>
-&lt;p>在之前文章中, 定义的 HTTP status code 如下:&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>HTTP on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/http/</link><description>Recent content in HTTP on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Wed, 20 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/http/index.xml" rel="self" type="application/rss+xml"/><item><title>HTTP Methods, Status Codes and Payloads</title><link>https://starslayerx.github.io/posts/http-methods-status-codes-and-payloads/</link><pubDate>Wed, 20 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/http-methods-status-codes-and-payloads/</guid><description>&lt;p&gt;本篇文章基于 REST api 介绍HTTP请求方法、HTTP响应码和API数据载荷, 是之前介绍 REST 那篇文章的延伸&lt;/p&gt;
+&lt;h2 id="http-status-codes"&gt;HTTP Status Codes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;1xx group: Signals that an operation is in progress&lt;/li&gt;
+&lt;li&gt;2xx group: Signals that a request was successfully processed&lt;/li&gt;
+&lt;li&gt;3xx group: Signals that a resource has been moved to a new location&lt;/li&gt;
+&lt;li&gt;4xx group: Signals that someting was wrong with the request&lt;/li&gt;
+&lt;li&gt;5xx group: Signals that there was an error while processing the request&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在之前文章中, 定义的 HTTP status code 如下:&lt;/p&gt;</description></item></channel></rss>

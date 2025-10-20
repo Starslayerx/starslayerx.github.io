@@ -1,64 +1,89 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Starslayerx' Blog</title><link>https://starslayerx.github.io/posts/</link><description>Recent content in Posts on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Mon, 22 Sep 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>uv - Python package manager</title><link>https://starslayerx.github.io/posts/uv-python-package-manager/</link><pubDate>Mon, 22 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/uv-python-package-manager/</guid><description>&lt;p>这篇文章深入介绍 uv 管理 Python 项目的使用&lt;/p>
-&lt;h2 id="features">Features&lt;/h2>
-&lt;h4 id="python-versions">Python versions&lt;/h4>
-&lt;ul>
-&lt;li>&lt;code>uv python install&lt;/code>: 安装 Python 版本&lt;/li>
-&lt;li>&lt;code>uv python list&lt;/code>: 查看可用的 Python 版本&lt;/li>
-&lt;li>&lt;code>uv python find&lt;/code>: 查找安装的 Python 版本&lt;/li>
-&lt;li>&lt;code>uv python pin&lt;/code>: 固定当前项目的 Python 版本&lt;/li>
-&lt;li>&lt;code>uv python uninstall&lt;/code>: 卸载一个 Python 版本&lt;/li>
-&lt;/ul>
-&lt;h4 id="scripts">Scripts&lt;/h4>
-&lt;ul>
-&lt;li>&lt;code>uv run&lt;/code>: 运行一个脚本&lt;/li>
-&lt;li>&lt;code>uv add --script&lt;/code>: 为脚本添加一个依赖&lt;/li>
-&lt;li>&lt;code>uv remove --script&lt;/code>: 移除一个依赖&lt;/li>
-&lt;/ul>
-&lt;h4 id="projects">Projects&lt;/h4>
-&lt;p>使用 &lt;code>pyproject.toml&lt;/code> 配置项目&lt;/p></description></item><item><title>English for Programmers - 03</title><link>https://starslayerx.github.io/posts/english-for-programmers-03/</link><pubDate>Sat, 20 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/english-for-programmers-03/</guid><description>&lt;h1 id="unit-3-discussing-code">Unit 3. Discussing Code&lt;/h1>
-&lt;h2 id="vocabulary---modifiers">vocabulary - Modifiers&lt;/h2>
-&lt;p>When discussing code, &lt;em>modifiers&lt;/em> can be extremely useful for making your feedback constructive and precise.&lt;/p>
-&lt;ul>
-&lt;li>&lt;em>modifiers&lt;/em>: words that change the meaning of a sentence&lt;/li>
-&lt;/ul>
-&lt;p>For example, a colleague asks:&lt;/p>
-&lt;p>What do you think of the website?&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>Response 1: It&amp;rsquo;s good When I click something it loads very quickly and I can navigate it easyily without any instructions.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Response 2: It&amp;rsquo;s good! It&amp;rsquo;s very &lt;em>responsive&lt;/em> and can be navigated &lt;em>intuitively&lt;/em>.&lt;/p></description></item><item><title>Redis Bitmap</title><link>https://starslayerx.github.io/posts/redis-bitmap/</link><pubDate>Fri, 19 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-bitmap/</guid><description>&lt;h2 id="bitmap-位图">Bitmap 位图&lt;/h2>
-&lt;p>Redis 的位图 bitmap 是由多个二进制位组成的数组,
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Starslayerx' Blog</title><link>https://starslayerx.github.io/posts/</link><description>Recent content in Posts on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Wed, 01 Oct 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Python Standrad Library - pathlib</title><link>https://starslayerx.github.io/posts/python-standrad-library-pathlib/</link><pubDate>Wed, 01 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-standrad-library-pathlib/</guid><description>&lt;h1 id="pathlib---object-oriented-filesystem-paths"&gt;pathlib - Object-oriented filesystem paths&lt;/h1&gt;
+&lt;p&gt;此模块提供表示&lt;em&gt;文件系统路径&lt;/em&gt;的类，其语义适用于不同的操作系统。
+路径类分为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用于纯计算无 I/O 的 &lt;a href="https://docs.python.org/3.12/library/pathlib.html#pure-paths"&gt;pure paths&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;继承 pure paths 但是有 I/O 操作的 &lt;a href="https://docs.python.org/3.12/library/pathlib.html#concrete-paths"&gt;concrete paths&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+&lt;figure class="image-figure not-prose my-8" 
+ data-lightbox-enabled="false"
+ data-gallery-type="auto"&gt;
+ &lt;div class="image-container"&gt;
+ &lt;img
+ src="https://docs.python.org/3.12/_images/pathlib-inheritance.png"
+ alt="pathlib"
+ 
+ 
+ loading="lazy"
+ decoding="async"
+ data-gallery-src="https://docs.python.org/3.12/_images/pathlib-inheritance.png"
+ data-gallery-alt="pathlib"
+ data-gallery-title="" /&gt;&lt;/div&gt;
+
+ &lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id="基本使用"&gt;基本使用&lt;/h2&gt;
+&lt;p&gt;导入 &lt;code&gt;Path&lt;/code&gt;&lt;/p&gt;</description></item><item><title>uv - Python package manager</title><link>https://starslayerx.github.io/posts/uv-python-package-manager/</link><pubDate>Mon, 22 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/uv-python-package-manager/</guid><description>&lt;p&gt;这篇文章深入介绍 uv 管理 Python 项目的使用&lt;/p&gt;
+&lt;h2 id="features"&gt;Features&lt;/h2&gt;
+&lt;h4 id="python-versions"&gt;Python versions&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;uv python install&lt;/code&gt;: 安装 Python 版本&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;uv python list&lt;/code&gt;: 查看可用的 Python 版本&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;uv python find&lt;/code&gt;: 查找安装的 Python 版本&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;uv python pin&lt;/code&gt;: 固定当前项目的 Python 版本&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;uv python uninstall&lt;/code&gt;: 卸载一个 Python 版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="scripts"&gt;Scripts&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;uv run&lt;/code&gt;: 运行一个脚本&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;uv add --script&lt;/code&gt;: 为脚本添加一个依赖&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;uv remove --script&lt;/code&gt;: 移除一个依赖&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="projects"&gt;Projects&lt;/h4&gt;
+&lt;p&gt;使用 &lt;code&gt;pyproject.toml&lt;/code&gt; 配置项目&lt;/p&gt;</description></item><item><title>English for Programmers - 03</title><link>https://starslayerx.github.io/posts/english-for-programmers-03/</link><pubDate>Sat, 20 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/english-for-programmers-03/</guid><description>&lt;h1 id="unit-3-discussing-code"&gt;Unit 3. Discussing Code&lt;/h1&gt;
+&lt;h2 id="vocabulary---modifiers"&gt;vocabulary - Modifiers&lt;/h2&gt;
+&lt;p&gt;When discussing code, &lt;em&gt;modifiers&lt;/em&gt; can be extremely useful for making your feedback constructive and precise.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;modifiers&lt;/em&gt;: words that change the meaning of a sentence&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For example, a colleague asks:&lt;/p&gt;
+&lt;p&gt;What do you think of the website?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Response 1: It&amp;rsquo;s good When I click something it loads very quickly and I can navigate it easyily without any instructions.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Response 2: It&amp;rsquo;s good! It&amp;rsquo;s very &lt;em&gt;responsive&lt;/em&gt; and can be navigated &lt;em&gt;intuitively&lt;/em&gt;.&lt;/p&gt;</description></item><item><title>Redis Bitmap</title><link>https://starslayerx.github.io/posts/redis-bitmap/</link><pubDate>Fri, 19 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-bitmap/</guid><description>&lt;h2 id="bitmap-位图"&gt;Bitmap 位图&lt;/h2&gt;
+&lt;p&gt;Redis 的位图 bitmap 是由多个二进制位组成的数组,
 数组中的每个二进制都有与之对应的偏移量(索引),
-用户通过这些偏移量可以对位图中指定的一个或多个二进制位进行操作.&lt;/p></description></item><item><title>Redis HyperLogLog</title><link>https://starslayerx.github.io/posts/redis-hyperloglog/</link><pubDate>Thu, 18 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-hyperloglog/</guid><description>&lt;p>之前曾介绍过使用 Redis 集和构建唯一计数器, 并将这个计数器用于计算网站的唯一房客 IP.
+用户通过这些偏移量可以对位图中指定的一个或多个二进制位进行操作.&lt;/p&gt;</description></item><item><title>Redis HyperLogLog</title><link>https://starslayerx.github.io/posts/redis-hyperloglog/</link><pubDate>Thu, 18 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-hyperloglog/</guid><description>&lt;p&gt;之前曾介绍过使用 Redis 集和构建唯一计数器, 并将这个计数器用于计算网站的唯一房客 IP.
 虽然使用集和实现唯一计数器可以实现该功能, 但这个方法有一个明显的缺陷:
-随着被计数元素的不断增多, 唯一计数器占用的内存也会越来越大; 计数器越多, 他们的体积越大, 这一情况就会越严峻.&lt;/p></description></item><item><title>Morden Javascript Tutorial Part 1- Fundamentals: 06~10</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-06~10/</link><pubDate>Wed, 17 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-06~10/</guid><description>&lt;h2 id="26-interaction-alert-prompt-confirm">2.6 Interaction: alert, prompt, confirm&lt;/h2>
-&lt;p>Will introduce &lt;code>alert&lt;/code>, &lt;code>prompt&lt;/code> and &lt;code>confirm&lt;/code> in this chapter.&lt;/p>
-&lt;h3 id="alert">alert&lt;/h3>
-&lt;p>It shows a message and waits for the user to press &amp;ldquo;OK&amp;rdquo;.&lt;/p>
+随着被计数元素的不断增多, 唯一计数器占用的内存也会越来越大; 计数器越多, 他们的体积越大, 这一情况就会越严峻.&lt;/p&gt;</description></item><item><title>Morden Javascript Tutorial Part 2- Fundamentals: 06~10</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-2-fundamentals-06~10/</link><pubDate>Wed, 17 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-2-fundamentals-06~10/</guid><description>&lt;h2 id="26-interaction-alert-prompt-confirm"&gt;2.6 Interaction: alert, prompt, confirm&lt;/h2&gt;
+&lt;p&gt;Will introduce &lt;code&gt;alert&lt;/code&gt;, &lt;code&gt;prompt&lt;/code&gt; and &lt;code&gt;confirm&lt;/code&gt; in this chapter.&lt;/p&gt;
+&lt;h3 id="alert"&gt;alert&lt;/h3&gt;
+&lt;p&gt;It shows a message and waits for the user to press &amp;ldquo;OK&amp;rdquo;.&lt;/p&gt;
 &lt;div
- class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md">
+ class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"&gt;
  
  &lt;div
- class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3">
+ class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"&gt;
  
- &lt;div class="flex items-center gap-2">
- &lt;div class="text-muted-foreground flex-shrink-0">
+ &lt;div class="flex items-center gap-2"&gt;
+ &lt;div class="text-muted-foreground flex-shrink-0"&gt;
  
  &lt;svg class="h-4 w-4"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-&lt;/svg>
- &lt;/div>
- &lt;span class="text-muted-foreground text-sm font-medium">
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /&gt;
+&lt;/svg&gt;
+ &lt;/div&gt;
+ &lt;span class="text-muted-foreground text-sm font-medium"&gt;
  JAVASCRIPT
- &lt;/span>
- &lt;/div>
+ &lt;/span&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="flex items-center gap-2">
+ &lt;div class="flex items-center gap-2"&gt;
  &lt;button
  class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
@@ -68,54 +93,54 @@
  data-auto-collapse-height="400"
  data-collapsed-height="120"
  title="Collapse"
- aria-label="Collapse">
- &lt;span class="collapse-icon">
+ aria-label="Collapse"&gt;
+ &lt;span class="collapse-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/>&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/&gt;&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="collapse-text hidden sm:inline"
- >Collapse&lt;/span
- >
- &lt;/button>
+ &gt;Collapse&lt;/span
+ &gt;
+ &lt;/button&gt;
  &lt;button
  class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
  title="Copy"
- aria-label="Copy">
- &lt;span class="copy-icon">
+ aria-label="Copy"&gt;
+ &lt;span class="copy-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;
+&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="copy-text hidden sm:inline"
- >Copy&lt;/span
- >
- &lt;/button>
- &lt;/div>
- &lt;/div>
+ &gt;Copy&lt;/span
+ &gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="code-block-content relative" id="code-0">
- &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-JavaScript" data-lang="JavaScript">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">alert&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Hello&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+ &lt;div class="code-block-content relative" id="code-0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-JavaScript" data-lang="JavaScript"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Hello&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  
  &lt;div
- class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300">
+ class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"&gt;
  &lt;div
- class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">
+ class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200"&gt;
  Click to expand and view more
- &lt;/div>
- &lt;/div>
- &lt;/div>
-&lt;/div>
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
 
 
-&lt;script>
+&lt;script&gt;
 (function() {
  const codeId = 'code-0';
  const copyBtn = document.querySelector('.copy-code-btn[data-code-id="' + codeId + '"]');
@@ -147,9 +172,9 @@
  if (hasInlineLineNumbers) {
  
  const codeLines = codeElement.querySelectorAll('.cl');
- if (codeLines.length > 0) {
+ if (codeLines.length &gt; 0) {
  codeText = Array.from(codeLines)
- .map(line => {
+ .map(line =&gt; {
  const text = line.textContent || line.innerText;
  
  return text.replace(/\n+$/, '');
@@ -185,7 +210,7 @@
  copyBtn.classList.add('text-green-600');
 
  
- setTimeout(() => {
+ setTimeout(() =&gt; {
  copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\u0022 \/\u003e\n\u003c\/svg\u003e`;
  if (copyText) {
  copyText.textContent = 'Copy';
@@ -209,7 +234,7 @@
  copyText.textContent = 'Selected';
  }
 
- setTimeout(() => {
+ setTimeout(() =&gt; {
  if (copyText) {
  copyText.textContent = 'Copy';
  }
@@ -256,19 +281,19 @@
  if (codeElement) {
  const lines = codeElement.querySelectorAll('.line, .cl');
  const height = codeElement.offsetHeight;
- return lines.length > autoCollapseLines || height > autoCollapseHeight;
+ return lines.length &gt; autoCollapseLines || height &gt; autoCollapseHeight;
  }
 
  
  const containerHeight = codeContainer.offsetHeight;
- if (containerHeight > autoCollapseHeight) {
+ if (containerHeight &gt; autoCollapseHeight) {
  return true;
  }
 
  
  const textContent = codeContainer.textContent || codeContainer.innerText || '';
  const estimatedLines = textContent.split('\n').length;
- return estimatedLines > autoCollapseLines;
+ return estimatedLines &gt; autoCollapseLines;
  }
 
  function setCollapsed(collapsed, animate = true) {
@@ -308,7 +333,7 @@
  
  if (animate) {
  codeContainer.style.transition = 'max-height 0.3s ease-out';
- setTimeout(() => {
+ setTimeout(() =&gt; {
  codeContainer.style.transition = '';
  }, 300);
  }
@@ -323,7 +348,7 @@
 
  
  if (collapseOverlay) {
- collapseOverlay.addEventListener('click', () => {
+ collapseOverlay.addEventListener('click', () =&gt; {
  if (isCollapsed) {
  setCollapsed(false, true);
  }
@@ -334,35 +359,35 @@
  initCollapse();
  }
 })();
-&lt;/script>
-&lt;h3 id="prompt">prompt&lt;/h3>
-&lt;p>This function &lt;code>prompt&lt;/code> accepts two arguments&lt;/p></description></item><item><title>Morden Javascript Tutorial Part 1 - Fundamentals: 01~05</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-01~05/</link><pubDate>Tue, 16 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-01~05/</guid><description>&lt;h2 id="21-hellow-wrold">2.1 Hellow Wrold&lt;/h2>
-&lt;p>Firtly, let&amp;rsquo;s see how to attach a script to a webpage.
-For server-side environments (like Node.js), you can execute this script with a command like &lt;code>node my.js&lt;/code>&lt;/p>
-&lt;h3 id="the-script-tag">The &amp;ldquo;script&amp;rdquo; tag&lt;/h3>
-&lt;p>JavaScript programs can be inserted almost anywhere into an HTML docuemnt using the &lt;code>&amp;lt;script&amp;gt;&lt;/code> tag&lt;/p>
+&lt;/script&gt;
+&lt;h3 id="prompt"&gt;prompt&lt;/h3&gt;
+&lt;p&gt;This function &lt;code&gt;prompt&lt;/code&gt; accepts two arguments&lt;/p&gt;</description></item><item><title>Morden Javascript Tutorial Part 1 - Fundamentals: 01~05</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-01~05/</link><pubDate>Tue, 16 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-01~05/</guid><description>&lt;h2 id="21-hellow-wrold"&gt;2.1 Hellow Wrold&lt;/h2&gt;
+&lt;p&gt;Firtly, let&amp;rsquo;s see how to attach a script to a webpage.
+For server-side environments (like Node.js), you can execute this script with a command like &lt;code&gt;node my.js&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id="the-script-tag"&gt;The &amp;ldquo;script&amp;rdquo; tag&lt;/h3&gt;
+&lt;p&gt;JavaScript programs can be inserted almost anywhere into an HTML docuemnt using the &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tag&lt;/p&gt;
 &lt;div
- class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md">
+ class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"&gt;
  
  &lt;div
- class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3">
+ class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"&gt;
  
- &lt;div class="flex items-center gap-2">
- &lt;div class="text-muted-foreground flex-shrink-0">
+ &lt;div class="flex items-center gap-2"&gt;
+ &lt;div class="text-muted-foreground flex-shrink-0"&gt;
  
  &lt;svg class="h-4 w-4"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-&lt;/svg>
- &lt;/div>
- &lt;span class="text-muted-foreground text-sm font-medium">
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /&gt;
+&lt;/svg&gt;
+ &lt;/div&gt;
+ &lt;span class="text-muted-foreground text-sm font-medium"&gt;
  HTML
- &lt;/span>
- &lt;/div>
+ &lt;/span&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="flex items-center gap-2">
+ &lt;div class="flex items-center gap-2"&gt;
  &lt;button
  class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
@@ -372,63 +397,63 @@ For server-side environments (like Node.js), you can execute this script with a 
  data-auto-collapse-height="400"
  data-collapsed-height="120"
  title="Collapse"
- aria-label="Collapse">
- &lt;span class="collapse-icon">
+ aria-label="Collapse"&gt;
+ &lt;span class="collapse-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/>&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/&gt;&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="collapse-text hidden sm:inline"
- >Collapse&lt;/span
- >
- &lt;/button>
+ &gt;Collapse&lt;/span
+ &gt;
+ &lt;/button&gt;
  &lt;button
  class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
  title="Copy"
- aria-label="Copy">
- &lt;span class="copy-icon">
+ aria-label="Copy"&gt;
+ &lt;span class="copy-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;
+&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="copy-text hidden sm:inline"
- >Copy&lt;/span
- >
- &lt;/button>
- &lt;/div>
- &lt;/div>
+ &gt;Copy&lt;/span
+ &gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="code-block-content relative" id="code-0">
- &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&amp;lt;!DOCTYPE HTML&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> Before this script...&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">alert&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="s1">&amp;#39;Hello, World!&amp;#39;&lt;/span> &lt;span class="p">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>...After the script...&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+ &lt;div class="code-block-content relative" id="code-0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-html" data-lang="html"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&amp;lt;!DOCTYPE HTML&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; Before this script...&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Hello, World!&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;...After the script...&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  
  &lt;div
- class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300">
+ class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"&gt;
  &lt;div
- class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">
+ class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200"&gt;
  Click to expand and view more
- &lt;/div>
- &lt;/div>
- &lt;/div>
-&lt;/div>
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
 
 
-&lt;script>
+&lt;script&gt;
 (function() {
  const codeId = 'code-0';
  const copyBtn = document.querySelector('.copy-code-btn[data-code-id="' + codeId + '"]');
@@ -460,9 +485,9 @@ For server-side environments (like Node.js), you can execute this script with a 
  if (hasInlineLineNumbers) {
  
  const codeLines = codeElement.querySelectorAll('.cl');
- if (codeLines.length > 0) {
+ if (codeLines.length &gt; 0) {
  codeText = Array.from(codeLines)
- .map(line => {
+ .map(line =&gt; {
  const text = line.textContent || line.innerText;
  
  return text.replace(/\n+$/, '');
@@ -498,7 +523,7 @@ For server-side environments (like Node.js), you can execute this script with a 
  copyBtn.classList.add('text-green-600');
 
  
- setTimeout(() => {
+ setTimeout(() =&gt; {
  copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\u0022 \/\u003e\n\u003c\/svg\u003e`;
  if (copyText) {
  copyText.textContent = 'Copy';
@@ -522,7 +547,7 @@ For server-side environments (like Node.js), you can execute this script with a 
  copyText.textContent = 'Selected';
  }
 
- setTimeout(() => {
+ setTimeout(() =&gt; {
  if (copyText) {
  copyText.textContent = 'Copy';
  }
@@ -569,19 +594,19 @@ For server-side environments (like Node.js), you can execute this script with a 
  if (codeElement) {
  const lines = codeElement.querySelectorAll('.line, .cl');
  const height = codeElement.offsetHeight;
- return lines.length > autoCollapseLines || height > autoCollapseHeight;
+ return lines.length &gt; autoCollapseLines || height &gt; autoCollapseHeight;
  }
 
  
  const containerHeight = codeContainer.offsetHeight;
- if (containerHeight > autoCollapseHeight) {
+ if (containerHeight &gt; autoCollapseHeight) {
  return true;
  }
 
  
  const textContent = codeContainer.textContent || codeContainer.innerText || '';
  const estimatedLines = textContent.split('\n').length;
- return estimatedLines > autoCollapseLines;
+ return estimatedLines &gt; autoCollapseLines;
  }
 
  function setCollapsed(collapsed, animate = true) {
@@ -621,7 +646,7 @@ For server-side environments (like Node.js), you can execute this script with a 
  
  if (animate) {
  codeContainer.style.transition = 'max-height 0.3s ease-out';
- setTimeout(() => {
+ setTimeout(() =&gt; {
  codeContainer.style.transition = '';
  }, 300);
  }
@@ -636,7 +661,7 @@ For server-side environments (like Node.js), you can execute this script with a 
 
  
  if (collapseOverlay) {
- collapseOverlay.addEventListener('click', () => {
+ collapseOverlay.addEventListener('click', () =&gt; {
  if (isCollapsed) {
  setCollapsed(false, true);
  }
@@ -647,103 +672,103 @@ For server-side environments (like Node.js), you can execute this script with a 
  initCollapse();
  }
 })();
-&lt;/script>
-&lt;p>The &lt;code>&amp;lt;script&amp;gt;&lt;/code> tag contains JavaScript code which is automatically executed when the browser process the tag.&lt;/p></description></item><item><title>Morden Javascript Tutorial Part 1 - An Introduction</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-an-introduction/</link><pubDate>Mon, 15 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-an-introduction/</guid><description>&lt;h2 id="an-introduction-to-javascript">An Introduction to JavaScript&lt;/h2>
-&lt;p>Let’s see what’s so special about JavaScript, what we can achieve with it, and what other technologies play well with it.&lt;/p>
-&lt;h3 id="why-is-it-call-javascript">Why is it call JavaScript?&lt;/h3>
-&lt;p>JavaScript initially called &amp;ldquo;Live Script&amp;rdquo;. But Java was popular at that time, so it was decided that positioning a new language as a &amp;ldquo;younger brother&amp;rdquo; of Java would help.
-But as it evolved, JavaScript became a fully independent language with its won specification called &lt;a href="http://en.wikipedia.org/wiki/ECMAScript">ECMAScript&lt;/a>, and now it has no relation to Java at all.&lt;/p></description></item><item><title>English for Programmers - 02</title><link>https://starslayerx.github.io/posts/english-for-programmers-02/</link><pubDate>Fri, 12 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/english-for-programmers-02/</guid><description>&lt;h1 id="unit-2-code-review--testing">Unit 2. Code Review &amp;amp; Testing&lt;/h1>
-&lt;p>this unit will cover:&lt;/p>
-&lt;ul>
-&lt;li>Differentiate between various &lt;strong>testing strategies&lt;/strong>&lt;/li>
-&lt;li>Write &lt;strong>professional guidelines&lt;/strong>&lt;/li>
-&lt;li>Sound more natural and smooth when &lt;strong>asking questions&lt;/strong>&lt;/li>
-&lt;li>Use colloquial language in speaking to &lt;strong>give and accept feedback&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;h2 id="vocabulary---none-pharses-词汇-名词短语">vocabulary - None Pharses 词汇: 名词短语&lt;/h2>
-&lt;p>Testing 测试是软件开发中的重要短语, 用于检查软件是否达到特定的标准和用户需求.&lt;/p></description></item><item><title>English for Programmers - 01</title><link>https://starslayerx.github.io/posts/english-for-programmers-01/</link><pubDate>Thu, 11 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/english-for-programmers-01/</guid><description>&lt;h1 id="unit-1-implementing-code">Unit 1. Implementing Code&lt;/h1>
-&lt;p>This unit will cover:&lt;/p>
-&lt;ul>
-&lt;li>Use technical verbs to &lt;strong>accurately define tasks&lt;/strong> and actoins&lt;/li>
-&lt;li>Write &lt;strong>commit messages&lt;/strong> in the corret Git format&lt;/li>
-&lt;li>Confidently &lt;strong>name&lt;/strong> the &lt;strong>symbols&lt;/strong> used when writing code&lt;/li>
-&lt;li>Understand &lt;strong>vocabulary&lt;/strong> for &lt;strong>syntax&lt;/strong> and programming rule&lt;/li>
-&lt;/ul>
-&lt;h2 id="vocaluary---action-verbs-动词词汇">vocaluary - action verbs 动词词汇&lt;/h2>
-&lt;p>He &lt;strong>optimised&lt;/strong> the queries to improve the response time.&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>optimised&lt;/strong>: 提高 (improved)&lt;/li>
-&lt;/ul>
-&lt;p>Can you &lt;strong>implement&lt;/strong> the new feature we discussed yesterday?&lt;/p></description></item><item><title>The Evolution of Coding in the AI Era</title><link>https://starslayerx.github.io/posts/the-evolution-of-coding-in-the-ai-era/</link><pubDate>Thu, 11 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/the-evolution-of-coding-in-the-ai-era/</guid><description>&lt;p>文章翻译: &lt;a href="https://thebootstrappedfounder.com/the-evolution-of-coding-in-the-ai-era/">The Evolution of Coding in the AI Era&lt;/a>&lt;/p>
-&lt;h2 id="人工智能时代的编码演变">人工智能时代的编码演变&lt;/h2>
-&lt;p>2024 年 8 月 23 日 · Arvid Kahl
-阅读时间：约 8 分钟&lt;/p>
-&lt;p>几年前，我还是一个完全不同的程序员。巅峰时我能轻松浏览文档并主要写出能用的代码；状态差的时候，我会为了一个笔误或古怪的 bug 折腾好几个小时，毫无结果。&lt;/p></description></item><item><title>Service Implementation Patterns for Microservice</title><link>https://starslayerx.github.io/posts/service-implementation-patterns-for-microservice/</link><pubDate>Wed, 10 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/service-implementation-patterns-for-microservice/</guid><description>&lt;h2 id="hexagonal-architectures-for-microservices-微服务的六边形架构">Hexagonal architectures for microservices 微服务的六边形架构&lt;/h2>
-&lt;p>六边形架构 Hexagonal Architecture 也被称为接口与适配器架构 Prots and Adapters Architecture, 是一种软件架构模式, 旨在实现高内聚、低耦合和可测试性的应用程序设计. 该架构由 Alistair Cockburn 发明, 他是敏捷宣言的签署者之一.
-该架构是说, 在任何应用程序中, 都有一个核心逻辑实现服务, 并且在该服务周围&amp;quot;附加&amp;quot;上一些接口, 用于核心与外部组件的交互.&lt;/p></description></item><item><title>Dealing With Grabage in Python</title><link>https://starslayerx.github.io/posts/dealing-with-grabage-in-python/</link><pubDate>Mon, 08 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/dealing-with-grabage-in-python/</guid><description>&lt;h2 id="grabage-collection-in-python">Grabage Collection In Python&lt;/h2>
-&lt;p>本篇文章介绍 Python 中的 Grabage Collection (GC) 机制介绍&lt;/p>
-&lt;h3 id="whats-python-object">What&amp;rsquo;s Python Object?&lt;/h3>
-&lt;p>Python 对象中有三样东西: 类型(Type)、值(value)和引用计数(reference count), 当给变量命名时, Python 会自动检测其类型, 值在定义对象时声明, 引用计数是指该对象名称的数量.&lt;/p></description></item><item><title>Docker - Images</title><link>https://starslayerx.github.io/posts/docker-images/</link><pubDate>Sun, 07 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-images/</guid><description>&lt;p>每个 Linux 容器都基于一个镜像, 镜像重新构建运行中容器的底层定义.
+&lt;/script&gt;
+&lt;p&gt;The &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tag contains JavaScript code which is automatically executed when the browser process the tag.&lt;/p&gt;</description></item><item><title>Morden Javascript Tutorial Part 1 - An Introduction</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-an-introduction/</link><pubDate>Mon, 15 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-an-introduction/</guid><description>&lt;h2 id="an-introduction-to-javascript"&gt;An Introduction to JavaScript&lt;/h2&gt;
+&lt;p&gt;Let’s see what’s so special about JavaScript, what we can achieve with it, and what other technologies play well with it.&lt;/p&gt;
+&lt;h3 id="why-is-it-call-javascript"&gt;Why is it call JavaScript?&lt;/h3&gt;
+&lt;p&gt;JavaScript initially called &amp;ldquo;Live Script&amp;rdquo;. But Java was popular at that time, so it was decided that positioning a new language as a &amp;ldquo;younger brother&amp;rdquo; of Java would help.
+But as it evolved, JavaScript became a fully independent language with its won specification called &lt;a href="http://en.wikipedia.org/wiki/ECMAScript"&gt;ECMAScript&lt;/a&gt;, and now it has no relation to Java at all.&lt;/p&gt;</description></item><item><title>English for Programmers - 02</title><link>https://starslayerx.github.io/posts/english-for-programmers-02/</link><pubDate>Fri, 12 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/english-for-programmers-02/</guid><description>&lt;h1 id="unit-2-code-review--testing"&gt;Unit 2. Code Review &amp;amp; Testing&lt;/h1&gt;
+&lt;p&gt;this unit will cover:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Differentiate between various &lt;strong&gt;testing strategies&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Write &lt;strong&gt;professional guidelines&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Sound more natural and smooth when &lt;strong&gt;asking questions&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Use colloquial language in speaking to &lt;strong&gt;give and accept feedback&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="vocabulary---none-pharses-词汇-名词短语"&gt;vocabulary - None Pharses 词汇: 名词短语&lt;/h2&gt;
+&lt;p&gt;Testing 测试是软件开发中的重要短语, 用于检查软件是否达到特定的标准和用户需求.&lt;/p&gt;</description></item><item><title>English for Programmers - 01</title><link>https://starslayerx.github.io/posts/english-for-programmers-01/</link><pubDate>Thu, 11 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/english-for-programmers-01/</guid><description>&lt;h1 id="unit-1-implementing-code"&gt;Unit 1. Implementing Code&lt;/h1&gt;
+&lt;p&gt;This unit will cover:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use technical verbs to &lt;strong&gt;accurately define tasks&lt;/strong&gt; and actoins&lt;/li&gt;
+&lt;li&gt;Write &lt;strong&gt;commit messages&lt;/strong&gt; in the corret Git format&lt;/li&gt;
+&lt;li&gt;Confidently &lt;strong&gt;name&lt;/strong&gt; the &lt;strong&gt;symbols&lt;/strong&gt; used when writing code&lt;/li&gt;
+&lt;li&gt;Understand &lt;strong&gt;vocabulary&lt;/strong&gt; for &lt;strong&gt;syntax&lt;/strong&gt; and programming rule&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="vocaluary---action-verbs-动词词汇"&gt;vocaluary - action verbs 动词词汇&lt;/h2&gt;
+&lt;p&gt;He &lt;strong&gt;optimised&lt;/strong&gt; the queries to improve the response time.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;optimised&lt;/strong&gt;: 提高 (improved)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Can you &lt;strong&gt;implement&lt;/strong&gt; the new feature we discussed yesterday?&lt;/p&gt;</description></item><item><title>The Evolution of Coding in the AI Era</title><link>https://starslayerx.github.io/posts/the-evolution-of-coding-in-the-ai-era/</link><pubDate>Thu, 11 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/the-evolution-of-coding-in-the-ai-era/</guid><description>&lt;p&gt;文章翻译: &lt;a href="https://thebootstrappedfounder.com/the-evolution-of-coding-in-the-ai-era/"&gt;The Evolution of Coding in the AI Era&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="人工智能时代的编码演变"&gt;人工智能时代的编码演变&lt;/h2&gt;
+&lt;p&gt;2024 年 8 月 23 日 · Arvid Kahl
+阅读时间：约 8 分钟&lt;/p&gt;
+&lt;p&gt;几年前，我还是一个完全不同的程序员。巅峰时我能轻松浏览文档并主要写出能用的代码；状态差的时候，我会为了一个笔误或古怪的 bug 折腾好几个小时，毫无结果。&lt;/p&gt;</description></item><item><title>Service Implementation Patterns for Microservice</title><link>https://starslayerx.github.io/posts/service-implementation-patterns-for-microservice/</link><pubDate>Wed, 10 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/service-implementation-patterns-for-microservice/</guid><description>&lt;h2 id="hexagonal-architectures-for-microservices-微服务的六边形架构"&gt;Hexagonal architectures for microservices 微服务的六边形架构&lt;/h2&gt;
+&lt;p&gt;六边形架构 Hexagonal Architecture 也被称为接口与适配器架构 Prots and Adapters Architecture, 是一种软件架构模式, 旨在实现高内聚、低耦合和可测试性的应用程序设计. 该架构由 Alistair Cockburn 发明, 他是敏捷宣言的签署者之一.
+该架构是说, 在任何应用程序中, 都有一个核心逻辑实现服务, 并且在该服务周围&amp;quot;附加&amp;quot;上一些接口, 用于核心与外部组件的交互.&lt;/p&gt;</description></item><item><title>Dealing With Grabage in Python</title><link>https://starslayerx.github.io/posts/dealing-with-grabage-in-python/</link><pubDate>Mon, 08 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/dealing-with-grabage-in-python/</guid><description>&lt;h2 id="grabage-collection-in-python"&gt;Grabage Collection In Python&lt;/h2&gt;
+&lt;p&gt;本篇文章介绍 Python 中的 Grabage Collection (GC) 机制介绍&lt;/p&gt;
+&lt;h3 id="whats-python-object"&gt;What&amp;rsquo;s Python Object?&lt;/h3&gt;
+&lt;p&gt;Python 对象中有三样东西: 类型(Type)、值(value)和引用计数(reference count), 当给变量命名时, Python 会自动检测其类型, 值在定义对象时声明, 引用计数是指该对象名称的数量.&lt;/p&gt;</description></item><item><title>Docker - Images</title><link>https://starslayerx.github.io/posts/docker-images/</link><pubDate>Sun, 07 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-images/</guid><description>&lt;p&gt;每个 Linux 容器都基于一个镜像, 镜像重新构建运行中容器的底层定义.
 要启动一个容器, 需要下载公共镜像或者创建自己的镜像.
-每个镜像由一个或多个相互关联的文件系统层 layer 组成, 这些层通常与创建镜像的每个构建步骤大致一一对应.&lt;/p></description></item><item><title>Docker - Workflow</title><link>https://starslayerx.github.io/posts/docker-workflow/</link><pubDate>Sat, 06 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-workflow/</guid><description>&lt;h2 id="the-docker-workflow">The Docker Workflow&lt;/h2>
-&lt;p>这篇文章介绍 Docker 工作流&lt;/p>
-&lt;h3 id="revision-control-版本控制">Revision Control 版本控制&lt;/h3>
-&lt;p>Docker 有两种版本控制方式. 一个是用来跟踪文件系统层 layers (每个镜像的组成), 另一个是 tagging 标签系统.&lt;/p>
-&lt;h3 id="filesystem-layers-文件系统层">Filesystem layers 文件系统层&lt;/h3>
-&lt;p>Linux 容器由堆叠文件系统层组成, 每一层由一个唯一的哈希标记, 每次 build 都在之前的修改之上.
+每个镜像由一个或多个相互关联的文件系统层 layer 组成, 这些层通常与创建镜像的每个构建步骤大致一一对应.&lt;/p&gt;</description></item><item><title>Docker - Workflow</title><link>https://starslayerx.github.io/posts/docker-workflow/</link><pubDate>Sat, 06 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-workflow/</guid><description>&lt;h2 id="the-docker-workflow"&gt;The Docker Workflow&lt;/h2&gt;
+&lt;p&gt;这篇文章介绍 Docker 工作流&lt;/p&gt;
+&lt;h3 id="revision-control-版本控制"&gt;Revision Control 版本控制&lt;/h3&gt;
+&lt;p&gt;Docker 有两种版本控制方式. 一个是用来跟踪文件系统层 layers (每个镜像的组成), 另一个是 tagging 标签系统.&lt;/p&gt;
+&lt;h3 id="filesystem-layers-文件系统层"&gt;Filesystem layers 文件系统层&lt;/h3&gt;
+&lt;p&gt;Linux 容器由堆叠文件系统层组成, 每一层由一个唯一的哈希标记, 每次 build 都在之前的修改之上.
 这意味着, 每次 build 只需要重新构建修改过的层.
-这节省了时间和网络带宽.&lt;/p></description></item><item><title>Docker - Images and Registeries</title><link>https://starslayerx.github.io/posts/docker-images-and-registeries/</link><pubDate>Fri, 05 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-images-and-registeries/</guid><description>&lt;h3 id="the-docker-images--docker-镜像">The Docker Images | Docker 镜像&lt;/h3>
-&lt;p>Image、OCI Image、Docker Image、Container Image 都是指同一个概念镜像的不容叫法.&lt;/p>
-&lt;p>镜像是一个轻量、只读且不可变的蓝图, 指定了应用运行所谁要的一切, 以及在 Docker 系统上如何运行.
-就像是一份配方, 包括所有必要的原料, 诸如依赖、配置、环境设置和你的应用代码, 以及确保应用每次都能稳定运行的详细指令.&lt;/p></description></item><item><title>Docker - Engine and Netowrking</title><link>https://starslayerx.github.io/posts/docker-engine-and-netowrking/</link><pubDate>Thu, 04 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-engine-and-netowrking/</guid><description>&lt;p>Docker 引擎(Docker Engine), 顾名思意，是 Docker 的核心.
+这节省了时间和网络带宽.&lt;/p&gt;</description></item><item><title>Docker - Images and Registeries</title><link>https://starslayerx.github.io/posts/docker-images-and-registeries/</link><pubDate>Fri, 05 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-images-and-registeries/</guid><description>&lt;h3 id="the-docker-images--docker-镜像"&gt;The Docker Images | Docker 镜像&lt;/h3&gt;
+&lt;p&gt;Image、OCI Image、Docker Image、Container Image 都是指同一个概念镜像的不容叫法.&lt;/p&gt;
+&lt;p&gt;镜像是一个轻量、只读且不可变的蓝图, 指定了应用运行所谁要的一切, 以及在 Docker 系统上如何运行.
+就像是一份配方, 包括所有必要的原料, 诸如依赖、配置、环境设置和你的应用代码, 以及确保应用每次都能稳定运行的详细指令.&lt;/p&gt;</description></item><item><title>Docker - Engine and Netowrking</title><link>https://starslayerx.github.io/posts/docker-engine-and-netowrking/</link><pubDate>Thu, 04 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-engine-and-netowrking/</guid><description>&lt;p&gt;Docker 引擎(Docker Engine), 顾名思意，是 Docker 的核心.
 它为 Docker 提供动力, 并承担所有繁重的工作.
-本文将深入探讨这一关键组件的内部运作, 以便了解 Docker 在内核下是如何工作的.&lt;/p></description></item><item><title>Docker - History</title><link>https://starslayerx.github.io/posts/docker-history/</link><pubDate>Wed, 03 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-history/</guid><description>&lt;h2 id="the-docker-story---part1-docker-history">The Docker Story - Part1: Docker History&lt;/h2>
-&lt;p>docCloud - 也就是开发 Docker 的公司, 最初是一家 PaaS(平台即服务)公司, 他们在 PaaS 领域并没有太大的成功, 但他们构建了一个可以无缝管理客户系统与架构的工具: Docker. 2013 年, 他们决定放弃 PaaS 服务, 将全部精力投入到 Docker 这款产品上.&lt;/p></description></item><item><title>How AI Assistants Make Precise Edits to Your Files</title><link>https://starslayerx.github.io/posts/how-ai-assistants-make-precise-edits-to-your-files/</link><pubDate>Tue, 02 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/how-ai-assistants-make-precise-edits-to-your-files/</guid><description>&lt;p>之前的文章介绍了如何制作一个基本的 AI 编程助手, 今天更近一步, 探讨 AI 助手如何对文件进行精确的修改.&lt;/p>
+本文将深入探讨这一关键组件的内部运作, 以便了解 Docker 在内核下是如何工作的.&lt;/p&gt;</description></item><item><title>Docker - History</title><link>https://starslayerx.github.io/posts/docker-history/</link><pubDate>Wed, 03 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-history/</guid><description>&lt;h2 id="the-docker-story---part1-docker-history"&gt;The Docker Story - Part1: Docker History&lt;/h2&gt;
+&lt;p&gt;docCloud - 也就是开发 Docker 的公司, 最初是一家 PaaS(平台即服务)公司, 他们在 PaaS 领域并没有太大的成功, 但他们构建了一个可以无缝管理客户系统与架构的工具: Docker. 2013 年, 他们决定放弃 PaaS 服务, 将全部精力投入到 Docker 这款产品上.&lt;/p&gt;</description></item><item><title>How AI Assistants Make Precise Edits to Your Files</title><link>https://starslayerx.github.io/posts/how-ai-assistants-make-precise-edits-to-your-files/</link><pubDate>Tue, 02 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/how-ai-assistants-make-precise-edits-to-your-files/</guid><description>&lt;p&gt;之前的文章介绍了如何制作一个基本的 AI 编程助手, 今天更近一步, 探讨 AI 助手如何对文件进行精确的修改.&lt;/p&gt;
 
  &lt;blockquote
- class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1">
- &lt;div class="prose prose-sm max-w-none">
- &lt;p>实际的 AI Agent 不会读取所有的项目代码, 一般只会读取当前文件的代码, 当需要时才会去读取相关的代码文件. 然而, 输出也不会输出要修改的整个文件的代码, 因为这样输出不仅很慢, 同时成本也很高, 会有大量重复代码导致浪费(以 deepseek 为例, 输出 token 的价格是输入 token 价格的3倍, 是缓存命中输入 token 价格的24倍!), 因此一般是让模型输出要修改的代码和修改后的代码.&lt;/p></description></item><item><title>Make an AI Coding Agent in python</title><link>https://starslayerx.github.io/posts/make-an-ai-coding-agent-in-python/</link><pubDate>Mon, 01 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/make-an-ai-coding-agent-in-python/</guid><description>&lt;p>这篇文件介绍如何使用 Python 制作一个基础的 AI 编程助手&lt;/p>
-&lt;h2 id="minimal-ai-coding-agent">Minimal AI Coding Agent&lt;/h2>
-&lt;p>下面是一个 AI Coding Agent 至少需要的功能&lt;/p>
-&lt;ol>
-&lt;li>Chat loop 对话循环&lt;/li>
-&lt;li>Call an LLM 调用大语言模型&lt;/li>
-&lt;li>Add tools to call 增加工具调用&lt;/li>
-&lt;li>Handle tool request 处理工具调用请求&lt;/li>
-&lt;/ol>
-&lt;h3 id="step-1-chat-loop">Step 1: Chat Loop&lt;/h3>
-&lt;p>首先, 聊天循环一直循环等待用户输入, Python 的 &amp;ldquo;input&amp;rdquo; 方法可以获取用户输入&lt;/p></description></item><item><title>KMP Algorithm</title><link>https://starslayerx.github.io/posts/kmp-algorithm/</link><pubDate>Sun, 31 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/kmp-algorithm/</guid><description>&lt;h2 id="kmp-算法">KMP 算法&lt;/h2>
-&lt;h3 id="思想">思想&lt;/h3>
-&lt;p>KMP 算法, 全程 Knuth-Morris-Pratt 算法, 是一种高效的字符串匹配算法. 它的核心思想是:&lt;br>
-在匹配过程中, 当发生文本串(text)与模式串(pattern)不匹配时, 能够利用已匹配过的部分信息, 智能地移动模式串, 从而避免从头开始匹配, 达到提高匹配效率的目的.&lt;/p></description></item><item><title>Redis Ordered Set</title><link>https://starslayerx.github.io/posts/redis-ordered-set/</link><pubDate>Sat, 30 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-ordered-set/</guid><description>&lt;p>Redis 的有序集和(ordered set)同时具有&amp;quot;有序&amp;quot;和&amp;quot;集和&amp;quot;两种性质, 这种结构中每个元素都由一个成员和一个与成员相关联的分值组成, 其中成员与字符串方式存储, 而分值以64位双精度浮点数格式存储.&lt;/p></description></item><item><title>Asyncio vs Gevents in Python</title><link>https://starslayerx.github.io/posts/asyncio-vs-gevents-in-python/</link><pubDate>Fri, 29 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/asyncio-vs-gevents-in-python/</guid><description>&lt;p>python 中 asyncio 和 gevent 是两种协程(在一个线程内实现并发)的实现, 这篇文章对比介绍这两者实现.&lt;br>
-下面先介绍一下基础概念:&lt;/p>
-&lt;h3 id="coroutines-协程">Coroutines 协程&lt;/h3>
-&lt;p>在 Python 中, 协程是可以暂停和继续运行的函数, 使得其是否适合并发编程. 定义使用 &lt;code>async def&lt;/code> 语法, 协程运行编写非阻塞的操作. 在协程内, &lt;code>await&lt;/code> 关键字用于暂停执行, 直到给定的任务完成, 从而运行其他协程在此其间并发运行.&lt;/p></description></item><item><title>Prompt Organization</title><link>https://starslayerx.github.io/posts/prompt-organization/</link><pubDate>Thu, 28 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/prompt-organization/</guid><description>&lt;p>这篇文章旨在介绍 Python 中常用的提示词组织方式&lt;/p>
-&lt;h3 id="f-string">f-string&lt;/h3>
-&lt;p>使用 f 字符串填充变量得到提示词&lt;/p>
+ class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"&gt;
+ &lt;div class="prose prose-sm max-w-none"&gt;
+ &lt;p&gt;实际的 AI Agent 不会读取所有的项目代码, 一般只会读取当前文件的代码, 当需要时才会去读取相关的代码文件. 然而, 输出也不会输出要修改的整个文件的代码, 因为这样输出不仅很慢, 同时成本也很高, 会有大量重复代码导致浪费(以 deepseek 为例, 输出 token 的价格是输入 token 价格的3倍, 是缓存命中输入 token 价格的24倍!), 因此一般是让模型输出要修改的代码和修改后的代码.&lt;/p&gt;</description></item><item><title>Make an AI Coding Agent in python</title><link>https://starslayerx.github.io/posts/make-an-ai-coding-agent-in-python/</link><pubDate>Mon, 01 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/make-an-ai-coding-agent-in-python/</guid><description>&lt;p&gt;这篇文件介绍如何使用 Python 制作一个基础的 AI 编程助手&lt;/p&gt;
+&lt;h2 id="minimal-ai-coding-agent"&gt;Minimal AI Coding Agent&lt;/h2&gt;
+&lt;p&gt;下面是一个 AI Coding Agent 至少需要的功能&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Chat loop 对话循环&lt;/li&gt;
+&lt;li&gt;Call an LLM 调用大语言模型&lt;/li&gt;
+&lt;li&gt;Add tools to call 增加工具调用&lt;/li&gt;
+&lt;li&gt;Handle tool request 处理工具调用请求&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="step-1-chat-loop"&gt;Step 1: Chat Loop&lt;/h3&gt;
+&lt;p&gt;首先, 聊天循环一直循环等待用户输入, Python 的 &amp;ldquo;input&amp;rdquo; 方法可以获取用户输入&lt;/p&gt;</description></item><item><title>KMP Algorithm</title><link>https://starslayerx.github.io/posts/kmp-algorithm/</link><pubDate>Sun, 31 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/kmp-algorithm/</guid><description>&lt;h2 id="kmp-算法"&gt;KMP 算法&lt;/h2&gt;
+&lt;h3 id="思想"&gt;思想&lt;/h3&gt;
+&lt;p&gt;KMP 算法, 全程 Knuth-Morris-Pratt 算法, 是一种高效的字符串匹配算法. 它的核心思想是:&lt;br&gt;
+在匹配过程中, 当发生文本串(text)与模式串(pattern)不匹配时, 能够利用已匹配过的部分信息, 智能地移动模式串, 从而避免从头开始匹配, 达到提高匹配效率的目的.&lt;/p&gt;</description></item><item><title>Redis Ordered Set</title><link>https://starslayerx.github.io/posts/redis-ordered-set/</link><pubDate>Sat, 30 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-ordered-set/</guid><description>&lt;p&gt;Redis 的有序集和(ordered set)同时具有&amp;quot;有序&amp;quot;和&amp;quot;集和&amp;quot;两种性质, 这种结构中每个元素都由一个成员和一个与成员相关联的分值组成, 其中成员与字符串方式存储, 而分值以64位双精度浮点数格式存储.&lt;/p&gt;</description></item><item><title>Asyncio vs Gevents in Python</title><link>https://starslayerx.github.io/posts/asyncio-vs-gevents-in-python/</link><pubDate>Fri, 29 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/asyncio-vs-gevents-in-python/</guid><description>&lt;p&gt;python 中 asyncio 和 gevent 是两种协程(在一个线程内实现并发)的实现, 这篇文章对比介绍这两者实现.&lt;br&gt;
+下面先介绍一下基础概念:&lt;/p&gt;
+&lt;h3 id="coroutines-协程"&gt;Coroutines 协程&lt;/h3&gt;
+&lt;p&gt;在 Python 中, 协程是可以暂停和继续运行的函数, 使得其是否适合并发编程. 定义使用 &lt;code&gt;async def&lt;/code&gt; 语法, 协程运行编写非阻塞的操作. 在协程内, &lt;code&gt;await&lt;/code&gt; 关键字用于暂停执行, 直到给定的任务完成, 从而运行其他协程在此其间并发运行.&lt;/p&gt;</description></item><item><title>Prompt Organization</title><link>https://starslayerx.github.io/posts/prompt-organization/</link><pubDate>Thu, 28 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/prompt-organization/</guid><description>&lt;p&gt;这篇文章旨在介绍 Python 中常用的提示词组织方式&lt;/p&gt;
+&lt;h3 id="f-string"&gt;f-string&lt;/h3&gt;
+&lt;p&gt;使用 f 字符串填充变量得到提示词&lt;/p&gt;
 &lt;div
- class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md">
+ class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"&gt;
  
  &lt;div
- class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3">
+ class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"&gt;
  
- &lt;div class="flex items-center gap-2">
- &lt;div class="text-muted-foreground flex-shrink-0">
+ &lt;div class="flex items-center gap-2"&gt;
+ &lt;div class="text-muted-foreground flex-shrink-0"&gt;
  
  &lt;svg class="h-4 w-4"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-&lt;/svg>
- &lt;/div>
- &lt;span class="text-muted-foreground text-sm font-medium">
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /&gt;
+&lt;/svg&gt;
+ &lt;/div&gt;
+ &lt;span class="text-muted-foreground text-sm font-medium"&gt;
  PYTHON
- &lt;/span>
- &lt;/div>
+ &lt;/span&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="flex items-center gap-2">
+ &lt;div class="flex items-center gap-2"&gt;
  &lt;button
  class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
@@ -753,66 +778,66 @@ But as it evolved, JavaScript became a fully independent language with its won s
  data-auto-collapse-height="400"
  data-collapsed-height="120"
  title="Collapse"
- aria-label="Collapse">
- &lt;span class="collapse-icon">
+ aria-label="Collapse"&gt;
+ &lt;span class="collapse-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/>&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/&gt;&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="collapse-text hidden sm:inline"
- >Collapse&lt;/span
- >
- &lt;/button>
+ &gt;Collapse&lt;/span
+ &gt;
+ &lt;/button&gt;
  &lt;button
  class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
  title="Copy"
- aria-label="Copy">
- &lt;span class="copy-icon">
+ aria-label="Copy"&gt;
+ &lt;span class="copy-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;
+&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="copy-text hidden sm:inline"
- >Copy&lt;/span
- >
- &lt;/button>
- &lt;/div>
- &lt;/div>
+ &gt;Copy&lt;/span
+ &gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="code-block-content relative" id="code-0">
- &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">get_prompt&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">query&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="nb">list&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nb">dict&lt;/span>&lt;span class="p">]:&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">SYSTEM_PROMPT&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;...
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">...
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">多行提示词, 也可以填充变量
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">USER_PROMPT&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;INPUT:
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">query&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">....
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="p">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>&lt;span class="s2">&amp;#34;role&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;system&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;content&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">SYSTEM_PROMPT&lt;/span>&lt;span class="p">},&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>&lt;span class="s2">&amp;#34;role&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;user&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;content&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">USER_PROMPT&lt;/span>&lt;span class="p">},&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">]&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+ &lt;div class="code-block-content relative" id="code-0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_prompt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;SYSTEM_PROMPT&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&amp;#34;&amp;#34;...
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt;多行提示词, 也可以填充变量
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt;&amp;#34;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;USER_PROMPT&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&amp;#34;&amp;#34;INPUT:
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt;....
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s2"&gt;&amp;#34;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;role&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;system&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;content&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;SYSTEM_PROMPT&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;role&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;user&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;content&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;USER_PROMPT&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  
  &lt;div
- class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300">
+ class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"&gt;
  &lt;div
- class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">
+ class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200"&gt;
  Click to expand and view more
- &lt;/div>
- &lt;/div>
- &lt;/div>
-&lt;/div>
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
 
 
-&lt;script>
+&lt;script&gt;
 (function() {
  const codeId = 'code-0';
  const copyBtn = document.querySelector('.copy-code-btn[data-code-id="' + codeId + '"]');
@@ -844,9 +869,9 @@ But as it evolved, JavaScript became a fully independent language with its won s
  if (hasInlineLineNumbers) {
  
  const codeLines = codeElement.querySelectorAll('.cl');
- if (codeLines.length > 0) {
+ if (codeLines.length &gt; 0) {
  codeText = Array.from(codeLines)
- .map(line => {
+ .map(line =&gt; {
  const text = line.textContent || line.innerText;
  
  return text.replace(/\n+$/, '');
@@ -882,7 +907,7 @@ But as it evolved, JavaScript became a fully independent language with its won s
  copyBtn.classList.add('text-green-600');
 
  
- setTimeout(() => {
+ setTimeout(() =&gt; {
  copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\u0022 \/\u003e\n\u003c\/svg\u003e`;
  if (copyText) {
  copyText.textContent = 'Copy';
@@ -906,7 +931,7 @@ But as it evolved, JavaScript became a fully independent language with its won s
  copyText.textContent = 'Selected';
  }
 
- setTimeout(() => {
+ setTimeout(() =&gt; {
  if (copyText) {
  copyText.textContent = 'Copy';
  }
@@ -953,19 +978,19 @@ But as it evolved, JavaScript became a fully independent language with its won s
  if (codeElement) {
  const lines = codeElement.querySelectorAll('.line, .cl');
  const height = codeElement.offsetHeight;
- return lines.length > autoCollapseLines || height > autoCollapseHeight;
+ return lines.length &gt; autoCollapseLines || height &gt; autoCollapseHeight;
  }
 
  
  const containerHeight = codeContainer.offsetHeight;
- if (containerHeight > autoCollapseHeight) {
+ if (containerHeight &gt; autoCollapseHeight) {
  return true;
  }
 
  
  const textContent = codeContainer.textContent || codeContainer.innerText || '';
  const estimatedLines = textContent.split('\n').length;
- return estimatedLines > autoCollapseLines;
+ return estimatedLines &gt; autoCollapseLines;
  }
 
  function setCollapsed(collapsed, animate = true) {
@@ -1005,7 +1030,7 @@ But as it evolved, JavaScript became a fully independent language with its won s
  
  if (animate) {
  codeContainer.style.transition = 'max-height 0.3s ease-out';
- setTimeout(() => {
+ setTimeout(() =&gt; {
  codeContainer.style.transition = '';
  }, 300);
  }
@@ -1020,7 +1045,7 @@ But as it evolved, JavaScript became a fully independent language with its won s
 
  
  if (collapseOverlay) {
- collapseOverlay.addEventListener('click', () => {
+ collapseOverlay.addEventListener('click', () =&gt; {
  if (isCollapsed) {
  setCollapsed(false, true);
  }
@@ -1031,102 +1056,102 @@ But as it evolved, JavaScript became a fully independent language with its won s
  initCollapse();
  }
 })();
-&lt;/script>
-&lt;p>这种方法实现简单, 速度快, 但是:&lt;/p></description></item><item><title>From Python to Go</title><link>https://starslayerx.github.io/posts/from-python-to-go/</link><pubDate>Wed, 27 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/from-python-to-go/</guid><description>&lt;p>&lt;a href="https://telemetryharbor.com/blog/from-python-to-go-why-we-rewrote-our-ingest-pipeline-at-telemetry-harbor/">From Python to Go: Why We Rewrote Our Ingest Pipeline at Telemetry Harbor&lt;/a>&lt;/p>
-&lt;p>我们将 Telemetry Harbor 的摄取管道从 Python FastAPI 重写为 Go，原因是遇到了严重的性能瓶颈。迁移后，效率提升了 10 倍，数据完整性因严格类型检查而得到加强，系统也拥有了稳定、可扩展的高并发时间序列数据摄取基础。&lt;/p></description></item><item><title>Redis Set</title><link>https://starslayerx.github.io/posts/redis-set/</link><pubDate>Tue, 26 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-set/</guid><description>&lt;p>Redis 的集和 set 键允许用户将任意多个不同的元素存储到集和中, 既可以是文本数据, 也可以是二进制数据. 其与列表有以下两个明显的区别:&lt;/p>
-&lt;ul>
-&lt;li>列表可以存储重复元素, 而集和只存储非重复元素&lt;/li>
-&lt;li>列表以有序方式存储元素, 而集和则以无序方式存储元素&lt;/li>
-&lt;/ul>
-&lt;p>下面介绍结合键的各个命令&lt;/p></description></item><item><title>Documenting REST APIs with OpenAPI</title><link>https://starslayerx.github.io/posts/documenting-rest-apis-with-openapi/</link><pubDate>Mon, 25 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/documenting-rest-apis-with-openapi/</guid><description>&lt;p>本章介绍如何使用 OpenAPI 来为 API 编写文档. OpenAPI 是描述 RESTful API 最流行的标准, 拥有丰富的生态系统, 可以用于测试、验证和可视化 API. 大多数编程语言都支持 OpenAPI 规范的库.&lt;/p>
-&lt;p>OpenAPI 使用 JSON Schema 来描述 API 的结构和模型, 因此首先介绍 JSON Schema 的工作原理. JSON Schema 是一种用于定义 JSON 文档结构的规范, 包括文档中值的类型和格式.&lt;/p></description></item><item><title>Redis List</title><link>https://starslayerx.github.io/posts/redis-list/</link><pubDate>Sun, 24 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-list/</guid><description>&lt;h2 id="list-列表">List 列表&lt;/h2>
-&lt;p>Redis 的列表是一种线性的有序结构, 可以按照元素被推入列表的顺序来存储元素, 这些元素即可以是文字顺序, 也可以是二进制顺序, 且元素可重复出现.&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>LPUSH: 将元素推入列表左端&lt;/p></description></item><item><title>Rust Alternaitve Tools</title><link>https://starslayerx.github.io/posts/rust-alternaitve-tools/</link><pubDate>Sat, 23 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/rust-alternaitve-tools/</guid><description>&lt;p>常用工具的 rust 替代品.&lt;/p>
-&lt;h3 id="introduction">Introduction&lt;/h3>
-&lt;p>在 Unix 生态中, 许多命令行工具都是用 C 编写的, 经过几十年的优化, 性能和稳定性都非常优秀.
-然而, 近年来, Rust 以其安全性、内存管理优势和现代化开发体验, 成为系统级工具开发的理想选择.&lt;/p></description></item><item><title>Tokei</title><link>https://starslayerx.github.io/posts/tokei/</link><pubDate>Fri, 22 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/tokei/</guid><description>&lt;h3 id="tokei-介绍">Tokei 介绍&lt;/h3>
-&lt;p>&lt;a href="https://github.com/XAMPPRocky/tokei">Tokei&lt;/a>是一款 Rust 编写的开源工具, 用于统计项目代码行数, 支持上百种语言, 能够扫描整个代码库, 包括:&lt;/p>
-&lt;ul>
-&lt;li>语言&lt;/li>
-&lt;li>文件数量&lt;/li>
-&lt;li>代码行数&lt;/li>
-&lt;li>注释行数&lt;/li>
-&lt;li>空行数&lt;/li>
-&lt;/ul>
-&lt;p>得益于 Rust 的高性能实现, Tokei 即使在超大规模代码库中也能保持极快的统计速度&lt;br>
-(Rust 轮子真不错)&lt;/p></description></item><item><title>Redis Hash</title><link>https://starslayerx.github.io/posts/redis-hash/</link><pubDate>Thu, 21 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-hash/</guid><description>&lt;h2 id="散列">散列&lt;/h2>
-&lt;p>Redis 散列键 hash key 会将一个键和一个散列在数据库里关联起来, 散列中可以存任意多个字段 field.
-与字符串一样, 散列字段和值既可以是文本数据, 也可以是二进制数据.&lt;/p></description></item><item><title>HTTP Methods, Status Codes and Payloads</title><link>https://starslayerx.github.io/posts/http-methods-status-codes-and-payloads/</link><pubDate>Wed, 20 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/http-methods-status-codes-and-payloads/</guid><description>&lt;p>本篇文章基于 REST api 介绍HTTP请求方法、HTTP响应码和API数据载荷, 是之前介绍 REST 那篇文章的延伸&lt;/p>
-&lt;h2 id="http-status-codes">HTTP Status Codes&lt;/h2>
-&lt;ul>
-&lt;li>1xx group: Signals that an operation is in progress&lt;/li>
-&lt;li>2xx group: Signals that a request was successfully processed&lt;/li>
-&lt;li>3xx group: Signals that a resource has been moved to a new location&lt;/li>
-&lt;li>4xx group: Signals that someting was wrong with the request&lt;/li>
-&lt;li>5xx group: Signals that there was an error while processing the request&lt;/li>
-&lt;/ul>
-&lt;p>在之前文章中, 定义的 HTTP status code 如下:&lt;/p></description></item><item><title>Redis String</title><link>https://starslayerx.github.io/posts/redis-string/</link><pubDate>Tue, 19 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-string/</guid><description>&lt;p>介绍Redis中的字符串键&lt;/p>
-&lt;h2 id="字符串">字符串&lt;/h2>
-&lt;p>字符串建是 Redis 最基本的键值对类型, 这种类型的键值对会在数据库中把单独的一个值关联起来, 被关联的键和值可以为文本, 也可以是图片, 视屏, 音频等二进制数据.&lt;/p></description></item><item><title>IEEE-754 Introduce</title><link>https://starslayerx.github.io/posts/ieee-754-introduce/</link><pubDate>Mon, 18 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/ieee-754-introduce/</guid><description>&lt;p>IEEE 754 标准数值类型及分类&lt;/p>
-&lt;h2 id="整数-integer">整数 Integer&lt;/h2>
-&lt;p>整数是没有小数部分的值, 在计算机内通常有两种表示方式:&lt;/p>
-&lt;ul>
-&lt;li>有符号整数: 可以表示正数和负数, 最常用的是二补码表示. 例如 8 位二进制的范围为[-2^7, 2^7-1]&lt;/li>
-&lt;li>无符号整数: 仅表示非负数, 8 位二进制的范围为 [0, 2^8-1]&lt;/li>
-&lt;/ul>
-&lt;p>其中补码(Two&amp;rsquo;s Complement)用于表示负数&lt;/p></description></item><item><title>Designing and Building REST APIs</title><link>https://starslayerx.github.io/posts/designing-and-building-rest-apis/</link><pubDate>Sun, 17 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/designing-and-building-rest-apis/</guid><description>&lt;p>这篇文章延续之前微服务的内容, 将介绍关于 REST API 的以下几个方面:&lt;/p>
-&lt;ul>
-&lt;li>REST API 的设计原则&lt;/li>
-&lt;li>Richardson maturity model (RMM) 如何帮助理解 REST 的优势和设计原则&lt;/li>
-&lt;li>REST API 中资源(resource)和端点(endpoints)设计的概念&lt;/li>
-&lt;/ul>
-&lt;p>表达性状态转移 representational state transfer (REST) 描述了一种通过网络进行通信的应用程序架构风格.
+&lt;/script&gt;
+&lt;p&gt;这种方法实现简单, 速度快, 但是:&lt;/p&gt;</description></item><item><title>From Python to Go</title><link>https://starslayerx.github.io/posts/from-python-to-go/</link><pubDate>Wed, 27 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/from-python-to-go/</guid><description>&lt;p&gt;&lt;a href="https://telemetryharbor.com/blog/from-python-to-go-why-we-rewrote-our-ingest-pipeline-at-telemetry-harbor/"&gt;From Python to Go: Why We Rewrote Our Ingest Pipeline at Telemetry Harbor&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;我们将 Telemetry Harbor 的摄取管道从 Python FastAPI 重写为 Go，原因是遇到了严重的性能瓶颈。迁移后，效率提升了 10 倍，数据完整性因严格类型检查而得到加强，系统也拥有了稳定、可扩展的高并发时间序列数据摄取基础。&lt;/p&gt;</description></item><item><title>Redis Set</title><link>https://starslayerx.github.io/posts/redis-set/</link><pubDate>Tue, 26 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-set/</guid><description>&lt;p&gt;Redis 的集和 set 键允许用户将任意多个不同的元素存储到集和中, 既可以是文本数据, 也可以是二进制数据. 其与列表有以下两个明显的区别:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;列表可以存储重复元素, 而集和只存储非重复元素&lt;/li&gt;
+&lt;li&gt;列表以有序方式存储元素, 而集和则以无序方式存储元素&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下面介绍结合键的各个命令&lt;/p&gt;</description></item><item><title>Documenting REST APIs with OpenAPI</title><link>https://starslayerx.github.io/posts/documenting-rest-apis-with-openapi/</link><pubDate>Mon, 25 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/documenting-rest-apis-with-openapi/</guid><description>&lt;p&gt;本章介绍如何使用 OpenAPI 来为 API 编写文档. OpenAPI 是描述 RESTful API 最流行的标准, 拥有丰富的生态系统, 可以用于测试、验证和可视化 API. 大多数编程语言都支持 OpenAPI 规范的库.&lt;/p&gt;
+&lt;p&gt;OpenAPI 使用 JSON Schema 来描述 API 的结构和模型, 因此首先介绍 JSON Schema 的工作原理. JSON Schema 是一种用于定义 JSON 文档结构的规范, 包括文档中值的类型和格式.&lt;/p&gt;</description></item><item><title>Redis List</title><link>https://starslayerx.github.io/posts/redis-list/</link><pubDate>Sun, 24 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-list/</guid><description>&lt;h2 id="list-列表"&gt;List 列表&lt;/h2&gt;
+&lt;p&gt;Redis 的列表是一种线性的有序结构, 可以按照元素被推入列表的顺序来存储元素, 这些元素即可以是文字顺序, 也可以是二进制顺序, 且元素可重复出现.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;LPUSH: 将元素推入列表左端&lt;/p&gt;</description></item><item><title>Rust Alternaitve Tools</title><link>https://starslayerx.github.io/posts/rust-alternaitve-tools/</link><pubDate>Sat, 23 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/rust-alternaitve-tools/</guid><description>&lt;p&gt;常用工具的 rust 替代品.&lt;/p&gt;
+&lt;h3 id="introduction"&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;在 Unix 生态中, 许多命令行工具都是用 C 编写的, 经过几十年的优化, 性能和稳定性都非常优秀.
+然而, 近年来, Rust 以其安全性、内存管理优势和现代化开发体验, 成为系统级工具开发的理想选择.&lt;/p&gt;</description></item><item><title>Tokei</title><link>https://starslayerx.github.io/posts/tokei/</link><pubDate>Fri, 22 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/tokei/</guid><description>&lt;h3 id="tokei-介绍"&gt;Tokei 介绍&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://github.com/XAMPPRocky/tokei"&gt;Tokei&lt;/a&gt;是一款 Rust 编写的开源工具, 用于统计项目代码行数, 支持上百种语言, 能够扫描整个代码库, 包括:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;语言&lt;/li&gt;
+&lt;li&gt;文件数量&lt;/li&gt;
+&lt;li&gt;代码行数&lt;/li&gt;
+&lt;li&gt;注释行数&lt;/li&gt;
+&lt;li&gt;空行数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;得益于 Rust 的高性能实现, Tokei 即使在超大规模代码库中也能保持极快的统计速度&lt;br&gt;
+(Rust 轮子真不错)&lt;/p&gt;</description></item><item><title>Redis Hash</title><link>https://starslayerx.github.io/posts/redis-hash/</link><pubDate>Thu, 21 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-hash/</guid><description>&lt;h2 id="散列"&gt;散列&lt;/h2&gt;
+&lt;p&gt;Redis 散列键 hash key 会将一个键和一个散列在数据库里关联起来, 散列中可以存任意多个字段 field.
+与字符串一样, 散列字段和值既可以是文本数据, 也可以是二进制数据.&lt;/p&gt;</description></item><item><title>HTTP Methods, Status Codes and Payloads</title><link>https://starslayerx.github.io/posts/http-methods-status-codes-and-payloads/</link><pubDate>Wed, 20 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/http-methods-status-codes-and-payloads/</guid><description>&lt;p&gt;本篇文章基于 REST api 介绍HTTP请求方法、HTTP响应码和API数据载荷, 是之前介绍 REST 那篇文章的延伸&lt;/p&gt;
+&lt;h2 id="http-status-codes"&gt;HTTP Status Codes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;1xx group: Signals that an operation is in progress&lt;/li&gt;
+&lt;li&gt;2xx group: Signals that a request was successfully processed&lt;/li&gt;
+&lt;li&gt;3xx group: Signals that a resource has been moved to a new location&lt;/li&gt;
+&lt;li&gt;4xx group: Signals that someting was wrong with the request&lt;/li&gt;
+&lt;li&gt;5xx group: Signals that there was an error while processing the request&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在之前文章中, 定义的 HTTP status code 如下:&lt;/p&gt;</description></item><item><title>Redis String</title><link>https://starslayerx.github.io/posts/redis-string/</link><pubDate>Tue, 19 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-string/</guid><description>&lt;p&gt;介绍Redis中的字符串键&lt;/p&gt;
+&lt;h2 id="字符串"&gt;字符串&lt;/h2&gt;
+&lt;p&gt;字符串建是 Redis 最基本的键值对类型, 这种类型的键值对会在数据库中把单独的一个值关联起来, 被关联的键和值可以为文本, 也可以是图片, 视屏, 音频等二进制数据.&lt;/p&gt;</description></item><item><title>IEEE-754 Introduce</title><link>https://starslayerx.github.io/posts/ieee-754-introduce/</link><pubDate>Mon, 18 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/ieee-754-introduce/</guid><description>&lt;p&gt;IEEE 754 标准数值类型及分类&lt;/p&gt;
+&lt;h2 id="整数-integer"&gt;整数 Integer&lt;/h2&gt;
+&lt;p&gt;整数是没有小数部分的值, 在计算机内通常有两种表示方式:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;有符号整数: 可以表示正数和负数, 最常用的是二补码表示. 例如 8 位二进制的范围为[-2^7, 2^7-1]&lt;/li&gt;
+&lt;li&gt;无符号整数: 仅表示非负数, 8 位二进制的范围为 [0, 2^8-1]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其中补码(Two&amp;rsquo;s Complement)用于表示负数&lt;/p&gt;</description></item><item><title>Designing and Building REST APIs</title><link>https://starslayerx.github.io/posts/designing-and-building-rest-apis/</link><pubDate>Sun, 17 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/designing-and-building-rest-apis/</guid><description>&lt;p&gt;这篇文章延续之前微服务的内容, 将介绍关于 REST API 的以下几个方面:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;REST API 的设计原则&lt;/li&gt;
+&lt;li&gt;Richardson maturity model (RMM) 如何帮助理解 REST 的优势和设计原则&lt;/li&gt;
+&lt;li&gt;REST API 中资源(resource)和端点(endpoints)设计的概念&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;表达性状态转移 representational state transfer (REST) 描述了一种通过网络进行通信的应用程序架构风格.
 最初, REST 的概念包含了一组用于设计分布式、可扩展 Web 应用的约束条件.
 随着时间推移, 出现了更为细致的协议和规范, 为 REST API 的设计提供了明确的指导方针.
-如今, REST 已经成为构建 Web API 的最流行选择.&lt;/p></description></item><item><title>Intorduce UUID</title><link>https://starslayerx.github.io/posts/intorduce-uuid/</link><pubDate>Sat, 16 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/intorduce-uuid/</guid><description>&lt;p>UUID(Universally Unique Identifier, 通用唯一标识符) 是一种标准化的128位标识符, 用于在分布式系统中生成几乎不会重复的唯一 ID. 最早于 IETF 制定为 RFC 4122 标准, 保证在不同机器、不同时间生成的 ID 也能保持全局唯一.&lt;/p></description></item><item><title>Microservice with FastAPI</title><link>https://starslayerx.github.io/posts/microservice-with-fastapi/</link><pubDate>Fri, 15 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/microservice-with-fastapi/</guid><description>&lt;h2 id="what-are-microservices-">What are microservices ?&lt;/h2>
-&lt;p>什么是微服务? 微服务可以有多种不同的定义方式, 具体取决于希望强调微服务架构的哪个方面, 不同作者会给出略有不同但相关的定义&lt;/p>
-&lt;p>Sam Newman, 微服务领域最有影响力的作者之一, 给出了一个极简的定义:&lt;/p></description></item><item><title>Python Generics</title><link>https://starslayerx.github.io/posts/python-generics/</link><pubDate>Thu, 14 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-generics/</guid><description>&lt;p>本篇文件介绍 Python 中的 泛型(Generics)&lt;/p>
-&lt;h3 id="intro">Intro&lt;/h3>
-&lt;p>在没有泛型的情况下, 会遇上以下几个问题:&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>难以表达意图&lt;br>
+如今, REST 已经成为构建 Web API 的最流行选择.&lt;/p&gt;</description></item><item><title>Intorduce UUID</title><link>https://starslayerx.github.io/posts/intorduce-uuid/</link><pubDate>Sat, 16 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/intorduce-uuid/</guid><description>&lt;p&gt;UUID(Universally Unique Identifier, 通用唯一标识符) 是一种标准化的128位标识符, 用于在分布式系统中生成几乎不会重复的唯一 ID. 最早于 IETF 制定为 RFC 4122 标准, 保证在不同机器、不同时间生成的 ID 也能保持全局唯一.&lt;/p&gt;</description></item><item><title>Microservice with FastAPI</title><link>https://starslayerx.github.io/posts/microservice-with-fastapi/</link><pubDate>Fri, 15 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/microservice-with-fastapi/</guid><description>&lt;h2 id="what-are-microservices-"&gt;What are microservices ?&lt;/h2&gt;
+&lt;p&gt;什么是微服务? 微服务可以有多种不同的定义方式, 具体取决于希望强调微服务架构的哪个方面, 不同作者会给出略有不同但相关的定义&lt;/p&gt;
+&lt;p&gt;Sam Newman, 微服务领域最有影响力的作者之一, 给出了一个极简的定义:&lt;/p&gt;</description></item><item><title>Python Generics</title><link>https://starslayerx.github.io/posts/python-generics/</link><pubDate>Thu, 14 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-generics/</guid><description>&lt;p&gt;本篇文件介绍 Python 中的 泛型(Generics)&lt;/p&gt;
+&lt;h3 id="intro"&gt;Intro&lt;/h3&gt;
+&lt;p&gt;在没有泛型的情况下, 会遇上以下几个问题:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;难以表达意图&lt;br&gt;
 假设你编写了一个函数, 它接受一个列表, 并返回列表中的第一个元素.
-在不使用类型提示的情况下, 这个函数可以处理任何类型的列表, 但我们无法在函数签名中表达&amp;quot;返回的元素的类型与列表中的元素类型相同&amp;quot;这个意图&lt;/p></description></item><item><title>Python Strings</title><link>https://starslayerx.github.io/posts/python-strings/</link><pubDate>Wed, 13 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-strings/</guid><description>&lt;p>这篇文章总结一下 Python 中字符串的类型&lt;/p>
-&lt;h3 id="unicode-string-字符串">Unicode String 字符串&lt;/h3>
-&lt;p>u 在 Python3 中是多余的, 因为所有的普通字符串默认都是 Unicode, 但在 Python2 中, u 用来显示的表示 Unicode 字符串, 现在保留这个是为了向后兼容&lt;/p></description></item><item><title>FastAPI Response Model</title><link>https://starslayerx.github.io/posts/fastapi-response-model/</link><pubDate>Tue, 12 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-response-model/</guid><description>&lt;p>本篇文章介绍 FastAPI 的返回类型 response model&lt;/p>
-&lt;p>可以在返回函数的类型注解中声明该接口的响应数据类型&lt;/p>
-&lt;p>类型注解的用法和输入数据参数一样, 可以使用:&lt;/p>
-&lt;ul>
-&lt;li>Pydantic 模型&lt;/li>
-&lt;li>list 列表&lt;/li>
-&lt;li>dict 字典&lt;/li>
-&lt;li>scalar 标量值 (int, bool &amp;hellip;)&lt;/li>
-&lt;/ul>
+在不使用类型提示的情况下, 这个函数可以处理任何类型的列表, 但我们无法在函数签名中表达&amp;quot;返回的元素的类型与列表中的元素类型相同&amp;quot;这个意图&lt;/p&gt;</description></item><item><title>Python Strings</title><link>https://starslayerx.github.io/posts/python-strings/</link><pubDate>Wed, 13 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-strings/</guid><description>&lt;p&gt;这篇文章总结一下 Python 中字符串的类型&lt;/p&gt;
+&lt;h3 id="unicode-string-字符串"&gt;Unicode String 字符串&lt;/h3&gt;
+&lt;p&gt;u 在 Python3 中是多余的, 因为所有的普通字符串默认都是 Unicode, 但在 Python2 中, u 用来显示的表示 Unicode 字符串, 现在保留这个是为了向后兼容&lt;/p&gt;</description></item><item><title>FastAPI Response Model</title><link>https://starslayerx.github.io/posts/fastapi-response-model/</link><pubDate>Tue, 12 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-response-model/</guid><description>&lt;p&gt;本篇文章介绍 FastAPI 的返回类型 response model&lt;/p&gt;
+&lt;p&gt;可以在返回函数的类型注解中声明该接口的响应数据类型&lt;/p&gt;
+&lt;p&gt;类型注解的用法和输入数据参数一样, 可以使用:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pydantic 模型&lt;/li&gt;
+&lt;li&gt;list 列表&lt;/li&gt;
+&lt;li&gt;dict 字典&lt;/li&gt;
+&lt;li&gt;scalar 标量值 (int, bool &amp;hellip;)&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div
- class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md">
+ class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"&gt;
  
  &lt;div
- class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3">
+ class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"&gt;
  
- &lt;div class="flex items-center gap-2">
- &lt;div class="text-muted-foreground flex-shrink-0">
+ &lt;div class="flex items-center gap-2"&gt;
+ &lt;div class="text-muted-foreground flex-shrink-0"&gt;
  
  &lt;svg class="h-4 w-4"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-&lt;/svg>
- &lt;/div>
- &lt;span class="text-muted-foreground text-sm font-medium">
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /&gt;
+&lt;/svg&gt;
+ &lt;/div&gt;
+ &lt;span class="text-muted-foreground text-sm font-medium"&gt;
  PYTHON
- &lt;/span>
- &lt;/div>
+ &lt;/span&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="flex items-center gap-2">
+ &lt;div class="flex items-center gap-2"&gt;
  &lt;button
  class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
@@ -1136,60 +1161,60 @@ But as it evolved, JavaScript became a fully independent language with its won s
  data-auto-collapse-height="400"
  data-collapsed-height="120"
  title="Collapse"
- aria-label="Collapse">
- &lt;span class="collapse-icon">
+ aria-label="Collapse"&gt;
+ &lt;span class="collapse-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/>&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/&gt;&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="collapse-text hidden sm:inline"
- >Collapse&lt;/span
- >
- &lt;/button>
+ &gt;Collapse&lt;/span
+ &gt;
+ &lt;/button&gt;
  &lt;button
  class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
  title="Copy"
- aria-label="Copy">
- &lt;span class="copy-icon">
+ aria-label="Copy"&gt;
+ &lt;span class="copy-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;
+&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="copy-text hidden sm:inline"
- >Copy&lt;/span
- >
- &lt;/button>
- &lt;/div>
- &lt;/div>
+ &gt;Copy&lt;/span
+ &gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="code-block-content relative" id="code-0">
- &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@app.post&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;/items/&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">async&lt;/span> &lt;span class="k">def&lt;/span> &lt;span class="nf">create_item&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">item&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Item&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">Item&lt;/span>&lt;span class="p">:&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">...&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@app.get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;/items/&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">async&lt;/span> &lt;span class="k">def&lt;/span> &lt;span class="nf">read_items&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="nb">list&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">Item&lt;/span>&lt;span class="p">]:&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">...&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+ &lt;div class="code-block-content relative" id="code-0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.post&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_items&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;...&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  
  &lt;div
- class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300">
+ class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"&gt;
  &lt;div
- class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">
+ class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200"&gt;
  Click to expand and view more
- &lt;/div>
- &lt;/div>
- &lt;/div>
-&lt;/div>
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
 
 
-&lt;script>
+&lt;script&gt;
 (function() {
  const codeId = 'code-0';
  const copyBtn = document.querySelector('.copy-code-btn[data-code-id="' + codeId + '"]');
@@ -1221,9 +1246,9 @@ But as it evolved, JavaScript became a fully independent language with its won s
  if (hasInlineLineNumbers) {
  
  const codeLines = codeElement.querySelectorAll('.cl');
- if (codeLines.length > 0) {
+ if (codeLines.length &gt; 0) {
  codeText = Array.from(codeLines)
- .map(line => {
+ .map(line =&gt; {
  const text = line.textContent || line.innerText;
  
  return text.replace(/\n+$/, '');
@@ -1259,7 +1284,7 @@ But as it evolved, JavaScript became a fully independent language with its won s
  copyBtn.classList.add('text-green-600');
 
  
- setTimeout(() => {
+ setTimeout(() =&gt; {
  copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\u0022 \/\u003e\n\u003c\/svg\u003e`;
  if (copyText) {
  copyText.textContent = 'Copy';
@@ -1283,7 +1308,7 @@ But as it evolved, JavaScript became a fully independent language with its won s
  copyText.textContent = 'Selected';
  }
 
- setTimeout(() => {
+ setTimeout(() =&gt; {
  if (copyText) {
  copyText.textContent = 'Copy';
  }
@@ -1330,19 +1355,19 @@ But as it evolved, JavaScript became a fully independent language with its won s
  if (codeElement) {
  const lines = codeElement.querySelectorAll('.line, .cl');
  const height = codeElement.offsetHeight;
- return lines.length > autoCollapseLines || height > autoCollapseHeight;
+ return lines.length &gt; autoCollapseLines || height &gt; autoCollapseHeight;
  }
 
  
  const containerHeight = codeContainer.offsetHeight;
- if (containerHeight > autoCollapseHeight) {
+ if (containerHeight &gt; autoCollapseHeight) {
  return true;
  }
 
  
  const textContent = codeContainer.textContent || codeContainer.innerText || '';
  const estimatedLines = textContent.split('\n').length;
- return estimatedLines > autoCollapseLines;
+ return estimatedLines &gt; autoCollapseLines;
  }
 
  function setCollapsed(collapsed, animate = true) {
@@ -1382,7 +1407,7 @@ But as it evolved, JavaScript became a fully independent language with its won s
  
  if (animate) {
  codeContainer.style.transition = 'max-height 0.3s ease-out';
- setTimeout(() => {
+ setTimeout(() =&gt; {
  codeContainer.style.transition = '';
  }, 300);
  }
@@ -1397,7 +1422,7 @@ But as it evolved, JavaScript became a fully independent language with its won s
 
  
  if (collapseOverlay) {
- collapseOverlay.addEventListener('click', () => {
+ collapseOverlay.addEventListener('click', () =&gt; {
  if (isCollapsed) {
  setCollapsed(false, true);
  }
@@ -1408,32 +1433,32 @@ But as it evolved, JavaScript became a fully independent language with its won s
  initCollapse();
  }
 })();
-&lt;/script>
-&lt;p>FastAPI 会使用返回类型完成一下事情:&lt;/p></description></item><item><title>Fastapi Cookie and Header Parameters</title><link>https://starslayerx.github.io/posts/fastapi-cookie-and-header-parameters/</link><pubDate>Mon, 11 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-cookie-and-header-parameters/</guid><description>&lt;p>这篇文章介绍 Fastapi 的 Cookie 和 Header 参数&lt;/p>
-&lt;h3 id="cookie-parameters">Cookie Parameters&lt;/h3>
-&lt;p>通过定义 &lt;code>Query&lt;/code> 和 &lt;code>Path&lt;/code> 参数一样定义 &lt;code>Cookie&lt;/code> 参数&lt;/p>
+&lt;/script&gt;
+&lt;p&gt;FastAPI 会使用返回类型完成一下事情:&lt;/p&gt;</description></item><item><title>Fastapi Cookie and Header Parameters</title><link>https://starslayerx.github.io/posts/fastapi-cookie-and-header-parameters/</link><pubDate>Mon, 11 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-cookie-and-header-parameters/</guid><description>&lt;p&gt;这篇文章介绍 Fastapi 的 Cookie 和 Header 参数&lt;/p&gt;
+&lt;h3 id="cookie-parameters"&gt;Cookie Parameters&lt;/h3&gt;
+&lt;p&gt;通过定义 &lt;code&gt;Query&lt;/code&gt; 和 &lt;code&gt;Path&lt;/code&gt; 参数一样定义 &lt;code&gt;Cookie&lt;/code&gt; 参数&lt;/p&gt;
 &lt;div
- class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md">
+ class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"&gt;
  
  &lt;div
- class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3">
+ class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"&gt;
  
- &lt;div class="flex items-center gap-2">
- &lt;div class="text-muted-foreground flex-shrink-0">
+ &lt;div class="flex items-center gap-2"&gt;
+ &lt;div class="text-muted-foreground flex-shrink-0"&gt;
  
  &lt;svg class="h-4 w-4"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-&lt;/svg>
- &lt;/div>
- &lt;span class="text-muted-foreground text-sm font-medium">
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /&gt;
+&lt;/svg&gt;
+ &lt;/div&gt;
+ &lt;span class="text-muted-foreground text-sm font-medium"&gt;
  PYTHON
- &lt;/span>
- &lt;/div>
+ &lt;/span&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="flex items-center gap-2">
+ &lt;div class="flex items-center gap-2"&gt;
  &lt;button
  class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
@@ -1443,61 +1468,61 @@ But as it evolved, JavaScript became a fully independent language with its won s
  data-auto-collapse-height="400"
  data-collapsed-height="120"
  title="Collapse"
- aria-label="Collapse">
- &lt;span class="collapse-icon">
+ aria-label="Collapse"&gt;
+ &lt;span class="collapse-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/>&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/&gt;&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="collapse-text hidden sm:inline"
- >Collapse&lt;/span
- >
- &lt;/button>
+ &gt;Collapse&lt;/span
+ &gt;
+ &lt;/button&gt;
  &lt;button
  class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
  title="Copy"
- aria-label="Copy">
- &lt;span class="copy-icon">
+ aria-label="Copy"&gt;
+ &lt;span class="copy-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;
+&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="copy-text hidden sm:inline"
- >Copy&lt;/span
- >
- &lt;/button>
- &lt;/div>
- &lt;/div>
+ &gt;Copy&lt;/span
+ &gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="code-block-content relative" id="code-0">
- &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">typing&lt;/span> &lt;span class="n">Annotated&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">fastapi&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Cookie&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">FastAPI&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">app&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">FastAPI&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@app.get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;/items/&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">async&lt;/span> &lt;span class="k">def&lt;/span> &lt;span class="nf">read_items&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">ads_id&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Annotated&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nb">str&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Cookie&lt;/span>&lt;span class="p">()]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">None&lt;/span>&lt;span class="p">):&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="s2">&amp;#34;ads_id&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">ads_id&lt;/span>&lt;span class="p">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+ &lt;div class="code-block-content relative" id="code-0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;typing&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;fastapi&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Cookie&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_items&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ads_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Cookie&lt;/span&gt;&lt;span class="p"&gt;()]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;ads_id&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ads_id&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  
  &lt;div
- class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300">
+ class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"&gt;
  &lt;div
- class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">
+ class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200"&gt;
  Click to expand and view more
- &lt;/div>
- &lt;/div>
- &lt;/div>
-&lt;/div>
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
 
 
-&lt;script>
+&lt;script&gt;
 (function() {
  const codeId = 'code-0';
  const copyBtn = document.querySelector('.copy-code-btn[data-code-id="' + codeId + '"]');
@@ -1529,9 +1554,9 @@ But as it evolved, JavaScript became a fully independent language with its won s
  if (hasInlineLineNumbers) {
  
  const codeLines = codeElement.querySelectorAll('.cl');
- if (codeLines.length > 0) {
+ if (codeLines.length &gt; 0) {
  codeText = Array.from(codeLines)
- .map(line => {
+ .map(line =&gt; {
  const text = line.textContent || line.innerText;
  
  return text.replace(/\n+$/, '');
@@ -1567,7 +1592,7 @@ But as it evolved, JavaScript became a fully independent language with its won s
  copyBtn.classList.add('text-green-600');
 
  
- setTimeout(() => {
+ setTimeout(() =&gt; {
  copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\u0022 \/\u003e\n\u003c\/svg\u003e`;
  if (copyText) {
  copyText.textContent = 'Copy';
@@ -1591,7 +1616,7 @@ But as it evolved, JavaScript became a fully independent language with its won s
  copyText.textContent = 'Selected';
  }
 
- setTimeout(() => {
+ setTimeout(() =&gt; {
  if (copyText) {
  copyText.textContent = 'Copy';
  }
@@ -1638,19 +1663,19 @@ But as it evolved, JavaScript became a fully independent language with its won s
  if (codeElement) {
  const lines = codeElement.querySelectorAll('.line, .cl');
  const height = codeElement.offsetHeight;
- return lines.length > autoCollapseLines || height > autoCollapseHeight;
+ return lines.length &gt; autoCollapseLines || height &gt; autoCollapseHeight;
  }
 
  
  const containerHeight = codeContainer.offsetHeight;
- if (containerHeight > autoCollapseHeight) {
+ if (containerHeight &gt; autoCollapseHeight) {
  return true;
  }
 
  
  const textContent = codeContainer.textContent || codeContainer.innerText || '';
  const estimatedLines = textContent.split('\n').length;
- return estimatedLines > autoCollapseLines;
+ return estimatedLines &gt; autoCollapseLines;
  }
 
  function setCollapsed(collapsed, animate = true) {
@@ -1690,7 +1715,7 @@ But as it evolved, JavaScript became a fully independent language with its won s
  
  if (animate) {
  codeContainer.style.transition = 'max-height 0.3s ease-out';
- setTimeout(() => {
+ setTimeout(() =&gt; {
  codeContainer.style.transition = '';
  }, 300);
  }
@@ -1705,7 +1730,7 @@ But as it evolved, JavaScript became a fully independent language with its won s
 
  
  if (collapseOverlay) {
- collapseOverlay.addEventListener('click', () => {
+ collapseOverlay.addEventListener('click', () =&gt; {
  if (isCollapsed) {
  setCollapsed(false, true);
  }
@@ -1716,36 +1741,36 @@ But as it evolved, JavaScript became a fully independent language with its won s
  initCollapse();
  }
 })();
-&lt;/script>
-&lt;h4 id="cookie-parameters-models">Cookie Parameters Models&lt;/h4>
-&lt;p>如果有一组相关的 cookies, 可以使用 Pydantic model 来声明.&lt;/p></description></item><item><title>Python Function Parameters</title><link>https://starslayerx.github.io/posts/python-function-parameters/</link><pubDate>Sun, 10 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-function-parameters/</guid><description>&lt;p>今天是周日, 简单写点吧, 简单总结一下 Python 中函数参数&lt;/p>
-&lt;h2 id="python-function-parameters">Python Function Parameters&lt;/h2>
-&lt;p>Python 函数参数机制非常灵活丰富, 理解各种参数类型及其用法对于写出优雅、易维护的代码非常重要. 本文将介绍 Python 中函数参数的种类与用法, 并详细讲解 Python 3.8 引入的参数分隔符 / 和 *, 帮助你更好地设计函数接口.&lt;/p></description></item><item><title>FastAPI Body Advanced Uses</title><link>https://starslayerx.github.io/posts/fastapi-body-advanced-uses/</link><pubDate>Sat, 09 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-body-advanced-uses/</guid><description>&lt;p>本篇文章介绍 FastAPI Request Body 的进阶用法&lt;/p>
-&lt;h3 id="body---multiple-parameters">Body - Multiple Parameters&lt;/h3>
-&lt;p>首先, 可以将&lt;code>Path&lt;/code>, &lt;code>Query&lt;/code> 和 request body 参数声明自由的写在一起&lt;/p>
-&lt;p>对于 request body 参数可以是可选的, 并且可设置为默认的 &lt;code>None&lt;/code>&lt;/p>
+&lt;/script&gt;
+&lt;h4 id="cookie-parameters-models"&gt;Cookie Parameters Models&lt;/h4&gt;
+&lt;p&gt;如果有一组相关的 cookies, 可以使用 Pydantic model 来声明.&lt;/p&gt;</description></item><item><title>Python Function Parameters</title><link>https://starslayerx.github.io/posts/python-function-parameters/</link><pubDate>Sun, 10 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-function-parameters/</guid><description>&lt;p&gt;今天是周日, 简单写点吧, 简单总结一下 Python 中函数参数&lt;/p&gt;
+&lt;h2 id="python-function-parameters"&gt;Python Function Parameters&lt;/h2&gt;
+&lt;p&gt;Python 函数参数机制非常灵活丰富, 理解各种参数类型及其用法对于写出优雅、易维护的代码非常重要. 本文将介绍 Python 中函数参数的种类与用法, 并详细讲解 Python 3.8 引入的参数分隔符 / 和 *, 帮助你更好地设计函数接口.&lt;/p&gt;</description></item><item><title>FastAPI Body Advanced Uses</title><link>https://starslayerx.github.io/posts/fastapi-body-advanced-uses/</link><pubDate>Sat, 09 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-body-advanced-uses/</guid><description>&lt;p&gt;本篇文章介绍 FastAPI Request Body 的进阶用法&lt;/p&gt;
+&lt;h3 id="body---multiple-parameters"&gt;Body - Multiple Parameters&lt;/h3&gt;
+&lt;p&gt;首先, 可以将&lt;code&gt;Path&lt;/code&gt;, &lt;code&gt;Query&lt;/code&gt; 和 request body 参数声明自由的写在一起&lt;/p&gt;
+&lt;p&gt;对于 request body 参数可以是可选的, 并且可设置为默认的 &lt;code&gt;None&lt;/code&gt;&lt;/p&gt;
 &lt;div
- class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md">
+ class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"&gt;
  
  &lt;div
- class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3">
+ class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"&gt;
  
- &lt;div class="flex items-center gap-2">
- &lt;div class="text-muted-foreground flex-shrink-0">
+ &lt;div class="flex items-center gap-2"&gt;
+ &lt;div class="text-muted-foreground flex-shrink-0"&gt;
  
  &lt;svg class="h-4 w-4"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-&lt;/svg>
- &lt;/div>
- &lt;span class="text-muted-foreground text-sm font-medium">
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /&gt;
+&lt;/svg&gt;
+ &lt;/div&gt;
+ &lt;span class="text-muted-foreground text-sm font-medium"&gt;
  PYTHON
- &lt;/span>
- &lt;/div>
+ &lt;/span&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="flex items-center gap-2">
+ &lt;div class="flex items-center gap-2"&gt;
  &lt;button
  class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
@@ -1755,78 +1780,78 @@ But as it evolved, JavaScript became a fully independent language with its won s
  data-auto-collapse-height="400"
  data-collapsed-height="120"
  title="Collapse"
- aria-label="Collapse">
- &lt;span class="collapse-icon">
+ aria-label="Collapse"&gt;
+ &lt;span class="collapse-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/>&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/&gt;&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="collapse-text hidden sm:inline"
- >Collapse&lt;/span
- >
- &lt;/button>
+ &gt;Collapse&lt;/span
+ &gt;
+ &lt;/button&gt;
  &lt;button
  class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
  title="Copy"
- aria-label="Copy">
- &lt;span class="copy-icon">
+ aria-label="Copy"&gt;
+ &lt;span class="copy-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;
+&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="copy-text hidden sm:inline"
- >Copy&lt;/span
- >
- &lt;/button>
- &lt;/div>
- &lt;/div>
+ &gt;Copy&lt;/span
+ &gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="code-block-content relative" id="code-0">
- &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">typing&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Annotated&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">fastapi&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">FastAPI&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Path&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">pydantic&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">BaseModel&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">app&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">FastAPI&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">class&lt;/span> &lt;span class="nc">Item&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">BaseModel&lt;/span>&lt;span class="p">):&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">name&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">str&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">description&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">str&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="kc">None&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">None&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">price&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">float&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">tax&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">float&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="kc">None&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">None&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@app.put&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;/items/&lt;/span>&lt;span class="si">{item_id}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">async&lt;/span> &lt;span class="k">def&lt;/span> &lt;span class="nf">update_item&lt;/span>&lt;span class="p">(&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">item_id&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Annotated&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nb">int&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Path&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">title&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;The ID of the item to get&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">ge&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">le&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">1000&lt;/span>&lt;span class="p">)],&lt;/span> &lt;span class="c1"># Path&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">q&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">str&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="kc">None&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="c1"># Query&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">item&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Item&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="kc">None&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">None&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="c1"># body&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">):&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">results&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="s2">&amp;#34;item_id&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">item_id&lt;/span>&lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">q&lt;/span>&lt;span class="p">:&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">results&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">update&lt;/span>&lt;span class="p">({&lt;/span>&lt;span class="s2">&amp;#34;q&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">q&lt;/span>&lt;span class="p">})&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">item&lt;/span>&lt;span class="p">:&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">results&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">update&lt;/span>&lt;span class="p">({&lt;/span>&lt;span class="s2">&amp;#34;item&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">item&lt;/span>&lt;span class="p">})&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">results&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+ &lt;div class="code-block-content relative" id="code-0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;typing&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;fastapi&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pydantic&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;BaseModel&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;price&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;tax&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.put&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&lt;/span&gt;&lt;span class="si"&gt;{item_id}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update_item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;item_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;The ID of the item to get&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ge&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;le&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;)],&lt;/span&gt; &lt;span class="c1"&gt;# Path&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;# Query&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Item&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;# body&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;results&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;item_id&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;item_id&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;q&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;item&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;results&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  
  &lt;div
- class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300">
+ class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"&gt;
  &lt;div
- class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">
+ class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200"&gt;
  Click to expand and view more
- &lt;/div>
- &lt;/div>
- &lt;/div>
-&lt;/div>
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
 
 
-&lt;script>
+&lt;script&gt;
 (function() {
  const codeId = 'code-0';
  const copyBtn = document.querySelector('.copy-code-btn[data-code-id="' + codeId + '"]');
@@ -1858,9 +1883,9 @@ But as it evolved, JavaScript became a fully independent language with its won s
  if (hasInlineLineNumbers) {
  
  const codeLines = codeElement.querySelectorAll('.cl');
- if (codeLines.length > 0) {
+ if (codeLines.length &gt; 0) {
  codeText = Array.from(codeLines)
- .map(line => {
+ .map(line =&gt; {
  const text = line.textContent || line.innerText;
  
  return text.replace(/\n+$/, '');
@@ -1896,7 +1921,7 @@ But as it evolved, JavaScript became a fully independent language with its won s
  copyBtn.classList.add('text-green-600');
 
  
- setTimeout(() => {
+ setTimeout(() =&gt; {
  copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\u0022 \/\u003e\n\u003c\/svg\u003e`;
  if (copyText) {
  copyText.textContent = 'Copy';
@@ -1920,7 +1945,7 @@ But as it evolved, JavaScript became a fully independent language with its won s
  copyText.textContent = 'Selected';
  }
 
- setTimeout(() => {
+ setTimeout(() =&gt; {
  if (copyText) {
  copyText.textContent = 'Copy';
  }
@@ -1967,19 +1992,19 @@ But as it evolved, JavaScript became a fully independent language with its won s
  if (codeElement) {
  const lines = codeElement.querySelectorAll('.line, .cl');
  const height = codeElement.offsetHeight;
- return lines.length > autoCollapseLines || height > autoCollapseHeight;
+ return lines.length &gt; autoCollapseLines || height &gt; autoCollapseHeight;
  }
 
  
  const containerHeight = codeContainer.offsetHeight;
- if (containerHeight > autoCollapseHeight) {
+ if (containerHeight &gt; autoCollapseHeight) {
  return true;
  }
 
  
  const textContent = codeContainer.textContent || codeContainer.innerText || '';
  const estimatedLines = textContent.split('\n').length;
- return estimatedLines > autoCollapseLines;
+ return estimatedLines &gt; autoCollapseLines;
  }
 
  function setCollapsed(collapsed, animate = true) {
@@ -2019,7 +2044,7 @@ But as it evolved, JavaScript became a fully independent language with its won s
  
  if (animate) {
  codeContainer.style.transition = 'max-height 0.3s ease-out';
- setTimeout(() => {
+ setTimeout(() =&gt; {
  codeContainer.style.transition = '';
  }, 300);
  }
@@ -2034,7 +2059,7 @@ But as it evolved, JavaScript became a fully independent language with its won s
 
  
  if (collapseOverlay) {
- collapseOverlay.addEventListener('click', () => {
+ collapseOverlay.addEventListener('click', () =&gt; {
  if (isCollapsed) {
  setCollapsed(false, true);
  }
@@ -2045,32 +2070,32 @@ But as it evolved, JavaScript became a fully independent language with its won s
  initCollapse();
  }
 })();
-&lt;/script>
-&lt;h4 id="multiple-body-parameters-多参数请求体">Multiple body parameters 多参数请求体&lt;/h4>
-&lt;p>在上面例子中, FastAPI 期望一个包含 &lt;code>Item&lt;/code> 属性的 JSON body, 例如&lt;/p></description></item><item><title>Git Whitelist</title><link>https://starslayerx.github.io/posts/git-whitelist/</link><pubDate>Fri, 08 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/git-whitelist/</guid><description>&lt;p>有时你开启了一个新的项目, 运行了 &lt;code>cargo init&lt;/code>、&lt;code>uv init&lt;/code> 和 &lt;code>go mod init&lt;/code>&lt;/p>
-&lt;p>这些命令创建了工作所需要的必要文件, 同时也在 &lt;code>.gitignore&lt;/code> 文件中添加了以下内容&lt;/p>
+&lt;/script&gt;
+&lt;h4 id="multiple-body-parameters-多参数请求体"&gt;Multiple body parameters 多参数请求体&lt;/h4&gt;
+&lt;p&gt;在上面例子中, FastAPI 期望一个包含 &lt;code&gt;Item&lt;/code&gt; 属性的 JSON body, 例如&lt;/p&gt;</description></item><item><title>Git Whitelist</title><link>https://starslayerx.github.io/posts/git-whitelist/</link><pubDate>Fri, 08 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/git-whitelist/</guid><description>&lt;p&gt;有时你开启了一个新的项目, 运行了 &lt;code&gt;cargo init&lt;/code&gt;、&lt;code&gt;uv init&lt;/code&gt; 和 &lt;code&gt;go mod init&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;这些命令创建了工作所需要的必要文件, 同时也在 &lt;code&gt;.gitignore&lt;/code&gt; 文件中添加了以下内容&lt;/p&gt;
 &lt;div
- class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md">
+ class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"&gt;
  
  &lt;div
- class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3">
+ class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"&gt;
  
- &lt;div class="flex items-center gap-2">
- &lt;div class="text-muted-foreground flex-shrink-0">
+ &lt;div class="flex items-center gap-2"&gt;
+ &lt;div class="text-muted-foreground flex-shrink-0"&gt;
  
  &lt;svg class="h-4 w-4"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-&lt;/svg>
- &lt;/div>
- &lt;span class="text-muted-foreground text-sm font-medium">
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /&gt;
+&lt;/svg&gt;
+ &lt;/div&gt;
+ &lt;span class="text-muted-foreground text-sm font-medium"&gt;
  PLAINTEXT
- &lt;/span>
- &lt;/div>
+ &lt;/span&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="flex items-center gap-2">
+ &lt;div class="flex items-center gap-2"&gt;
  &lt;button
  class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
@@ -2080,56 +2105,56 @@ But as it evolved, JavaScript became a fully independent language with its won s
  data-auto-collapse-height="400"
  data-collapsed-height="120"
  title="Collapse"
- aria-label="Collapse">
- &lt;span class="collapse-icon">
+ aria-label="Collapse"&gt;
+ &lt;span class="collapse-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/>&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/&gt;&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="collapse-text hidden sm:inline"
- >Collapse&lt;/span
- >
- &lt;/button>
+ &gt;Collapse&lt;/span
+ &gt;
+ &lt;/button&gt;
  &lt;button
  class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
  title="Copy"
- aria-label="Copy">
- &lt;span class="copy-icon">
+ aria-label="Copy"&gt;
+ &lt;span class="copy-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;
+&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="copy-text hidden sm:inline"
- >Copy&lt;/span
- >
- &lt;/button>
- &lt;/div>
- &lt;/div>
+ &gt;Copy&lt;/span
+ &gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="code-block-content relative" id="code-0">
- &lt;pre tabindex="0">&lt;code>target
+ &lt;div class="code-block-content relative" id="code-0"&gt;
+ &lt;pre tabindex="0"&gt;&lt;code&gt;target
 __pycache__
-bin&lt;/code>&lt;/pre>
+bin&lt;/code&gt;&lt;/pre&gt;
  
  &lt;div
- class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300">
+ class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"&gt;
  &lt;div
- class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">
+ class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200"&gt;
  Click to expand and view more
- &lt;/div>
- &lt;/div>
- &lt;/div>
-&lt;/div>
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
 
 
-&lt;script>
+&lt;script&gt;
 (function() {
  const codeId = 'code-0';
  const copyBtn = document.querySelector('.copy-code-btn[data-code-id="' + codeId + '"]');
@@ -2161,9 +2186,9 @@ bin&lt;/code>&lt;/pre>
  if (hasInlineLineNumbers) {
  
  const codeLines = codeElement.querySelectorAll('.cl');
- if (codeLines.length > 0) {
+ if (codeLines.length &gt; 0) {
  codeText = Array.from(codeLines)
- .map(line => {
+ .map(line =&gt; {
  const text = line.textContent || line.innerText;
  
  return text.replace(/\n+$/, '');
@@ -2199,7 +2224,7 @@ bin&lt;/code>&lt;/pre>
  copyBtn.classList.add('text-green-600');
 
  
- setTimeout(() => {
+ setTimeout(() =&gt; {
  copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\u0022 \/\u003e\n\u003c\/svg\u003e`;
  if (copyText) {
  copyText.textContent = 'Copy';
@@ -2223,7 +2248,7 @@ bin&lt;/code>&lt;/pre>
  copyText.textContent = 'Selected';
  }
 
- setTimeout(() => {
+ setTimeout(() =&gt; {
  if (copyText) {
  copyText.textContent = 'Copy';
  }
@@ -2270,19 +2295,19 @@ bin&lt;/code>&lt;/pre>
  if (codeElement) {
  const lines = codeElement.querySelectorAll('.line, .cl');
  const height = codeElement.offsetHeight;
- return lines.length > autoCollapseLines || height > autoCollapseHeight;
+ return lines.length &gt; autoCollapseLines || height &gt; autoCollapseHeight;
  }
 
  
  const containerHeight = codeContainer.offsetHeight;
- if (containerHeight > autoCollapseHeight) {
+ if (containerHeight &gt; autoCollapseHeight) {
  return true;
  }
 
  
  const textContent = codeContainer.textContent || codeContainer.innerText || '';
  const estimatedLines = textContent.split('\n').length;
- return estimatedLines > autoCollapseLines;
+ return estimatedLines &gt; autoCollapseLines;
  }
 
  function setCollapsed(collapsed, animate = true) {
@@ -2322,7 +2347,7 @@ bin&lt;/code>&lt;/pre>
  
  if (animate) {
  codeContainer.style.transition = 'max-height 0.3s ease-out';
- setTimeout(() => {
+ setTimeout(() =&gt; {
  codeContainer.style.transition = '';
  }, 300);
  }
@@ -2337,7 +2362,7 @@ bin&lt;/code>&lt;/pre>
 
  
  if (collapseOverlay) {
- collapseOverlay.addEventListener('click', () => {
+ collapseOverlay.addEventListener('click', () =&gt; {
  if (isCollapsed) {
  setCollapsed(false, true);
  }
@@ -2348,32 +2373,32 @@ bin&lt;/code>&lt;/pre>
  initCollapse();
  }
 })();
-&lt;/script>
-&lt;p>一切都很顺利, 你继续开发新功能, 等到时机成熟时就将项目发布到了 Git 托管平台上&lt;/p></description></item><item><title>FastAPI Parameters and Validations</title><link>https://starslayerx.github.io/posts/fastapi-parameters-and-validations/</link><pubDate>Thu, 07 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-parameters-and-validations/</guid><description>&lt;p>这篇文章介绍 FastAPI 中的参数验证功能&lt;/p>
-&lt;h3 id="query-parameters-and-string-validations">Query Parameters and String Validations&lt;/h3>
-&lt;p>FastAPI 允许为参数声明额外的信息和验证规则&lt;/p>
+&lt;/script&gt;
+&lt;p&gt;一切都很顺利, 你继续开发新功能, 等到时机成熟时就将项目发布到了 Git 托管平台上&lt;/p&gt;</description></item><item><title>FastAPI Parameters and Validations</title><link>https://starslayerx.github.io/posts/fastapi-parameters-and-validations/</link><pubDate>Thu, 07 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-parameters-and-validations/</guid><description>&lt;p&gt;这篇文章介绍 FastAPI 中的参数验证功能&lt;/p&gt;
+&lt;h3 id="query-parameters-and-string-validations"&gt;Query Parameters and String Validations&lt;/h3&gt;
+&lt;p&gt;FastAPI 允许为参数声明额外的信息和验证规则&lt;/p&gt;
 &lt;div
- class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md">
+ class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"&gt;
  
  &lt;div
- class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3">
+ class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"&gt;
  
- &lt;div class="flex items-center gap-2">
- &lt;div class="text-muted-foreground flex-shrink-0">
+ &lt;div class="flex items-center gap-2"&gt;
+ &lt;div class="text-muted-foreground flex-shrink-0"&gt;
  
  &lt;svg class="h-4 w-4"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-&lt;/svg>
- &lt;/div>
- &lt;span class="text-muted-foreground text-sm font-medium">
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /&gt;
+&lt;/svg&gt;
+ &lt;/div&gt;
+ &lt;span class="text-muted-foreground text-sm font-medium"&gt;
  PYTHON
- &lt;/span>
- &lt;/div>
+ &lt;/span&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="flex items-center gap-2">
+ &lt;div class="flex items-center gap-2"&gt;
  &lt;button
  class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
@@ -2383,63 +2408,63 @@ bin&lt;/code>&lt;/pre>
  data-auto-collapse-height="400"
  data-collapsed-height="120"
  title="Collapse"
- aria-label="Collapse">
- &lt;span class="collapse-icon">
+ aria-label="Collapse"&gt;
+ &lt;span class="collapse-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/>&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/&gt;&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="collapse-text hidden sm:inline"
- >Collapse&lt;/span
- >
- &lt;/button>
+ &gt;Collapse&lt;/span
+ &gt;
+ &lt;/button&gt;
  &lt;button
  class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
  title="Copy"
- aria-label="Copy">
- &lt;span class="copy-icon">
+ aria-label="Copy"&gt;
+ &lt;span class="copy-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;
+&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="copy-text hidden sm:inline"
- >Copy&lt;/span
- >
- &lt;/button>
- &lt;/div>
- &lt;/div>
+ &gt;Copy&lt;/span
+ &gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="code-block-content relative" id="code-0">
- &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">fastapi&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">FastAPI&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">app&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">FastAPI&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@app.get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;/items/&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">async&lt;/span> &lt;span class="k">def&lt;/span> &lt;span class="nf">read_items&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">q&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">str&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="kc">None&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">None&lt;/span>&lt;span class="p">):&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">results&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="s2">&amp;#34;items&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[{&lt;/span>&lt;span class="s2">&amp;#34;item_id&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Foo&amp;#34;&lt;/span>&lt;span class="p">},&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="s2">&amp;#34;item_id&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Bar&amp;#34;&lt;/span>&lt;span class="p">}]}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">q&lt;/span>&lt;span class="p">:&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">results&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">update&lt;/span>&lt;span class="p">({&lt;/span>&lt;span class="s2">&amp;#34;q&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">q&lt;/span>&lt;span class="p">})&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">results&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+ &lt;div class="code-block-content relative" id="code-0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;fastapi&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_items&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;results&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;items&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;item_id&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Foo&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;item_id&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Bar&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;}]}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;q&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;results&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  
  &lt;div
- class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300">
+ class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"&gt;
  &lt;div
- class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">
+ class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200"&gt;
  Click to expand and view more
- &lt;/div>
- &lt;/div>
- &lt;/div>
-&lt;/div>
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
 
 
-&lt;script>
+&lt;script&gt;
 (function() {
  const codeId = 'code-0';
  const copyBtn = document.querySelector('.copy-code-btn[data-code-id="' + codeId + '"]');
@@ -2471,9 +2496,9 @@ bin&lt;/code>&lt;/pre>
  if (hasInlineLineNumbers) {
  
  const codeLines = codeElement.querySelectorAll('.cl');
- if (codeLines.length > 0) {
+ if (codeLines.length &gt; 0) {
  codeText = Array.from(codeLines)
- .map(line => {
+ .map(line =&gt; {
  const text = line.textContent || line.innerText;
  
  return text.replace(/\n+$/, '');
@@ -2509,7 +2534,7 @@ bin&lt;/code>&lt;/pre>
  copyBtn.classList.add('text-green-600');
 
  
- setTimeout(() => {
+ setTimeout(() =&gt; {
  copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\u0022 \/\u003e\n\u003c\/svg\u003e`;
  if (copyText) {
  copyText.textContent = 'Copy';
@@ -2533,7 +2558,7 @@ bin&lt;/code>&lt;/pre>
  copyText.textContent = 'Selected';
  }
 
- setTimeout(() => {
+ setTimeout(() =&gt; {
  if (copyText) {
  copyText.textContent = 'Copy';
  }
@@ -2580,19 +2605,19 @@ bin&lt;/code>&lt;/pre>
  if (codeElement) {
  const lines = codeElement.querySelectorAll('.line, .cl');
  const height = codeElement.offsetHeight;
- return lines.length > autoCollapseLines || height > autoCollapseHeight;
+ return lines.length &gt; autoCollapseLines || height &gt; autoCollapseHeight;
  }
 
  
  const containerHeight = codeContainer.offsetHeight;
- if (containerHeight > autoCollapseHeight) {
+ if (containerHeight &gt; autoCollapseHeight) {
  return true;
  }
 
  
  const textContent = codeContainer.textContent || codeContainer.innerText || '';
  const estimatedLines = textContent.split('\n').length;
- return estimatedLines > autoCollapseLines;
+ return estimatedLines &gt; autoCollapseLines;
  }
 
  function setCollapsed(collapsed, animate = true) {
@@ -2632,7 +2657,7 @@ bin&lt;/code>&lt;/pre>
  
  if (animate) {
  codeContainer.style.transition = 'max-height 0.3s ease-out';
- setTimeout(() => {
+ setTimeout(() =&gt; {
  codeContainer.style.transition = '';
  }, 300);
  }
@@ -2647,7 +2672,7 @@ bin&lt;/code>&lt;/pre>
 
  
  if (collapseOverlay) {
- collapseOverlay.addEventListener('click', () => {
+ collapseOverlay.addEventListener('click', () =&gt; {
  if (isCollapsed) {
  setCollapsed(false, true);
  }
@@ -2658,32 +2683,32 @@ bin&lt;/code>&lt;/pre>
  initCollapse();
  }
 })();
-&lt;/script>
-&lt;p>&lt;code>q&lt;/code> 是类型为 &lt;code>str | None&lt;/code> 的查询参数, 这意味着它可以是字符串, 也可以是 &lt;code>None&lt;/code>. 其默认值是 &lt;code>None&lt;/code>, 因此 FastAPI 会识别它为“可选参数”&lt;/p></description></item><item><title>FastAPI Parameters</title><link>https://starslayerx.github.io/posts/fastapi-parameters/</link><pubDate>Wed, 06 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-parameters/</guid><description>&lt;p>FastAPI 是一个现代、快速（高性能）的 Python Web 框架, 它自动处理参数的解析、验证和文档生成&lt;/p>
-&lt;p>本文将介绍 FastAPI 中三类最常用的参数: &lt;strong>路径参数 (Path Parameters)&lt;/strong>、&lt;strong>查询参数 (Query Parameters)&lt;/strong> 和 &lt;strong>请求体(Request Body)&lt;/strong> 的用法与原理&lt;/p></description></item><item><title>Python Tricks</title><link>https://starslayerx.github.io/posts/python-tricks/</link><pubDate>Tue, 05 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-tricks/</guid><description>&lt;h3 id="1-the-self-replicating-trick">1. The Self-Replicating Trick&lt;/h3>
-&lt;p>将一个含有空列表的列表乘5, 得到有5个空列表的列表&lt;/p>
+&lt;/script&gt;
+&lt;p&gt;&lt;code&gt;q&lt;/code&gt; 是类型为 &lt;code&gt;str | None&lt;/code&gt; 的查询参数, 这意味着它可以是字符串, 也可以是 &lt;code&gt;None&lt;/code&gt;. 其默认值是 &lt;code&gt;None&lt;/code&gt;, 因此 FastAPI 会识别它为“可选参数”&lt;/p&gt;</description></item><item><title>FastAPI Parameters</title><link>https://starslayerx.github.io/posts/fastapi-parameters/</link><pubDate>Wed, 06 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-parameters/</guid><description>&lt;p&gt;FastAPI 是一个现代、快速（高性能）的 Python Web 框架, 它自动处理参数的解析、验证和文档生成&lt;/p&gt;
+&lt;p&gt;本文将介绍 FastAPI 中三类最常用的参数: &lt;strong&gt;路径参数 (Path Parameters)&lt;/strong&gt;、&lt;strong&gt;查询参数 (Query Parameters)&lt;/strong&gt; 和 &lt;strong&gt;请求体(Request Body)&lt;/strong&gt; 的用法与原理&lt;/p&gt;</description></item><item><title>Python Tricks</title><link>https://starslayerx.github.io/posts/python-tricks/</link><pubDate>Tue, 05 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-tricks/</guid><description>&lt;h3 id="1-the-self-replicating-trick"&gt;1. The Self-Replicating Trick&lt;/h3&gt;
+&lt;p&gt;将一个含有空列表的列表乘5, 得到有5个空列表的列表&lt;/p&gt;
 &lt;div
- class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md">
+ class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"&gt;
  
  &lt;div
- class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3">
+ class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"&gt;
  
- &lt;div class="flex items-center gap-2">
- &lt;div class="text-muted-foreground flex-shrink-0">
+ &lt;div class="flex items-center gap-2"&gt;
+ &lt;div class="text-muted-foreground flex-shrink-0"&gt;
  
  &lt;svg class="h-4 w-4"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-&lt;/svg>
- &lt;/div>
- &lt;span class="text-muted-foreground text-sm font-medium">
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /&gt;
+&lt;/svg&gt;
+ &lt;/div&gt;
+ &lt;span class="text-muted-foreground text-sm font-medium"&gt;
  PYTHON
- &lt;/span>
- &lt;/div>
+ &lt;/span&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="flex items-center gap-2">
+ &lt;div class="flex items-center gap-2"&gt;
  &lt;button
  class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
@@ -2693,55 +2718,55 @@ bin&lt;/code>&lt;/pre>
  data-auto-collapse-height="400"
  data-collapsed-height="120"
  title="Collapse"
- aria-label="Collapse">
- &lt;span class="collapse-icon">
+ aria-label="Collapse"&gt;
+ &lt;span class="collapse-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/>&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/&gt;&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="collapse-text hidden sm:inline"
- >Collapse&lt;/span
- >
- &lt;/button>
+ &gt;Collapse&lt;/span
+ &gt;
+ &lt;/button&gt;
  &lt;button
  class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
  title="Copy"
- aria-label="Copy">
- &lt;span class="copy-icon">
+ aria-label="Copy"&gt;
+ &lt;span class="copy-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;
+&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="copy-text hidden sm:inline"
- >Copy&lt;/span
- >
- &lt;/button>
- &lt;/div>
- &lt;/div>
+ &gt;Copy&lt;/span
+ &gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="code-block-content relative" id="code-0">
- &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[[]]&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="mi">5&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">x&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+ &lt;div class="code-block-content relative" id="code-0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[[]]&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  
  &lt;div
- class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300">
+ class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"&gt;
  &lt;div
- class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">
+ class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200"&gt;
  Click to expand and view more
- &lt;/div>
- &lt;/div>
- &lt;/div>
-&lt;/div>
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
 
 
-&lt;script>
+&lt;script&gt;
 (function() {
  const codeId = 'code-0';
  const copyBtn = document.querySelector('.copy-code-btn[data-code-id="' + codeId + '"]');
@@ -2773,9 +2798,9 @@ bin&lt;/code>&lt;/pre>
  if (hasInlineLineNumbers) {
  
  const codeLines = codeElement.querySelectorAll('.cl');
- if (codeLines.length > 0) {
+ if (codeLines.length &gt; 0) {
  codeText = Array.from(codeLines)
- .map(line => {
+ .map(line =&gt; {
  const text = line.textContent || line.innerText;
  
  return text.replace(/\n+$/, '');
@@ -2811,7 +2836,7 @@ bin&lt;/code>&lt;/pre>
  copyBtn.classList.add('text-green-600');
 
  
- setTimeout(() => {
+ setTimeout(() =&gt; {
  copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\u0022 \/\u003e\n\u003c\/svg\u003e`;
  if (copyText) {
  copyText.textContent = 'Copy';
@@ -2835,7 +2860,7 @@ bin&lt;/code>&lt;/pre>
  copyText.textContent = 'Selected';
  }
 
- setTimeout(() => {
+ setTimeout(() =&gt; {
  if (copyText) {
  copyText.textContent = 'Copy';
  }
@@ -2882,19 +2907,19 @@ bin&lt;/code>&lt;/pre>
  if (codeElement) {
  const lines = codeElement.querySelectorAll('.line, .cl');
  const height = codeElement.offsetHeight;
- return lines.length > autoCollapseLines || height > autoCollapseHeight;
+ return lines.length &gt; autoCollapseLines || height &gt; autoCollapseHeight;
  }
 
  
  const containerHeight = codeContainer.offsetHeight;
- if (containerHeight > autoCollapseHeight) {
+ if (containerHeight &gt; autoCollapseHeight) {
  return true;
  }
 
  
  const textContent = codeContainer.textContent || codeContainer.innerText || '';
  const estimatedLines = textContent.split('\n').length;
- return estimatedLines > autoCollapseLines;
+ return estimatedLines &gt; autoCollapseLines;
  }
 
  function setCollapsed(collapsed, animate = true) {
@@ -2934,7 +2959,7 @@ bin&lt;/code>&lt;/pre>
  
  if (animate) {
  codeContainer.style.transition = 'max-height 0.3s ease-out';
- setTimeout(() => {
+ setTimeout(() =&gt; {
  codeContainer.style.transition = '';
  }, 300);
  }
@@ -2949,7 +2974,7 @@ bin&lt;/code>&lt;/pre>
 
  
  if (collapseOverlay) {
- collapseOverlay.addEventListener('click', () => {
+ collapseOverlay.addEventListener('click', () =&gt; {
  if (isCollapsed) {
  setCollapsed(false, true);
  }
@@ -2960,72 +2985,72 @@ bin&lt;/code>&lt;/pre>
  initCollapse();
  }
 })();
-&lt;/script>
+&lt;/script&gt;
 
  &lt;blockquote
- class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1">
- &lt;div class="prose prose-sm max-w-none">
- &lt;p>[[], [], [], [], []]&lt;/p></description></item><item><title>Executing arbitrary Python code from a comment</title><link>https://starslayerx.github.io/posts/executing-arbitrary-python-code-from-a-comment/</link><pubDate>Mon, 04 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/executing-arbitrary-python-code-from-a-comment/</guid><description>&lt;p>通过注释执行任意Python代码&lt;/p>
-&lt;h3 id="问题描述">问题描述&lt;/h3>
-&lt;p>Q: 只能控制一行的.py代码中注释的内容(\n\r均会被替换为空字符), 如何执行任意代码?&lt;br>
-A: 在注释#中, 构造一个.zip 文件, python 会将该内容当成一个zip包执行, 触发任意代码执行&lt;/p></description></item><item><title>How FastAPI Works</title><link>https://starslayerx.github.io/posts/how-fastapi-works/</link><pubDate>Sun, 03 Aug 2025 08:30:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/how-fastapi-works/</guid><description>&lt;p>FastAPI 的工作原理: 从 routing 到 lifecycle 以及在现实中的使用&lt;/p>
-&lt;h3 id="fastapi">FastAPI&lt;/h3>
-&lt;p>FastAPI 是一个现代的 Python Web 框架, 注重&lt;strong>高性能&lt;/strong>和&lt;strong>开发效率&lt;/strong>. 旨在帮助开发者编写结构清晰、可靠的API, 同时尽量减少样板代码 (boilerplate)&lt;/p></description></item><item><title>"Chaos Enginnering" In Partice</title><link>https://starslayerx.github.io/posts/chaos-enginnering-in-partice/</link><pubDate>Sat, 02 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/chaos-enginnering-in-partice/</guid><description>&lt;p>记录一个小故事 XD&lt;/p>
-&lt;h3 id="混沌工程实践">“混沌工程”实践&lt;/h3>
-&lt;p>项目延期，开发说时间不够干不完
-老板：“不够就招人”&lt;/p>
-&lt;p>今天偶然听到旁边同事给新来的员工做code review：&lt;/p>
-&lt;ul>
-&lt;li>Q：你这个代码不要这样写，因为&amp;hellip;&amp;hellip;&lt;/li>
-&lt;li>A：哦，懂了&lt;/li>
-&lt;li>Q：唉？你这个 &lt;code>.idea/&lt;/code> 文件是什么？&lt;/li>
-&lt;li>A：啊？我也不知道&lt;/li>
-&lt;li>我：不是???(一脸震惊)&lt;/li>
-&lt;/ul>
-&lt;p>理想：Plan Do Check Act&lt;/p></description></item><item><title>Blaugust</title><link>https://starslayerx.github.io/posts/blaugust/</link><pubDate>Fri, 01 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/blaugust/</guid><description>&lt;p>🎈 Oh hello, August! It&amp;rsquo;s time for Blaugust.&lt;/p>
-&lt;h3 id="blaugust-begins-writing-as-a-develpoer-habit">Blaugust Begins: Writing as a Develpoer Habit&lt;/h3>
-&lt;p>This year, I&amp;rsquo;m joining &lt;strong>Blaugust&lt;/strong> - a month-long blogging challenge that encourage consistent writing throught August.
-For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orgainzing thoughts, documenting ideas, and creating term references.&lt;/p>
-&lt;h3 id="what-i-plan-to-write">What I Plan to Write&lt;/h3>
-&lt;p>Here is what I aim to cover this month:&lt;/p>
-&lt;ul>
-&lt;li>Daily dev partices: tools, logging, project structure patterns&lt;/li>
-&lt;li>Python ecosystem: FastAPI, Pydantic, Langchain, Pytest and more&lt;/li>
-&lt;li>AI project logs: buliding AI agents and orchestration workflows&lt;/li>
-&lt;li>Architecture notes: async patterns, micorservice, data flow&lt;/li>
-&lt;li>Learning notes &amp;amp; translation of blogs: deep dive into code and quality tech atricles&lt;/li>
-&lt;/ul>
-&lt;p>I&amp;rsquo;m not necessarily writing one post per day - some days I might write multiple posts in advance - but the goal is to publish daily with a focus on consistency, reusability, and value.&lt;/p></description></item><item><title>Dive into DeepLearning - 02 - Preliminaries</title><link>https://starslayerx.github.io/posts/dive-into-deeplearning-02-preliminaries/</link><pubDate>Sun, 21 Mar 2021 05:20:08 +0800</pubDate><guid>https://starslayerx.github.io/posts/dive-into-deeplearning-02-preliminaries/</guid><description>&lt;ul>
-&lt;li>Course Note: d2l-video-05 - 线性代数&lt;/li>
-&lt;li>Jupyter Notebook: chapter_preliminaries/linear-algebra.ipynb&lt;/li>
-&lt;/ul>
-&lt;p>预备知识中 Liner Algebra 的部分&lt;/p>
-&lt;h3 id="线性代数">线性代数&lt;/h3>
-&lt;ul>
-&lt;li>
-&lt;p>Scalars 标量: 指只有一个元素的张量 tensors&lt;/p>
+ class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"&gt;
+ &lt;div class="prose prose-sm max-w-none"&gt;
+ &lt;p&gt;[[], [], [], [], []]&lt;/p&gt;</description></item><item><title>Executing arbitrary Python code from a comment</title><link>https://starslayerx.github.io/posts/executing-arbitrary-python-code-from-a-comment/</link><pubDate>Mon, 04 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/executing-arbitrary-python-code-from-a-comment/</guid><description>&lt;p&gt;通过注释执行任意Python代码&lt;/p&gt;
+&lt;h3 id="问题描述"&gt;问题描述&lt;/h3&gt;
+&lt;p&gt;Q: 只能控制一行的.py代码中注释的内容(\n\r均会被替换为空字符), 如何执行任意代码?&lt;br&gt;
+A: 在注释#中, 构造一个.zip 文件, python 会将该内容当成一个zip包执行, 触发任意代码执行&lt;/p&gt;</description></item><item><title>How FastAPI Works</title><link>https://starslayerx.github.io/posts/how-fastapi-works/</link><pubDate>Sun, 03 Aug 2025 08:30:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/how-fastapi-works/</guid><description>&lt;p&gt;FastAPI 的工作原理: 从 routing 到 lifecycle 以及在现实中的使用&lt;/p&gt;
+&lt;h3 id="fastapi"&gt;FastAPI&lt;/h3&gt;
+&lt;p&gt;FastAPI 是一个现代的 Python Web 框架, 注重&lt;strong&gt;高性能&lt;/strong&gt;和&lt;strong&gt;开发效率&lt;/strong&gt;. 旨在帮助开发者编写结构清晰、可靠的API, 同时尽量减少样板代码 (boilerplate)&lt;/p&gt;</description></item><item><title>"Chaos Enginnering" In Partice</title><link>https://starslayerx.github.io/posts/chaos-enginnering-in-partice/</link><pubDate>Sat, 02 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/chaos-enginnering-in-partice/</guid><description>&lt;p&gt;记录一个小故事 XD&lt;/p&gt;
+&lt;h3 id="混沌工程实践"&gt;“混沌工程”实践&lt;/h3&gt;
+&lt;p&gt;项目延期，开发说时间不够干不完
+老板：“不够就招人”&lt;/p&gt;
+&lt;p&gt;今天偶然听到旁边同事给新来的员工做code review：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Q：你这个代码不要这样写，因为&amp;hellip;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;A：哦，懂了&lt;/li&gt;
+&lt;li&gt;Q：唉？你这个 &lt;code&gt;.idea/&lt;/code&gt; 文件是什么？&lt;/li&gt;
+&lt;li&gt;A：啊？我也不知道&lt;/li&gt;
+&lt;li&gt;我：不是???(一脸震惊)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;理想：Plan Do Check Act&lt;/p&gt;</description></item><item><title>Blaugust</title><link>https://starslayerx.github.io/posts/blaugust/</link><pubDate>Fri, 01 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/blaugust/</guid><description>&lt;p&gt;🎈 Oh hello, August! It&amp;rsquo;s time for Blaugust.&lt;/p&gt;
+&lt;h3 id="blaugust-begins-writing-as-a-develpoer-habit"&gt;Blaugust Begins: Writing as a Develpoer Habit&lt;/h3&gt;
+&lt;p&gt;This year, I&amp;rsquo;m joining &lt;strong&gt;Blaugust&lt;/strong&gt; - a month-long blogging challenge that encourage consistent writing throught August.
+For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orgainzing thoughts, documenting ideas, and creating term references.&lt;/p&gt;
+&lt;h3 id="what-i-plan-to-write"&gt;What I Plan to Write&lt;/h3&gt;
+&lt;p&gt;Here is what I aim to cover this month:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Daily dev partices: tools, logging, project structure patterns&lt;/li&gt;
+&lt;li&gt;Python ecosystem: FastAPI, Pydantic, Langchain, Pytest and more&lt;/li&gt;
+&lt;li&gt;AI project logs: buliding AI agents and orchestration workflows&lt;/li&gt;
+&lt;li&gt;Architecture notes: async patterns, micorservice, data flow&lt;/li&gt;
+&lt;li&gt;Learning notes &amp;amp; translation of blogs: deep dive into code and quality tech atricles&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I&amp;rsquo;m not necessarily writing one post per day - some days I might write multiple posts in advance - but the goal is to publish daily with a focus on consistency, reusability, and value.&lt;/p&gt;</description></item><item><title>Dive into DeepLearning - 02 - Preliminaries</title><link>https://starslayerx.github.io/posts/dive-into-deeplearning-02-preliminaries/</link><pubDate>Sun, 21 Mar 2021 05:20:08 +0800</pubDate><guid>https://starslayerx.github.io/posts/dive-into-deeplearning-02-preliminaries/</guid><description>&lt;ul&gt;
+&lt;li&gt;Course Note: d2l-video-05 - 线性代数&lt;/li&gt;
+&lt;li&gt;Jupyter Notebook: chapter_preliminaries/linear-algebra.ipynb&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;预备知识中 Liner Algebra 的部分&lt;/p&gt;
+&lt;h3 id="线性代数"&gt;线性代数&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Scalars 标量: 指只有一个元素的张量 tensors&lt;/p&gt;
 &lt;div
- class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md">
+ class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"&gt;
  
  &lt;div
- class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3">
+ class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"&gt;
  
- &lt;div class="flex items-center gap-2">
- &lt;div class="text-muted-foreground flex-shrink-0">
+ &lt;div class="flex items-center gap-2"&gt;
+ &lt;div class="text-muted-foreground flex-shrink-0"&gt;
  
  &lt;svg class="h-4 w-4"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-&lt;/svg>
- &lt;/div>
- &lt;span class="text-muted-foreground text-sm font-medium">
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /&gt;
+&lt;/svg&gt;
+ &lt;/div&gt;
+ &lt;span class="text-muted-foreground text-sm font-medium"&gt;
  PYTHON
- &lt;/span>
- &lt;/div>
+ &lt;/span&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="flex items-center gap-2">
+ &lt;div class="flex items-center gap-2"&gt;
  &lt;button
  class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
@@ -3035,56 +3060,56 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
  data-auto-collapse-height="400"
  data-collapsed-height="120"
  title="Collapse"
- aria-label="Collapse">
- &lt;span class="collapse-icon">
+ aria-label="Collapse"&gt;
+ &lt;span class="collapse-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/>&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/&gt;&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="collapse-text hidden sm:inline"
- >Collapse&lt;/span
- >
- &lt;/button>
+ &gt;Collapse&lt;/span
+ &gt;
+ &lt;/button&gt;
  &lt;button
  class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
  title="Copy"
- aria-label="Copy">
- &lt;span class="copy-icon">
+ aria-label="Copy"&gt;
+ &lt;span class="copy-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;
+&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="copy-text hidden sm:inline"
- >Copy&lt;/span
- >
- &lt;/button>
- &lt;/div>
- &lt;/div>
+ &gt;Copy&lt;/span
+ &gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="code-block-content relative" id="code-0">
- &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">torch&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tensor&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mf">3.0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># scalar&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">y&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tensor&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mf">2.0&lt;/span>&lt;span class="p">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+ &lt;div class="code-block-content relative" id="code-0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;torch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;3.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# scalar&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;2.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
  
  &lt;div
- class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300">
+ class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"&gt;
  &lt;div
- class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">
+ class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200"&gt;
  Click to expand and view more
- &lt;/div>
- &lt;/div>
- &lt;/div>
-&lt;/div>
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
 
 
-&lt;script>
+&lt;script&gt;
 (function() {
  const codeId = 'code-0';
  const copyBtn = document.querySelector('.copy-code-btn[data-code-id="' + codeId + '"]');
@@ -3116,9 +3141,9 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
  if (hasInlineLineNumbers) {
  
  const codeLines = codeElement.querySelectorAll('.cl');
- if (codeLines.length > 0) {
+ if (codeLines.length &gt; 0) {
  codeText = Array.from(codeLines)
- .map(line => {
+ .map(line =&gt; {
  const text = line.textContent || line.innerText;
  
  return text.replace(/\n+$/, '');
@@ -3154,7 +3179,7 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
  copyBtn.classList.add('text-green-600');
 
  
- setTimeout(() => {
+ setTimeout(() =&gt; {
  copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\u0022 \/\u003e\n\u003c\/svg\u003e`;
  if (copyText) {
  copyText.textContent = 'Copy';
@@ -3178,7 +3203,7 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
  copyText.textContent = 'Selected';
  }
 
- setTimeout(() => {
+ setTimeout(() =&gt; {
  if (copyText) {
  copyText.textContent = 'Copy';
  }
@@ -3225,19 +3250,19 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
  if (codeElement) {
  const lines = codeElement.querySelectorAll('.line, .cl');
  const height = codeElement.offsetHeight;
- return lines.length > autoCollapseLines || height > autoCollapseHeight;
+ return lines.length &gt; autoCollapseLines || height &gt; autoCollapseHeight;
  }
 
  
  const containerHeight = codeContainer.offsetHeight;
- if (containerHeight > autoCollapseHeight) {
+ if (containerHeight &gt; autoCollapseHeight) {
  return true;
  }
 
  
  const textContent = codeContainer.textContent || codeContainer.innerText || '';
  const estimatedLines = textContent.split('\n').length;
- return estimatedLines > autoCollapseLines;
+ return estimatedLines &gt; autoCollapseLines;
  }
 
  function setCollapsed(collapsed, animate = true) {
@@ -3277,7 +3302,7 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
  
  if (animate) {
  codeContainer.style.transition = 'max-height 0.3s ease-out';
- setTimeout(() => {
+ setTimeout(() =&gt; {
  codeContainer.style.transition = '';
  }, 300);
  }
@@ -3292,7 +3317,7 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
 
  
  if (collapseOverlay) {
- collapseOverlay.addEventListener('click', () => {
+ collapseOverlay.addEventListener('click', () =&gt; {
  if (isCollapsed) {
  setCollapsed(false, true);
  }
@@ -3303,41 +3328,41 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
  initCollapse();
  }
 })();
-&lt;/script>
-&lt;/li>
-&lt;li>
-&lt;p>Vectors 向量: 可以视作标量构成的列表&lt;/p></description></item><item><title>Dive into DeepLearning - 01 - Preliminaries</title><link>https://starslayerx.github.io/posts/dive-into-deeplearning-01-preliminaries/</link><pubDate>Sun, 21 Mar 2021 05:05:25 +0800</pubDate><guid>https://starslayerx.github.io/posts/dive-into-deeplearning-01-preliminaries/</guid><description>&lt;ul>
-&lt;li>Course Note: d2l-video-04 - 数据操作+数据预处理&lt;/li>
-&lt;li>Jupyter Notebook: chapter_preliminaries/pandas.ipynb&lt;/li>
-&lt;/ul>
-&lt;p>预备知识中 Data Manipulation 和 Data Preprocessing 的部分&lt;/p>
-&lt;h3 id="介绍">介绍&lt;/h3>
-&lt;p>&lt;strong>N 纬数组介绍&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>0-d (标量)&lt;/p>
+&lt;/script&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Vectors 向量: 可以视作标量构成的列表&lt;/p&gt;</description></item><item><title>Dive into DeepLearning - 01 - Preliminaries</title><link>https://starslayerx.github.io/posts/dive-into-deeplearning-01-preliminaries/</link><pubDate>Sun, 21 Mar 2021 05:05:25 +0800</pubDate><guid>https://starslayerx.github.io/posts/dive-into-deeplearning-01-preliminaries/</guid><description>&lt;ul&gt;
+&lt;li&gt;Course Note: d2l-video-04 - 数据操作+数据预处理&lt;/li&gt;
+&lt;li&gt;Jupyter Notebook: chapter_preliminaries/pandas.ipynb&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;预备知识中 Data Manipulation 和 Data Preprocessing 的部分&lt;/p&gt;
+&lt;h3 id="介绍"&gt;介绍&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;N 纬数组介绍&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;0-d (标量)&lt;/p&gt;
 &lt;div
- class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md">
+ class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"&gt;
  
  &lt;div
- class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3">
+ class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"&gt;
  
- &lt;div class="flex items-center gap-2">
- &lt;div class="text-muted-foreground flex-shrink-0">
+ &lt;div class="flex items-center gap-2"&gt;
+ &lt;div class="text-muted-foreground flex-shrink-0"&gt;
  
  &lt;svg class="h-4 w-4"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-&lt;/svg>
- &lt;/div>
- &lt;span class="text-muted-foreground text-sm font-medium">
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /&gt;
+&lt;/svg&gt;
+ &lt;/div&gt;
+ &lt;span class="text-muted-foreground text-sm font-medium"&gt;
  PLAINTEXT
- &lt;/span>
- &lt;/div>
+ &lt;/span&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="flex items-center gap-2">
+ &lt;div class="flex items-center gap-2"&gt;
  &lt;button
  class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
@@ -3347,54 +3372,54 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
  data-auto-collapse-height="400"
  data-collapsed-height="120"
  title="Collapse"
- aria-label="Collapse">
- &lt;span class="collapse-icon">
+ aria-label="Collapse"&gt;
+ &lt;span class="collapse-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/>&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/&gt;&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="collapse-text hidden sm:inline"
- >Collapse&lt;/span
- >
- &lt;/button>
+ &gt;Collapse&lt;/span
+ &gt;
+ &lt;/button&gt;
  &lt;button
  class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
  data-code-id="code-0"
  title="Copy"
- aria-label="Copy">
- &lt;span class="copy-icon">
+ aria-label="Copy"&gt;
+ &lt;span class="copy-icon"&gt;
  
  &lt;svg class="h-3 w-3"
  fill="none"
  stroke="currentColor"
- viewBox="0 0 24 24">&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-&lt;/svg>
- &lt;/span>
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;
+&lt;/svg&gt;
+ &lt;/span&gt;
  &lt;span class="copy-text hidden sm:inline"
- >Copy&lt;/span
- >
- &lt;/button>
- &lt;/div>
- &lt;/div>
+ &gt;Copy&lt;/span
+ &gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
 
  
- &lt;div class="code-block-content relative" id="code-0">
- &lt;pre tabindex="0">&lt;code>1.0 &lt;/code>&lt;/pre>
+ &lt;div class="code-block-content relative" id="code-0"&gt;
+ &lt;pre tabindex="0"&gt;&lt;code&gt;1.0 &lt;/code&gt;&lt;/pre&gt;
  
  &lt;div
- class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300">
+ class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"&gt;
  &lt;div
- class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">
+ class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200"&gt;
  Click to expand and view more
- &lt;/div>
- &lt;/div>
- &lt;/div>
-&lt;/div>
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
 
 
-&lt;script>
+&lt;script&gt;
 (function() {
  const codeId = 'code-0';
  const copyBtn = document.querySelector('.copy-code-btn[data-code-id="' + codeId + '"]');
@@ -3426,9 +3451,9 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
  if (hasInlineLineNumbers) {
  
  const codeLines = codeElement.querySelectorAll('.cl');
- if (codeLines.length > 0) {
+ if (codeLines.length &gt; 0) {
  codeText = Array.from(codeLines)
- .map(line => {
+ .map(line =&gt; {
  const text = line.textContent || line.innerText;
  
  return text.replace(/\n+$/, '');
@@ -3464,7 +3489,7 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
  copyBtn.classList.add('text-green-600');
 
  
- setTimeout(() => {
+ setTimeout(() =&gt; {
  copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\u0022 \/\u003e\n\u003c\/svg\u003e`;
  if (copyText) {
  copyText.textContent = 'Copy';
@@ -3488,7 +3513,7 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
  copyText.textContent = 'Selected';
  }
 
- setTimeout(() => {
+ setTimeout(() =&gt; {
  if (copyText) {
  copyText.textContent = 'Copy';
  }
@@ -3535,19 +3560,19 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
  if (codeElement) {
  const lines = codeElement.querySelectorAll('.line, .cl');
  const height = codeElement.offsetHeight;
- return lines.length > autoCollapseLines || height > autoCollapseHeight;
+ return lines.length &gt; autoCollapseLines || height &gt; autoCollapseHeight;
  }
 
  
  const containerHeight = codeContainer.offsetHeight;
- if (containerHeight > autoCollapseHeight) {
+ if (containerHeight &gt; autoCollapseHeight) {
  return true;
  }
 
  
  const textContent = codeContainer.textContent || codeContainer.innerText || '';
  const estimatedLines = textContent.split('\n').length;
- return estimatedLines > autoCollapseLines;
+ return estimatedLines &gt; autoCollapseLines;
  }
 
  function setCollapsed(collapsed, animate = true) {
@@ -3587,7 +3612,7 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
  
  if (animate) {
  codeContainer.style.transition = 'max-height 0.3s ease-out';
- setTimeout(() => {
+ setTimeout(() =&gt; {
  codeContainer.style.transition = '';
  }, 300);
  }
@@ -3602,7 +3627,7 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
 
  
  if (collapseOverlay) {
- collapseOverlay.addEventListener('click', () => {
+ collapseOverlay.addEventListener('click', () =&gt; {
  if (isCollapsed) {
  setCollapsed(false, true);
  }
@@ -3613,5 +3638,5 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
  initCollapse();
  }
 })();
-&lt;/script>
-&lt;p>一个类别&lt;/p></description></item></channel></rss>
+&lt;/script&gt;
+&lt;p&gt;一个类别&lt;/p&gt;</description></item></channel></rss>

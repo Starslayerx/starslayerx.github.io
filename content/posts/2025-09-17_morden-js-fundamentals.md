@@ -1,7 +1,7 @@
 +++
 date = '2025-09-17T8:00:00+08:00'
 draft = false
-title = 'Morden Javascript Tutorial Part 1- Fundamentals: 06~10'
+title = 'Morden Javascript Tutorial Part 2- Fundamentals: 06~10'
 tags = ['JavaScript']
 +++
 
@@ -579,6 +579,3 @@ We get these results because:
 **Avoid problems**  
 - Treat any comparison with `undefined/null` except the strict equality `===` with exceptional care.
 - Don't use comparisons `>= > < <=` with a variable which may be `null/undefined`, unless you're really sure of what you're doing. If a variable can have these values, check for them separately.
-
-
-
