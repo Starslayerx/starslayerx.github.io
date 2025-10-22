@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Starslayerx' Blog</title><link>https://starslayerx.github.io/</link><description>Recent content in Home on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Wed, 01 Oct 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Python Standrad Library - pathlib</title><link>https://starslayerx.github.io/posts/python-standrad-library-pathlib/</link><pubDate>Wed, 01 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-standrad-library-pathlib/</guid><description>&lt;h1 id="pathlib---object-oriented-filesystem-paths"&gt;pathlib - Object-oriented filesystem paths&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Starslayerx' Blog</title><link>https://starslayerx.github.io/</link><description>Recent content in Home on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Wed, 22 Oct 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Understanding SVG Paths</title><link>https://starslayerx.github.io/posts/understanding-svg-paths/</link><pubDate>Wed, 22 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/understanding-svg-paths/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;如果你曾经看过一个 icon 的 SVG 代码，你可能会注意到他们通常是有一个 &lt;code&gt;&amp;lt;path&amp;gt;&lt;/code&gt; 元素和一个神秘的 &lt;code&gt;d&lt;/code&gt; 属性实现的。
+你可能以为他们不过是设计师最喜欢的矢量图形编辑器的输出，虽然可能是正确的，但有些过度简化了。&lt;/p&gt;</description></item><item><title>Python Standrad Library - pathlib</title><link>https://starslayerx.github.io/posts/python-standrad-library-pathlib/</link><pubDate>Wed, 01 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-standrad-library-pathlib/</guid><description>&lt;h1 id="pathlib---object-oriented-filesystem-paths"&gt;pathlib - Object-oriented filesystem paths&lt;/h1&gt;
 &lt;p&gt;此模块提供表示&lt;em&gt;文件系统路径&lt;/em&gt;的类，其语义适用于不同的操作系统。
 路径类分为：&lt;/p&gt;
 &lt;ul&gt;
@@ -40,7 +42,308 @@
 &lt;li&gt;&lt;code&gt;uv remove --script&lt;/code&gt;: 移除一个依赖&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id="projects"&gt;Projects&lt;/h4&gt;
-&lt;p&gt;使用 &lt;code&gt;pyproject.toml&lt;/code&gt; 配置项目&lt;/p&gt;</description></item><item><title>English for Programmers - 03</title><link>https://starslayerx.github.io/posts/english-for-programmers-03/</link><pubDate>Sat, 20 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/english-for-programmers-03/</guid><description>&lt;h1 id="unit-3-discussing-code"&gt;Unit 3. Discussing Code&lt;/h1&gt;
+&lt;p&gt;使用 &lt;code&gt;pyproject.toml&lt;/code&gt; 配置项目&lt;/p&gt;</description></item><item><title>Morden Javascript Tutorial Chapter 2 - Fundamentals: 11~18</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-2-fundamentals-11~18/</link><pubDate>Sun, 21 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-2-fundamentals-11~18/</guid><description>&lt;h2 id="211-logical-operators"&gt;2.11 Logical operators&lt;/h2&gt;
+&lt;p&gt;There are four logical operators in JavaScript: &lt;code&gt;||&lt;/code&gt; (ORA), &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; (AND), &lt;code&gt;!&lt;/code&gt; (NOT), &lt;code&gt;??&lt;/code&gt; (Nullish Coalescing 空值合并).&lt;/p&gt;
+&lt;h3 id="-or"&gt;|| OR&lt;/h3&gt;
+&lt;div
+ class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"&gt;
+ 
+ &lt;div
+ class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"&gt;
+ 
+ &lt;div class="flex items-center gap-2"&gt;
+ &lt;div class="text-muted-foreground flex-shrink-0"&gt;
+ 
+ &lt;svg class="h-4 w-4"
+ fill="none"
+ stroke="currentColor"
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /&gt;
+&lt;/svg&gt;
+ &lt;/div&gt;
+ &lt;span class="text-muted-foreground text-sm font-medium"&gt;
+ JAVASCRIPT
+ &lt;/span&gt;
+ &lt;/div&gt;
+
+ 
+ &lt;div class="flex items-center gap-2"&gt;
+ &lt;button
+ class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
+ data-code-id="code-0"
+ data-default-state="expanded"
+ data-collapsed="false"
+ data-auto-collapse-lines="30"
+ data-auto-collapse-height="400"
+ data-collapsed-height="120"
+ title="Collapse"
+ aria-label="Collapse"&gt;
+ &lt;span class="collapse-icon"&gt;
+ 
+ &lt;svg class="h-3 w-3"
+ fill="none"
+ stroke="currentColor"
+ viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/&gt;&lt;/svg&gt;
+ &lt;/span&gt;
+ &lt;span class="collapse-text hidden sm:inline"
+ &gt;Collapse&lt;/span
+ &gt;
+ &lt;/button&gt;
+ &lt;button
+ class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
+ data-code-id="code-0"
+ title="Copy"
+ aria-label="Copy"&gt;
+ &lt;span class="copy-icon"&gt;
+ 
+ &lt;svg class="h-3 w-3"
+ fill="none"
+ stroke="currentColor"
+ viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;
+&lt;/svg&gt;
+ &lt;/span&gt;
+ &lt;span class="copy-text hidden sm:inline"
+ &gt;Copy&lt;/span
+ &gt;
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+
+ 
+ &lt;div class="code-block-content relative" id="code-0"&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-JavaScript" data-lang="JavaScript"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;a&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="nx"&gt;b&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ 
+ &lt;div
+ class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"&gt;
+ &lt;div
+ class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200"&gt;
+ Click to expand and view more
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;script&gt;
+(function() {
+ const codeId = 'code-0';
+ const copyBtn = document.querySelector('.copy-code-btn[data-code-id="' + codeId + '"]');
+ const collapseBtn = document.querySelector('.collapse-code-btn[data-code-id="' + codeId + '"]');
+ const codeContainer = document.getElementById(codeId);
+
+ if (!codeContainer) return;
+
+ 
+ if (copyBtn) {
+ const copyIcon = copyBtn.querySelector('.copy-icon');
+ const copyText = copyBtn.querySelector('.copy-text');
+
+ copyBtn.addEventListener('click', async function() {
+ try {
+ 
+ let codeText = '';
+
+ 
+ const codeTableCell = codeContainer.querySelector('.lntd:last-child code');
+ if (codeTableCell) {
+ codeText = codeTableCell.textContent || codeTableCell.innerText;
+ } else {
+ 
+ const codeElement = codeContainer.querySelector('code');
+ if (codeElement) {
+ 
+ const hasInlineLineNumbers = codeElement.querySelector('.ln');
+ if (hasInlineLineNumbers) {
+ 
+ const codeLines = codeElement.querySelectorAll('.cl');
+ if (codeLines.length &gt; 0) {
+ codeText = Array.from(codeLines)
+ .map(line =&gt; {
+ const text = line.textContent || line.innerText;
+ 
+ return text.replace(/\n+$/, '');
+ })
+ .join('\n')
+ .replace(/\n+$/, ''); 
+ } else {
+ 
+ const allText = codeElement.textContent || codeElement.innerText;
+ codeText = allText.replace(/^\d+/gm, '').replace(/^\s+/gm, '');
+ }
+ } else {
+ 
+ codeText = codeElement.textContent || codeElement.innerText;
+ }
+ } else {
+ 
+ codeText = codeContainer.textContent || codeContainer.innerText;
+ }
+ }
+
+ 
+ codeText = codeText.trim();
+
+ 
+ await navigator.clipboard.writeText(codeText);
+
+ 
+ copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M5 13l4 4L19 7\u0022 \/\u003e\n\u003c\/svg\u003e`;
+ if (copyText) {
+ copyText.textContent = 'Copied';
+ }
+ copyBtn.classList.add('text-green-600');
+
+ 
+ setTimeout(() =&gt; {
+ copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\u0022 \/\u003e\n\u003c\/svg\u003e`;
+ if (copyText) {
+ copyText.textContent = 'Copy';
+ }
+ copyBtn.classList.remove('text-green-600');
+ }, 2000);
+
+ } catch (err) {
+ console.error('复制失败:', err);
+
+ 
+ const range = document.createRange();
+ const codeElement = codeContainer.querySelector('code') || codeContainer;
+ range.selectNodeContents(codeElement);
+ const selection = window.getSelection();
+ selection.removeAllRanges();
+ selection.addRange(range);
+
+ 
+ if (copyText) {
+ copyText.textContent = 'Selected';
+ }
+
+ setTimeout(() =&gt; {
+ if (copyText) {
+ copyText.textContent = 'Copy';
+ }
+ selection.removeAllRanges();
+ }, 2000);
+ }
+ });
+ }
+
+ 
+ if (collapseBtn) {
+ const collapseIcon = collapseBtn.querySelector('.collapse-icon');
+ const collapseText = collapseBtn.querySelector('.collapse-text');
+ const collapseOverlay = codeContainer.querySelector('.collapse-overlay');
+
+ 
+ let codeElement = codeContainer.querySelector('pre.chroma');
+ if (!codeElement) {
+ codeElement = codeContainer.querySelector('pre');
+ }
+
+ const defaultState = collapseBtn.dataset.defaultState || 'expanded';
+ const isCollapsedAttr = collapseBtn.dataset.collapsed === 'true';
+ const autoCollapseLines = parseInt(collapseBtn.dataset.autoCollapseLines) || 30;
+ const autoCollapseHeight = parseInt(collapseBtn.dataset.autoCollapseHeight) || 400;
+ const collapsedHeight = parseInt(collapseBtn.dataset.collapsedHeight) || 120;
+
+ let isCollapsed = false;
+
+ 
+ function initCollapse() {
+ 
+ const shouldCollapse = isCollapsedAttr ||
+ defaultState === 'collapsed' ||
+ shouldAutoCollapse();
+
+ if (shouldCollapse) {
+ setCollapsed(true, false); 
+ }
+ }
+
+ function shouldAutoCollapse() {
+ 
+ if (codeElement) {
+ const lines = codeElement.querySelectorAll('.line, .cl');
+ const height = codeElement.offsetHeight;
+ return lines.length &gt; autoCollapseLines || height &gt; autoCollapseHeight;
+ }
+
+ 
+ const containerHeight = codeContainer.offsetHeight;
+ if (containerHeight &gt; autoCollapseHeight) {
+ return true;
+ }
+
+ 
+ const textContent = codeContainer.textContent || codeContainer.innerText || '';
+ const estimatedLines = textContent.split('\n').length;
+ return estimatedLines &gt; autoCollapseLines;
+ }
+
+ function setCollapsed(collapsed, animate = true) {
+ if (!collapseOverlay) return;
+
+ isCollapsed = collapsed;
+
+ if (collapsed) {
+ 
+ codeContainer.style.maxHeight = collapsedHeight + 'px';
+ codeContainer.style.overflow = 'hidden';
+ collapseOverlay.style.opacity = '1';
+ collapseOverlay.style.pointerEvents = 'auto';
+
+ 
+ collapseIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M19 9l-7 7-7-7\u0022 \/\u003e\n\u003c\/svg\u003e`;
+ if (collapseText) {
+ collapseText.textContent = 'Expand';
+ }
+ collapseBtn.title = 'Expand';
+
+ } else {
+ 
+ codeContainer.style.maxHeight = '';
+ codeContainer.style.overflow = '';
+ collapseOverlay.style.opacity = '0';
+ collapseOverlay.style.pointerEvents = 'none';
+
+ 
+ collapseIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath fill=\u0022currentColor\u0022 d=\u0022M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z\u0022\/\u003e\u003c\/svg\u003e`;
+ if (collapseText) {
+ collapseText.textContent = 'Collapse';
+ }
+ collapseBtn.title = 'Collapse';
+ }
+
+ 
+ if (animate) {
+ codeContainer.style.transition = 'max-height 0.3s ease-out';
+ setTimeout(() =&gt; {
+ codeContainer.style.transition = '';
+ }, 300);
+ }
+ }
+
+ function toggleCollapse() {
+ setCollapsed(!isCollapsed, true);
+ }
+
+ 
+ collapseBtn.addEventListener('click', toggleCollapse);
+
+ 
+ if (collapseOverlay) {
+ collapseOverlay.addEventListener('click', () =&gt; {
+ if (isCollapsed) {
+ setCollapsed(false, true);
+ }
+ });
+ }
+
+ 
+ initCollapse();
+ }
+})();
+&lt;/script&gt;
+&lt;p&gt;There are four logical combinations:&lt;/p&gt;</description></item><item><title>English for Programmers - 03</title><link>https://starslayerx.github.io/posts/english-for-programmers-03/</link><pubDate>Sat, 20 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/english-for-programmers-03/</guid><description>&lt;h1 id="unit-3-discussing-code"&gt;Unit 3. Discussing Code&lt;/h1&gt;
 &lt;h2 id="vocabulary---modifiers"&gt;vocabulary - Modifiers&lt;/h2&gt;
 &lt;p&gt;When discussing code, &lt;em&gt;modifiers&lt;/em&gt; can be extremely useful for making your feedback constructive and precise.&lt;/p&gt;
 &lt;ul&gt;
@@ -58,7 +361,7 @@
 数组中的每个二进制都有与之对应的偏移量(索引),
 用户通过这些偏移量可以对位图中指定的一个或多个二进制位进行操作.&lt;/p&gt;</description></item><item><title>Redis HyperLogLog</title><link>https://starslayerx.github.io/posts/redis-hyperloglog/</link><pubDate>Thu, 18 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-hyperloglog/</guid><description>&lt;p&gt;之前曾介绍过使用 Redis 集和构建唯一计数器, 并将这个计数器用于计算网站的唯一房客 IP.
 虽然使用集和实现唯一计数器可以实现该功能, 但这个方法有一个明显的缺陷:
-随着被计数元素的不断增多, 唯一计数器占用的内存也会越来越大; 计数器越多, 他们的体积越大, 这一情况就会越严峻.&lt;/p&gt;</description></item><item><title>Morden Javascript Tutorial Part 2- Fundamentals: 06~10</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-2-fundamentals-06~10/</link><pubDate>Wed, 17 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-2-fundamentals-06~10/</guid><description>&lt;h2 id="26-interaction-alert-prompt-confirm"&gt;2.6 Interaction: alert, prompt, confirm&lt;/h2&gt;
+随着被计数元素的不断增多, 唯一计数器占用的内存也会越来越大; 计数器越多, 他们的体积越大, 这一情况就会越严峻.&lt;/p&gt;</description></item><item><title>Morden Javascript Tutorial Chapter 2 - Fundamentals: 06~10</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-2-fundamentals-06~10/</link><pubDate>Wed, 17 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-2-fundamentals-06~10/</guid><description>&lt;h2 id="26-interaction-alert-prompt-confirm"&gt;2.6 Interaction: alert, prompt, confirm&lt;/h2&gt;
 &lt;p&gt;Will introduce &lt;code&gt;alert&lt;/code&gt;, &lt;code&gt;prompt&lt;/code&gt; and &lt;code&gt;confirm&lt;/code&gt; in this chapter.&lt;/p&gt;
 &lt;h3 id="alert"&gt;alert&lt;/h3&gt;
 &lt;p&gt;It shows a message and waits for the user to press &amp;ldquo;OK&amp;rdquo;.&lt;/p&gt;
@@ -361,7 +664,7 @@
 })();
 &lt;/script&gt;
 &lt;h3 id="prompt"&gt;prompt&lt;/h3&gt;
-&lt;p&gt;This function &lt;code&gt;prompt&lt;/code&gt; accepts two arguments&lt;/p&gt;</description></item><item><title>Morden Javascript Tutorial Part 1 - Fundamentals: 01~05</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-01~05/</link><pubDate>Tue, 16 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-fundamentals-01~05/</guid><description>&lt;h2 id="21-hellow-wrold"&gt;2.1 Hellow Wrold&lt;/h2&gt;
+&lt;p&gt;This function &lt;code&gt;prompt&lt;/code&gt; accepts two arguments&lt;/p&gt;</description></item><item><title>Morden Javascript Tutorial Chapter 2 - Fundamentals: 01~05</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-2-fundamentals-01~05/</link><pubDate>Tue, 16 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-2-fundamentals-01~05/</guid><description>&lt;h2 id="21-hellow-wrold"&gt;2.1 Hellow Wrold&lt;/h2&gt;
 &lt;p&gt;Firtly, let&amp;rsquo;s see how to attach a script to a webpage.
 For server-side environments (like Node.js), you can execute this script with a command like &lt;code&gt;node my.js&lt;/code&gt;&lt;/p&gt;
 &lt;h3 id="the-script-tag"&gt;The &amp;ldquo;script&amp;rdquo; tag&lt;/h3&gt;
@@ -673,7 +976,7 @@ For server-side environments (like Node.js), you can execute this script with a 
  }
 })();
 &lt;/script&gt;
-&lt;p&gt;The &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tag contains JavaScript code which is automatically executed when the browser process the tag.&lt;/p&gt;</description></item><item><title>Morden Javascript Tutorial Part 1 - An Introduction</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-an-introduction/</link><pubDate>Mon, 15 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-part-1-an-introduction/</guid><description>&lt;h2 id="an-introduction-to-javascript"&gt;An Introduction to JavaScript&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tag contains JavaScript code which is automatically executed when the browser process the tag.&lt;/p&gt;</description></item><item><title>Morden Javascript Tutorial Chapter 1 - An Introduction</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-1-an-introduction/</link><pubDate>Mon, 15 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-1-an-introduction/</guid><description>&lt;h2 id="an-introduction-to-javascript"&gt;An Introduction to JavaScript&lt;/h2&gt;
 &lt;p&gt;Let’s see what’s so special about JavaScript, what we can achieve with it, and what other technologies play well with it.&lt;/p&gt;
 &lt;h3 id="why-is-it-call-javascript"&gt;Why is it call JavaScript?&lt;/h3&gt;
 &lt;p&gt;JavaScript initially called &amp;ldquo;Live Script&amp;rdquo;. But Java was popular at that time, so it was decided that positioning a new language as a &amp;ldquo;younger brother&amp;rdquo; of Java would help.

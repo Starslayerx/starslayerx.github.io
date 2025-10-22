@@ -1,7 +1,7 @@
 +++
 date = '2025-09-15T8:00:00+08:00'
 draft = false
-title = 'Morden Javascript Tutorial Part 1 - An Introduction'
+title = 'Morden Javascript Tutorial Chapter 1 - An Introduction'
 tags = ['JavaScript']
 +++
 

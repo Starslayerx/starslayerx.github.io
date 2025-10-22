@@ -528,3 +528,26 @@ docker container stop -t 25 d14e339f67f7
 
 
 ### Killing a Container
+当一个进程不正常的时候，`docker container stop` 可能无法解决问题。
+如果希望容器立刻退出，可以使用 `docker container kill`，类似 linux kill 命令，该命令也可以发送信号
+```Docker
+docker container kill --signal=USR1 092c5dc85044
+```
+任何标准的 Unix signal 都可以通过该方法传入容器
+
+### Pausing and Unpausing Container
+暂停容器使用了 [cgroup freezer](https://www.kernel.org/doc/Documentation/cgroup-v1/freezer-subsystem.txt) 实现，这样基本上是组织进程被调度，直到 unfreeze 此进程。
+这将阻止容器进行任何操作，保持状态不变，包括内存内容。
+不同于 stop 命令通过 SIGSOTP 信号停止容器，而暂停容器不会向容器发送任何关于其状态变化的信息，这是一个重要区别。
+
+命令 `docker container pause 092c5dc85044` 暂停容器，之后开使用 `docker container unpause 092c5dc85044` 继续运行容器。
+
+### Cleaning Up Containers and Images
+当运行很多命令后，会在系统上积累大量的镜像层和容器层。
+
+可以使用命令 `docker container ls -a` 查看所有容器，在删除镜像之前，需要先暂停使用该镜像的所有容器才行。
+
+也可以列出系统上的所有镜像，使用命令 `docker image ls`，然后使用下面命令删除：
+```Docker
+docker image rm 0256c63af7db
+```
