@@ -384,7 +384,7 @@
 
  
  &lt;div class="code-block-content relative" id="code-0"&gt;
- &lt;pre tabindex="0"&gt;&lt;code&gt;1.0 &lt;/code&gt;&lt;/pre&gt;
+ &lt;pre tabindex="0"&gt;&lt;code&gt;1.0&lt;/code&gt;&lt;/pre&gt;
  
  &lt;div
  class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"&gt;

@@ -6,32 +6,40 @@ tags = ['Rust']
 +++
 
 ### Tokei 介绍
+
 [Tokei](https://github.com/XAMPPRocky/tokei)是一款 Rust 编写的开源工具, 用于统计项目代码行数, 支持上百种语言, 能够扫描整个代码库, 包括:
+
 - 语言
 - 文件数量
 - 代码行数
 - 注释行数
 - 空行数
 
-
 得益于 Rust 的高性能实现, Tokei 即使在超大规模代码库中也能保持极快的统计速度  
 (Rust 轮子真不错)
 
 ### 安装
+
 ```
 brew install tokei
 ```
+
 或者
+
 ```
 cargo install tokei
 ```
 
 ### 使用
+
 在项目根目录执行
+
 ```
 tokei .
 ```
+
 输出类似下面这样
+
 ```
 ===============================================================================
  Language            Files        Lines         Code     Comments       Blanks

@@ -6,37 +6,42 @@ tags = ['English']
 +++
 
 # Unit 2. Code Review & Testing
+
 this unit will cover:
+
 - Differentiate between various **testing strategies**
 - Write **professional guidelines**
 - Sound more natural and smooth when **asking questions**
 - Use colloquial language in speaking to **give and accept feedback**
 
 ## vocabulary - None Pharses 词汇: 名词短语
+
 Testing 测试是软件开发中的重要短语, 用于检查软件是否达到特定的标准和用户需求.
 
 使用这些名词语句来证明英语名词的专业性:
 
-| None | Desciption | Example |
-| :- | :- | :- |
-| time box | an allocated period of time for completing a task | - allcate a 2-hour time box for regression testing |
-| stress test | a method to assess a system's performance under heavy loads | - simulate 1000 users accessing the login page at the same time |
-| sanity check 健全性测试 | a quick check to verify that something is as expected | - are the units of the output value correct? |
-| ad hoc test 临时测试 | a test performed without predefined test cases or plans | - input unexpected characters into a search bar |
-| edge case | a problem that only happens in extreme situations | - upload an empty, 0-byte file |
+| None                    | Desciption                                                  | Example                                                         |
+| :---------------------- | :---------------------------------------------------------- | :-------------------------------------------------------------- |
+| time box                | an allocated period of time for completing a task           | - allcate a 2-hour time box for regression testing              |
+| stress test             | a method to assess a system's performance under heavy loads | - simulate 1000 users accessing the login page at the same time |
+| sanity check 健全性测试 | a quick check to verify that something is as expected       | - are the units of the output value correct?                    |
+| ad hoc test 临时测试    | a test performed without predefined test cases or plans     | - input unexpected characters into a search bar                 |
+| edge case               | a problem that only happens in extreme situations           | - upload an empty, 0-byte file                                  |
 
-一些名词短语也可以当作动词使用:  
-- Can you *sanity check* my email before I send it? I want to make sure there aren't any errors.
-- We have a lot to do today. Let's *time box* this meeting so we stay on sechedule.
+一些名词短语也可以当作动词使用:
+
+- Can you _sanity check_ my email before I send it? I want to make sure there aren't any errors.
+- We have a lot to do today. Let's _time box_ this meeting so we stay on sechedule.
 
 > BE CAREFUL: sanity check vs ad hoc test  
-> *sanity check*: similar to performing a review  
-> *ad hoc test*: exploring issues using the tester's knowledge  
+> _sanity check_: similar to performing a review  
+> _ad hoc test_: exploring issues using the tester's knowledge
 
 - Yesterday, while doing **ad hoc test**, I came across some unexpected behaviour when I was randomly interacting with the system.
 - Hey, I made a few changes to the codebase. Can you do a quick **sanity check** before I start testing?
 
 ## Parallel Structure 平行结构
+
 Parallel structure: Using the same grammatical structure for two or more clauses in a sentence.
 
 Example:  
@@ -50,22 +55,24 @@ Example:
 为了达到平行结构, 将动词修改为相同形式. 由于上面例子由 'emphasise' 开始, 将其改成 **-ing** 形式:  
 In our coding guidelines, we emphasise **writing** clear comments, **following** naming conventions, and **maintaining** consistent indentation.
 
-平行结构的好处:  
+平行结构的好处:
+
 - more professional
 - more effective
 - easier to read and follow
 
 You can apply this technique when writing:
+
 - documentation
 - code comments
 - best practices guidelines
 
-
 ## Connected Speech 连贯的语言
+
 When we talk in everyday conversations, our words shouln't stand alone.
 
 Instead, some sound, words and phrases are merged together in what's called connected speech.
-It's a natural *rhythm* and *flow* taht make conversations sound more smooth.
+It's a natural _rhythm_ and _flow_ taht make conversations sound more smooth.
 
 Let's take a closer look at three different techniques that your can use while asking questions:
 
@@ -80,8 +87,6 @@ Let's take a closer look at three different techniques that your can use while a
 - 连读 Linking  
   将前词尾音与后词首音无缝连接，无停顿.  
   如"how about"中/w/与/ə/自然衔接, 形成连贯语流.
-
-
 
 ## Code Review
 
@@ -117,7 +122,8 @@ Tom: Alright. Thanks! Have a great day. Bye.
 
 Sophie: Yep and you! Bye.
 
-词汇解释  
+词汇解释
+
 - **go over**: discuss
 - **pull it up**: open the code on my scream
 - **have/give a go**: try

@@ -6,6 +6,7 @@ tags = ['JavaScript']
 +++
 
 ## An Introduction to JavaScript
+
 Let’s see what’s so special about JavaScript, what we can achieve with it, and what other technologies play well with it.
 
 ### Why is it call JavaScript?
@@ -17,11 +18,12 @@ Today, JavaScript can execute on any device that has a special program called [t
 The browser has an embedded engine called a "JavaScript virtual machine".
 
 Different engines hav different "codenames":
-- [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)): in Chrome, Opera and Edge
+
+- [V8](<https://en.wikipedia.org/wiki/V8_(JavaScript_engine)>): in Chrome, Opera and Edge
 - [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey): in Firefox
 
-
 ### What can in-browser JavaScript do?
+
 Morden JavaScript is a "safe" programming language.
 It does not provide low-level access to memory or CPU, because it was initially created for browsers which do not require it.
 
@@ -35,7 +37,9 @@ In-browser JavaScript can do everything related to webpage manipulation, interac
 - Remember the data on the client-side
 
 ### What can't in-browser JavaScript do?
-For safety reasons, it can't:  
+
+For safety reasons, it can't:
+
 - Limited access to files.  
   No access to OS functions.  
   Require explicit permission with camera/microphone devices.
@@ -49,16 +53,16 @@ For safety reasons, it can't:
 
 Such limitations do not exist if JavaScript is used outside of the browser, for example on a server.
 
-
 ### What makes JavaScript unique?
+
 - Full integration with HTML/CSS
 - Simple things are done simply
 - Supported by all major browsers and enabled by default
 
 JavaScript is the only browser technology that combines these three things.
 
-
 ### Languages "over" JavaScript
+
 The syntax of JavaScript not suit everyone's needs. Recently a plethora of new languages appered, which are transpiled to JavaScript before they run in the browser.
 
 - [CoffeeScript](https://coffeescript.org/) is "syntactic sugar" for JavaScript. It introduces shorter syntax, allowing us to write clearer and more precise code. Ruby devs like it.
@@ -71,6 +75,7 @@ The syntax of JavaScript not suit everyone's needs. Recently a plethora of new l
 ## Manuals and Specifications
 
 ### Specification
+
 [The ECMA-262 specification](https://www.ecma-international.org/publications/standards/Ecma-262.htm) contains the most in-depth, detailed and formalized information about JavaScript.
 
 A new specification version is released every year. Between these releases, the latest specification draft is at [https://tc39.es/ecma262/](https://tc39.es/ecma262/).
@@ -78,10 +83,12 @@ A new specification version is released every year. Between these releases, the 
 To read about new bleeding-edge features, including those that are “almost standard” (so-called “stage 3”), see proposals at [https://github.com/tc39/proposals](https://github.com/tc39/proposals).
 
 ### Manuals
+
 [MDN (Mozillz) JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference) is the main manual with examples and other information.
 It's great to get in-depth information about individual language functions, methods etc.
 
 ### Compatibility tables
+
 JavaScript is a developing language, new features get added regularly.
 
 To see their support among browser-based and other engines, see:

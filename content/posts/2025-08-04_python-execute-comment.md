@@ -4,28 +4,36 @@ draft = false
 title = 'Executing arbitrary Python code from a comment'
 tags = ["Python", "Hack"]
 +++
+
 通过注释执行任意Python代码
 
 ### 问题描述
+
 Q: 只能控制一行的.py代码中注释的内容(\n\r均会被替换为空字符), 如何执行任意代码?  
-A: 在注释#中, 构造一个.zip 文件, python 会将该内容当成一个zip包执行, 触发任意代码执行  
+A: 在注释#中, 构造一个.zip 文件, python 会将该内容当成一个zip包执行, 触发任意代码执行
 
 ### 解决方案
-- 从 Python 3.5 起, 可以直接执行一个 .zip 文件
-    ```python3
-    python myapp.zip
-    ```
-    前提是ZIP 包中包含一个顶层的`__main__.py`文件, Python 会把它当作 zipapp, 自动解压并运行`__main__.py`
 
-    > Python 会从末尾找到 ZIP 的目录结构, 而不是依赖文件头, 所以前面的“垃圾”字节会被忽略
+- 从 Python 3.5 起, 可以直接执行一个 .zip 文件
+
+  ```python3
+  python myapp.zip
+  ```
+
+  前提是ZIP 包中包含一个顶层的`__main__.py`文件, Python 会把它当作 zipapp, 自动解压并运行`__main__.py`
+
+  > Python 会从末尾找到 ZIP 的目录结构, 而不是依赖文件头, 所以前面的“垃圾”字节会被忽略
 
 Python 源码中的任何行, 只要以 # 开头, 解释器都会忽略后面内容, 因此可以:
+
 - 把 ZIP 文件的数据藏在 Python 源码中的注释中（开头加 #）
 - 把 ZIP 数据直接拼接在 Python 文件的后面, 只保证文件头部分是合法 Python
 - ZIP 不关心前缀, Python 只要最前面是有效源码, 也不会管后面
 
 ### 难点
+
 ZIP 文件头包含**二进制字段**，比如
+
 - 偏移量（文件数据相对于 ZIP 开头的位置）
 - 长度（文件名长度、注释长度等）
 - 这些值写死在 header 里, 是十六进制整数
@@ -34,11 +42,10 @@ ZIP 文件头包含**二进制字段**，比如
 解决方法: 暴力穷举合法组合
 
 想办法 **调整偏移值和结构位置**，使得最终写出来的 ZIP 文件
+
 - 所有的字段值都转化为 可打印字符（ASCII 范围内）
 - 所有 binary 字段看起来都像合法的注释字符串
-于是用 `itertools.product(range(256), repeat=2)` 暴力尝试偏移组合，只要碰巧生成的 ZIP 包所有关键字节都在可打印范围内（ASCII 32~126），就认为成功。
-
-
+  于是用 `itertools.product(range(256), repeat=2)` 暴力尝试偏移组合，只要碰巧生成的 ZIP 包所有关键字节都在可打印范围内（ASCII 32~126），就认为成功。
 
 下面是`generate_polygloy_zip.py`代码, 会生成一个符合要求的`polygloy.py`代码, 最后运行该代码, 可以执行Body里面的内容`BODY = b"print('FROM MAIN.py FILE!!!')#"`
 

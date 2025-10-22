@@ -8,9 +8,10 @@ tags = ['English']
 # Unit 3. Discussing Code
 
 ## vocabulary - Modifiers
-When discussing code, *modifiers* can be extremely useful for making your feedback constructive and precise.
 
-- *modifiers*: words that change the meaning of a sentence
+When discussing code, _modifiers_ can be extremely useful for making your feedback constructive and precise.
+
+- _modifiers_: words that change the meaning of a sentence
 
 For example, a colleague asks:
 
@@ -18,9 +19,9 @@ What do you think of the website?
 
 - Response 1: It's good When I click something it loads very quickly and I can navigate it easyily without any instructions.
 
-- Response 2: It's good! It's very *responsive* and can be navigated *intuitively*.
+- Response 2: It's good! It's very _responsive_ and can be navigated _intuitively_.
 
-By using *technical adjectives and adverbs*, Response 2 sounds more clear and professional.
+By using _technical adjectives and adverbs_, Response 2 sounds more clear and professional.
 There are some modifiers can be used in your opinion on technical topics:
 
 - **scalable**
@@ -32,30 +33,31 @@ There are some modifiers can be used in your opinion on technical topics:
 
 Examples:
 
-1. I like the interface of GitHub; it's very *easy to use and understand*.  
+1. I like the interface of GitHub; it's very _easy to use and understand_.  
    I like the interface of GitHub; it's very **user-friendly**.
 
-2. Developers should follow *the same* coding practices.  
+2. Developers should follow _the same_ coding practices.  
    Developers should follow **consistent** coding practices.
 
-3. Can you explain why a *strong* code review process is important?  
+3. Can you explain why a _strong_ code review process is important?  
    Can you explain why a **robust** code review process is important?
 
-4. New features should be integrated *smoothly and without disruptions*.  
+4. New features should be integrated _smoothly and without disruptions_.  
    New features should be integrated **seamlessly** (无缝的).
 
-5. I want you to focus on building components that *can be used many times*.  
+5. I want you to focus on building components that _can be used many times_.  
    I want you to focus on building components that **reusable**.
 
-6. Our infrastructure needs to be *able to be made larger* to handle an increase in users.  
+6. Our infrastructure needs to be _able to be made larger_ to handle an increase in users.  
    Our infrastructure needs to be **scalable** to handle an increase in users.
 
 ## grammer - Placement of Modifiers
+
 When a modifier isn't used in correct position, it can make the sentence confusing for a reader/listner.
 
 - Incorrect: "The algorithm solved(verb) quickly the problem(noun)."
 - Correct: "The algorithm solved the problem quickly."  
-       OR: "The algorithm quickly solved the problem."
+   OR: "The algorithm quickly solved the problem."
 
 Example:
 
