@@ -824,9 +824,10 @@ function checkAge(age) {
 ```
 
 Rewrite it, to perform the same, but without `if`, in a single line.  
-Make two variants of `checkAge`:  
- 1. Using a question mark operator `?`  
- 2. Using OR `||`
+Make two variants of `checkAge`:
+
+1.  Using a question mark operator `?`
+2.  Using OR `||`
 
 ```JavaScript
 function checkAge(age) {
@@ -1172,3 +1173,147 @@ let isTeaWanted = confirm("Do u want tea?");
 alert( "Visitor: " + userName );
 alert( "Tea wantd: " + isTeaWanted );
 ```
+
+#### Operators
+
+JavaScript supports the following operators:
+
+- **Arithmetical**
+
+  Regular: `+ - * /`, also `%` for the remainder and `**` for power of a number.
+
+  The binary plus `+` concatenates strings. And if any of the operands is a string, the other one is convertd too.
+
+  ```JavaScript
+  alert('1' + 2); // '12', string
+  alert(1 + '2'); // '12', string
+  ```
+
+- **Assignments**
+
+  There is a simple assigment: `a = b` and combined ones like `a *= 2`
+
+- **Bitwise**
+
+  Bitwise operators work with 32-bit integers at the lowest, bit-level.
+
+- **Conditional**
+
+  The only operator with three parameters: `cord ? resultA : resultB`.
+
+- **Logical operators**
+
+  Logical AND `&&` and OR `||` perform short-circuit evaluation and then return the value it stopped.
+  Logical NOT `!` converts the operand to boolean type and returns the inverse value.
+
+- **Nullish coalescing operator**
+
+  The `??` operator provids a way to choose a defined value from a list of variables.
+  The result of `a ?? b` is `a` unless it's `null / undefined`, them `b`.
+
+- **Comparisons**
+
+  Equality check `==` for values of different types converts them to a number, so these are euqal:
+
+  ```JavaScript
+  alert( 0 == false ); // true
+  alert( 0 == '' ); // true
+  ```
+
+  Other comperisons convert to a number as well.
+
+  The strict equality operator `===` doesn't do the conversion: different types always mean different values for it.
+  - Values `null` and `undefined` are special: they equal `==` each other and don't euqal anything else.
+  - And `NaN != NaN` is true.
+  - `"" == 0` and `" " == 0` are also true.
+
+  Greater/less comparisons compare strings character-by-character, other types are converted to a number.
+
+#### Loops
+
+- 3 type of loops
+
+  ```JavaScript
+  // 1
+  while (condition) {
+      ...
+  }
+
+  // 2
+  do {
+      ...
+  } while (condition);
+
+  // 3
+  for (let i = 0; i < 10; i++) {
+    ...
+  }
+  ```
+
+- Directives `break/continue` allow to exit the whole loop/current iteration. Use `label` to break nested loops.
+
+#### The "switch" construct
+
+The "switch" construct can replace multiple `if` checks.
+It uses `===` (strict equality) for comparisons.
+
+```JavaScript
+let age = prompt('Your age?', 18);
+
+switch (age) {
+  case 18:
+    alert("Won't work"); // the result of prompt is a string, not a number
+    break;
+
+  case "18":
+    alert("This works!");
+    break;
+
+  default:
+    alert("Any value not equal to one above");
+}
+```
+
+#### Functions
+
+Three ways to create a function in JavaScript:
+
+1. Function Declaration: the function in the main code
+
+```JavaScript
+function sum(a, b) {
+    let result = a + b;
+    return result;
+}
+```
+
+2. Function Expression: the function in the context of an expression
+
+```JavaScript
+let sum = function(a, b) {
+    let result = a + b;
+    return result;
+}
+```
+
+3. Arrow Functions:
+
+```JavaScript
+// expression on the right side
+let sum = (a, b) => a + b;
+
+// multi line syntax { ... }
+let sum = (a, b) => {
+    return a + b;
+}
+
+// without arguemnts
+let sayHi = () => alert("hello");
+
+// with a single argument
+let double = n => n * 2;
+```
+
+- Parameters can have default values: `function sum(a = 1, b = 2) {...}`
+
+- Functions always return something. If there is no `return` statement, then return `undefined`.
