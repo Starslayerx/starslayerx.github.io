@@ -377,7 +377,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </button>
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-8 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-</span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-8><pre tabindex=0><code>paths: 
+</span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-8><pre tabindex=0><code>paths:
   /orders:
     get:
       parameters:
@@ -650,7 +650,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
   /orders:
     get:
       ...
- 
+
   /orders/{order_id}:          ①
     parameters:                ②
       - in: path               ③
@@ -793,7 +793,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>schemas</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>OrderItemSchema</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>      </span><span class=l>...</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>GetOrderSchema</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>allOf</span><span class=p>:</span><span class=w>                                                </span><span class=l>①</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>$ref</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;#/components/schemas/CreateOrderSchema&#39;</span><span class=w>    </span><span class=l>②</span><span class=w>
@@ -841,19 +841,19 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>/orders</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>get</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>...</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>/orders/{order_id}:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>parameters</span><span class=p>:</span><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>parameters</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>in</span><span class=p>:</span><span class=w> </span><span class=l>path</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>order_id</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>required</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>schema</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>type</span><span class=p>:</span><span class=w> </span><span class=l>string</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>format</span><span class=p>:</span><span class=w> </span><span class=l>uuid</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>put</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=l>... </span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=l>...</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>get</span><span class=p>:</span><span class=w>                                                      </span><span class=l>①</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>summary</span><span class=p>:</span><span class=w> </span><span class=l>Returns the details of a specific order        ②</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>operationId</span><span class=p>:</span><span class=w> </span><span class=l>getOrder</span><span class=w>
@@ -905,7 +905,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
     Error:                                                  ⑥
       type: object
       properties:
-        detail: 
+        detail:
           type: string
       required:
         - detail</code></pre><div class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"><div class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">Click to expand and view more</div></div></div></div><script>(function(){const s="code-19",n=document.querySelector('.copy-code-btn[data-code-id="'+s+'"]'),t=document.querySelector('.collapse-code-btn[data-code-id="'+s+'"]'),e=document.getElementById(s);if(!e)return;if(n){const s=n.querySelector(".copy-icon"),t=n.querySelector(".copy-text");n.addEventListener("click",async function(){try{let o="";const i=e.querySelector(".lntd:last-child code");if(i)o=i.textContent||i.innerText;else{const t=e.querySelector("code");if(t){const e=t.querySelector(".ln");if(e){const e=t.querySelectorAll(".cl");if(e.length>0)o=Array.from(e).map(e=>{const t=e.textContent||e.innerText;return t.replace(/\n+$/,"")}).join(`
@@ -937,7 +937,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-20><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>paths</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>...</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>/orders/{order_id}:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>parameters</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>in</span><span class=p>:</span><span class=w> </span><span class=l>path</span><span class=w>
@@ -1039,7 +1039,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>...</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>schemas</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>...</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>securitySchemes</span><span class=p>:</span><span class=w> </span><span class=l>①</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>openId</span><span class=p>:</span><span class=w> </span><span class=l>②</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>type</span><span class=p>:</span><span class=w> </span><span class=l>openIdConnect ③</span><span class=w>

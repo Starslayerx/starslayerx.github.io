@@ -280,7 +280,7 @@ def handel_tool(tool_call):
 while True:
     # ... unchanged
     ai_message_obj = call_llm(messages)
-    
+
     # A: 判断 AI 是否想调用工具
     if &#34;tool_calls&#34; in ai_message_obj and ai_message_obj[&#34;tool_calls&#34;]:
         # B: 添加带有工具调用的 AI 信息
@@ -847,12 +847,12 @@ You: q
 </span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=s1>&#39;tool_calls&#39;</span> <span class=ow>in</span> <span class=n>ai_message_obj</span> <span class=ow>and</span> <span class=n>ai_message_obj</span><span class=p>[</span><span class=s1>&#39;tool_calls&#39;</span><span class=p>]:</span>
 </span></span><span class=line><span class=cl>        <span class=c1># Add AI message with tool calls</span>
 </span></span><span class=line><span class=cl>        <span class=n>messages</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>ai_message_obj</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>        <span class=c1># Execute each tool and add results</span>
 </span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>tool_call</span> <span class=ow>in</span> <span class=n>ai_message_obj</span><span class=p>[</span><span class=s1>&#39;tool_calls&#39;</span><span class=p>]:</span>
 </span></span><span class=line><span class=cl>            <span class=n>tool_result</span> <span class=o>=</span> <span class=n>handle_tool</span><span class=p>(</span><span class=n>tool_call</span><span class=p>)</span>
 </span></span><span class=line><span class=cl>            <span class=n>messages</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>tool_result</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>        <span class=c1># Get final response from AI</span>
 </span></span><span class=line><span class=cl>        <span class=n>final_response</span> <span class=o>=</span> <span class=n>call_llm</span><span class=p>(</span><span class=n>messages</span><span class=p>)</span>
 </span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;maybe final response: </span><span class=si>{</span><span class=n>final_response</span><span class=p>[</span><span class=s1>&#39;content&#39;</span><span class=p>]</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
@@ -862,7 +862,7 @@ You: q
 </span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;AI: </span><span class=si>{</span><span class=n>ai_message_obj</span><span class=p>[</span><span class=s1>&#39;content&#39;</span><span class=p>]</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
 </span></span><span class=line><span class=cl>        <span class=n>messages</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>ai_message_obj</span><span class=p>)</span>
 </span></span><span class=line><span class=cl>        <span class=k>return</span>
-</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>    <span class=c1># ...</span>
 </span></span><span class=line><span class=cl>    <span class=n>ai_message_obj</span> <span class=o>=</span> <span class=n>call_llm</span><span class=p>(</span><span class=n>messages</span><span class=p>)</span>

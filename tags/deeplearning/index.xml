@@ -29,12 +29,12 @@
 &lt;ul>
 &lt;li>
 &lt;p>0-d (标量)&lt;/p>
-&lt;pre tabindex="0">&lt;code>1.0 
+&lt;pre tabindex="0">&lt;code>1.0
 &lt;/code>&lt;/pre>&lt;p>一个类别&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>1-d (向量)&lt;/p>
-&lt;pre tabindex="0">&lt;code>[1.0, 2.7, 3.4] 
+&lt;pre tabindex="0">&lt;code>[1.0, 2.7, 3.4]
 &lt;/code>&lt;/pre>&lt;p>一个特征向量&lt;/p>
 &lt;/li>
 &lt;li>
