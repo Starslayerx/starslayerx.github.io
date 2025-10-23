@@ -12,7 +12,8 @@
 &lt;p>导入 &lt;code>Path&lt;/code>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">pathlib&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Path&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">p&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Path&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;.&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>列出所有子目录&lt;/p></description></item><item><title>uv - Python package manager</title><link>https://starslayerx.github.io/posts/uv-python-package-manager/</link><pubDate>Mon, 22 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/uv-python-package-manager/</guid><description>&lt;p>这篇文章深入介绍 uv 管理 Python 项目的使用&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>列出所有子目录&lt;/p></description></item><item><title>Docker - Containers</title><link>https://starslayerx.github.io/posts/docker-containers/</link><pubDate>Tue, 23 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-containers/</guid><description>&lt;p>像 VMware 或 KVM 这类虚拟化系统, 他们运行在虚拟化层上运行完整的 Linux 内核与操作系统.
+这种架构能提供极强的隔离性, 因为每个虚拟机都搭载独立的内核, 这些内核各自运行在硬甲虚拟化层之上的隔离内存空间中.&lt;/p></description></item><item><title>uv - Python package manager</title><link>https://starslayerx.github.io/posts/uv-python-package-manager/</link><pubDate>Mon, 22 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/uv-python-package-manager/</guid><description>&lt;p>这篇文章深入介绍 uv 管理 Python 项目的使用&lt;/p>
 &lt;h2 id="features">Features&lt;/h2>
 &lt;h4 id="python-versions">Python versions&lt;/h4>
 &lt;ul>
