@@ -1,6 +1,6 @@
 +++
 date = '2025-09-23T8:00:00+08:00'
-draft = true
+draft = false
 title = 'Docker - Containers'
 tags = ['Docker']
 +++
@@ -641,3 +641,61 @@ docker container kill --signal=USR1 092c5dc85044
 ```Docker
 docker image rm 0256c63af7db
 ```
+
+有时，尤其是再部署循环的时候，需要将整个系统的镜像或容器都从系统中剃除，最简单的就是使用下面的方法：
+
+```Docker
+docker system prune
+```
+
+如果要将所有未使用的镜像都剃除，而不只是悬空镜像，使用 `-a` 参数：
+
+```Docker
+docker system prune -a
+```
+
+如果要删除所有的容器或镜像，可以使用下面的组合命令
+
+```Docker
+docker container rm $(docker container ls -a -q)
+docker image rm $(docker image -q)
+```
+
+上面两个命令都支持一个过滤参数，用于微调删除命令或特定情况
+
+例如移除所有非 0 状态的容器
+
+```Docker
+docker contaienr rm $(docker container ls -a -q --filter 'exited!=0')
+```
+
+或者删除所有没标签的容器
+
+```Docker
+docker image rm $(docker images -q -f "dangling=true")
+```
+
+### Windows Containers
+
+自从 2016 年以来 Windows 已经支持运行含本地原生应用的 Windows 容器。
+包含原生 Windows 应用的 Windows 容器可以使用特殊的 Docker 命令管理。
+下面将演示 Windows 10+ 通过 Hyper-V 使用 Docker。
+
+第一件需要做的事情就是从 Linux 容器切换到 Windows 容器，选择“Switch to Windows Containers...”，这个过程会消耗一定的时间。
+可以使用下面命令在 PowerShell 测试 Windows 容器：
+
+```Docker
+docker container run --rm -it mrc.microsoft.com/powershell
+```
+
+要实现同样功能，可以编写下面的 Dockerfile
+
+```Dockerfile
+FROM mcr.microsoft.com/powershell
+SHELL ["pwsh", "-command"]
+RUN Add-Content C:\helloworld.ps1`
+    'Write-Host "Hello World from Windows"'`
+CMD ["pwsh", "C:\\helloworld.ps1"]
+```
+
+再次点击 "Switch to Linux Containers..." 切换回 Linux 容器。

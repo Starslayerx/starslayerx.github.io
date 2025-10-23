@@ -25,7 +25,8 @@
 
  &lt;/figure&gt;&lt;/p&gt;
 &lt;h2 id="基本使用"&gt;基本使用&lt;/h2&gt;
-&lt;p&gt;导入 &lt;code&gt;Path&lt;/code&gt;&lt;/p&gt;</description></item><item><title>uv - Python package manager</title><link>https://starslayerx.github.io/posts/uv-python-package-manager/</link><pubDate>Mon, 22 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/uv-python-package-manager/</guid><description>&lt;p&gt;这篇文章深入介绍 uv 管理 Python 项目的使用&lt;/p&gt;
+&lt;p&gt;导入 &lt;code&gt;Path&lt;/code&gt;&lt;/p&gt;</description></item><item><title>Docker - Containers</title><link>https://starslayerx.github.io/posts/docker-containers/</link><pubDate>Tue, 23 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-containers/</guid><description>&lt;p&gt;像 VMware 或 KVM 这类虚拟化系统, 他们运行在虚拟化层上运行完整的 Linux 内核与操作系统.
+这种架构能提供极强的隔离性, 因为每个虚拟机都搭载独立的内核, 这些内核各自运行在硬甲虚拟化层之上的隔离内存空间中.&lt;/p&gt;</description></item><item><title>uv - Python package manager</title><link>https://starslayerx.github.io/posts/uv-python-package-manager/</link><pubDate>Mon, 22 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/uv-python-package-manager/</guid><description>&lt;p&gt;这篇文章深入介绍 uv 管理 Python 项目的使用&lt;/p&gt;
 &lt;h2 id="features"&gt;Features&lt;/h2&gt;
 &lt;h4 id="python-versions"&gt;Python versions&lt;/h4&gt;
 &lt;ul&gt;
