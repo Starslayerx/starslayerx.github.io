@@ -1,4 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Starslayerx' Blog</title><link>https://starslayerx.github.io/posts/</link><description>Recent content in Posts on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Wed, 22 Oct 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Understanding SVG Paths</title><link>https://starslayerx.github.io/posts/understanding-svg-paths/</link><pubDate>Wed, 22 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/understanding-svg-paths/</guid><description>&lt;h2 id="overview">Overview&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Starslayerx' Blog</title><link>https://starslayerx.github.io/posts/</link><description>Recent content in Posts on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Fri, 24 Oct 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Fastapi Lifespan Events</title><link>https://starslayerx.github.io/posts/fastapi-lifespan-events/</link><pubDate>Fri, 24 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-lifespan-events/</guid><description>&lt;h2 id="lifespan-events">Lifespan Events&lt;/h2>
+&lt;p>通过生命周期事件可以定义在应用开启之前需要执行的代码，这意味着这些代码会在开始接收外部请求之前被执行一次。
+同样地，也可以定义应用在关闭的时候定义需要执行的代码，在尽力处理完所有请求后，该代码会被执行一次。&lt;/p></description></item><item><title>Code Quailty</title><link>https://starslayerx.github.io/posts/code-quailty/</link><pubDate>Thu, 23 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/code-quailty/</guid><description>&lt;h3 id="31-debugging-in-the-browser">3.1 Debugging in the browser&lt;/h3>
+&lt;p>Debugging is the process of finding and fixing errors with a script.
+All morden browsers and most other environments support debugging tools - a special UI in developer tools that makes debugging much easier.
+It also allows to trace the code step by step to see what exactly is going on.&lt;/p>
+&lt;h4 id="the-sources-panel">The &amp;ldquo;Sources&amp;rdquo; panel&lt;/h4>
+&lt;p>The Sources panel has 3 parts:&lt;/p>
+&lt;ol>
+&lt;li>The &lt;strong>File Navigator&lt;/strong> pane lists HTML, Javascript, CSS and other files, including images that are attatched to the page. Chrome extensions may appera here too.&lt;/li>
+&lt;li>The &lt;strong>Code Editor&lt;/strong> pane shows the source code.&lt;/li>
+&lt;li>The &lt;strong>Javascript Debugging&lt;/strong> pane is for debugging, we&amp;rsquo;ll explore it soon.&lt;/li>
+&lt;/ol>
+&lt;h4 id="console">Console&lt;/h4>
+&lt;p>按 &lt;code>Esc&lt;/code> 可以打开控制台，在其中可以输入命令，按回车执行。&lt;/p></description></item><item><title>Understanding SVG Paths</title><link>https://starslayerx.github.io/posts/understanding-svg-paths/</link><pubDate>Wed, 22 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/understanding-svg-paths/</guid><description>&lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>如果你曾经看过一个 icon 的 SVG 代码，你可能会注意到他们通常是有一个 &lt;code>&amp;lt;path&amp;gt;&lt;/code> 元素和一个神秘的 &lt;code>d&lt;/code> 属性实现的。
 你可能以为他们不过是设计师最喜欢的矢量图形编辑器的输出，虽然可能是正确的，但有些过度简化了。&lt;/p></description></item><item><title>Python Standrad Library - pathlib</title><link>https://starslayerx.github.io/posts/python-standrad-library-pathlib/</link><pubDate>Wed, 01 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-standrad-library-pathlib/</guid><description>&lt;h1 id="pathlib---object-oriented-filesystem-paths">pathlib - Object-oriented filesystem paths&lt;/h1>
 &lt;p>此模块提供表示&lt;em>文件系统路径&lt;/em>的类，其语义适用于不同的操作系统。
