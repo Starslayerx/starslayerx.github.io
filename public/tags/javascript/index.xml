@@ -1,4 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Javascript on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/javascript/</link><description>Recent content in Javascript on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Sun, 21 Sep 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml"/><item><title>Morden Javascript Tutorial Chapter 2 - Fundamentals: 11~18</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-2-fundamentals-11~18/</link><pubDate>Sun, 21 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-2-fundamentals-11~18/</guid><description>&lt;h2 id="211-logical-operators"&gt;2.11 Logical operators&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Javascript on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/javascript/</link><description>Recent content in Javascript on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Thu, 23 Oct 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml"/><item><title>Code Quailty</title><link>https://starslayerx.github.io/posts/code-quailty/</link><pubDate>Thu, 23 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/code-quailty/</guid><description>&lt;h3 id="31-debugging-in-the-browser"&gt;3.1 Debugging in the browser&lt;/h3&gt;
+&lt;p&gt;Debugging is the process of finding and fixing errors with a script.
+All morden browsers and most other environments support debugging tools - a special UI in developer tools that makes debugging much easier.
+It also allows to trace the code step by step to see what exactly is going on.&lt;/p&gt;
+&lt;h4 id="the-sources-panel"&gt;The &amp;ldquo;Sources&amp;rdquo; panel&lt;/h4&gt;
+&lt;p&gt;The Sources panel has 3 parts:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The &lt;strong&gt;File Navigator&lt;/strong&gt; pane lists HTML, Javascript, CSS and other files, including images that are attatched to the page. Chrome extensions may appera here too.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;Code Editor&lt;/strong&gt; pane shows the source code.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;Javascript Debugging&lt;/strong&gt; pane is for debugging, we&amp;rsquo;ll explore it soon.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="console"&gt;Console&lt;/h4&gt;
+&lt;p&gt;按 &lt;code&gt;Esc&lt;/code&gt; 可以打开控制台，在其中可以输入命令，按回车执行。&lt;/p&gt;</description></item><item><title>Morden Javascript Tutorial Chapter 2 - Fundamentals: 11~18</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-2-fundamentals-11~18/</link><pubDate>Sun, 21 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-2-fundamentals-11~18/</guid><description>&lt;h2 id="211-logical-operators"&gt;2.11 Logical operators&lt;/h2&gt;
 &lt;p&gt;There are four logical operators in JavaScript: &lt;code&gt;||&lt;/code&gt; (ORA), &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; (AND), &lt;code&gt;!&lt;/code&gt; (NOT), &lt;code&gt;??&lt;/code&gt; (Nullish Coalescing 空值合并).&lt;/p&gt;
 &lt;h3 id="-or"&gt;|| OR&lt;/h3&gt;
 &lt;div
