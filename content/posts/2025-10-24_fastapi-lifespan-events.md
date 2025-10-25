@@ -5,7 +5,7 @@ title = 'Fastapi Lifespan Events'
 tags = ['Fastapi']
 +++
 
-## Lifespan Events
+## Lifespan Events 生命周期事件
 
 通过生命周期事件可以定义在应用开启之前需要执行的代码，这意味着这些代码会在开始接收外部请求之前被执行一次。
 同样地，也可以定义应用在关闭的时候定义需要执行的代码，在尽力处理完所有请求后，该代码会被执行一次。
@@ -13,7 +13,7 @@ tags = ['Fastapi']
 这对于设置需要在整个 app 的请求间共享的资源时非常有用，或者是需要进行清理工作的时候。
 例如，一个数据库连接池，或者加载一个共享的机器学习模型。
 
-### Use Case
+### Use Case 使用示例
 
 下面通过一个例子说明如何使用。
 
@@ -23,7 +23,7 @@ tags = ['Fastapi']
 
 这就是需要解决的问题，需要在请求响应之前加载模型，也不是在代码被加载的时候加载模型。
 
-### Lifespan
+### Lifespan 生命周期
 
 可以通过在 `FastAPI` app 中使用 `lifespan` 参数来定义启动和关闭逻辑，以及一个 "context manager" (上下文管理器)。
 
@@ -61,7 +61,7 @@ async def predict(x: float):
 然后，在 `yield` 后面，卸载模型。
 这段改名将在完成请求之后执行，即关闭之前，这样会释放内存和 CPU 资源。
 
-#### Lifespan function
+#### Lifespan function 生命周期函数
 
 第一件注意到的事是，定义了一个带 `yield` 的 async function，这与带 `yield` 的 Dependencies 相同。
 
@@ -74,7 +74,7 @@ async def lifespan(app: FastAPI):
 
 在 `yield` 之前的部分会在应用开启之前执行，`yield` 之后的部分会在应用结束之后执行。
 
-#### Async Context Manager
+#### Async Context Manager 异步上下文管理器
 
 该函数使用 `@asynccontextmanager` 异步上下文管理器装饰，将函数转化成一个 "**async context manager**"。
 
@@ -132,7 +132,7 @@ async def shotdown():
     print("关闭xxx")
 ```
 
-### Technical Details
+### Technical Details 技术细节
 
 在 ASGI 协议规范下，这是 [Lifespan Protocol](https://asgi.readthedocs.io/en/latest/specs/lifespan.html) 的一部分，并且定义了 `startup` 和 `shutdown` 的事件。
 
