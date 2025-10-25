@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Starslayerx' Blog</title><link>https://starslayerx.github.io/</link><description>Recent content in Home on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Fri, 24 Oct 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Fastapi Lifespan Events</title><link>https://starslayerx.github.io/posts/fastapi-lifespan-events/</link><pubDate>Fri, 24 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-lifespan-events/</guid><description>&lt;h2 id="lifespan-events">Lifespan Events&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Starslayerx' Blog</title><link>https://starslayerx.github.io/</link><description>Recent content in Home on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Fri, 24 Oct 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Fastapi Lifespan Events</title><link>https://starslayerx.github.io/posts/fastapi-lifespan-events/</link><pubDate>Fri, 24 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-lifespan-events/</guid><description>&lt;h2 id="lifespan-events-生命周期事件">Lifespan Events 生命周期事件&lt;/h2>
 &lt;p>通过生命周期事件可以定义在应用开启之前需要执行的代码，这意味着这些代码会在开始接收外部请求之前被执行一次。
-同样地，也可以定义应用在关闭的时候定义需要执行的代码，在尽力处理完所有请求后，该代码会被执行一次。&lt;/p></description></item><item><title>Code Quailty</title><link>https://starslayerx.github.io/posts/code-quailty/</link><pubDate>Thu, 23 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/code-quailty/</guid><description>&lt;h3 id="31-debugging-in-the-browser">3.1 Debugging in the browser&lt;/h3>
+同样地，也可以定义应用在关闭的时候定义需要执行的代码，在尽力处理完所有请求后，该代码会被执行一次。&lt;/p></description></item><item><title>Morden Javascript Tutorial Chapter 3.1 - Code Quailty</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-3.1-code-quailty/</link><pubDate>Thu, 23 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-3.1-code-quailty/</guid><description>&lt;h3 id="31-debugging-in-the-browser">3.1 Debugging in the browser&lt;/h3>
 &lt;p>Debugging is the process of finding and fixing errors with a script.
 All morden browsers and most other environments support debugging tools - a special UI in developer tools that makes debugging much easier.
 It also allows to trace the code step by step to see what exactly is going on.&lt;/p>
@@ -14,7 +14,22 @@ It also allows to trace the code step by step to see what exactly is going on.&l
 &lt;h4 id="console">Console&lt;/h4>
 &lt;p>按 &lt;code>Esc&lt;/code> 可以打开控制台，在其中可以输入命令，按回车执行。&lt;/p></description></item><item><title>Understanding SVG Paths</title><link>https://starslayerx.github.io/posts/understanding-svg-paths/</link><pubDate>Wed, 22 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/understanding-svg-paths/</guid><description>&lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>如果你曾经看过一个 icon 的 SVG 代码，你可能会注意到他们通常是有一个 &lt;code>&amp;lt;path&amp;gt;&lt;/code> 元素和一个神秘的 &lt;code>d&lt;/code> 属性实现的。
-你可能以为他们不过是设计师最喜欢的矢量图形编辑器的输出，虽然可能是正确的，但有些过度简化了。&lt;/p></description></item><item><title>Python Standrad Library - pathlib</title><link>https://starslayerx.github.io/posts/python-standrad-library-pathlib/</link><pubDate>Wed, 01 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-standrad-library-pathlib/</guid><description>&lt;h1 id="pathlib---object-oriented-filesystem-paths">pathlib - Object-oriented filesystem paths&lt;/h1>
+你可能以为他们不过是设计师最喜欢的矢量图形编辑器的输出，虽然可能是正确的，但有些过度简化了。&lt;/p></description></item><item><title>Fastapi Background Tasks</title><link>https://starslayerx.github.io/posts/fastapi-background-tasks/</link><pubDate>Fri, 10 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-background-tasks/</guid><description>&lt;h2 id="background-tasks-后台任务">Background Tasks 后台任务&lt;/h2>
+&lt;p>你可以定义一个在返回响应之后运行的后台任务。
+这对请求之后执行一些操作十分有用，客户端无需一直等待操作任务完成再接收响应。&lt;/p>
+&lt;p>这包含一些例子：&lt;/p></description></item><item><title>Fastapi Middleware</title><link>https://starslayerx.github.io/posts/fastapi-middleware/</link><pubDate>Thu, 09 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-middleware/</guid><description>&lt;h2 id="middleware">Middleware&lt;/h2>
+&lt;p>你可以添加中间件到 FastAPI 应用中。&lt;/p>
+&lt;p>“中间件” 是一个函数，它在每个请求被特定路径操作之前对其进行处理，同时在每个响应返回之前也对其进行处理。&lt;/p>
+&lt;ul>
+&lt;li>在到达应用程序之前处理请求&lt;/li>
+&lt;li>可以在请求中做一些事情，或运行任何需要的代码&lt;/li>
+&lt;li>将处理后的请求传递给应用程序&lt;/li>
+&lt;li>之后处理应用程序返回的响应&lt;/li>
+&lt;li>可以对响应做一些事情，或运行任何需要的代码&lt;/li>
+&lt;li>然后返回响应&lt;/li>
+&lt;/ul>
+&lt;h3 id="create-a-middleware-创建一个中间件">Create a Middleware 创建一个中间件&lt;/h3>
+&lt;p>想要创建一个中间件，你可以在函数上面使用装饰器 &lt;code>@app.middleware(&amp;quot;http&amp;quot;)&lt;/code>，该函数接受：&lt;/p></description></item><item><title>Python Standrad Library - pathlib</title><link>https://starslayerx.github.io/posts/python-standrad-library-pathlib/</link><pubDate>Wed, 01 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-standrad-library-pathlib/</guid><description>&lt;h1 id="pathlib---object-oriented-filesystem-paths">pathlib - Object-oriented filesystem paths&lt;/h1>
 &lt;p>此模块提供表示&lt;em>文件系统路径&lt;/em>的类，其语义适用于不同的操作系统。
 路径类分为：&lt;/p>
 &lt;ul>
