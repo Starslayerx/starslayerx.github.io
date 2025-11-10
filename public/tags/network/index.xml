@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Network on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/network/</link><description>Recent content in Network on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Mon, 10 Nov 2025 08:00:00 +0100</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/network/index.xml" rel="self" type="application/rss+xml"/><item><title>Solving SSH Lag Through Proxy: A Complete Guide to SSH on Port 443</title><link>https://starslayerx.github.io/posts/solving-ssh-lag-through-proxy-a-complete-guide-to-ssh-on-port-443/</link><pubDate>Mon, 10 Nov 2025 08:00:00 +0100</pubDate><guid>https://starslayerx.github.io/posts/solving-ssh-lag-through-proxy-a-complete-guide-to-ssh-on-port-443/</guid><description>&lt;h1 id="解决代理环境下的-ssh-卡顿ssh-over-443-端口完全指南"&gt;解决代理环境下的 SSH 卡顿：SSH over 443 端口完全指南&lt;/h1&gt;
+&lt;h2 id="问题描述"&gt;问题描述&lt;/h2&gt;
+&lt;p&gt;从内地 SSH 连接到香港的云服务器时，出现严重的卡顿现象：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;输入延迟明显，每个字符都有停顿&lt;/li&gt;
+&lt;li&gt;但通过服务商提供的 noVNC Console（Web 终端）却非常流畅&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;明明都是连接同一台香港服务器，为什么体验差距如此之大？&lt;/p&gt;</description></item></channel></rss>
