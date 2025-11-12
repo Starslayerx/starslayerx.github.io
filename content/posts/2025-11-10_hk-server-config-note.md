@@ -153,6 +153,8 @@ Connection closed by UNKNOWN port 65535
 
    如果看到 `TriggeredBy: ● ssh.socket`，说明使用了 **systemd socket activation**。
 
+> 在Ubuntu 22.10 或更高版本中，ssh 默认通过套接字激活
+
 2. 对于 systemd socket 模式，需要修改 socket 配置文件：
 
    ```bash
@@ -166,6 +168,40 @@ Connection closed by UNKNOWN port 65535
    ListenStream=22
    ListenStream=443
    ```
+
+   > 对于 Ubuntu 24.04 中
+
+   ```bash
+   sudo systemctl restart ssh.service
+   sudo systemctl daemon-reload
+   sudo systemctl restart ssh.service
+   ```
+
+   有些云服务商为了启用远程密码登陆，会在 `/etc/ssh/sshd_config.d/` 自定义一个 conf 文件，修改 sshd 配置之前要先排除其干扰
+
+   ```bash
+   ls /etc/ssh/sshd_config.d/*.conf
+   sudo nvim /etc/ssh/sshd_config.d/50-cloud-init.conf
+   ```
+
+   例如我这里九有`/etc/ssh/sshd_config.d/50-cloud-init.conf`，内容为
+
+   ```text
+   PasswordAuthentication yes
+   ```
+
+   配置完成后通过下面命令查看有效配置
+
+   ```bash
+   # Root 用户登录方式
+   sudo sshd -T | grep -i "PermitRootLogin"
+   # 密码认证
+   sudo sshd -T | grep -i "PasswordAuthentication"
+   # ssh 端口
+   sudo sshd -T | grep -i "Port"
+   ```
+
+   如果看到输出 without-password 是正确的，因为 prohibit-password 就是其别名
 
 3. 重新加载配置并重启：
 

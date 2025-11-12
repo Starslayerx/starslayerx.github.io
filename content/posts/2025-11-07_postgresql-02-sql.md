@@ -163,5 +163,56 @@ DELETE FROM student;
 查询 student 表中所有数据
 
 ```SQL
-select no, student_name, age from student;
+SELECT no, student_name, age FROM student;
+```
+
+列可以是表的列名，也可以是另一个表达式：
+
+```SQL
+SELECT age+5, FROM student;
+```
+
+还可以与列表无关
+
+```SQL
+SELECT no, 3+5 FROM student;
+```
+
+实际上，与表达式无关的时候，可以不 FROM 表格，这样可以当作计数器使用：
+
+```SQL
+SELECT 2+3;
+
+ ?column?
+----------
+       5
+(1 row)
+```
+
+使用 \* 代表所有的列
+
+```SQL
+SELECT * FROM student;
+```
+
+### 过滤条件的查询
+
+SELECT 后面添加 WHERE 用于指定查询过哪些记录，例如查询学号为 3 个学生记录
+
+```SQL
+SELELCT * FROM student WHERE no=3;
+```
+
+### 排序
+
+使用 ORDER BY 语句对查询结果进行排序，例如对年龄排序：
+
+```SQL
+SELECT * FROM student ORDER BY age;
+```
+
+ORDER BY 需要在 WHERE 语句之后，若顺序不对会报错。
+
+```SQL
+SELECT * FROM student WHERE age >= 15 ORDER BY age;
 ```

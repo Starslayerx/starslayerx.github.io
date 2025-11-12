@@ -2,10 +2,10 @@
 date = '2025-08-02T8:00:00+08:00'
 draft = false
 title = '"Chaos Enginnering" In Partice'
-tags = ['Essay']
+tags = ['Article']
 +++
 
-记录一个小故事 XD
+记录一个小故事
 
 ### “混沌工程”实践
 
