@@ -1,26 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Essay on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/essay/</link><description>Recent content in Essay on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Sat, 02 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/essay/index.xml" rel="self" type="application/rss+xml"/><item><title>"Chaos Enginnering" In Partice</title><link>https://starslayerx.github.io/posts/chaos-enginnering-in-partice/</link><pubDate>Sat, 02 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/chaos-enginnering-in-partice/</guid><description>&lt;p>记录一个小故事 XD&lt;/p>
-&lt;h3 id="混沌工程实践">“混沌工程”实践&lt;/h3>
-&lt;p>项目延期，开发说时间不够干不完
-老板：“不够就招人”&lt;/p>
-&lt;p>今天偶然听到旁边同事给新来的员工做code review：&lt;/p>
-&lt;ul>
-&lt;li>Q：你这个代码不要这样写，因为&amp;hellip;&amp;hellip;&lt;/li>
-&lt;li>A：哦，懂了&lt;/li>
-&lt;li>Q：唉？你这个 &lt;code>.idea/&lt;/code> 文件是什么？&lt;/li>
-&lt;li>A：啊？我也不知道&lt;/li>
-&lt;li>我：不是???(一脸震惊)&lt;/li>
-&lt;/ul>
-&lt;p>理想：Plan Do Check Act&lt;/p></description></item><item><title>Blaugust</title><link>https://starslayerx.github.io/posts/blaugust/</link><pubDate>Fri, 01 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/blaugust/</guid><description>&lt;p>🎈 Oh hello, August! It&amp;rsquo;s time for Blaugust.&lt;/p>
-&lt;h3 id="blaugust-begins-writing-as-a-develpoer-habit">Blaugust Begins: Writing as a Develpoer Habit&lt;/h3>
-&lt;p>This year, I&amp;rsquo;m joining &lt;strong>Blaugust&lt;/strong> - a month-long blogging challenge that encourage consistent writing throught August.
-For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orgainzing thoughts, documenting ideas, and creating term references.&lt;/p>
-&lt;h3 id="what-i-plan-to-write">What I Plan to Write&lt;/h3>
-&lt;p>Here is what I aim to cover this month:&lt;/p>
-&lt;ul>
-&lt;li>Daily dev partices: tools, logging, project structure patterns&lt;/li>
-&lt;li>Python ecosystem: FastAPI, Pydantic, Langchain, Pytest and more&lt;/li>
-&lt;li>AI project logs: buliding AI agents and orchestration workflows&lt;/li>
-&lt;li>Architecture notes: async patterns, micorservice, data flow&lt;/li>
-&lt;li>Learning notes &amp;amp; translation of blogs: deep dive into code and quality tech atricles&lt;/li>
-&lt;/ul>
-&lt;p>I&amp;rsquo;m not necessarily writing one post per day - some days I might write multiple posts in advance - but the goal is to publish daily with a focus on consistency, reusability, and value.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Essay on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/essay/</link><description>Recent content in Essay on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Sat, 02 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/essay/index.xml" rel="self" type="application/rss+xml"/><item><title>"Chaos Enginnering" In Partice</title><link>https://starslayerx.github.io/posts/chaos-enginnering-in-partice/</link><pubDate>Sat, 02 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/chaos-enginnering-in-partice/</guid><description>&lt;p&gt;记录一个小故事 XD&lt;/p&gt;
+&lt;h3 id="混沌工程实践"&gt;“混沌工程”实践&lt;/h3&gt;
+&lt;p&gt;项目延期，开发说时间不够干不完
+老板：“不够就招人”&lt;/p&gt;
+&lt;p&gt;今天偶然听到旁边同事给新来的员工做code review：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Q：你这个代码不要这样写，因为&amp;hellip;&amp;hellip;&lt;/li&gt;
+&lt;li&gt;A：哦，懂了&lt;/li&gt;
+&lt;li&gt;Q：唉？你这个 &lt;code&gt;.idea/&lt;/code&gt; 文件是什么？&lt;/li&gt;
+&lt;li&gt;A：啊？我也不知道&lt;/li&gt;
+&lt;li&gt;我：不是???(一脸震惊)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;理想：Plan Do Check Act&lt;/p&gt;</description></item><item><title>Blaugust</title><link>https://starslayerx.github.io/posts/blaugust/</link><pubDate>Fri, 01 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/blaugust/</guid><description>&lt;p&gt;🎈 Oh hello, August! It&amp;rsquo;s time for Blaugust.&lt;/p&gt;
+&lt;h3 id="blaugust-begins-writing-as-a-develpoer-habit"&gt;Blaugust Begins: Writing as a Develpoer Habit&lt;/h3&gt;
+&lt;p&gt;This year, I&amp;rsquo;m joining &lt;strong&gt;Blaugust&lt;/strong&gt; - a month-long blogging challenge that encourage consistent writing throught August.
+For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orgainzing thoughts, documenting ideas, and creating term references.&lt;/p&gt;
+&lt;h3 id="what-i-plan-to-write"&gt;What I Plan to Write&lt;/h3&gt;
+&lt;p&gt;Here is what I aim to cover this month:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Daily dev partices: tools, logging, project structure patterns&lt;/li&gt;
+&lt;li&gt;Python ecosystem: FastAPI, Pydantic, Langchain, Pytest and more&lt;/li&gt;
+&lt;li&gt;AI project logs: buliding AI agents and orchestration workflows&lt;/li&gt;
+&lt;li&gt;Architecture notes: async patterns, micorservice, data flow&lt;/li&gt;
+&lt;li&gt;Learning notes &amp;amp; translation of blogs: deep dive into code and quality tech atricles&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I&amp;rsquo;m not necessarily writing one post per day - some days I might write multiple posts in advance - but the goal is to publish daily with a focus on consistency, reusability, and value.&lt;/p&gt;</description></item></channel></rss>
