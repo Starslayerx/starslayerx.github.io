@@ -1,7 +1,7 @@
 +++
-date = '2025-11-14T8:00:00+01:00'
+date = '2025-11-17T8:00:00+01:00'
 draft = false
-title = 'Postgresql psql Tool Introduction'
+title = 'Postgresql 03: psql Tool Introduction'
 tags = ['PostgreSQL']
 +++
 
