@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Asyncio on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/asyncio/</link><description>Recent content in Asyncio on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Wed, 19 Nov 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/asyncio/index.xml" rel="self" type="application/rss+xml"/><item><title>Python Asyncio 01: Getting to know asyncio</title><link>https://starslayerx.github.io/posts/python-asyncio-01-getting-to-know-asyncio/</link><pubDate>Wed, 19 Nov 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-asyncio-01-getting-to-know-asyncio/</guid><description>&lt;h2 id="python-asyncio-基础篇"&gt;Python asyncio 基础篇&lt;/h2&gt;
+&lt;p&gt;本篇包含&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;asyncio 是什么以及如何使用它&lt;/li&gt;
+&lt;li&gt;concurrency 并发、parallelism 并行、threads 线程和 processes 进程&lt;/li&gt;
+&lt;li&gt;GIL (global interpreter lock) 全局解释器锁和其带来的并发跳转&lt;/li&gt;
+&lt;li&gt;非阻塞 sockets 如何只通过一个线程实现并发&lt;/li&gt;
+&lt;li&gt;基于事件循环 (event-loop-based) 并发的基本原理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;asynchronous programming 异步编程意思是可以在主程序之外，额外运行一个特定的长时运行的任务。&lt;/p&gt;</description></item></channel></rss>
