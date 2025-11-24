@@ -7,7 +7,7 @@ tags = ['Python', 'Asyncio']
 
 ### Introducing coroutines
 
-创建一个协程 coroutine 和创建一个函数很类型，使用 `async def` 关键字，而不是 `def`:
+创建一个协程 coroutine 而不是创建一个函数类型，使用 `async def` 关键字，而不是 `def`:
 
 ```Python
 async def coroutine_add_one(number: int) -> int:
@@ -160,7 +160,7 @@ async def main():
 asyncio.run(main())
 ```
 
-`asyncio.create_task()` 会启动协程并立即让事件循环调度它，这里的 `await` 做的只是等待 task 完成，在等待其间，事件循环仍然会继续运行。
+`asyncio.create_task()` 会启动协程并立即让事件循环调度它，这里的 `await` 做的只是等待 task 完成，在等待期间，事件循环仍然会继续运行。
 上面代码一共会消耗 3 秒的时间，如果启动 10 个任务，也只会消耗 3 秒多时间，这就比顺序执行快了 n 倍！
 
 并且不止于此，在等待的时间里，还可以执行其他代码，例如下面每秒输出状态消息：

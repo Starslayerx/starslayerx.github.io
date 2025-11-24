@@ -19,7 +19,7 @@ tags = ['Python', 'Asyncio']
 
 一个 coroutine 协程是一种方法，协程是一种方法，当遇到可能长时间运行的任务时，它可以暂停执行，并在任务完成后恢复执行。
 
-asyncio 这个库的名称可能让人人为其只适合编写 I/O 操作，但实际上该库可以和 multithreading 和 multiprocessing 库结合使用。
+asyncio 这个库的名称可能让人人为其只适合编写 I/O 操作，但实际上该库可以和 threading 和 multiprocessing 库结合使用。
 基于这种 interoperability 互操作性，可以使用 async/await 关键字让工作流更加容易理解。
 这意味着，asyncio 不仅适合 I/O 的并发，也可以在 CPU 密集操作中使用。
 
@@ -135,7 +135,7 @@ The current thread is MainThread
 这里一种 race condition 竟态条件，多线程是许多编程语言的实现并发的一种方式，但由于 GIL 的限制，python 的多线程只对 I/O-bound 类型有效。
 
 此外，还可以使用多进程，即 multiprocessing，一个父进程会创建子进程并管理这些进程，然后将工作内存分发给这些子进程。
-multiprocessing 的 API 类似 multithreading，首先创建一个 target function，然后调用 start 方法执行，最后 join 等待运行完成。
+multiprocessing 的 API 类似 threading，首先创建一个 target function，然后调用 start 方法执行，最后 join 等待运行完成。
 
 ```Python
 import os
