@@ -127,7 +127,6 @@ async def send_admin_message(request: Request) -> StreamingResponse:
 
     ...
 
-    # SSE
     return StreamingResponse(
         media_type="application/x-ndjson",
         headers={
