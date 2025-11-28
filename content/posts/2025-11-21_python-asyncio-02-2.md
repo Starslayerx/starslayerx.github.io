@@ -364,3 +364,53 @@ asyncio.run(main())
 建议是使用 `get_running_loop`，在没有事件循环的时候会抛出一个报错，从而避免“惊喜”。
 
 ## Using debug mode
+
+asyncio 提供了 debug mode，在这种模式下若协程运行操作 100 毫秒，将会看到几条有用的信息。
+此外，如果不 await coroutine 将会抛出报错，这样就能知道何时正确抛出 await。
+
+### Using asyncio.run
+
+`asyncio.run` 函数有一个 debug 参数，默认是 `False`，可以将其设置为 `True` 来开启调试模式。
+
+```Python
+asyncio.run(coroutine(), debug=True)
+```
+
+调试模式可以通过参数 `-X dev` 实现
+
+```shell
+python3 -X dev program.py
+```
+
+或者通过`python asyncio debug`环境变量实现
+
+```shell
+PYTHONASYNCIODEBUG=1 python3 program.py
+```
+
+在调试模式下，如果一个协程运行时间过程，就会看到提示信息。
+可以使用下面 CPU-bound 代码来测试调试模式
+
+```Python
+import asyncio
+from util import async_timed
+
+@async_timed()
+async def cpu_bound_work() -> int:
+    counter = 0
+    for _ in range(100000000):
+        counter += 1
+    return counter
+
+async def main():
+    task_one = asyncio.create_task(cpu_bound_work())
+    await task_one
+
+asyncio.run(main(), debug=True)
+```
+
+会看到有这样的输出信息
+
+```shell
+Executing <Task finished name='Task-2' coro=<cpu_bound_work() done, defined at /Users/starslayerx/asyncio/util/async_timer.py:8> result=100000000 created at /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py:420> took 6.085 seconds
+```
