@@ -414,3 +414,29 @@ asyncio.run(main(), debug=True)
 ```shell
 Executing <Task finished name='Task-2' coro=<cpu_bound_work() done, defined at /Users/starslayerx/asyncio/util/async_timer.py:8> result=100000000 created at /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/tasks.py:420> took 6.085 seconds
 ```
+
+当调用被意外阻塞的时候，这样的调试将会很有用。
+默认设置下，如果一个协程运行超过 100 毫秒将会显示这个错误，但这可能并不是我们期望的。
+可以通过访问事件循环，并修改 `slow_callback_duration` 来自定义时间，这是个浮点值，单位为秒。
+
+```Python
+import asyncio
+
+async def main():
+    loop = asyncio.get_event_loop()
+    loop.slow_callback_duration = .250
+
+asyncio.run(main(), debug=True)
+```
+
+这里意思是说时间大于 0.250 秒的会输出调试信息。
+
+## Summary
+
+- 使用 async 关键字创建协程
+- 使用 await 关键字暂停/调用协程
+- 使用 asyncio.run 执行单个协程，并作为程序的入口函数
+- 使用 tasks 并发运行多个协程
+- 取消协程，取消协程会抛出一个 CancelledError 错误；为协程添加超时时间，使用 asyncio.wait_for 设置超时时间，否则抛出 TimeoutError
+- 避免在协程中运行 cpu-bound 任务
+- 使用 debug 调试模式
