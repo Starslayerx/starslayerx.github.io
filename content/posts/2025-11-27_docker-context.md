@@ -17,7 +17,8 @@ docker context use default
 
 ```shell
 docker context create my-server --docker "host=ssh://root@1.2.3.4"
-docker context create my-server --docker "host=CompanyServer1"
+
+docker context create my-server --docker "host=ssh://CompanyServer1"
 ```
 
 这里的 `CompanyServer1` 是 ssh 配置，例如这样

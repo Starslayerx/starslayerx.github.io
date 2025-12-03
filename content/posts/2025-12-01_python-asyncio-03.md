@@ -358,40 +358,86 @@ import selectors
 import socket
 from selectors import SelectorKey
 
+
 selector = selectors.DefaultSelector()
 
 server_socket = socket.socket()
 server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
-server_addres = ("127.0.0.1", 8000)
+server_address = ("127.0.0.1", 8000)
 server_socket.setblocking(False)
-server_socket.bind(server_addres)
+server_socket.bind(server_address)
 server_socket.listen()
 
 selector.register(server_socket, selectors.EVENT_READ)
 
 while True:
-    # 创建 1 秒后过期的 selector 选择器
+    # 创建 1 秒过期的选择器
     events: list[tuple[SelectorKey, int]] = selector.select(timeout=1)
 
-    # 如果没有事件，输出
+    # 没有事件
     if len(events) == 0:
         print("No events, waiting a bit more!")
 
     for event, _ in events:
-        # 获取 fileobj 里面存储的 socket event
+        # 获取 socket event
         event_socket = event.fileobj
 
-        # 如果 event_socket 和 server_socket 是同一个，则说明是一次连接尝试
         if event_socket == server_socket:
             connection, address = server_socket.accept()
             connection.setblocking(False)
             print(f"I got a connection from {address}")
-            # 注册连接到 selector 的客户端
             selector.register(connection, selectors.EVENT_READ)
         else:
-            # 如果 event 不是 server socket，则接受数据并 echo 返回
             data = event_socket.recv(1024)
             print(f"I got some data: {data}")
             event_socket.send(data)
+
 ```
+
+这样实现的 echo server 的 CPU 利用率就少了很多，虽然仍然是死循环，但是循环内部的 `selector()` 会让线程进入内核的阻塞睡眠状态，直到超时才会 print() 一条语句，是典型的事件驱动。
+
+而 try except 轮询会不间断的轮询，且内部会不断抛出异常、处理异常、重试等，CPU 占用很高。
+
+---
+
+上面构建的部分和 asyncio 底层的大部分工作方式类似。
+在这个例子中，events 是 sockets 接收数据。
+无论是我们的事件循环还是 asyncio 的事件循环，它们的每一次迭代都是由两种情况触发的：要么有某个 socket 事件发生，要么是超时导致事件循环继续运行。
+
+在 asyncio 的事件循环里，只要发生了这两种情况中的任意一种，所有正在等待调度的协程都会运行，直到它们结束，或者它们遇到下一个 await 语句为止。
+
+当协程执行到一个基于非阻塞 socket 的 await 时，该 socket 会被注册到系统的 selector 中，同时事件循环会记录该协程已暂停并正在等待这个 socket 的结果。
+
+我们可以把这个概念翻译成伪代码来展示。
+
+```Python
+paused = []
+ready = []
+
+while True:
+    paused, new_sockets = run_ready_tasks(ready)
+    selector.register(new_sockets)
+    timeout = calculate_timeout()
+    events = selector.select(timeout)
+    ready = process_events(events)
+```
+
+我们会运行所有“已经准备好的协程”，直到他们在某个 await 语句上暂停，并把这些协程放到 paused 列表中。
+同时，还会记录这些协程运行过程中产生的所有新 socket，并将他们注册到 selector 中。
+之后，我们需要计算下一次调用 select 时的超时时间。
+这个 timeout 的计算方式比较复杂，但通常取决于在未来某个时间点或者等待某个持续时间后要执行的任务。
+例如 asyncio.sleep() 就会影响这个 timeout。
+
+接着，调用 select 并等待 socket 事件或超时。
+当其中一个发生时，会处理这些事件，并将其转化为一个可立即继续执行的协程列表。
+
+---
+
+虽然上面的 event loop 只是用于 socket 的，但其展示了使用 selectors 注册 sockets 的主要思想，
+即只在我们关心的事件发生后才启动。
+
+然而，如果我们仅使用 selectors 来构建应用程序，就需要自行实现事件循环才能达到与 asyncio 相同的功能。
+下面介绍如何使用 async/await 来实现上面功能。
+
+### An echo server on the asyncio event loop
