@@ -440,4 +440,157 @@ while True:
 然而，如果我们仅使用 selectors 来构建应用程序，就需要自行实现事件循环才能达到与 asyncio 相同的功能。
 下面介绍如何使用 async/await 来实现上面功能。
 
-### An echo server on the asyncio event loop
+## An echo server on the asyncio event loop
+
+使用 `select` 对于很多应用来说有些太底层了。
+我们可能希望在等待 socket 的时候，让代码在后台运行，或者我们可能希望按计划执行后台任务。
+如果只使用 selectors 来实现这个，我们将需要构建自己的事件循环，与此同时，asyncio 有一个完整的实现可以使用。
+此外，coroutines 和 tasks 在 selectors 之上提供了抽象层，这使得我们代码更易于实现和维护，无需考虑 selectors 细节。
+
+下面通过 asyncio 的 coroutines 和 tasks 再次实现前面的 echo server。
+这里仍然会通过底层 API 来实现，这些 API 会返回 coroutines 和 tasks。
+
+### Event loop coroutines for sockets
+
+考虑到 sockets 的一个相对底层的概念，处理他们的方法是通过 asyncio 的事件循环。
+下面会使用三种主要的协程处理：
+
+- `sock_accept`
+- `sock_recv`
+- `sock_sendall`
+
+这些方法和之前的很类似，不同在于这些方法会将 socket 作为一个参数输入，这样我们可以 `await` 返回的协程，直到我们得到可以作用于其上的数据。
+
+下面先从 `sock_accept` 开始，这个协程类似之前的 `socket.accept` 方法。
+
+该方法返回一个 tuple: `(socket_connection, client_address)`，传入感兴趣的 socket，然后 `await` 等待连接返回。
+一但接受该协程就能获取到连接与地址，这个 socket 必须是非阻塞的，并和一个端口绑定起来：
+
+```Python
+connection, addresss = await loop.socke_accept(socket)
+```
+
+`sock_recv` 和 `sock_sendall` 也是类似的，输入一个 socket，然后 `await` 等待结果。
+
+- `sock_recv` 会等待直到有可以处理的字节
+- `sock_sendall` 同时接受一个 socket 和要发送的 data，它会等待直到所有数据成功发送至 socket，并在成功后返回 `None`
+
+```Python
+data = await loop.sock_recv(socket)
+success = await loop.sock_sendall(socket, data)
+```
+
+### Designing an asyncio echo server
+
+之前介绍了 coroutines 和 tasks，那么什么时候使用 coroutine，什么时候使用 task 呢？
+让我们来审视一下，我们希望应用程序如何表现以做出这一判断。
+
+我们从如何监听应用连接开始。
+当监听应用连接的时候，一次将只能处理一个连接，因为 `socket.accept` 只会给客户端一个连接。
+如果有多个连接到达，后续的连接会被存储到一个被称作 `backlog` 的队列里面。
+
+由于不需要并发处理多个连接，单个协程循环就足够了。
+这样能够让其他代码在等待连接的时候并发执行。
+这里定义一个一直循环的协程 `listen_for_connections`
+
+```Python
+async def listen_for_connections(server_socket: socket, loop: AbstractEventLoop):
+    while True:
+        connection, address = await loop.sock_accept(server_socket)
+        connection.setblocking(False)
+        print(f"Got a connection from {address}")
+```
+
+这样就有了一个监听连接的协程，由于要并发处理多个 connection，因此这里要为每个 connection 创建一个 task 来读写数据。
+
+这里将创建负责处理数据的协程 `echo`，这个协程会一直循环来接收来自 client 的数据，一但其收到数据，就写会到 client 中去。
+然后在 `listen_for_connections` 里，创建一个 task 来包装 `echo` 协程。
+
+```Python
+import asyncio
+import socket
+from asyncio import AbstractEventLoop
+
+
+async def echo(connection: socket, loop: AbstractEventLoop) -> None:
+    while data := await loop.sock_recv(connection, 1024):
+        await loop.sock_sendall(connection, data)
+
+async def listen_for_connections(server_socket: socket, loop: AbstractEventLoop):
+    while True:
+        connection, address = await loop.sock_accept(server_socket)
+        connection.setblocking(False)
+        print(f"Got a connection from {address}")
+
+        asyncio.create_task(echo(connection, loop))
+
+async def main():
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+    server_address = ("127.0.0.1", 8000)
+    server_socket.setblocking(False)
+    server_socket.bind(server_address)
+    server_socket.listen()
+
+    await listen_for_connections(server_socket, asyncio.get_event_loop())
+
+asyncio.run(main())
+```
+
+架构如下：
+
+- 协程 `listen_for_connections` 持续监听连接，收到连接后该协程就会切换到 `echo` task 去处理每个连接
+  - Client 1 echo task <--Read/Write--> Client 1
+  - Client 2 echo task <--Read/Write--> Client 2
+  - Client 3 echo task <--Read/Write--> Client 3
+
+这样设计的 echo server 实际上有一个问题，下面来解决
+
+### Handling errors in tasks
+
+网络连接通常都是不可靠的，我们可能得到非预期的报错。
+下面修改 echo 的实现，添加一个错误处理的代码：
+
+```Python
+async def echo(connection: socket, loop: AbstractEventLoop) -> None:
+    while data := await loop.recv(connection, 1024):
+        if data == b"boom\r\n":
+            raise Exception("Unexcepted network error")
+        await loop.sock_sendall(connection, data)
+```
+
+现在只要发送 boom 就会导致下面这样的报错：
+
+```text
+Got a connection from ('127.0.0.1', 49470)
+Task exception was never retrieved
+future: <Task finished name='Task-2' coro=<echo() done, defined at /Users/starslayerx/GitHub/book_asyncio/asyncio_echo_server.py:4> exception=Exception('Unexcepted network error')>
+Traceback (most recent call last):
+  File "/Users/starslayerx/GitHub/book_asyncio/asyncio_echo_server.py", line 7, in echo
+    raise Exception("Unexcepted network error")
+```
+
+这里的重点在于 `Task exception was never retrieved`。
+当一个异常在 task 内部被抛出时，这个任务会被视为已完成，并且它的“结果”就是这个异常。
+这意味着异常不会沿着调用栈向上传递。
+此外，这里没有任何清理逻辑。
+如果该异常被抛出，则无法对任务失败做出反应，因为从未获取 retrieve 这个异常。
+
+要让异常真正传递，必须在 await 表达式中使用 task。
+当 await 一个失败的 task 时，异常会在 await 的地方重新抛出，其 traceback 也会在该位置体现。
+如果在程序中从未 await 一个 task，就有可能永远看不到这个 task 抛出的异常。
+
+下面演示，与其忽略在 `listen_for_connection` 里面创建的 echo tasks，我们通过列表来跟踪他们
+
+```Python
+tasks = []
+async def listen_for_connection(server_socket: socket, loop: AbstractEventLoop):
+    while True:
+        connection, address = await loop.socket_accept(server_socket)
+        connection.setblocking(False)
+        print(f"Got a connection from {address}")
+        tasks.append(
+            asyncio.create_task(echo(connection, loop))
+        )
+```
