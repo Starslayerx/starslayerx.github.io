@@ -1,4 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Starslayerx' Blog</title><link>https://starslayerx.github.io/</link><description>Recent content in Home on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Tue, 02 Dec 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Writing a good CLAUDE.md</title><link>https://starslayerx.github.io/posts/writing-a-good-claude.md/</link><pubDate>Tue, 02 Dec 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/writing-a-good-claude.md/</guid><description>&lt;h1 id="如何编写一个好的-claudemd">如何编写一个好的 CLAUDE.md&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Starslayerx' Blog</title><link>https://starslayerx.github.io/</link><description>Recent content in Home on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Mon, 08 Dec 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Git cherry-pick</title><link>https://starslayerx.github.io/posts/git-cherry-pick/</link><pubDate>Mon, 08 Dec 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/git-cherry-pick/</guid><description>&lt;h3 id="patch-application">Patch Application&lt;/h3>
+&lt;p>补丁应用类似下面这样（Codex 使用的 OpenAI Patch 是不是借鉴的这个？）的描述文件变更的文本文件，通常包含：&lt;/p>
+&lt;ul>
+&lt;li>哪些文件被修改&lt;/li>
+&lt;li>具体的行级变更&lt;/li>
+&lt;li>上下文信息&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建补丁&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git diff &amp;gt; changes.patch &lt;span class="c1"># 未暂存的修改&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git diff --cached &amp;gt; changes.patch &lt;span class="c1"># 已暂存的修改&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git format-patch HEAD~3 &lt;span class="c1"># 最近 3 次提交生成补丁&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 应用补丁&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git apply changes.patch &lt;span class="c1"># 直接应用，不创建提交&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git am changes.patch &lt;span class="c1"># 应用并创建提交（用于format-patch生成的）&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>命令如 &lt;code>git diff&lt;/code>、&lt;code>git stach&lt;/code> 和 &lt;code>git rebase&lt;/code> 都使用 patch。&lt;/p></description></item><item><title>Writing a good CLAUDE.md</title><link>https://starslayerx.github.io/posts/writing-a-good-claude.md/</link><pubDate>Tue, 02 Dec 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/writing-a-good-claude.md/</guid><description>&lt;h1 id="如何编写一个好的-claudemd">如何编写一个好的 CLAUDE.md&lt;/h1>
 &lt;p>注意：本文同样适用于 AGENTS.md，这是 CLAUDE.md 的开源等效文件，适用于 OpenCode、Zed、Cursor 和 Codex 等代理和工具。&lt;/p>
 &lt;h2 id="原则llms基本上是无状态的">原则：LLMs（基本上）是无状态的&lt;/h2>
 &lt;p>LLMs 是无状态函数。它们的权重在用于推理时是冻结的，因此它们不会随时间学习。模型对你的代码库唯一了解的就是你输入给它的 tokens。&lt;/p></description></item><item><title>Docker Context</title><link>https://starslayerx.github.io/posts/docker-context/</link><pubDate>Tue, 25 Nov 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-context/</guid><description>&lt;p>Docker Context 是 Docker 2019 年引入的一个特性，用来管理多个 Docker 主机的上下文，通过切换 context 就能让本地的 docker 命令作用在不同的 Docker 主机上。&lt;/p>

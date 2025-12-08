@@ -1,4 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/git/</link><description>Recent content in Git on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Fri, 08 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>Git Whitelist</title><link>https://starslayerx.github.io/posts/git-whitelist/</link><pubDate>Fri, 08 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/git-whitelist/</guid><description>&lt;p>有时你开启了一个新的项目, 运行了 &lt;code>cargo init&lt;/code>、&lt;code>uv init&lt;/code> 和 &lt;code>go mod init&lt;/code>&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/git/</link><description>Recent content in Git on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Mon, 08 Dec 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>Git cherry-pick</title><link>https://starslayerx.github.io/posts/git-cherry-pick/</link><pubDate>Mon, 08 Dec 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/git-cherry-pick/</guid><description>&lt;h3 id="patch-application">Patch Application&lt;/h3>
+&lt;p>补丁应用类似下面这样（Codex 使用的 OpenAI Patch 是不是借鉴的这个？）的描述文件变更的文本文件，通常包含：&lt;/p>
+&lt;ul>
+&lt;li>哪些文件被修改&lt;/li>
+&lt;li>具体的行级变更&lt;/li>
+&lt;li>上下文信息&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建补丁&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git diff &amp;gt; changes.patch &lt;span class="c1"># 未暂存的修改&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git diff --cached &amp;gt; changes.patch &lt;span class="c1"># 已暂存的修改&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git format-patch HEAD~3 &lt;span class="c1"># 最近 3 次提交生成补丁&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 应用补丁&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git apply changes.patch &lt;span class="c1"># 直接应用，不创建提交&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git am changes.patch &lt;span class="c1"># 应用并创建提交（用于format-patch生成的）&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>命令如 &lt;code>git diff&lt;/code>、&lt;code>git stach&lt;/code> 和 &lt;code>git rebase&lt;/code> 都使用 patch。&lt;/p></description></item><item><title>Git Whitelist</title><link>https://starslayerx.github.io/posts/git-whitelist/</link><pubDate>Fri, 08 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/git-whitelist/</guid><description>&lt;p>有时你开启了一个新的项目, 运行了 &lt;code>cargo init&lt;/code>、&lt;code>uv init&lt;/code> 和 &lt;code>go mod init&lt;/code>&lt;/p>
 &lt;p>这些命令创建了工作所需要的必要文件, 同时也在 &lt;code>.gitignore&lt;/code> 文件中添加了以下内容&lt;/p>
 &lt;pre tabindex="0">&lt;code>target
 __pycache__
