@@ -313,7 +313,10 @@
 &lt;p&gt;命令如 &lt;code&gt;git diff&lt;/code&gt;、&lt;code&gt;git stach&lt;/code&gt; 和 &lt;code&gt;git rebase&lt;/code&gt; 都使用 patch。&lt;/p&gt;</description></item><item><title>Writing a good CLAUDE.md</title><link>https://starslayerx.github.io/posts/writing-a-good-claude.md/</link><pubDate>Tue, 02 Dec 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/writing-a-good-claude.md/</guid><description>&lt;h1 id="如何编写一个好的-claudemd"&gt;如何编写一个好的 CLAUDE.md&lt;/h1&gt;
 &lt;p&gt;注意：本文同样适用于 AGENTS.md，这是 CLAUDE.md 的开源等效文件，适用于 OpenCode、Zed、Cursor 和 Codex 等代理和工具。&lt;/p&gt;
 &lt;h2 id="原则llms基本上是无状态的"&gt;原则：LLMs（基本上）是无状态的&lt;/h2&gt;
-&lt;p&gt;LLMs 是无状态函数。它们的权重在用于推理时是冻结的，因此它们不会随时间学习。模型对你的代码库唯一了解的就是你输入给它的 tokens。&lt;/p&gt;</description></item><item><title>Docker Context</title><link>https://starslayerx.github.io/posts/docker-context/</link><pubDate>Tue, 25 Nov 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-context/</guid><description>&lt;p&gt;Docker Context 是 Docker 2019 年引入的一个特性，用来管理多个 Docker 主机的上下文，通过切换 context 就能让本地的 docker 命令作用在不同的 Docker 主机上。&lt;/p&gt;
+&lt;p&gt;LLMs 是无状态函数。它们的权重在用于推理时是冻结的，因此它们不会随时间学习。模型对你的代码库唯一了解的就是你输入给它的 tokens。&lt;/p&gt;</description></item><item><title>Python asyncio 03: A first asyncio application</title><link>https://starslayerx.github.io/posts/python-asyncio-03-a-first-asyncio-application/</link><pubDate>Mon, 01 Dec 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-asyncio-03-a-first-asyncio-application/</guid><description>&lt;h2 id="working-with-blocking-sockets"&gt;Working with blocking sockets&lt;/h2&gt;
+&lt;p&gt;socket 是在网络中读取和写入数据的一种方式。
+可以将 socket 看成一个邮件，将信封放到里面后运送到接收者的地址。&lt;/p&gt;
+&lt;p&gt;下面使用 Python 的内置 socket 模块来创建一个简单的 server&lt;/p&gt;</description></item><item><title>Docker Context</title><link>https://starslayerx.github.io/posts/docker-context/</link><pubDate>Tue, 25 Nov 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-context/</guid><description>&lt;p&gt;Docker Context 是 Docker 2019 年引入的一个特性，用来管理多个 Docker 主机的上下文，通过切换 context 就能让本地的 docker 命令作用在不同的 Docker 主机上。&lt;/p&gt;
 &lt;p&gt;本地开发机：&lt;/p&gt;
 &lt;div
  class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"&gt;
