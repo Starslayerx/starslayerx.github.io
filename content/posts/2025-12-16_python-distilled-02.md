@@ -1,6 +1,6 @@
 +++
 date = '2025-12-15T8:00:00+08:00'
-draft = true
+draft = false
 title = 'Python Tricks Part 2: Operators, Expressions and Data Manipulation'
 tags = ['Python']
 +++
