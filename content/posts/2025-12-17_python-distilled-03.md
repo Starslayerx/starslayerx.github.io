@@ -1,6 +1,6 @@
 +++
-date = '2025-12-15T8:00:00+08:00'
-draft = true
+date = '2025-12-17T8:00:00+08:00'
+draft = false
 title = 'Python Tricks Part 3: Program Structure and Control Flow'
 tags = ['Python']
 +++

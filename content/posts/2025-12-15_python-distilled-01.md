@@ -395,7 +395,7 @@ python3 -m venv myproject
 
 这样将创建一个项目目录叫 myproject，在该目录中将会创建下面的目录结构
 
-```Python
+```text
 myproject
 ├── bin/                # Linux/Mac: 可执行文件目录
 │   ├── python          # Python解释器
