@@ -198,3 +198,398 @@ a # [1, 2, [3, 4]]
 不要在非必要的地方使用 deepcopy，因为速度很慢，同时要注意深拷贝无法拷贝系统或运行时状态（例如打开文件、网络连接、线程、生成器等）。
 
 ## Object Representation and Printing
+
+程序通常需要展示对象，可能是查看其数据，或者是为了调试。
+
+使用 `print()` 或 `str()` 会得到一个对人类可读的字符串
+
+```Python
+from datetime import date
+d = data(2012, 12, 21)
+print(d) # 2012-12-21
+str(d)   # '2012-12-21'
+```
+
+但这种并不适合调试，比如你不知道输出的到底是 date 类型还是 str 类型，如果要想更加便于调试，应该使用 `repr()`。
+
+```Python
+d = date(2012, 12, 21)
+repr(d)  # 'datetime.date(2012, 12, 21)'
+print(repr(d))  # datetime.date(2012, 12, 21)
+print(f'The date is: {d!r}')  # The date is datetime.date(2012, 12, 21)
+```
+
+## First Class Objects
+
+在 Python 中所有对象都被称为 fisrt-class “一等公民”，这意味着所有对象都可以被视为数据。
+作为数据，对象可以被当成变量存储、传参、作为函数返回值、和其他对象比较等。
+
+例如，下面有两个值的字典：
+
+```Python
+items = {
+    'number': 42,
+    'text': 'Hello World'
+}
+```
+
+通过向字典添加一些不寻常的值，可以体现 fisrt-class 一等公民的的特性。
+
+例如：
+
+```Python
+items["func"] = abs  # Add the abs() function
+
+import math
+items["mod"] = math  # Add a module
+items["error"] = ValueError  # Add an exception object
+nums = [1, 2, 3, 4]
+items["append"] = nums.append # Add a method of another object
+```
+
+在这个例子中，item 字典包含一个函数、一个模块、一个异常和一个其他对象的方法。
+如果你愿意，可以使用字典查找来替代原始名称，代码依然可以正常运行。
+
+```Python
+items["func"](-45)   # 计算 abs(-45)
+items["mod"].sqrt(4) # math.sqrt(4)
+
+try:
+    x = int("a lot")
+except items["error"] as e:  # ValueError
+    print("Couldn't convert")
+
+items["append"](100)  # nums.append(100)
+```
+
+由于在 Python 中一切都是一等公民，因此可以写出非常灵活的代码：
+
+```Python
+line = "ACME,100,490.10"
+column_types = [str, int, float]
+parts = line.split(",")
+row = [ty(val) for ty, val in zip(column_types, parts)]
+# zip(*iterables, strict=True) 将多元素按位置组合，多的元素默认丢弃
+```
+
+将函数或类放在字典中是一直常见的技巧，用于取代复杂的 `if-else-elif` 语句，例如：
+
+```Python
+if format == "text":
+    formatter = TextFormatter()
+elif format == "csv":
+    formatter = CSVFormatter()
+elif format == "html":
+    formatter = HTMLFormatter()
+else:
+    raise RuntimeError("Bad format")
+```
+
+上面代码可以这样重写
+
+```Python
+_formats = {
+    "text": TextFormatter,
+    "csv": CSVFormatter,
+    "html": HTMLFormatter,
+}
+
+if format in _formats:
+    formatter = _formats[format]()
+else:
+    raise RuntimeError("Bad format")
+```
+
+## Using None of Optional or Missing Data
+
+有时候程序需要表示一个确实值或可选值，`None` 是为这一目的而保留的实例。
+不返回值的函数会返回 None，可选的函数参数也使用 None。
+None 没有任何属性，且转化为布尔值是 `False`，在内出使用单例模式 singleton 存储，在解释器内部只有一个值。
+
+使用下面方法判断是不是 None:
+
+```Python
+if value is None:
+    statements
+    ...
+```
+
+使用 `==` 也能判断是否为 None，但不推荐这样，代码检查工具可能将其标注为 "style error"。
+
+## Object Protocols and Data Abstraction
+
+Python 语言的特性都由 protocols “协议”定义，例如下面函数：
+
+```Python
+def compute_cost(unit_price, num_units):
+    return unit_price * num_units
+```
+
+这个函数看上去好像是接受两个整数或浮点数，但实际上他们可以接受更多的类型
+
+```Python
+from fractions import Fraction
+compute_cost(Fraction(5, 4), 50)  # Fraction(125, 2)
+
+from decimal import Decimal
+compute_cost(Decimal("1.25"), Decimal("50"))  # Decimal("62.50")
+
+import numpy as np
+prices = np.array([1.25, 2.10, 3.05])
+units = np.array([50, 20, 25])
+compute_cost([prices, quantities])
+# array([60.5, 42., 76.25])
+```
+
+甚至以“非预期”的方式工作：
+
+```Python
+compute_cost("a lot", 10)
+# a lot a lot a lot a lot a lot a lot a lot a lot a lot a lot
+```
+
+但不能将一些特定类型组合一起
+
+```Python
+compute_cost(Fraction(5, 4), Decimal("50"))
+"""
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 2, in compute_cost
+TypeError: unsupported operand type(s) for *: 'Fraction' and 'decimal.Decimal'
+"
+```
+
+### Object Protocol
+
+下面表的内容设计对象的整体管理，包括 creation 创建、initialization 初始化、destruction 消毁和 representation 表示。
+
+| 方法                                  | 描述             |
+| :------------------------------------ | :--------------- |
+| `__new__(cls, [,*args [, **kwargs]])` | 创建新实例的方法 |
+| `__init__(self [,*args [,**kwargs]])` | 创建后初始化实例 |
+| `__del__(self)`                       | 消毁时调用       |
+| `__repr__(self)`                      | 创建字符串表示   |
+
+创建实例的过程会被转化成这样：
+
+```Python
+x = SomeClass.__new__(SomeClass, args)
+if isinstance(x, SomeClass):
+    x.__init__(args)
+```
+
+使用 `__new__()` 通常意味着涉及与实例创建相关的高级技巧。
+例如，在希望绕过 `__init__()` 的类方法中，或在某些创建型设计模式中使用（如定义单例或实现缓存）。
+`__new__()` 方法的实现并不一定需要返回当前类的实例，如果不返回，则在创建时后续对 `__init__()` 的调用会被跳过。
+
+当一个对象被垃圾回收的时候，会调用 `__del__()` 方法。
+此方法只有在实例不再被使用后才会调用，要知道的是 `del` 方法只会减少对象的引用计数。
+`__del__()` 几乎永远不会定义，除非一个实例需要额外的资源管理或消毁。
+
+`__repr__()` 方法由函数 `repr()` 调用，会创建一个表示该对象的字符串，这对调试很有帮助。
+在交互式环境中的输出就是这个方法实现的，如果要重新创建该对象，使用 `eval()`。
+
+```Python
+a = [1, 2, 3, 4, 5]  # Create a list
+s = repr(a)  # s = '[1, 2, 3, 4, 5]'
+b = eval(s)  # Turns s back into a list
+```
+
+如果字符串表达式无法创建，则 `__repr__()` 会返回 `<...message...>`
+
+```Python
+f = open("foo.txt")
+a = repr(f)
+# a = "<_io.TextIOWrapper name='foo.txt' mode='r' encoding='UTF-8'">
+```
+
+### Number Protocol
+
+在进行 `x + y` 这样计算表达式的时候，解释器会调用一个方法的组合，例如 `x.__add__(y)` 或 `y.__radd__(x)`。
+最开始会先尝试 `x.__add__(y)`，但如果 y 是 x 的一个子类，则会先尝试调用 `y.__radd__(x)`。
+如果最初尝试失败，且返回 `NotImplemented`，却会去尝试使用右操作数的方法，比如 `y.__radd__(x)`。
+如果第二次调用失败，则整个计算会失败。
+
+```Python
+a = 42   # int
+b = 3.7  # float
+a.__add__(b)   # NotImplemented
+b.__radd__(a)  # 45.7
+```
+
+上面代码模拟了 `a + b` 的计算，由于 `int.__add__()` 方法只能处理整数，因此会返回 `NotImplemented`，然后尝试使用右操作数方法 `float.__radd__()`， 该方法可以接受整数，计算后得到结果。
+
+`__iadd__()`, `__isub__()` 这类方法用于原地运算，例如 `a += b` 和 `a -= b`。
+这些运算符与标注运算符的区别在于，原地计算的实现可能能够提供某些订制功能，例如性能优化。
+如果原地计算符没有定义，例如 `a += b` 会使用对应的普通计算 `a = a + b`。
+
+没有方法能够定义逻辑运算符号，例如 `or`, `and` 或 `not`。
+`or` 和 `and` 实现了短路求值，如果结果已确定，则会停止运算。
+这种行为涉及未求值的子表达式，因此无法通过普通函数或方法的相同求值规则来表达。
+
+### Comparison Protocol
+
+对象可以通过多种方式进行比较，最基本的身份验证是 `is` 操作符。
+
+```Python
+a = [1, 2, 3]
+b = a
+a is b  # True
+
+c = [1, 2, 3]
+a is c # False
+```
+
+`is` 运算符的 Python 的内置部分，无法被重新定义。
+其他比较操作符都是同下面表中的方法实现的。
+
+| 方法                  | 描述                                          |
+| :-------------------- | :-------------------------------------------- |
+| `__bool__(self)`      | Returns False or True for truth-value testing |
+| `__eq__(self, other)` | `self == other`                               |
+| `__ne__(self, other)` | `self != other`                               |
+| `__lt__(self, other)` | `self < other`                                |
+| `__le__(self, other)` | `self <= other`                               |
+| `__gt__(self, other)` | `self > other`                                |
+| `__ge__(self, other)` | `self >= other`                               |
+| `__hash__(self)`      | Computes an integer hash index.               |
+
+`__bool__()` 方法用于确定 truthiness 真实性，如果 `__bool__()` 没有定义，则会回退到 `__len()__` 方法，如果都没有定义，则会被视为 `True`。
+
+`__eq__()` 方法用于确定 equality，默认的 `__eq__()` 使用 `is` 操作符实现（当然各种类都会重写 == 逻辑）。
+`__ne__()` 会话对应 `!=`，但只要 `__eq__()` 定义了就不需要了。
+
+排序由关系运算符决定 (`< > <= >=`)，要计算 `a < b` 会先尝试执行 `a.__it__(b)` 除非 b 是 a 的子类，这种情况会执行 `b.__gt__(a)`。
+如果初始方法没有定义，或者返回一个 `NotImplemented` 则会调用 `b.__gt__(a)`，其他类似的符号也一样。
+
+数值计算包可能利用这点对两个矩阵进行逐元素比较，返回一个结果矩阵。
+如果比较不可行，则方法应该返回内置类型 `NotImplemented`，这和异常 `NotImplementedError` 是不同的。
+
+```Python
+a = 42
+b = 52.3
+a.__it__(b)  # NotImplemented
+b.__gt__(a)  # True
+```
+
+有序对象并不需要实现表中的所有比较操作。
+若希望对象能够排序或使用诸如 `min()` 或 `max()` 等函数，则至少必须定义 `__lt()__` 方法。
+
+若需为自定义类添加比较运算符，functools模块中的 `@total_ordering` 类装饰器会很有帮助。
+只要至少实现 `__eq__()` 方法及任意一种其他比较方法，它就能自动生成所有必需的方法。
+
+`__hash__()` 方法定义在那些需要放入集合或用作映射（字典）键的实例上。
+其返回值是一个整数，对于比较相等的两个实例，该值应当相同。
+此外，`__eq__()` 方法应始终与 `__hash__()` 一同定义，因为这两个方法需协同工作。
+`__hash__()` 返回的值通常用作各种数据结构的内部实现细节。
+然而，两个不同的对象可能具有相同的哈希值。
+因此，需要 `__eq__()` 来解决潜在的冲突问题。
+
+### Conversion Protocol
+
+有时候你需要将对象转换成不同的内置类型，包括字符串和数字，下面表格定义了这些方法：
+
+| 方法                            | 描述                                |
+| ------------------------------- | ----------------------------------- |
+| `__str__(self)`                 | Conversion to a string.             |
+| `__bytes__(self)`               | Conversion to bytes.                |
+| `__format__(self, format_spec)` | Creates a formatted representation. |
+| `__bool__(self)`                | `bool(self)`                        |
+| `__int__(self)`                 | `int(self)`                         |
+| `__float__(self)`               | `float(self)`                       |
+| `__complex__(self)`             | `complex(self)`                     |
+| `__index__(self)`               | Conversion to an integer index      |
+
+`__str__()` 方法被 `str()` 函数和与 printing 有关的函数调用。
+`__format__()` 方法被 `format()` 函数或字符串方法使用，`format_spec` 参数是一个包含了格式化标准的字符串，该字符串与 `format()` 函数的 `format_spec` 参数相同，例如：
+
+```Python
+f"{x:spec}"  # Calls x.__format__
+format(x, "spec")  # Calls x.__format__("spec")
+"x is {0:spec}".format(x)  # Calls x.__format__("spec")
+```
+
+格式规范的语法是任意的，并且可以基于每个对象进行自定义，但对于内置类型有一套标准的约定用法。
+
+`__bytes__()` 方法用于创建一个对象的字节表达式，但不是所有类型都支持字节转换。
+数值转换方法 `__bool__()`、`__int__()`、`__float__()` 和 `__complex__()` 应返回对应内置类型的值。
+
+Python 不会通过这些方法执行隐式类型转换，因此，即使对象实现了 `__init__()` 方法，表达式 `3 + x` 仍会引发 TypeError，执行 `__init__()` 的唯一方式是显示调用 `init()` 函数。
+
+`__index__()` 方法在对象参与需要整数值的运算时，会将其转换为整数，这包括序列操作中的索引使用。
+例如，如果 `items` 是一个列表，那么运算 `items[x]` 会尝试执行 `item[x.__index__()]`。
+即使 `x` 不是整数，`__index__()` 也是需要的，例如一些基本的转换 `oct(x)` 和 `hex(x)`。
+
+### Container Protocol
+
+下面表是容器对象使用的方法
+
+| Method                          | Description                |
+| ------------------------------- | -------------------------- |
+| `__len__(self)`                 | Returns the length of self |
+| `__getitem__(self, key)`        | Returns `self[key]`        |
+| `__setitem__(self, key, value)` | Sets `self[key] = value`   |
+| `__delitem__(self, key)`        | Deletes `self[key]`        |
+| `__contains__(self, obj)`       | obj in self                |
+
+下面是一些例子：
+
+```Python
+a = [1, 2, 3, 4, 5, 6]
+len(a)  # a.__len__()
+x = a[2]  # x = a.__getitem__(2)
+a[1] = 7  # a.__setitem__(1, 7)
+del a[2]  # a.__delitem__(2)
+5 in a  # a.__contains__(5)
+```
+
+`__len__()` 方法由 `len()` 函数调用，返回一个非负的长度。
+该函数同样用于确定真值，除非同时定义了 `__bool__()` 方法。
+
+要访问单个元素，`__getitem__()` 方法可以通过键值返回一个元素。
+key 可以是任意的 Python 对象，但期望是一个有序序列的整数，例如列表和数组。
+当使用 `del` 删除单个元素的时候，会调用 `__delitem__()` 方法，`__contains__()` 方法被用来实现 `in` 操作符。
+
+切片操作，例如 `x = s[i:j]` 通过 `__getitem__()`, `__setitem__()` 和 `__delitem__()` 方法实现。
+对于切片而言，一个特殊的切片实例作为 key 传递过来，该实例具有描述所请求切片范围的属性。
+
+```Python
+a = [1, 2, 3, 4, 5, 6]
+x = a[1:5]  # x = a.__getitem__(slice(1, 5, None))
+a[1:3] = [10, 11, 12]  # x.__setitem__(slice(1, 3, None), [10, 11, 12])
+del a[1:4]  # a.__delitem__(slice(1, 4, None))
+```
+
+Python 的切片特性要比许多人以为的要强大的多，例如下面扩展的切片用于处理多维矩阵或数组十分有用。
+
+```Python
+a = m[0:100:10]    # Strided slice (step=10)
+b = m[1:10, 3:20]  # Multidimensional slice
+c = m[0:100:10, 50:75:5]  # Multiple dimensions with strides
+m[0:5, 5:10] = n   # extended slice assigment
+del m[:10, 15:]    # extended slice deletion
+```
+
+一般的切片格式是 `i:j[:step]`，其中步幅是可选的。
+
+此外，省略号 Ellipsis (...) 可用于表示扩展切片中任意数量的前导或尾随纬度。
+
+```Python
+a = m[..., 10:20]  # extended slice access with Ellipsis
+m[10:20, ...] = n
+```
+
+当使用切片的时候，`__getitem__()`, `__setitem__()` 和 `__delitem__()` 分别实现了 access, modification 和 deletion。
+但传递给这些方法的并不是一个整数，而是一个包含 Ellipsis 的元组，例如
+
+```Python
+a = m[0:10, 0:100:5, ...]
+# a = m.__getitem__((slice(0, 10, None), slice(0, 100, 5), Ellipsis))
+```
+
+目前，Python 的字符串、元组和列表对扩展切片提供了一定支持。
+Python 本身及其标准库中并未使用多维切片或省略号 Ellipsis 功能，这些特性专门为第三方库和框架保留。
+最常见的场景在 numpy 这样的库中。
+
+### Iteration Protocol

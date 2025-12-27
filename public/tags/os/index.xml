@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OS on Starslayerx&#39; Blog</title>
+    <link>http://localhost:1313/tags/os/</link>
+    <description>Recent content in OS on Starslayerx&#39; Blog</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sat, 02 Aug 2025 08:00:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/os/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A Program is not a PROCESS</title>
+      <link>http://localhost:1313/posts/a-program-is-not-a-process/</link>
+      <pubDate>Sat, 02 Aug 2025 08:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/a-program-is-not-a-process/</guid>
+      <description>&lt;p&gt;程序是一系列&lt;strong&gt;指令&lt;/strong&gt;, 以及 CPU 要完成特定任务的&lt;strong&gt;数据&lt;/strong&gt; ≈ 可执行文件&lt;/p&gt;&#xA;&lt;p&gt;要加载程序, 首先要被加载到内存中, 当加载到内存中时, 包含可执行代码的部分被称为&lt;strong&gt;文本段&lt;/strong&gt;, &lt;strong&gt;全局变量&lt;/strong&gt;和&lt;strong&gt;常量值&lt;/strong&gt;这类数据被加载到数据段, 还需要额外的内存空间来存放运行是生成的所有数据, 例如用户输入, 临时结果或变量(堆和栈)&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

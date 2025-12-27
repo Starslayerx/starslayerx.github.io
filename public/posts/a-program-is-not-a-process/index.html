@@ -9,17 +9,16 @@
   content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<title>Dive into DeepLearning - 03 - Preliminaries | Starslayerx&#39; Blog</title>
+<title>A Program is not a PROCESS | Starslayerx&#39; Blog</title>
 
-<meta name="description" content=" Course Note: d2l-video-05 - 矩阵计算 Jupyter Notebook: chapter_preliminaries 预备知识中 矩阵计算 的部分
-亚导数 将导数扩展到不可微的函数 例如函数 $y=|x|$ 亚导数可以这样定义
-$$ \frac{\partial..." />
-<meta name="keywords" content="DeepLearning" />
+<meta name="description" content="程序是一系列指令, 以及 CPU 要完成特定任务的数据 ≈ 可执行文件
+要加载程序, 首先要被加载到内存中, 当加载到内存中时, 包含可执行代码的部分被称为文本段, 全局变量和常量值这类数据被加载到数据段, 还需要额外的内存空间来存放运行是生成的所有数据, 例如用户输入, 临时结果或变量(堆和栈)..." />
+<meta name="keywords" content="OS" />
 <meta name="author" content="Starlsayerx" />
 <meta name="language" content="en-US" />
 
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href="http://localhost:1313/posts/dive-into-deeplearning-03-preliminaries/" />
+<link rel="canonical" href="http://localhost:1313/posts/a-program-is-not-a-process/" />
 
 
 
@@ -28,38 +27,35 @@ $$ \frac{\partial..." />
 
 
 <link rel="manifest" href="/site.webmanifest" />
-<meta property="og:url" content="http://localhost:1313/posts/dive-into-deeplearning-03-preliminaries/">
+<meta property="og:url" content="http://localhost:1313/posts/a-program-is-not-a-process/">
   <meta property="og:site_name" content="Starslayerx&#39; Blog">
-  <meta property="og:title" content="Dive into DeepLearning - 03 - Preliminaries">
-  <meta property="og:description" content="Course Note: d2l-video-05 - 矩阵计算 Jupyter Notebook: chapter_preliminaries 预备知识中 矩阵计算 的部分
-亚导数 将导数扩展到不可微的函数 例如函数 $y=|x|$ 亚导数可以这样定义
-$$ \frac{\partial |x|}{\partial x} = \begin{cases} 1, &amp; \text{if } x &gt; 0 \\ -1, &amp; \text{if } x &lt; 0 \\ a, &amp; \text{if } x = 0, a \in [-1,1] \end{cases} $$">
+  <meta property="og:title" content="A Program is not a PROCESS">
+  <meta property="og:description" content="程序是一系列指令, 以及 CPU 要完成特定任务的数据 ≈ 可执行文件
+要加载程序, 首先要被加载到内存中, 当加载到内存中时, 包含可执行代码的部分被称为文本段, 全局变量和常量值这类数据被加载到数据段, 还需要额外的内存空间来存放运行是生成的所有数据, 例如用户输入, 临时结果或变量(堆和栈)">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2021-03-22T07:47:10+08:00">
-    <meta property="article:modified_time" content="2021-03-22T07:47:10+08:00">
-    <meta property="article:tag" content="DeepLearning">
+    <meta property="article:published_time" content="2025-08-02T08:00:00+08:00">
+    <meta property="article:modified_time" content="2025-08-02T08:00:00+08:00">
+    <meta property="article:tag" content="OS">
     <meta property="og:image" content="http://localhost:1313/images/og-default.avif">
 
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="http://localhost:1313/images/og-default.avif">
-  <meta name="twitter:title" content="Dive into DeepLearning - 03 - Preliminaries">
-  <meta name="twitter:description" content="Course Note: d2l-video-05 - 矩阵计算 Jupyter Notebook: chapter_preliminaries 预备知识中 矩阵计算 的部分
-亚导数 将导数扩展到不可微的函数 例如函数 $y=|x|$ 亚导数可以这样定义
-$$ \frac{\partial |x|}{\partial x} = \begin{cases} 1, &amp; \text{if } x &gt; 0 \\ -1, &amp; \text{if } x &lt; 0 \\ a, &amp; \text{if } x = 0, a \in [-1,1] \end{cases} $$">
+  <meta name="twitter:title" content="A Program is not a PROCESS">
+  <meta name="twitter:description" content="程序是一系列指令, 以及 CPU 要完成特定任务的数据 ≈ 可执行文件
+要加载程序, 首先要被加载到内存中, 当加载到内存中时, 包含可执行代码的部分被称为文本段, 全局变量和常量值这类数据被加载到数据段, 还需要额外的内存空间来存放运行是生成的所有数据, 例如用户输入, 临时结果或变量(堆和栈)">
 
 
-  <meta itemprop="name" content="Dive into DeepLearning - 03 - Preliminaries">
-  <meta itemprop="description" content="Course Note: d2l-video-05 - 矩阵计算 Jupyter Notebook: chapter_preliminaries 预备知识中 矩阵计算 的部分
-亚导数 将导数扩展到不可微的函数 例如函数 $y=|x|$ 亚导数可以这样定义
-$$ \frac{\partial |x|}{\partial x} = \begin{cases} 1, &amp; \text{if } x &gt; 0 \\ -1, &amp; \text{if } x &lt; 0 \\ a, &amp; \text{if } x = 0, a \in [-1,1] \end{cases} $$">
-  <meta itemprop="datePublished" content="2021-03-22T07:47:10+08:00">
-  <meta itemprop="dateModified" content="2021-03-22T07:47:10+08:00">
-  <meta itemprop="wordCount" content="146">
+  <meta itemprop="name" content="A Program is not a PROCESS">
+  <meta itemprop="description" content="程序是一系列指令, 以及 CPU 要完成特定任务的数据 ≈ 可执行文件
+要加载程序, 首先要被加载到内存中, 当加载到内存中时, 包含可执行代码的部分被称为文本段, 全局变量和常量值这类数据被加载到数据段, 还需要额外的内存空间来存放运行是生成的所有数据, 例如用户输入, 临时结果或变量(堆和栈)">
+  <meta itemprop="datePublished" content="2025-08-02T08:00:00+08:00">
+  <meta itemprop="dateModified" content="2025-08-02T08:00:00+08:00">
+  <meta itemprop="wordCount" content="765">
   <meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
-  <meta itemprop="keywords" content="DeepLearning">
+  <meta itemprop="keywords" content="OS">
 
 
 
@@ -1011,7 +1007,7 @@ $$ \frac{\partial |x|}{\partial x} = \begin{cases} 1, &amp; \text{if } x &gt; 0 
     stroke="currentColor"
     viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
 </svg>
-              <span class="max-w-[8rem] md:max-w-[16rem] lg:max-w-none truncate">Dive into DeepLearning - 03 - Preliminaries</span>
+              <span class="max-w-[8rem] md:max-w-[16rem] lg:max-w-none truncate">A Program is not a PROCESS</span>
             </span>
           </div>
         
@@ -1034,7 +1030,7 @@ $$ \frac{\partial |x|}{\partial x} = \begin{cases} 1, &amp; \text{if } x &gt; 0 
 <div class="post-meta">
   
   <h1 class="text-foreground mb-6 text-3xl leading-tight font-bold md:text-4xl">
-    Dive into DeepLearning - 03 - Preliminaries
+    A Program is not a PROCESS
   </h1>
 
   
@@ -1054,8 +1050,8 @@ $$ \frac{\partial |x|}{\partial x} = \begin{cases} 1, &amp; \text{if } x &gt; 0 
     stroke="currentColor"
     viewBox="0 0 24 24" aria-label="Published on"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
 </svg>
-        <time datetime="2021-03-22">
-          March 22, 2021
+        <time datetime="2025-08-02">
+          August 02, 2025
         </time>
       </div>
 
@@ -1073,7 +1069,7 @@ $$ \frac{\partial |x|}{\partial x} = \begin{cases} 1, &amp; \text{if } x &gt; 0 
     viewBox="0 0 24 24" aria-label="Reading time"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
 </svg>
           <span
-            >1 minute</span
+            >2 minute</span
           >
         </div>
       
@@ -1088,7 +1084,7 @@ $$ \frac{\partial |x|}{\partial x} = \begin{cases} 1, &amp; \text{if } x &gt; 0 
     stroke="currentColor"
     viewBox="0 0 24 24" aria-label="Word count"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
-          <span>146 words</span>
+          <span>765 words</span>
         </div>
       
 
@@ -1120,9 +1116,9 @@ $$ \frac{\partial |x|}{\partial x} = \begin{cases} 1, &amp; \text{if } x &gt; 0 
             <div class="flex flex-wrap gap-2">
               
                 <a
-                  href="/tags/deeplearning/"
+                  href="/tags/os/"
                   class="bg-muted/50 text-muted-foreground hover:bg-primary/10 hover:text-primary focus:ring-primary/20 inline-flex items-center rounded px-2 py-1 text-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:scale-105 focus:ring-2 focus:outline-none">
-                  #DeepLearning
+                  #OS
                 </a>
               
             </div>
@@ -1143,40 +1139,25 @@ $$ \frac{\partial |x|}{\partial x} = \begin{cases} 1, &amp; \text{if } x &gt; 0 
 
   
   <article class="prose prose-neutral dark:prose-invert mb-12 max-w-none">
-    <ul>
-<li>Course Note: d2l-video-05 - 矩阵计算</li>
-<li>Jupyter Notebook: chapter_preliminaries</li>
-</ul>
-<p>预备知识中 矩阵计算 的部分</p>
-<h3 id="亚导数">亚导数</h3>
+    <p>程序是一系列<strong>指令</strong>, 以及 CPU 要完成特定任务的<strong>数据</strong> ≈ 可执行文件</p>
+<p>要加载程序, 首先要被加载到内存中, 当加载到内存中时, 包含可执行代码的部分被称为<strong>文本段</strong>, <strong>全局变量</strong>和<strong>常量值</strong>这类数据被加载到数据段, 还需要额外的内存空间来存放运行是生成的所有数据, 例如用户输入, 临时结果或变量(堆和栈)</p>
 <ul>
-<li>将导数扩展到不可微的函数</li>
+<li>TEXT: 文本段, 不会变化</li>
+<li>DATA: 数据段, 大小不会改变, 但是内容可能发生改变</li>
+<li>HEAP: 堆</li>
+<li>STACK: 栈</li>
 </ul>
-<p>例如函数 $y=|x|$ 亚导数可以这样定义</p>
-<p>$$
-\frac{\partial |x|}{\partial x} =
-\begin{cases}
-1, &amp; \text{if } x &gt; 0 \\
--1, &amp; \text{if } x &lt; 0 \\
-a, &amp; \text{if } x = 0, a \in [-1,1]
-\end{cases}
-$$</p>
-<p>另一个例子</p>
-<p>$$
-\frac{\partial }{\partial x}max(x, 0)=
-\begin{cases}
-1, &amp; \text{if } x &gt; 0 \\
-0, &amp; \text{if } x &lt; 0 \\
-a, &amp; \text{if }, a \in [0,1]
-\end{cases}
-$$</p>
-<h3 id="梯度">梯度</h3>
-<ul>
-<li>将导数扩展到向量
-&hellip;</li>
-</ul>
-<h3 id="扩展阅读">扩展阅读</h3>
-<p><a href="https://hml.boyuai.com/books/chapter2">机器学习的数学基础</a></p>
+<p>以上部分构成了进程的内存布局</p>
+<p>假设现在用记事本打开两个不同的文本文件, 则会有两个窗口, 显示不同的文本内容, 这时候就产生了两个进程, 这两个进程的文本段相同, 其他部分不同.</p>
+<p>程序本身不是一个进程, 程序本身是一个被动的实体, 进程则是一个主动的实体, 尽管两个进程可能与同一个程序相关联, 但仍然被认为是两个独立的执行序列.</p>
+<p>对于 c、c++、rust、go 这类编译型语言而言, 编译的结果是一个可执行文件, 即程序本身</p>
+<p>但是对于 python、javascript 这类解释型语言而不是这样</p>
+<p>例如, python 实际上有一个解释器, 其代码是一个文本文件不是一个程序. 这种情况下计算机运行的实际上是 python 解释器, 而不是 python 代码, 创建一个解释器进程后, 会像其他进程一样创建内存区域, 在文本段运行的也不是我们编写的代码, 而是解释器代码. 源代码由进程加载到数据段中(例如堆)</p>
+<p>进程非正式的定义为正在执行的程序, 这意味着进程和程序是不同的两个概念.</p>
+<p>当程序被打开时, 可执行文件被加载到内存中, 这时程序就变成了进程.
+这个进程的执行可能需要额外的内存来存储用户输入和临时结果, 操作系统负责分配这部分内存, 即虚拟地址空间 (ADDRESS SPACE).</p>
+<p>现在假设有一个单核CPU的机器, 运行多个进程:
+当进程1运行中, 某时刻发生中断, CPU 中寄存器和程序计数器等信息被存入进程控制块中(Process Control Block, PCB), 然后会将CPU中的值清空, 然后加载进程2的信息, 这种行为被称为上下文切换(context switch)</p>
 
   </article>
 
@@ -1215,7 +1196,7 @@ $$</p>
       <div class="nav-item">
         
           <a
-            href="/posts/dive-into-deeplearning-02-preliminaries/"
+            href="/posts/blaugust/"
             class="group bg-card border-border hover:bg-primary/5 hover:border-primary/20 focus:ring-primary/20 flex min-h-[120px] flex-col justify-between rounded-xl border p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none">
             <div>
               <div class="mb-3 flex items-center gap-3">
@@ -1232,7 +1213,7 @@ $$</p>
 
               <h3
                 class="text-foreground group-hover:text-primary mb-3 line-clamp-2 text-lg leading-tight font-semibold transition-colors duration-200">
-                Dive into DeepLearning - 02 - Preliminaries
+                Blaugust
               </h3>
             </div>
 
@@ -1244,8 +1225,8 @@ $$</p>
     stroke="currentColor"
     viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
 </svg>
-              <time datetime="2021-03-21">
-                Mar 21
+              <time datetime="2025-08-01">
+                Aug 01
               </time>
             </div>
           </a>
@@ -1256,7 +1237,7 @@ $$</p>
       <div class="nav-item">
         
           <a
-            href="/posts/blaugust/"
+            href="/posts/chaos-enginnering-in-partice/"
             class="group bg-card border-border hover:bg-primary/5 hover:border-primary/20 focus:ring-primary/20 flex min-h-[120px] flex-col justify-between rounded-xl border p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none">
             <div>
               <div class="mb-3 flex items-center justify-end gap-3">
@@ -1273,14 +1254,14 @@ $$</p>
 
               <h3
                 class="text-foreground group-hover:text-primary mb-3 line-clamp-2 text-right text-lg leading-tight font-semibold transition-colors duration-200">
-                Blaugust
+                &#34;Chaos Enginnering&#34; In Partice
               </h3>
             </div>
 
             <div
               class="text-muted-foreground mt-auto flex items-center justify-end gap-2 text-xs">
-              <time datetime="2025-08-01">
-                Aug 01
+              <time datetime="2025-08-02">
+                Aug 02
               </time>
               
   <svg class="h-3 w-3"
@@ -1306,46 +1287,6 @@ $$</p>
 
 
 
-
-  <section class="related-posts mb-12">
-    
-    <div class="mb-6 flex items-center gap-3">
-      
-  <svg class="h-5 w-5"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-</svg>
-      <h2 class="text-foreground text-2xl font-bold">
-        Related Posts
-      </h2>
-    </div>
-
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
-      
-        <article class="group">
-          <a href="/posts/dive-into-deeplearning-02-preliminaries/" class="block">
-            <div class="bg-card border-border hover:bg-primary/5 hover:border-primary/20 focus:ring-primary/20 flex items-center rounded-xl border p-5 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none min-h-[120px]">
-              <h3 class="text-foreground group-hover:text-primary text-lg font-semibold leading-snug line-clamp-3 w-full">
-                Dive into DeepLearning - 02 - Preliminaries
-              </h3>
-            </div>
-          </a>
-        </article>
-      
-        <article class="group">
-          <a href="/posts/dive-into-deeplearning-01-preliminaries/" class="block">
-            <div class="bg-card border-border hover:bg-primary/5 hover:border-primary/20 focus:ring-primary/20 flex items-center rounded-xl border p-5 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none min-h-[120px]">
-              <h3 class="text-foreground group-hover:text-primary text-lg font-semibold leading-snug line-clamp-3 w-full">
-                Dive into DeepLearning - 01 - Preliminaries
-              </h3>
-            </div>
-          </a>
-        </article>
-      
-    </div>
-  </section>
 
 
 
@@ -1693,17 +1634,7 @@ $$</p>
         aria-label="Table of Contents Navigation">
           
           <div id="toc-content">
-            <nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#亚导数">亚导数</a></li>
-        <li><a href="#梯度">梯度</a></li>
-        <li><a href="#扩展阅读">扩展阅读</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+            <nav id="TableOfContents"></nav>
           </div>
       </nav>
     </div>
