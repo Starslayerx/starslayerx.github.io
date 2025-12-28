@@ -1,6 +1,6 @@
 +++
 date = '2025-12-18T8:00:00+08:00'
-draft = true
+draft = false
 title = 'Python Tricks Part 4: Objects, Types and Protocols'
 tags = ['Python']
 +++
@@ -593,3 +593,104 @@ Python 本身及其标准库中并未使用多维切片或省略号 Ellipsis 功
 最常见的场景在 numpy 这样的库中。
 
 ### Iteration Protocol
+
+如果一个实例 obj 支持迭代，会提供一个 `obj.__iter__()` 方法，然后返回一个迭代器。
+一个迭代器 iter 返回一个方法，`iter.__next__()`，该方法返回下一个对象或抛出一个 `StopIteration` 表示迭代结束。
+这两个方法都被 for 语句使用，也应用于其他执行迭代的操作中。
+
+例如，`for x in s` 语句的执行相当于下面操作：
+
+```Python
+_iter = s.__iter__()
+while True:
+    try:
+        x = _iter.__next__()
+    except StopIteration:
+        break
+    # Do statements in body of for loop
+    ...
+```
+
+如果一堆对象实现了 `__reversed__()` 方法，它可以选择性的提供一个反向迭代器。
+该方法应该返回一个迭代器对象，其接口于普通迭代器相同。
+内置方法 `reversed()` 会调用该接口，例如：
+
+```Python
+for x in reversed([1, 2, 3]):
+    print(x)
+# 3
+# 2
+# 1
+```
+
+一个常见的实现迭代的方法是使用 `yield` 关键字的生成器函数
+
+```Python
+class FRange:
+    def __init__(self, start, stop, step):
+        self.start = start
+        self.stop = stop
+        self.step = step
+    def __iter__(self)
+        x = self.start
+        while x < self.stop:
+            x += self.step
+
+# Example use:
+nums = FRange(0.0, 1.0, 0.1)
+for x in nums:
+    print(x) # 0.0, 0.1, 0.2, 0.3, ...
+```
+
+这是因为生成器本身符合迭代协议，通过这种方式实现迭代器会简单一些，因为只需关注 `__iter__()` 方法。
+
+### Attribute Protocol
+
+下表中的方法分别使用点运算符 (`.`) 和 `del` 运算符来 read, write 和 delete 对象的属性。
+
+| Method                           | Description                                                                       |
+| :------------------------------- | :-------------------------------------------------------------------------------- |
+| `__getattribute__(self, name)`   | Returns the attribute `self.name`.                                                |
+| `__getattr__(self, name)`        | Returns the attribute `self.name` if it's not found through `__getattribute__()`. |
+| `__setattr__(self, name, value)` | Sets the attribute `self.name = value`.                                           |
+| `__delattr__(self, name)`        | Deletes the attribute `del self.name`.                                            |
+
+每当访问一个属性时，都会调用 `__getattrbute__()` 方法。
+如果找到该属性，则返回其值。
+否则，会调用 `__getattr__()` 方法，该方法默认行为是抛出一个 `AttributeError` 异常。
+设置属性的时候会调用 `__setattr__` 方法，删除属性的时候会调用 `__delattr__` 方法。
+
+这些方法相当直接，因为他们允许一个类完全重新定义所有这些属性的访问方式。
+用户自定义的类可以定义属性和描述符，从而实现对属性访问的更精细控制。
+
+### Function Protocol
+
+一个对象可以通过实现 `__call__()` 方法来模拟一个函数。
+如果对象 x 实现了该方法，这可以这样调用 `x(arg1, arg2, ...)` 这会触发 `x.__call__(arg1, arg2, ...)`。
+
+许多内置类型都支持函数调用。
+例如，类型通过实现 `__call__()` 方法来创新新实例，bound methods 绑定方法通过实现 `__call__()` 将 `self` 参数传递给实例方法。
+此外，像 `functools.partial()` 这样的库函数也能创建模拟函数的对象。
+
+### Context Manager Protocol
+
+`with` 语句允许一系列语句在被称为 context manager 上下文管理器的实例控制下执行。
+语法大概下面这样：
+
+```Python
+with context [as var]:
+    statements
+```
+
+一个上下文管理器需要实现下表中的方法
+
+| Method                            | Description                                                              |
+| :-------------------------------- | :----------------------------------------------------------------------- |
+| `__enter__(self)`                 | 进入一个新的上下文时调用。返回值放在 with 语句的 as 指定符后面的变量中   |
+| `__exit__(self, type, value, tb)` | 离开上下文时调用。如果发送异常，tb等参数会包含异常类型、异常值和回调信息 |
+
+如果没有发送异常，`__exit__()` 的所有三个值都会设置为 `None`，`__exit__()` 应该返回 `True` 或 `False` 来表明异常是否被处理了。
+如果返回 `True`，任何挂起的异常将被清除，程序将正常继续执行，从 `with` 块后的第一条语句开始。
+
+上下文管理接口的主要用途是简化涉及系统状态对象（如打开的文件、网络连接和锁）的资源控制。
+通过实现此接口，当执行离开使用对象的上下文时，对象可以安全地清理资源。
