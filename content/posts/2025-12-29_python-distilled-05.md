@@ -1,5 +1,5 @@
 +++
-date = '2025-12-18T8:00:00+08:00'
+date = '2025-12-19T8:00:00+08:00'
 draft = false
 title = 'Python Tricks Part 5: Functions'
 tags = ['Python']
