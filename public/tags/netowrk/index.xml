@@ -1,19 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Netowrk on Starslayerx&#39; Blog</title>
-    <link>http://localhost:1313/tags/netowrk/</link>
-    <description>Recent content in Netowrk on Starslayerx&#39; Blog</description>
-    <generator>Hugo</generator>
-    <language>en-US</language>
-    <lastBuildDate>Mon, 08 Dec 2025 08:00:00 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/netowrk/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>CS144 - lab0</title>
-      <link>http://localhost:1313/posts/cs144-lab0/</link>
-      <pubDate>Mon, 08 Dec 2025 08:00:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/cs144-lab0/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://cs144.github.io/&#34;&gt;CS 144: Introduction to Computer Networking, Fall 2025&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;本篇文章对应 &lt;code&gt;check0.pdf&lt;/code&gt; 的内容&lt;/p&gt;&#xA;&lt;h2 id=&#34;3-network-by-hand&#34;&gt;3 Network by hand&lt;/h2&gt;&#xA;&lt;h3 id=&#34;31-fetch-a-web-page&#34;&gt;3.1 Fetch a Web page&lt;/h3&gt;&#xA;&lt;p&gt;这个介绍怎么发送一个 GET 请求&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;telent cs144.keithw.org http&lt;/code&gt;&lt;/p&gt;&#xA;&lt;p&gt;该命令告诉 telnet 打开一个可靠字节流(reliable byte stream)，并在我电脑上运行一个 http 服务&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Netowrk on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/netowrk/</link><description>Recent content in Netowrk on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Sun, 11 Jan 2026 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/netowrk/index.xml" rel="self" type="application/rss+xml"/><item><title>CS144 - lab0</title><link>https://starslayerx.github.io/posts/cs144-lab0/</link><pubDate>Sun, 11 Jan 2026 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/cs144-lab0/</guid><description>&lt;p&gt;&lt;a href="https://cs144.github.io/"&gt;CS 144: Introduction to Computer Networking, Fall 2025&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;本篇文章对应 &lt;code&gt;check0.pdf&lt;/code&gt; 的内容&lt;/p&gt;
+&lt;h2 id="3-network-by-hand"&gt;3 Network by hand&lt;/h2&gt;
+&lt;h3 id="31-fetch-a-web-page"&gt;3.1 Fetch a Web page&lt;/h3&gt;
+&lt;p&gt;这个介绍怎么发送一个 GET 请求&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;telent cs144.keithw.org http&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;该命令告诉 telnet 打开一个可靠字节流(reliable byte stream)，并在我电脑上运行一个 http 服务&lt;/p&gt;</description></item></channel></rss>
