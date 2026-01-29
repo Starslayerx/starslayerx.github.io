@@ -2,7 +2,7 @@
 date = '2025-11-07T8:00:00+08:00'
 draft = false
 title = 'PostgreSQL 02: SQL Basis'
-tags = ['PostgreSQL']
+tags = ['PostgreSQL', 'Database']
 +++
 
 ## SQL 入门

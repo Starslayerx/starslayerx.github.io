@@ -2,7 +2,7 @@
 date = '2025-11-20T8:00:00+01:00'
 draft = true
 title = 'Postgresql 04: Data Type'
-tags = ['PostgreSQL']
+tags = ['PostgreSQL', 'Database']
 +++
 
 这篇文章介绍 PostgreSQL 数据类型

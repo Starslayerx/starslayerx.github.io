@@ -1,4 +1,4 @@
-<!doctype html><html lang=en-US data-theme=nord><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta http-equiv=X-UA-Compatible content="IE=edge"><title>Claude Code 分析 02：数据结构 | Starslayerx' Blog</title><meta name=description content="📊 数据结构与信息架构 stateDiagram-v2 [*] --> UserInput: 用户输入/粘贴 UserInput --> CliMessage: CLI 处理输入 CliMessage --> APIMessage: 为 LLM 格式化 APIMessage..."><meta name=keywords content="Agent"><meta name=author content="Starlsayerx"><meta name=language content="en-US"><meta name=robots content="index, follow"><link rel=canonical href=https://starslayerx.github.io/posts/claude-code-%E5%88%86%E6%9E%90-02%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/><link rel=icon type=image/svg+xml href=/favicon.svg><link rel=manifest href=/site.webmanifest><meta property="og:url" content="https://starslayerx.github.io/posts/claude-code-%E5%88%86%E6%9E%90-02%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><meta property="og:site_name" content="Starslayerx' Blog"><meta property="og:title" content="Claude Code 分析 02：数据结构"><meta property="og:description" content="📊 数据结构与信息架构 stateDiagram-v2 [*] --> UserInput: 用户输入/粘贴 UserInput --> CliMessage: CLI 处理输入 CliMessage --> APIMessage: 为 LLM 格式化 APIMessage --> LLMStream: API 请求 LLMStream --> StreamEvent: 服务器发送数据块 StreamEvent --> ContentBlockDelta: 解析增量 ContentBlockDelta --> AccumulatedMessage: 构建消息 AccumulatedMessage --> ToolUseBlock: 包含工具请求? ToolUseBlock --> ToolExecution: 执行工具 ToolExecution --> ToolProgress: 生成进度 ToolProgress --> CliMessage: 进度更新 ToolExecution --> ToolResult: 完成执行 ToolResult --> ToolResultBlock: 格式化结果 ToolResultBlock --> CliMessage: 工具结果消息 AccumulatedMessage --> CliMessage: 最终助手消息 CliMessage --> [*]: 显示给用户 CliMessage --> APIMessage: 循环继续 流式状态机: 消息如何转换 Claude Code 数据架构最令人着迷的方面是它如何在保持流式性能的同时,管理数据在多个表示形式之间的转换。让我们从核心创新开始:"><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-11-14T10:00:00+01:00"><meta property="article:modified_time" content="2025-11-14T10:00:00+01:00"><meta property="article:tag" content="Agent"><meta property="og:image" content="https://starslayerx.github.io/images/og-default.avif"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://starslayerx.github.io/images/og-default.avif"><meta name=twitter:title content="Claude Code 分析 02：数据结构"><meta name=twitter:description content="📊 数据结构与信息架构 stateDiagram-v2 [*] --> UserInput: 用户输入/粘贴 UserInput --> CliMessage: CLI 处理输入 CliMessage --> APIMessage: 为 LLM 格式化 APIMessage --> LLMStream: API 请求 LLMStream --> StreamEvent: 服务器发送数据块 StreamEvent --> ContentBlockDelta: 解析增量 ContentBlockDelta --> AccumulatedMessage: 构建消息 AccumulatedMessage --> ToolUseBlock: 包含工具请求? ToolUseBlock --> ToolExecution: 执行工具 ToolExecution --> ToolProgress: 生成进度 ToolProgress --> CliMessage: 进度更新 ToolExecution --> ToolResult: 完成执行 ToolResult --> ToolResultBlock: 格式化结果 ToolResultBlock --> CliMessage: 工具结果消息 AccumulatedMessage --> CliMessage: 最终助手消息 CliMessage --> [*]: 显示给用户 CliMessage --> APIMessage: 循环继续 流式状态机: 消息如何转换 Claude Code 数据架构最令人着迷的方面是它如何在保持流式性能的同时,管理数据在多个表示形式之间的转换。让我们从核心创新开始:"><meta itemprop=name content="Claude Code 分析 02：数据结构"><meta itemprop=description content="📊 数据结构与信息架构 stateDiagram-v2 [*] --> UserInput: 用户输入/粘贴 UserInput --> CliMessage: CLI 处理输入 CliMessage --> APIMessage: 为 LLM 格式化 APIMessage --> LLMStream: API 请求 LLMStream --> StreamEvent: 服务器发送数据块 StreamEvent --> ContentBlockDelta: 解析增量 ContentBlockDelta --> AccumulatedMessage: 构建消息 AccumulatedMessage --> ToolUseBlock: 包含工具请求? ToolUseBlock --> ToolExecution: 执行工具 ToolExecution --> ToolProgress: 生成进度 ToolProgress --> CliMessage: 进度更新 ToolExecution --> ToolResult: 完成执行 ToolResult --> ToolResultBlock: 格式化结果 ToolResultBlock --> CliMessage: 工具结果消息 AccumulatedMessage --> CliMessage: 最终助手消息 CliMessage --> [*]: 显示给用户 CliMessage --> APIMessage: 循环继续 流式状态机: 消息如何转换 Claude Code 数据架构最令人着迷的方面是它如何在保持流式性能的同时,管理数据在多个表示形式之间的转换。让我们从核心创新开始:"><meta itemprop=datePublished content="2025-11-14T10:00:00+01:00"><meta itemprop=dateModified content="2025-11-14T10:00:00+01:00"><meta itemprop=wordCount content="3493"><meta itemprop=image content="https://starslayerx.github.io/images/og-default.avif"><meta itemprop=keywords content="Agent"><script>window.HUGO_SEARCH_CONFIG={searchIndexURL:'"/index.json"'}</script><script>window.HUGO_GALLERY_CONFIG={justified_gallery:!1,lightbox:!1,justified:'{"calculateitemsheight":false,"gutter":30,"lastrow":"center","maxrowscount":999999,"resizedebounce":100,"rowheight":300,"rowheighttolerance":0.25,"transitionduration":"0.3s"}',lightbox_options:'{"descposition":"bottom","draggable":true,"height":"80vh","loop":true,"preload":true,"touchnavigation":true,"width":"80vw","zoomable":true}'}</script><link rel=stylesheet href=/css/compiled.min.dff4075e98d99819a938687dfd3989b3446aa37588d980a15c21ca71be8699d4.css integrity="sha256-3/QHXpjZmBmpOGh9/TmJs0Rqo3WI2YChXCHKcb6GmdQ=" crossorigin=anonymous><link rel=stylesheet href=/css/chroma.min.491df36221f739b5948a747a0351f100ee7ccaaf466d9f46288bf06de1d59123.css integrity="sha256-SR3zYiH3ObWUinR6A1HxAO58yq9GbZ9GKIvwbeHVkSM=" crossorigin=anonymous><script src=/js/main.ba969e49a7a874e6938fe689a7dcaa00cb64cb4d429c2cf98d09bde512a16c6d.js integrity="sha256-upaeSaeodOaTj+aJp9yqAMtky01CnCz5jQm95RKhbG0=" crossorigin=anonymous></script><script src=/js/gumshoe.polyfills.min.js></script><script src=/js/toc.70654aebf0b738a78ae2df95297cc10ebc6e590f3c942dd1325fa852f50038b2.js integrity="sha256-cGVK6/C3OKeK4t+VKXzBDrxuWQ88lC3RMl+oUvUAOLI=" crossorigin=anonymous defer></script><script src=/js/search.de3eba3540834efb8328121784bff4774e06362412ee41eee665f5b4f987f393.js integrity="sha256-3j66NUCDTvuDKBIXhL/0d04GNiQS7kHu5mX1tPmH85M=" crossorigin=anonymous defer></script><script src=/js/dock.e02f422517e001d9fb6bea1e9e8b0e89e9d2e486ad4641f275bb3e36ce2ae79f.js integrity="sha256-4C9CJRfgAdn7a+oenosOienS5IatRkHydbs+Ns4q558=" crossorigin=anonymous defer></script><script>(function(){const e=localStorage.getItem("theme")||"system",n=localStorage.getItem("colorScheme")||"nord";document.documentElement.setAttribute("data-theme",n);function t(){e==="dark"||e==="system"&&window.matchMedia("(prefers-color-scheme: dark)").matches?document.documentElement.classList.add("dark"):document.documentElement.classList.remove("dark")}t(),e==="system"&&window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",t)})()</script></head><body class="bg-background text-foreground min-h-screen antialiased"><div id=reading-progress-container class="reading-progress-container pointer-events-none fixed top-0 right-0 left-0 z-50 transition-opacity duration-300 ease-out" data-height=3 data-smooth-scroll=true data-hide-on-complete=false><div class="reading-progress-bg w-full"></div><div id=reading-progress-bar class="from-primary to-primary/80 reading-progress-bar
+<!doctype html><html lang=en-US data-theme=nord><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta http-equiv=X-UA-Compatible content="IE=edge"><title>Claude Code 分析 02：数据结构 | Starslayerx' Blog</title><meta name=description content="📊 数据结构与信息架构 stateDiagram-v2 [*] --> UserInput: 用户输入/粘贴 UserInput --> CliMessage: CLI 处理输入 CliMessage --> APIMessage: 为 LLM 格式化 APIMessage..."><meta name=keywords content="Agent"><meta name=author content="Starlsayerx"><meta name=language content="en-US"><meta name=robots content="index, follow"><link rel=canonical href=https://starslayerx.github.io/posts/claude-code-%E5%88%86%E6%9E%90-02%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/><link rel=icon type=image/svg+xml href=/favicon.svg><link rel=manifest href=/site.webmanifest><meta property="og:url" content="https://starslayerx.github.io/posts/claude-code-%E5%88%86%E6%9E%90-02%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><meta property="og:site_name" content="Starslayerx' Blog"><meta property="og:title" content="Claude Code 分析 02：数据结构"><meta property="og:description" content="📊 数据结构与信息架构 stateDiagram-v2 [*] --> UserInput: 用户输入/粘贴 UserInput --> CliMessage: CLI 处理输入 CliMessage --> APIMessage: 为 LLM 格式化 APIMessage --> LLMStream: API 请求 LLMStream --> StreamEvent: 服务器发送数据块 StreamEvent --> ContentBlockDelta: 解析增量 ContentBlockDelta --> AccumulatedMessage: 构建消息 AccumulatedMessage --> ToolUseBlock: 包含工具请求? ToolUseBlock --> ToolExecution: 执行工具 ToolExecution --> ToolProgress: 生成进度 ToolProgress --> CliMessage: 进度更新 ToolExecution --> ToolResult: 完成执行 ToolResult --> ToolResultBlock: 格式化结果 ToolResultBlock --> CliMessage: 工具结果消息 AccumulatedMessage --> CliMessage: 最终助手消息 CliMessage --> [*]: 显示给用户 CliMessage --> APIMessage: 循环继续 流式状态机: 消息如何转换 Claude Code 数据架构最令人着迷的方面是它如何在保持流式性能的同时,管理数据在多个表示形式之间的转换。让我们从核心创新开始:"><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-11-14T10:00:00+01:00"><meta property="article:modified_time" content="2025-11-14T10:00:00+01:00"><meta property="article:tag" content="Agent"><meta property="og:image" content="https://starslayerx.github.io/images/og-default.avif"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://starslayerx.github.io/images/og-default.avif"><meta name=twitter:title content="Claude Code 分析 02：数据结构"><meta name=twitter:description content="📊 数据结构与信息架构 stateDiagram-v2 [*] --> UserInput: 用户输入/粘贴 UserInput --> CliMessage: CLI 处理输入 CliMessage --> APIMessage: 为 LLM 格式化 APIMessage --> LLMStream: API 请求 LLMStream --> StreamEvent: 服务器发送数据块 StreamEvent --> ContentBlockDelta: 解析增量 ContentBlockDelta --> AccumulatedMessage: 构建消息 AccumulatedMessage --> ToolUseBlock: 包含工具请求? ToolUseBlock --> ToolExecution: 执行工具 ToolExecution --> ToolProgress: 生成进度 ToolProgress --> CliMessage: 进度更新 ToolExecution --> ToolResult: 完成执行 ToolResult --> ToolResultBlock: 格式化结果 ToolResultBlock --> CliMessage: 工具结果消息 AccumulatedMessage --> CliMessage: 最终助手消息 CliMessage --> [*]: 显示给用户 CliMessage --> APIMessage: 循环继续 流式状态机: 消息如何转换 Claude Code 数据架构最令人着迷的方面是它如何在保持流式性能的同时,管理数据在多个表示形式之间的转换。让我们从核心创新开始:"><meta itemprop=name content="Claude Code 分析 02：数据结构"><meta itemprop=description content="📊 数据结构与信息架构 stateDiagram-v2 [*] --> UserInput: 用户输入/粘贴 UserInput --> CliMessage: CLI 处理输入 CliMessage --> APIMessage: 为 LLM 格式化 APIMessage --> LLMStream: API 请求 LLMStream --> StreamEvent: 服务器发送数据块 StreamEvent --> ContentBlockDelta: 解析增量 ContentBlockDelta --> AccumulatedMessage: 构建消息 AccumulatedMessage --> ToolUseBlock: 包含工具请求? ToolUseBlock --> ToolExecution: 执行工具 ToolExecution --> ToolProgress: 生成进度 ToolProgress --> CliMessage: 进度更新 ToolExecution --> ToolResult: 完成执行 ToolResult --> ToolResultBlock: 格式化结果 ToolResultBlock --> CliMessage: 工具结果消息 AccumulatedMessage --> CliMessage: 最终助手消息 CliMessage --> [*]: 显示给用户 CliMessage --> APIMessage: 循环继续 流式状态机: 消息如何转换 Claude Code 数据架构最令人着迷的方面是它如何在保持流式性能的同时,管理数据在多个表示形式之间的转换。让我们从核心创新开始:"><meta itemprop=datePublished content="2025-11-14T10:00:00+01:00"><meta itemprop=dateModified content="2025-11-14T10:00:00+01:00"><meta itemprop=wordCount content="3493"><meta itemprop=image content="https://starslayerx.github.io/images/og-default.avif"><meta itemprop=keywords content="Agent"><script>window.HUGO_SEARCH_CONFIG={searchIndexURL:'"/index.json"'}</script><script>window.HUGO_GALLERY_CONFIG={justified_gallery:!1,lightbox:!1,justified:'{"calculateitemsheight":false,"gutter":30,"lastrow":"center","maxrowscount":999999,"resizedebounce":100,"rowheight":300,"rowheighttolerance":0.25,"transitionduration":"0.3s"}',lightbox_options:'{"descposition":"bottom","draggable":true,"height":"80vh","loop":true,"preload":true,"touchnavigation":true,"width":"80vw","zoomable":true}'}</script><link rel=stylesheet href=/css/compiled.min.338a4488a1a13fb6d418dd89049bdfcf9d0e9f9d92f9603e4eb3f538ef13b169.css integrity="sha256-M4pEiKGhP7bUGN2JBJvfz50On52S+WA+TrP1OO8TsWk=" crossorigin=anonymous><link rel=stylesheet href=/css/chroma.min.491df36221f739b5948a747a0351f100ee7ccaaf466d9f46288bf06de1d59123.css integrity="sha256-SR3zYiH3ObWUinR6A1HxAO58yq9GbZ9GKIvwbeHVkSM=" crossorigin=anonymous><script src=/js/main.ba969e49a7a874e6938fe689a7dcaa00cb64cb4d429c2cf98d09bde512a16c6d.js integrity="sha256-upaeSaeodOaTj+aJp9yqAMtky01CnCz5jQm95RKhbG0=" crossorigin=anonymous></script><script src=/js/gumshoe.polyfills.min.js></script><script src=/js/toc.70654aebf0b738a78ae2df95297cc10ebc6e590f3c942dd1325fa852f50038b2.js integrity="sha256-cGVK6/C3OKeK4t+VKXzBDrxuWQ88lC3RMl+oUvUAOLI=" crossorigin=anonymous defer></script><script src=/js/search.de3eba3540834efb8328121784bff4774e06362412ee41eee665f5b4f987f393.js integrity="sha256-3j66NUCDTvuDKBIXhL/0d04GNiQS7kHu5mX1tPmH85M=" crossorigin=anonymous defer></script><script src=/js/dock.e02f422517e001d9fb6bea1e9e8b0e89e9d2e486ad4641f275bb3e36ce2ae79f.js integrity="sha256-4C9CJRfgAdn7a+oenosOienS5IatRkHydbs+Ns4q558=" crossorigin=anonymous defer></script><script>(function(){const e=localStorage.getItem("theme")||"system",n=localStorage.getItem("colorScheme")||"nord";document.documentElement.setAttribute("data-theme",n);function t(){e==="dark"||e==="system"&&window.matchMedia("(prefers-color-scheme: dark)").matches?document.documentElement.classList.add("dark"):document.documentElement.classList.remove("dark")}t(),e==="system"&&window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",t)})()</script></head><body class="bg-background text-foreground min-h-screen antialiased"><div id=reading-progress-container class="reading-progress-container pointer-events-none fixed top-0 right-0 left-0 z-50 transition-opacity duration-300 ease-out" data-height=3 data-smooth-scroll=true data-hide-on-complete=false><div class="reading-progress-bg w-full"></div><div id=reading-progress-bar class="from-primary to-primary/80 reading-progress-bar
 transition-all duration-150 ease-out
 absolute top-0 left-0 w-0 bg-gradient-to-r"></div></div><script>(function(){"use strict";const t=document.getElementById("reading-progress-container"),o=document.getElementById("reading-progress-bar");if(!t||!o)return;const a={smoothScroll:t.dataset.smoothScroll==="true",hideOnComplete:t.dataset.hideOnComplete==="true"};let n=!0,l=null;function r(){const t=window.pageYOffset||document.documentElement.scrollTop,n=document.documentElement.scrollHeight,s=window.innerHeight,e=n-s;return e<=0?0:Math.min(Math.max(t/e*100,0),100)}function c(){const e=r();o.style.width=e+"%",a.hideOnComplete&&e>=99.5?n&&(t.style.opacity="0",n=!1):n||(t.style.opacity="1",n=!0)}let s=!1;function e(){s||(requestAnimationFrame(()=>{c(),s=!1}),s=!0)}function i(){window.addEventListener("scroll",e,{passive:!0}),window.addEventListener("resize",e,{passive:!0}),document.addEventListener("visibilitychange",()=>{document.hidden||e()}),e(),window.addEventListener("beforeunload",()=>{window.removeEventListener("scroll",e),window.removeEventListener("resize",e)})}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",i):i()})()</script><header class="sticky top-0 z-50 mx-auto max-w-4xl px-4 py-6"><div class="border-border bg-card/80 flex items-center rounded-xl border px-6 py-4 shadow-sm backdrop-blur-sm"><div class="hidden w-full items-center md:flex"><div class="flex items-center"><a href=/ class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full transition-transform duration-200 hover:scale-105" aria-label="Starslayerx' Blog"><img src=/images/logo.svg alt="Starslayerx' Blog" class="h-full w-full object-cover"></a></div><nav class="mx-8 flex flex-1 items-center justify-center"><div class="flex items-center space-x-1"><a href=/posts/ class="nav-link
 text-muted-foreground hover:text-primary hover:bg-primary/10
@@ -86,30 +86,30 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-1 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-1><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// 双重表示消息系统 (从分析中推断)
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>interface</span> <span class=nx>MessageTransformPipeline</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>interface</span> <span class=nx>MessageTransformPipeline</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=c1>// 阶段 1: CLI 内部表示
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>cliMessage</span><span class=o>:</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>cliMessage</span><span class=o>:</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=kr>type</span><span class=o>:</span> <span class=s2>&#34;user&#34;</span> <span class=o>|</span> <span class=s2>&#34;assistant&#34;</span> <span class=o>|</span> <span class=s2>&#34;attachment&#34;</span> <span class=o>|</span> <span class=s2>&#34;progress&#34;</span>
 </span></span><span class=line><span class=cl>    <span class=nx>uuid</span>: <span class=kt>string</span>  <span class=c1>// CLI 特定的跟踪
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>timestamp</span>: <span class=kt>string</span>
+</span></span></span><span class=line><span class=cl>    <span class=nx>timestamp</span>: <span class=kt>string</span>
 </span></span><span class=line><span class=cl>    <span class=nx>message?</span>: <span class=kt>APICompatibleMessage</span>  <span class=c1>// 仅用于 user/assistant
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>attachment?</span>: <span class=kt>AttachmentContent</span>   <span class=c1>// 仅用于 attachment
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>progress?</span>: <span class=kt>ProgressUpdate</span>        <span class=c1>// 仅用于 progress
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>}</span>
+</span></span></span><span class=line><span class=cl>    <span class=nx>attachment?</span>: <span class=kt>AttachmentContent</span>   <span class=c1>// 仅用于 attachment
+</span></span></span><span class=line><span class=cl>    <span class=nx>progress?</span>: <span class=kt>ProgressUpdate</span>        <span class=c1>// 仅用于 progress
+</span></span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 阶段 2: API 线上格式
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>apiMessage</span><span class=o>:</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>apiMessage</span><span class=o>:</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=nx>role</span><span class=o>:</span> <span class=s2>&#34;user&#34;</span> <span class=o>|</span> <span class=s2>&#34;assistant&#34;</span>
 </span></span><span class=line><span class=cl>    <span class=nx>content</span>: <span class=kt>string</span> <span class=o>|</span> <span class=nx>ContentBlock</span><span class=p>[]</span>
 </span></span><span class=line><span class=cl>    <span class=c1>// 没有 CLI 特定字段
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>}</span>
+</span></span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 阶段 3: 流式累加器
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>streamAccumulator</span><span class=o>:</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>streamAccumulator</span><span class=o>:</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=nx>partial</span>: <span class=kt>Partial</span><span class=p>&lt;</span><span class=nt>APIMessage</span><span class=p>&gt;</span>
 </span></span><span class=line><span class=cl>    <span class=nx>deltas</span>: <span class=kt>ContentBlockDelta</span><span class=p>[]</span>
 </span></span><span class=line><span class=cl>    <span class=nx>buffers</span>: <span class=kt>Map</span><span class=p>&lt;</span><span class=nt>string</span><span class=p>,</span> <span class=na>string</span><span class=p>&gt;</span>  <span class=c1>// tool_use_id → 累积的 JSON
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>}</span>
+</span></span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div><div class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"><div class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">Click to expand and view more</div></div></div></div><script>(function(){const s="code-1",n=document.querySelector('.copy-code-btn[data-code-id="'+s+'"]'),t=document.querySelector('.collapse-code-btn[data-code-id="'+s+'"]'),e=document.getElementById(s);if(!e)return;if(n){const s=n.querySelector(".copy-icon"),t=n.querySelector(".copy-text");n.addEventListener("click",async function(){try{let o="";const i=e.querySelector(".lntd:last-child code");if(i)o=i.textContent||i.innerText;else{const t=e.querySelector("code");if(t){const e=t.querySelector(".ln");if(e){const e=t.querySelectorAll(".cl");if(e.length>0)o=Array.from(e).map(e=>{const t=e.textContent||e.innerText;return t.replace(/\n+$/,"")}).join(`
 `).replace(/\n+$/,"");else{const e=t.textContent||t.innerText;o=e.replace(/^\d+/gm,"").replace(/^\s+/gm,"")}}else o=t.textContent||t.innerText}else o=e.textContent||e.innerText}o=o.trim(),await navigator.clipboard.writeText(o),s.innerHTML=`
   <svg class="h-3 w-3"
@@ -138,20 +138,20 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-2 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-2><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// ContentBlock 可辨识联合类型 (重构)
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>type</span> <span class=nx>ContentBlock</span> <span class=o>=</span>
+</span></span></span><span class=line><span class=cl><span class=kr>type</span> <span class=nx>ContentBlock</span> <span class=o>=</span>
 </span></span><span class=line><span class=cl>  <span class=o>|</span> <span class=nx>TextBlock</span>
 </span></span><span class=line><span class=cl>  <span class=o>|</span> <span class=nx>ImageBlock</span>
 </span></span><span class=line><span class=cl>  <span class=o>|</span> <span class=nx>ToolUseBlock</span>
 </span></span><span class=line><span class=cl>  <span class=o>|</span> <span class=nx>ToolResultBlock</span>
 </span></span><span class=line><span class=cl>  <span class=o>|</span> <span class=nx>ThinkingBlock</span>
 </span></span><span class=line><span class=cl>  <span class=o>|</span> <span class=nx>DocumentBlock</span>      <span class=c1>// 平台特定
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=o>|</span> <span class=nx>VideoBlock</span>         <span class=c1>// 平台特定
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=o>|</span> <span class=nx>GuardContentBlock</span>  <span class=c1>// 平台特定
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=o>|</span> <span class=nx>ReasoningBlock</span>     <span class=c1>// 平台特定
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=o>|</span> <span class=nx>CachePointBlock</span>    <span class=c1>// 平台特定
-</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span></span><span class=line><span class=cl>  <span class=o>|</span> <span class=nx>VideoBlock</span>         <span class=c1>// 平台特定
+</span></span></span><span class=line><span class=cl>  <span class=o>|</span> <span class=nx>GuardContentBlock</span>  <span class=c1>// 平台特定
+</span></span></span><span class=line><span class=cl>  <span class=o>|</span> <span class=nx>ReasoningBlock</span>     <span class=c1>// 平台特定
+</span></span></span><span class=line><span class=cl>  <span class=o>|</span> <span class=nx>CachePointBlock</span>    <span class=c1>// 平台特定
+</span></span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1>// 基于推断使用的性能注解
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>interface</span> <span class=nx>ContentBlockMetrics</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>interface</span> <span class=nx>ContentBlockMetrics</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=nx>TextBlock</span><span class=o>:</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=nx>memorySize</span><span class=o>:</span> <span class=s2>&#34;O(text.length)&#34;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>    <span class=nx>parseTime</span><span class=o>:</span> <span class=s2>&#34;O(1)&#34;</span><span class=p>,</span>
@@ -160,7 +160,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>  <span class=p>},</span>
 </span></span><span class=line><span class=cl>  <span class=nx>ImageBlock</span><span class=o>:</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=nx>memorySize</span><span class=o>:</span> <span class=s2>&#34;O(1) + external&#34;</span><span class=p>,</span>  <span class=c1>// 引用到 base64/S3
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>parseTime</span><span class=o>:</span> <span class=s2>&#34;O(1)&#34;</span><span class=p>,</span>
+</span></span></span><span class=line><span class=cl>    <span class=nx>parseTime</span><span class=o>:</span> <span class=s2>&#34;O(1)&#34;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>    <span class=nx>serializeTime</span><span class=o>:</span> <span class=s2>&#34;O(size)&#34;</span> <span class=o>|</span> <span class=s2>&#34;O(1) for S3&#34;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>    <span class=nx>streamable</span>: <span class=kt>false</span>
 </span></span><span class=line><span class=cl>  <span class=p>},</span>
@@ -169,7 +169,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=nx>parseTime</span><span class=o>:</span> <span class=s2>&#34;O(n) for JSON parse&#34;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>    <span class=nx>serializeTime</span><span class=o>:</span> <span class=s2>&#34;O(n)&#34;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>    <span class=nx>streamable</span>: <span class=kt>true</span>  <span class=c1>// JSON 可以流式传输
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>}</span>
+</span></span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div><div class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"><div class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">Click to expand and view more</div></div></div></div><script>(function(){const s="code-2",n=document.querySelector('.copy-code-btn[data-code-id="'+s+'"]'),t=document.querySelector('.collapse-code-btn[data-code-id="'+s+'"]'),e=document.getElementById(s);if(!e)return;if(n){const s=n.querySelector(".copy-icon"),t=n.querySelector(".copy-text");n.addEventListener("click",async function(){try{let o="";const i=e.querySelector(".lntd:last-child code");if(i)o=i.textContent||i.innerText;else{const t=e.querySelector("code");if(t){const e=t.querySelector(".ln");if(e){const e=t.querySelectorAll(".cl");if(e.length>0)o=Array.from(e).map(e=>{const t=e.textContent||e.innerText;return t.replace(/\n+$/,"")}).join(`
 `).replace(/\n+$/,"");else{const e=t.textContent||t.innerText;o=e.replace(/^\d+/gm,"").replace(/^\s+/gm,"")}}else o=t.textContent||t.innerText}else o=e.textContent||e.innerText}o=o.trim(),await navigator.clipboard.writeText(o),s.innerHTML=`
   <svg class="h-3 w-3"
@@ -198,7 +198,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-3 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-3><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// 推断的流式 JSON 解析器实现
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>class</span> <span class=nx>StreamingToolInputParser</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>class</span> <span class=nx>StreamingToolInputParser</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=kr>private</span> <span class=nx>buffer</span>: <span class=kt>string</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>  <span class=kr>private</span> <span class=nx>depth</span>: <span class=kt>number</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>  <span class=kr>private</span> <span class=nx>inString</span>: <span class=kt>boolean</span> <span class=o>=</span> <span class=kc>false</span><span class=p>;</span>
@@ -208,26 +208,26 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=k>this</span><span class=p>.</span><span class=nx>buffer</span> <span class=o>+=</span> <span class=nx>chunk</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 跟踪 JSON 结构深度
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>for</span> <span class=p>(</span><span class=kr>const</span> <span class=nx>char</span> <span class=k>of</span> <span class=nx>chunk</span><span class=p>)</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=p>(</span><span class=kr>const</span> <span class=nx>char</span> <span class=k>of</span> <span class=nx>chunk</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=k>this</span><span class=p>.</span><span class=nx>inString</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=nx>char</span> <span class=o>===</span> <span class=s1>&#39;{&#39;</span> <span class=o>||</span> <span class=nx>char</span> <span class=o>===</span> <span class=s1>&#39;[&#39;</span><span class=p>)</span> <span class=k>this</span><span class=p>.</span><span class=nx>depth</span><span class=o>++</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>        <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=nx>char</span> <span class=o>===</span> <span class=s1>&#39;}&#39;</span> <span class=o>||</span> <span class=nx>char</span> <span class=o>===</span> <span class=s1>&#39;]&#39;</span><span class=p>)</span> <span class=k>this</span><span class=p>.</span><span class=nx>depth</span><span class=o>--</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>      <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>      <span class=c1>// 跟踪字符串边界
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=k>if</span> <span class=p>(</span><span class=nx>char</span> <span class=o>===</span> <span class=s1>&#39;&#34;&#39;</span> <span class=o>&amp;&amp;</span> <span class=o>!</span><span class=k>this</span><span class=p>.</span><span class=nx>escape</span><span class=p>)</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=nx>char</span> <span class=o>===</span> <span class=s1>&#39;&#34;&#39;</span> <span class=o>&amp;&amp;</span> <span class=o>!</span><span class=k>this</span><span class=p>.</span><span class=nx>escape</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=k>this</span><span class=p>.</span><span class=nx>inString</span> <span class=o>=</span> <span class=o>!</span><span class=k>this</span><span class=p>.</span><span class=nx>inString</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>      <span class=p>}</span>
 </span></span><span class=line><span class=cl>      <span class=k>this</span><span class=p>.</span><span class=nx>escape</span> <span class=o>=</span> <span class=p>(</span><span class=nx>char</span> <span class=o>===</span> <span class=s1>&#39;\\&#39;</span> <span class=o>&amp;&amp;</span> <span class=o>!</span><span class=k>this</span><span class=p>.</span><span class=nx>escape</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 在深度为 0 时尝试解析
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>if</span> <span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>depth</span> <span class=o>===</span> <span class=mi>0</span> <span class=o>&amp;&amp;</span> <span class=k>this</span><span class=p>.</span><span class=nx>buffer</span><span class=p>.</span><span class=nx>length</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>depth</span> <span class=o>===</span> <span class=mi>0</span> <span class=o>&amp;&amp;</span> <span class=k>this</span><span class=p>.</span><span class=nx>buffer</span><span class=p>.</span><span class=nx>length</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=k>try</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=p>{</span> <span class=nx>complete</span>: <span class=kt>true</span><span class=p>,</span> <span class=nx>value</span>: <span class=kt>JSON.parse</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>buffer</span><span class=p>)</span> <span class=p>};</span>
 </span></span><span class=line><span class=cl>      <span class=p>}</span> <span class=k>catch</span> <span class=p>(</span><span class=nx>e</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=c1>// 尝试自动关闭未闭合的字符串
-</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=k>if</span> <span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>inString</span><span class=p>)</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>inString</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>          <span class=k>try</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>              <span class=nx>complete</span>: <span class=kt>true</span><span class=p>,</span>
@@ -309,34 +309,34 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>  <span class=nx>timestamp</span>: <span class=kt>string</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 仅用于 user/assistant 消息
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>message</span><span class=o>?:</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>message</span><span class=o>?:</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=nx>role</span><span class=o>:</span> <span class=s2>&#34;user&#34;</span> <span class=o>|</span> <span class=s2>&#34;assistant&#34;</span>
 </span></span><span class=line><span class=cl>    <span class=nx>id?</span>: <span class=kt>string</span>                    <span class=c1>// LLM 提供的 ID
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>model?</span>: <span class=kt>string</span>                 <span class=c1>// 哪个模型响应
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>stop_reason?</span>: <span class=kt>StopReason</span>       <span class=c1>// 为什么停止生成
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>stop_sequence?</span>: <span class=kt>string</span>         <span class=c1>// 命中的特定停止序列
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>usage?</span>: <span class=kt>TokenUsage</span>             <span class=c1>// 详细的 token 计数
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>content</span>: <span class=kt>string</span> <span class=o>|</span> <span class=nx>ContentBlock</span><span class=p>[]</span>
+</span></span></span><span class=line><span class=cl>    <span class=nx>model?</span>: <span class=kt>string</span>                 <span class=c1>// 哪个模型响应
+</span></span></span><span class=line><span class=cl>    <span class=nx>stop_reason?</span>: <span class=kt>StopReason</span>       <span class=c1>// 为什么停止生成
+</span></span></span><span class=line><span class=cl>    <span class=nx>stop_sequence?</span>: <span class=kt>string</span>         <span class=c1>// 命中的特定停止序列
+</span></span></span><span class=line><span class=cl>    <span class=nx>usage?</span>: <span class=kt>TokenUsage</span>             <span class=c1>// 详细的 token 计数
+</span></span></span><span class=line><span class=cl>    <span class=nx>content</span>: <span class=kt>string</span> <span class=o>|</span> <span class=nx>ContentBlock</span><span class=p>[]</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// CLI 特定的元数据
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>costUSD?</span>: <span class=kt>number</span>               <span class=c1>// 计算的成本
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>durationMs?</span>: <span class=kt>number</span>            <span class=c1>// API 调用持续时间
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>requestId?</span>: <span class=kt>string</span>             <span class=c1>// 用于调试
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>isApiErrorMessage?</span>: <span class=kt>boolean</span>    <span class=c1>// 错误显示标志
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>isMeta?</span>: <span class=kt>boolean</span>              <span class=c1>// 系统生成的消息
-</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>costUSD?</span>: <span class=kt>number</span>               <span class=c1>// 计算的成本
+</span></span></span><span class=line><span class=cl>  <span class=nx>durationMs?</span>: <span class=kt>number</span>            <span class=c1>// API 调用持续时间
+</span></span></span><span class=line><span class=cl>  <span class=nx>requestId?</span>: <span class=kt>string</span>             <span class=c1>// 用于调试
+</span></span></span><span class=line><span class=cl>  <span class=nx>isApiErrorMessage?</span>: <span class=kt>boolean</span>    <span class=c1>// 错误显示标志
+</span></span></span><span class=line><span class=cl>  <span class=nx>isMeta?</span>: <span class=kt>boolean</span>              <span class=c1>// 系统生成的消息
+</span></span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 类型特定字段
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>attachment?</span>: <span class=kt>AttachmentContent</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>attachment?</span>: <span class=kt>AttachmentContent</span>
 </span></span><span class=line><span class=cl>  <span class=nx>progress</span><span class=o>?:</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=nx>toolUseID</span>: <span class=kt>string</span>
 </span></span><span class=line><span class=cl>    <span class=nx>parentToolUseID?</span>: <span class=kt>string</span>   <span class=c1>// 用于 AgentTool 子工具
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>data</span>: <span class=kt>any</span>                  <span class=c1>// 工具特定的进度
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>}</span>
+</span></span></span><span class=line><span class=cl>    <span class=nx>data</span>: <span class=kt>any</span>                  <span class=c1>// 工具特定的进度
+</span></span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1>// 性能特性
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>interface</span> <span class=nx>CliMessagePerformance</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>interface</span> <span class=nx>CliMessagePerformance</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=nx>creation</span><span class=o>:</span> <span class=s2>&#34;O(1)&#34;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>  <span class=nx>serialization</span><span class=o>:</span> <span class=s2>&#34;O(content size)&#34;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>  <span class=nx>memoryRetention</span><span class=o>:</span> <span class=s2>&#34;大内容使用弱引用&#34;</span><span class=p>,</span>
@@ -369,9 +369,9 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-6 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-6><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// 推断的变异控制模式
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>class</span> <span class=nx>MessageMutationControl</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>class</span> <span class=nx>MessageMutationControl</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=c1>// 变异点 1: 流式累积
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>static</span> <span class=nx>accumulateStreamDelta</span><span class=p>(</span>
+</span></span></span><span class=line><span class=cl>  <span class=kr>static</span> <span class=nx>accumulateStreamDelta</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>    <span class=nx>message</span>: <span class=kt>Partial</span><span class=p>&lt;</span><span class=nt>CliMessage</span><span class=p>&gt;,</span>
 </span></span><span class=line><span class=cl>    <span class=nx>delta</span>: <span class=kt>ContentBlockDelta</span>
 </span></span><span class=line><span class=cl>  <span class=p>)</span><span class=o>:</span> <span class=k>void</span> <span class=p>{</span>
@@ -379,35 +379,35 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>      <span class=kr>const</span> <span class=nx>lastBlock</span> <span class=o>=</span> <span class=nx>message</span><span class=p>.</span><span class=nx>content</span><span class=p>[</span><span class=nx>message</span><span class=p>.</span><span class=nx>content</span><span class=p>.</span><span class=nx>length</span> <span class=o>-</span> <span class=mi>1</span><span class=p>];</span>
 </span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=nx>lastBlock</span><span class=p>.</span><span class=kr>type</span> <span class=o>===</span> <span class=s1>&#39;text&#39;</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=nx>lastBlock</span><span class=p>.</span><span class=nx>text</span> <span class=o>+=</span> <span class=nx>delta</span><span class=p>.</span><span class=nx>text</span><span class=p>;</span>  <span class=c1>// 变异
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=p>}</span>
+</span></span></span><span class=line><span class=cl>      <span class=p>}</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 变异点 2: 工具结果注入
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>static</span> <span class=nx>injectToolResult</span><span class=p>(</span>
+</span></span></span><span class=line><span class=cl>  <span class=kr>static</span> <span class=nx>injectToolResult</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>    <span class=nx>history</span>: <span class=kt>CliMessage</span><span class=p>[],</span>
 </span></span><span class=line><span class=cl>    <span class=nx>toolResult</span>: <span class=kt>ToolResultBlock</span>
 </span></span><span class=line><span class=cl>  <span class=p>)</span><span class=o>:</span> <span class=k>void</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>newMessage</span>: <span class=kt>CliMessage</span> <span class=o>=</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=kr>type</span><span class=o>:</span> <span class=s1>&#39;user&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>isMeta</span>: <span class=kt>true</span><span class=p>,</span>  <span class=c1>// 系统生成
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=nx>message</span><span class=o>:</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>      <span class=nx>message</span><span class=o>:</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=nx>role</span><span class=o>:</span> <span class=s1>&#39;user&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>        <span class=nx>content</span><span class=o>:</span> <span class=p>[</span><span class=nx>toolResult</span><span class=p>]</span>
 </span></span><span class=line><span class=cl>      <span class=p>},</span>
 </span></span><span class=line><span class=cl>      <span class=c1>// ... 其他字段
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>};</span>
+</span></span></span><span class=line><span class=cl>    <span class=p>};</span>
 </span></span><span class=line><span class=cl>    <span class=nx>history</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=nx>newMessage</span><span class=p>);</span>  <span class=c1>// 变异
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>}</span>
+</span></span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 变异点 3: 成本计算
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>static</span> <span class=nx>updateCostMetadata</span><span class=p>(</span>
+</span></span></span><span class=line><span class=cl>  <span class=kr>static</span> <span class=nx>updateCostMetadata</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>    <span class=nx>message</span>: <span class=kt>CliMessage</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>    <span class=nx>usage</span>: <span class=kt>TokenUsage</span>
 </span></span><span class=line><span class=cl>  <span class=p>)</span><span class=o>:</span> <span class=k>void</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=nx>message</span><span class=p>.</span><span class=nx>costUSD</span> <span class=o>=</span> <span class=nx>calculateCost</span><span class=p>(</span><span class=nx>usage</span><span class=p>,</span> <span class=nx>message</span><span class=p>.</span><span class=nx>model</span><span class=p>);</span>  <span class=c1>// 变异
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>message</span><span class=p>.</span><span class=nx>durationMs</span> <span class=o>=</span> <span class=nb>Date</span><span class=p>.</span><span class=nx>now</span><span class=p>()</span> <span class=o>-</span> <span class=nx>parseISO</span><span class=p>(</span><span class=nx>message</span><span class=p>.</span><span class=nx>timestamp</span><span class=p>);</span>  <span class=c1>// 变异
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>}</span>
+</span></span></span><span class=line><span class=cl>    <span class=nx>message</span><span class=p>.</span><span class=nx>durationMs</span> <span class=o>=</span> <span class=nb>Date</span><span class=p>.</span><span class=nx>now</span><span class=p>()</span> <span class=o>-</span> <span class=nx>parseISO</span><span class=p>(</span><span class=nx>message</span><span class=p>.</span><span class=nx>timestamp</span><span class=p>);</span>  <span class=c1>// 变异
+</span></span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div><div class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"><div class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">Click to expand and view more</div></div></div></div><script>(function(){const s="code-6",n=document.querySelector('.copy-code-btn[data-code-id="'+s+'"]'),t=document.querySelector('.collapse-code-btn[data-code-id="'+s+'"]'),e=document.getElementById(s);if(!e)return;if(n){const s=n.querySelector(".copy-icon"),t=n.querySelector(".copy-text");n.addEventListener("click",async function(){try{let o="";const i=e.querySelector(".lntd:last-child code");if(i)o=i.textContent||i.innerText;else{const t=e.querySelector("code");if(t){const e=t.querySelector(".ln");if(e){const e=t.querySelectorAll(".cl");if(e.length>0)o=Array.from(e).map(e=>{const t=e.textContent||e.innerText;return t.replace(/\n+$/,"")}).join(`
 `).replace(/\n+$/,"");else{const e=t.textContent||t.innerText;o=e.replace(/^\d+/gm,"").replace(/^\s+/gm,"")}}else o=t.textContent||t.innerText}else o=e.textContent||e.innerText}o=o.trim(),await navigator.clipboard.writeText(o),s.innerHTML=`
   <svg class="h-3 w-3"
@@ -436,26 +436,26 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-7 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-7><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// 系统提示组装流水线 (重构)
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>interface</span> <span class=nx>SystemPromptPipeline</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>interface</span> <span class=nx>SystemPromptPipeline</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=nx>sources</span><span class=o>:</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=nx>baseInstructions</span>: <span class=kt>string</span>        <span class=c1>// 静态基础
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>claudeMdContent</span>: <span class=kt>ClaudeMdLayer</span><span class=p>[]</span> <span class=c1>// 分层的
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>gitContext</span>: <span class=kt>GitContextData</span>       <span class=c1>// 实时
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>directoryStructure</span>: <span class=kt>TreeData</span>     <span class=c1>// 缓存/新鲜
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>toolDefinitions</span>: <span class=kt>ToolSpec</span><span class=p>[]</span>      <span class=c1>// 可用工具
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>modelAdaptations</span>: <span class=kt>ModelSpecificPrompt</span> <span class=c1>// 每个模型
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>}</span>
+</span></span></span><span class=line><span class=cl>    <span class=nx>claudeMdContent</span>: <span class=kt>ClaudeMdLayer</span><span class=p>[]</span> <span class=c1>// 分层的
+</span></span></span><span class=line><span class=cl>    <span class=nx>gitContext</span>: <span class=kt>GitContextData</span>       <span class=c1>// 实时
+</span></span></span><span class=line><span class=cl>    <span class=nx>directoryStructure</span>: <span class=kt>TreeData</span>     <span class=c1>// 缓存/新鲜
+</span></span></span><span class=line><span class=cl>    <span class=nx>toolDefinitions</span>: <span class=kt>ToolSpec</span><span class=p>[]</span>      <span class=c1>// 可用工具
+</span></span></span><span class=line><span class=cl>    <span class=nx>modelAdaptations</span>: <span class=kt>ModelSpecificPrompt</span> <span class=c1>// 每个模型
+</span></span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=nx>assembly</span><span class=o>:</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=nx>order</span><span class=o>:</span> <span class=p>[</span><span class=s1>&#39;base&#39;</span><span class=p>,</span> <span class=s1>&#39;model&#39;</span><span class=p>,</span> <span class=s1>&#39;claude.md&#39;</span><span class=p>,</span> <span class=s1>&#39;git&#39;</span><span class=p>,</span> <span class=s1>&#39;files&#39;</span><span class=p>,</span> <span class=s1>&#39;tools&#39;</span><span class=p>],</span>
 </span></span><span class=line><span class=cl>    <span class=nx>separators</span>: <span class=kt>Map</span><span class=p>&lt;</span><span class=nt>string</span><span class=p>,</span> <span class=na>string</span><span class=p>&gt;,</span>  <span class=c1>// 部分分隔符
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>sizeLimit</span>: <span class=kt>number</span><span class=p>,</span>                <span class=c1>// Token 预算
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>prioritization</span><span class=o>:</span> <span class=s1>&#39;recency&#39;</span> <span class=o>|</span> <span class=s1>&#39;relevance&#39;</span>
+</span></span></span><span class=line><span class=cl>    <span class=nx>sizeLimit</span>: <span class=kt>number</span><span class=p>,</span>                <span class=c1>// Token 预算
+</span></span></span><span class=line><span class=cl>    <span class=nx>prioritization</span><span class=o>:</span> <span class=s1>&#39;recency&#39;</span> <span class=o>|</span> <span class=s1>&#39;relevance&#39;</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1>// GitContext 结构揭示了实时感知
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>interface</span> <span class=nx>GitContextData</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>interface</span> <span class=nx>GitContextData</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=nx>currentBranch</span>: <span class=kt>string</span>
 </span></span><span class=line><span class=cl>  <span class=nx>status</span><span class=o>:</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=nx>modified</span>: <span class=kt>string</span><span class=p>[]</span>
@@ -469,7 +469,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=nx>timestamp</span>: <span class=kt>string</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span><span class=o>&gt;</span>
 </span></span><span class=line><span class=cl>  <span class=nx>uncommittedDiff?</span>: <span class=kt>string</span>  <span class=c1>// 昂贵,有条件
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span></span></span></code></pre></div><div class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"><div class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">Click to expand and view more</div></div></div></div><script>(function(){const s="code-7",n=document.querySelector('.copy-code-btn[data-code-id="'+s+'"]'),t=document.querySelector('.collapse-code-btn[data-code-id="'+s+'"]'),e=document.getElementById(s);if(!e)return;if(n){const s=n.querySelector(".copy-icon"),t=n.querySelector(".copy-text");n.addEventListener("click",async function(){try{let o="";const i=e.querySelector(".lntd:last-child code");if(i)o=i.textContent||i.innerText;else{const t=e.querySelector("code");if(t){const e=t.querySelector(".ln");if(e){const e=t.querySelectorAll(".cl");if(e.length>0)o=Array.from(e).map(e=>{const t=e.textContent||e.innerText;return t.replace(/\n+$/,"")}).join(`
+</span></span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div><div class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"><div class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">Click to expand and view more</div></div></div></div><script>(function(){const s="code-7",n=document.querySelector('.copy-code-btn[data-code-id="'+s+'"]'),t=document.querySelector('.collapse-code-btn[data-code-id="'+s+'"]'),e=document.getElementById(s);if(!e)return;if(n){const s=n.querySelector(".copy-icon"),t=n.querySelector(".copy-text");n.addEventListener("click",async function(){try{let o="";const i=e.querySelector(".lntd:last-child code");if(i)o=i.textContent||i.innerText;else{const t=e.querySelector("code");if(t){const e=t.querySelector(".ln");if(e){const e=t.querySelectorAll(".cl");if(e.length>0)o=Array.from(e).map(e=>{const t=e.textContent||e.innerText;return t.replace(/\n+$/,"")}).join(`
 `).replace(/\n+$/,"");else{const e=t.textContent||t.innerText;o=e.replace(/^\d+/gm,"").replace(/^\s+/gm,"")}}else o=t.textContent||t.innerText}else o=e.textContent||e.innerText}o=o.trim(),await navigator.clipboard.writeText(o),s.innerHTML=`
   <svg class="h-3 w-3"
     fill="none"
@@ -535,31 +535,31 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-9 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-9><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// 推断的 CLAUDE.md 加载算法
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>class</span> <span class=nx>ClaudeMdLoader</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>class</span> <span class=nx>ClaudeMdLoader</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=kr>private</span> <span class=nx>cache</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Map</span><span class=p>&lt;</span><span class=nt>string</span><span class=p>,</span> <span class=p>{</span><span class=na>content</span><span class=err>:</span> <span class=na>string</span><span class=p>,</span> <span class=na>mtime</span><span class=err>:</span> <span class=na>number</span><span class=p>}&gt;();</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=kr>async</span> <span class=nx>loadMerged</span><span class=p>()</span><span class=o>:</span> <span class=nx>Promise</span><span class=p>&lt;</span><span class=nt>string</span><span class=p>&gt;</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>layers</span> <span class=o>=</span> <span class=p>[</span>
 </span></span><span class=line><span class=cl>      <span class=s1>&#39;/etc/claude-code/CLAUDE.md&#39;</span><span class=p>,</span>      <span class=c1>// 托管
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=s1>&#39;~/.claude/CLAUDE.md&#39;</span><span class=p>,</span>              <span class=c1>// 用户
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=s1>&#39;&lt;project&gt;/.claude/CLAUDE.md&#39;</span><span class=p>,</span>      <span class=c1>// 项目
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=s1>&#39;.claude/CLAUDE.md&#39;</span>                 <span class=c1>// 本地
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>];</span>
+</span></span></span><span class=line><span class=cl>      <span class=s1>&#39;~/.claude/CLAUDE.md&#39;</span><span class=p>,</span>              <span class=c1>// 用户
+</span></span></span><span class=line><span class=cl>      <span class=s1>&#39;&lt;project&gt;/.claude/CLAUDE.md&#39;</span><span class=p>,</span>      <span class=c1>// 项目
+</span></span></span><span class=line><span class=cl>      <span class=s1>&#39;.claude/CLAUDE.md&#39;</span>                 <span class=c1>// 本地
+</span></span></span><span class=line><span class=cl>    <span class=p>];</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>contents</span> <span class=o>=</span> <span class=k>await</span> <span class=nx>Promise</span><span class=p>.</span><span class=nx>all</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>      <span class=nx>layers</span><span class=p>.</span><span class=nx>map</span><span class=p>(</span><span class=nx>path</span> <span class=o>=&gt;</span> <span class=k>this</span><span class=p>.</span><span class=nx>loadWithCache</span><span class=p>(</span><span class=nx>path</span><span class=p>))</span>
 </span></span><span class=line><span class=cl>    <span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 使用覆盖语义合并
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>mergeWithOverrides</span><span class=p>(</span><span class=nx>contents</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>mergeWithOverrides</span><span class=p>(</span><span class=nx>contents</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=kr>private</span> <span class=nx>mergeWithOverrides</span><span class=p>(</span><span class=nx>contents</span>: <span class=kt>string</span><span class=p>[])</span><span class=o>:</span> <span class=kt>string</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=c1>// 后面的层覆盖前面的层
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=c1>// @override 指令用于显式覆盖
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=c1>// @append 指令用于添加
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=c1>// 默认: 用分隔符连接
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>}</span>
+</span></span></span><span class=line><span class=cl>    <span class=c1>// @override 指令用于显式覆盖
+</span></span></span><span class=line><span class=cl>    <span class=c1>// @append 指令用于添加
+</span></span></span><span class=line><span class=cl>    <span class=c1>// 默认: 用分隔符连接
+</span></span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div><div class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"><div class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">Click to expand and view more</div></div></div></div><script>(function(){const s="code-9",n=document.querySelector('.copy-code-btn[data-code-id="'+s+'"]'),t=document.querySelector('.collapse-code-btn[data-code-id="'+s+'"]'),e=document.getElementById(s);if(!e)return;if(n){const s=n.querySelector(".copy-icon"),t=n.querySelector(".copy-text");n.addEventListener("click",async function(){try{let o="";const i=e.querySelector(".lntd:last-child code");if(i)o=i.textContent||i.innerText;else{const t=e.querySelector("code");if(t){const e=t.querySelector(".ln");if(e){const e=t.querySelectorAll(".cl");if(e.length>0)o=Array.from(e).map(e=>{const t=e.textContent||e.innerText;return t.replace(/\n+$/,"")}).join(`
 `).replace(/\n+$/,"");else{const e=t.textContent||t.innerText;o=e.replace(/^\d+/gm,"").replace(/^\s+/gm,"")}}else o=t.textContent||t.innerText}else o=e.textContent||e.innerText}o=o.trim(),await navigator.clipboard.writeText(o),s.innerHTML=`
   <svg class="h-3 w-3"
@@ -589,42 +589,42 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-10><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=kr>interface</span> <span class=nx>ToolDefinition</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=c1>// 标识
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>name</span>: <span class=kt>string</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>name</span>: <span class=kt>string</span>
 </span></span><span class=line><span class=cl>  <span class=nx>description</span>: <span class=kt>string</span>
 </span></span><span class=line><span class=cl>  <span class=nx>prompt?</span>: <span class=kt>string</span>  <span class=c1>// 额外的 LLM 指令
-</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 模式 (双重表示)
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>inputSchema</span>: <span class=kt>ZodSchema</span>          <span class=c1>// 运行时验证
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>inputJSONSchema?</span>: <span class=kt>JSONSchema</span>    <span class=c1>// LLM 通信
-</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>inputSchema</span>: <span class=kt>ZodSchema</span>          <span class=c1>// 运行时验证
+</span></span></span><span class=line><span class=cl>  <span class=nx>inputJSONSchema?</span>: <span class=kt>JSONSchema</span>    <span class=c1>// LLM 通信
+</span></span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 执行
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>call</span>: <span class=kt>AsyncGenerator</span><span class=p>&lt;</span><span class=nt>ToolProgress</span> <span class=err>|</span> <span class=na>ToolResult</span><span class=p>,</span> <span class=na>void</span><span class=p>,</span> <span class=na>void</span><span class=p>&gt;</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>call</span>: <span class=kt>AsyncGenerator</span><span class=p>&lt;</span><span class=nt>ToolProgress</span> <span class=err>|</span> <span class=na>ToolResult</span><span class=p>,</span> <span class=na>void</span><span class=p>,</span> <span class=na>void</span><span class=p>&gt;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 权限
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>checkPermissions</span><span class=o>?:</span> <span class=p>(</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>checkPermissions</span><span class=o>?:</span> <span class=p>(</span>
 </span></span><span class=line><span class=cl>    <span class=nx>input</span>: <span class=kt>any</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>    <span class=nx>context</span>: <span class=kt>ToolUseContext</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>    <span class=nx>permContext</span>: <span class=kt>ToolPermissionContext</span>
 </span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>=&gt;</span> <span class=nx>Promise</span><span class=p>&lt;</span><span class=nt>PermissionDecision</span><span class=p>&gt;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 输出格式化
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>mapToolResultToToolResultBlockParam</span><span class=o>:</span> <span class=p>(</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>mapToolResultToToolResultBlockParam</span><span class=o>:</span> <span class=p>(</span>
 </span></span><span class=line><span class=cl>    <span class=nx>result</span>: <span class=kt>any</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>    <span class=nx>toolUseId</span>: <span class=kt>string</span>
 </span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>=&gt;</span> <span class=nx>ContentBlock</span> <span class=o>|</span> <span class=nx>ContentBlock</span><span class=p>[]</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 元数据
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>isReadOnly</span>: <span class=kt>boolean</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>isReadOnly</span>: <span class=kt>boolean</span>
 </span></span><span class=line><span class=cl>  <span class=nx>isMcp?</span>: <span class=kt>boolean</span>
 </span></span><span class=line><span class=cl>  <span class=nx>isEnabled</span><span class=o>?:</span> <span class=p>(</span><span class=nx>config</span>: <span class=kt>any</span><span class=p>)</span> <span class=o>=&gt;</span> <span class=kr>boolean</span>
 </span></span><span class=line><span class=cl>  <span class=nx>getPath</span><span class=o>?:</span> <span class=p>(</span><span class=nx>input</span>: <span class=kt>any</span><span class=p>)</span> <span class=o>=&gt;</span> <span class=kt>string</span> <span class=o>|</span> <span class=kc>undefined</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// UI
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>renderToolUseMessage</span><span class=o>?:</span> <span class=p>(</span><span class=nx>input</span>: <span class=kt>any</span><span class=p>)</span> <span class=o>=&gt;</span> <span class=nx>ReactElement</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>renderToolUseMessage</span><span class=o>?:</span> <span class=p>(</span><span class=nx>input</span>: <span class=kt>any</span><span class=p>)</span> <span class=o>=&gt;</span> <span class=nx>ReactElement</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1>// 工具定义的内存特性
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>interface</span> <span class=nx>ToolDefinitionMemory</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>interface</span> <span class=nx>ToolDefinitionMemory</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=nx>staticSize</span><span class=o>:</span> <span class=s2>&#34;每个工具约 2KB&#34;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>  <span class=nx>zodSchema</span><span class=o>:</span> <span class=s2>&#34;延迟编译,已缓存&#34;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>  <span class=nx>jsonSchema</span><span class=o>:</span> <span class=s2>&#34;生成一次,记忆化&#34;</span><span class=p>,</span>
@@ -658,19 +658,19 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-11><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=kr>interface</span> <span class=nx>ToolUseContext</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=c1>// 取消
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>abortController</span>: <span class=kt>AbortController</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>abortController</span>: <span class=kt>AbortController</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 文件状态跟踪
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>readFileState</span>: <span class=kt>Map</span><span class=p>&lt;</span><span class=nt>string</span><span class=p>,</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>readFileState</span>: <span class=kt>Map</span><span class=p>&lt;</span><span class=nt>string</span><span class=p>,</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=na>content</span><span class=err>:</span> <span class=na>string</span>
 </span></span><span class=line><span class=cl>    <span class=na>timestamp</span><span class=err>:</span> <span class=na>number</span>  <span class=c1>// mtime
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>}&gt;</span>
+</span></span></span><span class=line><span class=cl>  <span class=p>}&gt;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 权限解析
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>getToolPermissionContext</span><span class=o>:</span> <span class=p>()</span> <span class=o>=&gt;</span> <span class=nx>ToolPermissionContext</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>getToolPermissionContext</span><span class=o>:</span> <span class=p>()</span> <span class=o>=&gt;</span> <span class=nx>ToolPermissionContext</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 选项包
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>options</span><span class=o>:</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>options</span><span class=o>:</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=nx>tools</span>: <span class=kt>ToolDefinition</span><span class=p>[]</span>
 </span></span><span class=line><span class=cl>    <span class=nx>mainLoopModel</span>: <span class=kt>string</span>
 </span></span><span class=line><span class=cl>    <span class=nx>debug?</span>: <span class=kt>boolean</span>
@@ -680,23 +680,23 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// MCP 连接
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>mcpClients?</span>: <span class=kt>McpClient</span><span class=p>[]</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>mcpClients?</span>: <span class=kt>McpClient</span><span class=p>[]</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1>// 权限上下文揭示了复杂的安全模型
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>interface</span> <span class=nx>ToolPermissionContext</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>interface</span> <span class=nx>ToolPermissionContext</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=nx>mode</span><span class=o>:</span> <span class=s2>&#34;default&#34;</span> <span class=o>|</span> <span class=s2>&#34;acceptEdits&#34;</span> <span class=o>|</span> <span class=s2>&#34;bypassPermissions&#34;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=nx>additionalWorkingDirectories</span>: <span class=kt>Set</span><span class=p>&lt;</span><span class=nt>string</span><span class=p>&gt;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 分层规则系统
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>alwaysAllowRules</span>: <span class=kt>Record</span><span class=p>&lt;</span><span class=nt>PermissionRuleScope</span><span class=p>,</span> <span class=na>string</span><span class=err>[]</span><span class=p>&gt;</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>alwaysAllowRules</span>: <span class=kt>Record</span><span class=p>&lt;</span><span class=nt>PermissionRuleScope</span><span class=p>,</span> <span class=na>string</span><span class=err>[]</span><span class=p>&gt;</span>
 </span></span><span class=line><span class=cl>  <span class=nx>alwaysDenyRules</span>: <span class=kt>Record</span><span class=p>&lt;</span><span class=nt>PermissionRuleScope</span><span class=p>,</span> <span class=na>string</span><span class=err>[]</span><span class=p>&gt;</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=kr>type</span> <span class=nx>PermissionRuleScope</span> <span class=o>=</span>
 </span></span><span class=line><span class=cl>  <span class=o>|</span> <span class=s2>&#34;cliArg&#34;</span>         <span class=c1>// 最高优先级
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=o>|</span> <span class=s2>&#34;localSettings&#34;</span>
+</span></span></span><span class=line><span class=cl>  <span class=o>|</span> <span class=s2>&#34;localSettings&#34;</span>
 </span></span><span class=line><span class=cl>  <span class=o>|</span> <span class=s2>&#34;projectSettings&#34;</span>
 </span></span><span class=line><span class=cl>  <span class=o>|</span> <span class=s2>&#34;policySettings&#34;</span>
 </span></span><span class=line><span class=cl>  <span class=o>|</span> <span class=s2>&#34;userSettings&#34;</span>   <span class=c1>// 最低优先级
@@ -728,10 +728,10 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-12 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-12><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// JSON-RPC 2.0 及其扩展
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>interface</span> <span class=nx>McpMessage</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>interface</span> <span class=nx>McpMessage</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=nx>jsonrpc</span><span class=o>:</span> <span class=s2>&#34;2.0&#34;</span>
 </span></span><span class=line><span class=cl>  <span class=nx>id?</span>: <span class=kt>string</span> <span class=o>|</span> <span class=kt>number</span>  <span class=c1>// 通知可选
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=kr>interface</span> <span class=nx>McpRequest</span> <span class=kr>extends</span> <span class=nx>McpMessage</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=nx>method</span>: <span class=kt>string</span>
@@ -740,7 +740,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=kr>interface</span> <span class=nx>McpResponse</span> <span class=kr>extends</span> <span class=nx>McpMessage</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=nx>id</span>: <span class=kt>string</span> <span class=o>|</span> <span class=kt>number</span>  <span class=c1>// 响应必需
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>result?</span>: <span class=kt>unknown</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>result?</span>: <span class=kt>unknown</span>
 </span></span><span class=line><span class=cl>  <span class=nx>error</span><span class=o>?:</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=nx>code</span>: <span class=kt>number</span>
 </span></span><span class=line><span class=cl>    <span class=nx>message</span>: <span class=kt>string</span>
@@ -749,26 +749,26 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1>// 能力协商结构
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>interface</span> <span class=nx>McpCapabilities</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>interface</span> <span class=nx>McpCapabilities</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=nx>experimental?</span>: <span class=kt>Record</span><span class=p>&lt;</span><span class=nt>string</span><span class=p>,</span> <span class=na>any</span><span class=p>&gt;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 功能标志
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>roots?</span>: <span class=kt>boolean</span>      <span class=c1>// 工作区根目录
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>sampling?</span>: <span class=kt>boolean</span>   <span class=c1>// LLM 采样委托
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>prompts?</span>: <span class=kt>boolean</span>    <span class=c1>// 动态提示
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>resources?</span>: <span class=kt>boolean</span>  <span class=c1>// 资源服务
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>tools?</span>: <span class=kt>boolean</span>      <span class=c1>// 工具暴露
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>logging?</span>: <span class=kt>boolean</span>    <span class=c1>// 日志转发
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>roots?</span>: <span class=kt>boolean</span>      <span class=c1>// 工作区根目录
+</span></span></span><span class=line><span class=cl>  <span class=nx>sampling?</span>: <span class=kt>boolean</span>   <span class=c1>// LLM 采样委托
+</span></span></span><span class=line><span class=cl>  <span class=nx>prompts?</span>: <span class=kt>boolean</span>    <span class=c1>// 动态提示
+</span></span></span><span class=line><span class=cl>  <span class=nx>resources?</span>: <span class=kt>boolean</span>  <span class=c1>// 资源服务
+</span></span></span><span class=line><span class=cl>  <span class=nx>tools?</span>: <span class=kt>boolean</span>      <span class=c1>// 工具暴露
+</span></span></span><span class=line><span class=cl>  <span class=nx>logging?</span>: <span class=kt>boolean</span>    <span class=c1>// 日志转发
+</span></span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1>// MCP 服务器发送的工具规范
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>interface</span> <span class=nx>McpToolSpec</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>interface</span> <span class=nx>McpToolSpec</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=nx>name</span>: <span class=kt>string</span>
 </span></span><span class=line><span class=cl>  <span class=nx>description?</span>: <span class=kt>string</span>
 </span></span><span class=line><span class=cl>  <span class=nx>inputSchema</span>: <span class=kt>JSONSchema</span>  <span class=c1>// 始终是 JSON Schema
-</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// MCP 特定元数据
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>isReadOnly?</span>: <span class=kt>boolean</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>isReadOnly?</span>: <span class=kt>boolean</span>
 </span></span><span class=line><span class=cl>  <span class=nx>requiresConfirmation?</span>: <span class=kt>boolean</span>
 </span></span><span class=line><span class=cl>  <span class=nx>timeout?</span>: <span class=kt>number</span>
 </span></span><span class=line><span class=cl>  <span class=nx>maxRetries?</span>: <span class=kt>number</span>
@@ -817,12 +817,12 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-14><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=kr>interface</span> <span class=nx>SessionState</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=c1>// 标识
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>sessionId</span>: <span class=kt>string</span>  <span class=c1>// UUID v4
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>originalCwd</span>: <span class=kt>string</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>sessionId</span>: <span class=kt>string</span>  <span class=c1>// UUID v4
+</span></span></span><span class=line><span class=cl>  <span class=nx>originalCwd</span>: <span class=kt>string</span>
 </span></span><span class=line><span class=cl>  <span class=nx>cwd</span>: <span class=kt>string</span>  <span class=c1>// 可以通过 bash cd 改变
-</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 成本跟踪 (可变累加器)
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>totalCostUSD</span>: <span class=kt>number</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>totalCostUSD</span>: <span class=kt>number</span>
 </span></span><span class=line><span class=cl>  <span class=nx>totalAPIDuration</span>: <span class=kt>number</span>
 </span></span><span class=line><span class=cl>  <span class=nx>modelTokens</span>: <span class=kt>Record</span><span class=p>&lt;</span><span class=nt>string</span><span class=p>,</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=na>inputTokens</span><span class=err>:</span> <span class=na>number</span>
@@ -832,35 +832,35 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>  <span class=p>}&gt;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 模型选择
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>mainLoopModelOverride?</span>: <span class=kt>string</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>mainLoopModelOverride?</span>: <span class=kt>string</span>
 </span></span><span class=line><span class=cl>  <span class=nx>initialMainLoopModel?</span>: <span class=kt>string</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 活动指标
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>sessionCounter</span>: <span class=kt>number</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>sessionCounter</span>: <span class=kt>number</span>
 </span></span><span class=line><span class=cl>  <span class=nx>locCounter</span>: <span class=kt>number</span>      <span class=c1>// 代码行数
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>prCounter</span>: <span class=kt>number</span>       <span class=c1>// Pull requests
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>commitCounter</span>: <span class=kt>number</span>   <span class=c1>// Git commits
-</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>prCounter</span>: <span class=kt>number</span>       <span class=c1>// Pull requests
+</span></span></span><span class=line><span class=cl>  <span class=nx>commitCounter</span>: <span class=kt>number</span>   <span class=c1>// Git commits
+</span></span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 状态标志
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>lastInteractionTime</span>: <span class=kt>number</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>lastInteractionTime</span>: <span class=kt>number</span>
 </span></span><span class=line><span class=cl>  <span class=nx>hasUnknownModelCost</span>: <span class=kt>boolean</span>
 </span></span><span class=line><span class=cl>  <span class=nx>maxRateLimitFallbackActive</span>: <span class=kt>boolean</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 可用模型
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>modelStrings</span>: <span class=kt>string</span><span class=p>[]</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>modelStrings</span>: <span class=kt>string</span><span class=p>[]</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1>// 会话状态访问模式 (推断)
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>class</span> <span class=nx>SessionManager</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>class</span> <span class=nx>SessionManager</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=kr>private</span> <span class=kr>static</span> <span class=nx>state</span>: <span class=kt>SessionState</span><span class=p>;</span>  <span class=c1>// 单例
-</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=kr>static</span> <span class=nx>update</span><span class=p>&lt;</span><span class=nt>K</span> <span class=na>extends</span> <span class=na>keyof</span> <span class=na>SessionState</span><span class=p>&gt;(</span>
 </span></span><span class=line><span class=cl>    <span class=nx>key</span>: <span class=kt>K</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>    <span class=nx>value</span>: <span class=kt>SessionState</span><span class=p>[</span><span class=nx>K</span><span class=p>]</span>
 </span></span><span class=line><span class=cl>  <span class=p>)</span><span class=o>:</span> <span class=k>void</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=k>this</span><span class=p>.</span><span class=nx>state</span><span class=p>[</span><span class=nx>key</span><span class=p>]</span> <span class=o>=</span> <span class=nx>value</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=k>this</span><span class=p>.</span><span class=nx>persistToDisk</span><span class=p>();</span>  <span class=c1>// 异步,非阻塞
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>}</span>
+</span></span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=kr>static</span> <span class=nx>increment</span><span class=p>(</span><span class=nx>metric</span>: <span class=kt>keyof</span> <span class=nx>SessionState</span><span class=p>)</span><span class=o>:</span> <span class=k>void</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=k>typeof</span> <span class=k>this</span><span class=p>.</span><span class=nx>state</span><span class=p>[</span><span class=nx>metric</span><span class=p>]</span> <span class=o>===</span> <span class=s1>&#39;number&#39;</span><span class=p>)</span> <span class=p>{</span>
@@ -895,26 +895,26 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-15 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-15><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// 双向流式有效载荷结构
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>interface</span> <span class=nx>BidirectionalStreamingProtocol</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>interface</span> <span class=nx>BidirectionalStreamingProtocol</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=c1>// 客户端 → 服务器
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>clientPayload</span><span class=o>:</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>clientPayload</span><span class=o>:</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=nx>bytes</span>: <span class=kt>string</span>  <span class=c1>// Base64 编码
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>encoding</span><span class=o>:</span> <span class=s1>&#39;base64&#39;</span>
+</span></span></span><span class=line><span class=cl>    <span class=nx>encoding</span><span class=o>:</span> <span class=s1>&#39;base64&#39;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 解码的内容类型
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>contentTypes</span><span class=o>:</span>
+</span></span></span><span class=line><span class=cl>    <span class=nx>contentTypes</span><span class=o>:</span>
 </span></span><span class=line><span class=cl>      <span class=o>|</span> <span class=nx>ContinuedUserInput</span>
 </span></span><span class=line><span class=cl>      <span class=o>|</span> <span class=nx>ToolResultBlock</span>
 </span></span><span class=line><span class=cl>      <span class=o>|</span> <span class=nx>ConversationTurnInput</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 服务器 → 客户端
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>serverPayload</span><span class=o>:</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>serverPayload</span><span class=o>:</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=nx>bytes</span>: <span class=kt>string</span>  <span class=c1>// Base64 编码
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>encoding</span><span class=o>:</span> <span class=s1>&#39;base64&#39;</span>
+</span></span></span><span class=line><span class=cl>    <span class=nx>encoding</span><span class=o>:</span> <span class=s1>&#39;base64&#39;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 解码的事件类型
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>eventTypes</span><span class=o>:</span>
+</span></span></span><span class=line><span class=cl>    <span class=nx>eventTypes</span><span class=o>:</span>
 </span></span><span class=line><span class=cl>      <span class=o>|</span> <span class=nx>ContentBlockDeltaEvent</span>
 </span></span><span class=line><span class=cl>      <span class=o>|</span> <span class=nx>ToolUseRequestEvent</span>
 </span></span><span class=line><span class=cl>      <span class=o>|</span> <span class=nx>ErrorEvent</span>
@@ -923,11 +923,11 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1>// 双向流的流式状态机
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>class</span> <span class=nx>BidirectionalStreamManager</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>class</span> <span class=nx>BidirectionalStreamManager</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=kr>private</span> <span class=nx>encoder</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>TextEncoder</span><span class=p>();</span>
 </span></span><span class=line><span class=cl>  <span class=kr>private</span> <span class=nx>decoder</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>TextDecoder</span><span class=p>();</span>
 </span></span><span class=line><span class=cl>  <span class=kr>private</span> <span class=nx>buffer</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Uint8Array</span><span class=p>(</span><span class=mi>65536</span><span class=p>);</span>  <span class=c1>// 64KB 缓冲区
-</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=kr>async</span> <span class=o>*</span><span class=nx>processStream</span><span class=p>(</span><span class=nx>stream</span>: <span class=kt>ReadableStream</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>reader</span> <span class=o>=</span> <span class=nx>stream</span><span class=p>.</span><span class=nx>getReader</span><span class=p>();</span>
 </span></span><span class=line><span class=cl>    <span class=kd>let</span> <span class=nx>partial</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span><span class=p>;</span>
@@ -937,7 +937,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=nx>done</span><span class=p>)</span> <span class=k>break</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>      <span class=c1>// 解码并按换行符分割 (SSE 格式)
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=nx>partial</span> <span class=o>+=</span> <span class=k>this</span><span class=p>.</span><span class=nx>decoder</span><span class=p>.</span><span class=nx>decode</span><span class=p>(</span><span class=nx>value</span><span class=p>,</span> <span class=p>{</span> <span class=nx>stream</span>: <span class=kt>true</span> <span class=p>});</span>
+</span></span></span><span class=line><span class=cl>      <span class=nx>partial</span> <span class=o>+=</span> <span class=k>this</span><span class=p>.</span><span class=nx>decoder</span><span class=p>.</span><span class=nx>decode</span><span class=p>(</span><span class=nx>value</span><span class=p>,</span> <span class=p>{</span> <span class=nx>stream</span>: <span class=kt>true</span> <span class=p>});</span>
 </span></span><span class=line><span class=cl>      <span class=kr>const</span> <span class=nx>lines</span> <span class=o>=</span> <span class=nx>partial</span><span class=p>.</span><span class=nx>split</span><span class=p>(</span><span class=s1>&#39;\n&#39;</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>      <span class=nx>partial</span> <span class=o>=</span> <span class=nx>lines</span><span class=p>.</span><span class=nx>pop</span><span class=p>()</span> <span class=o>||</span> <span class=s1>&#39;&#39;</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>
@@ -953,7 +953,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>  <span class=kr>private</span> <span class=nx>decodePayload</span><span class=p>(</span><span class=nx>payload</span>: <span class=kt>any</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>bytes</span> <span class=o>=</span> <span class=nx>Buffer</span><span class=p>.</span><span class=kr>from</span><span class=p>(</span><span class=nx>payload</span><span class=p>.</span><span class=nx>bytes</span><span class=p>,</span> <span class=s1>&#39;base64&#39;</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=c1>// 根据协议缓冲区或 JSON 进一步解码
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>return</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>parse</span><span class=p>(</span><span class=nx>bytes</span><span class=p>.</span><span class=nx>toString</span><span class=p>());</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>parse</span><span class=p>(</span><span class=nx>bytes</span><span class=p>.</span><span class=nx>toString</span><span class=p>());</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div><div class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"><div class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">Click to expand and view more</div></div></div></div><script>(function(){const s="code-15",n=document.querySelector('.copy-code-btn[data-code-id="'+s+'"]'),t=document.querySelector('.collapse-code-btn[data-code-id="'+s+'"]'),e=document.getElementById(s);if(!e)return;if(n){const s=n.querySelector(".copy-icon"),t=n.querySelector(".copy-text");n.addEventListener("click",async function(){try{let o="";const i=e.querySelector(".lntd:last-child code");if(i)o=i.textContent||i.innerText;else{const t=e.querySelector("code");if(t){const e=t.querySelector(".ln");if(e){const e=t.querySelectorAll(".cl");if(e.length>0)o=Array.from(e).map(e=>{const t=e.textContent||e.innerText;return t.replace(/\n+$/,"")}).join(`
 `).replace(/\n+$/,"");else{const e=t.textContent||t.innerText;o=e.replace(/^\d+/gm,"").replace(/^\s+/gm,"")}}else o=t.textContent||t.innerText}else o=e.textContent||e.innerText}o=o.trim(),await navigator.clipboard.writeText(o),s.innerHTML=`
@@ -983,7 +983,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-16 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-16><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// 推断的字符串驻留模式
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>class</span> <span class=nx>StringIntern</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>class</span> <span class=nx>StringIntern</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=kr>private</span> <span class=kr>static</span> <span class=nx>pool</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Map</span><span class=p>&lt;</span><span class=nt>string</span><span class=p>,</span> <span class=na>string</span><span class=p>&gt;();</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=kr>static</span> <span class=nx>intern</span><span class=p>(</span><span class=nx>str</span>: <span class=kt>string</span><span class=p>)</span><span class=o>:</span> <span class=kt>string</span> <span class=p>{</span>
@@ -995,8 +995,8 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1>// 在消息处理中的使用
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>message</span><span class=p>.</span><span class=kr>type</span> <span class=o>=</span> <span class=nx>StringIntern</span><span class=p>.</span><span class=nx>intern</span><span class=p>(</span><span class=nx>rawType</span><span class=p>);</span>  <span class=c1>// &#39;user&#39;, &#39;assistant&#39; 等
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>message</span><span class=p>.</span><span class=nx>stop_reason</span> <span class=o>=</span> <span class=nx>StringIntern</span><span class=p>.</span><span class=nx>intern</span><span class=p>(</span><span class=nx>reason</span><span class=p>);</span>  <span class=c1>// &#39;end_turn&#39;, &#39;tool_use&#39; 等
+</span></span></span><span class=line><span class=cl><span class=nx>message</span><span class=p>.</span><span class=kr>type</span> <span class=o>=</span> <span class=nx>StringIntern</span><span class=p>.</span><span class=nx>intern</span><span class=p>(</span><span class=nx>rawType</span><span class=p>);</span>  <span class=c1>// &#39;user&#39;, &#39;assistant&#39; 等
+</span></span></span><span class=line><span class=cl><span class=nx>message</span><span class=p>.</span><span class=nx>stop_reason</span> <span class=o>=</span> <span class=nx>StringIntern</span><span class=p>.</span><span class=nx>intern</span><span class=p>(</span><span class=nx>reason</span><span class=p>);</span>  <span class=c1>// &#39;end_turn&#39;, &#39;tool_use&#39; 等
 </span></span></span></code></pre></div><div class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"><div class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">Click to expand and view more</div></div></div></div><script>(function(){const s="code-16",n=document.querySelector('.copy-code-btn[data-code-id="'+s+'"]'),t=document.querySelector('.collapse-code-btn[data-code-id="'+s+'"]'),e=document.getElementById(s);if(!e)return;if(n){const s=n.querySelector(".copy-icon"),t=n.querySelector(".copy-text");n.addEventListener("click",async function(){try{let o="";const i=e.querySelector(".lntd:last-child code");if(i)o=i.textContent||i.innerText;else{const t=e.querySelector("code");if(t){const e=t.querySelector(".ln");if(e){const e=t.querySelectorAll(".cl");if(e.length>0)o=Array.from(e).map(e=>{const t=e.textContent||e.innerText;return t.replace(/\n+$/,"")}).join(`
 `).replace(/\n+$/,"");else{const e=t.textContent||t.innerText;o=e.replace(/^\d+/gm,"").replace(/^\s+/gm,"")}}else o=t.textContent||t.innerText}else o=e.textContent||e.innerText}o=o.trim(),await navigator.clipboard.writeText(o),s.innerHTML=`
   <svg class="h-3 w-3"
@@ -1025,7 +1025,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-17 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-17><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// 内容块可能使用延迟解析以提高性能
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>class</span> <span class=nx>LazyContentBlock</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>class</span> <span class=nx>LazyContentBlock</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=kr>private</span> <span class=nx>_raw</span>: <span class=kt>string</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>  <span class=kr>private</span> <span class=nx>_parsed?</span>: <span class=kt>any</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>
@@ -1042,7 +1042,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=kr>private</span> <span class=nx>parse</span><span class=p>(</span><span class=nx>raw</span>: <span class=kt>string</span><span class=p>)</span><span class=o>:</span> <span class=kt>any</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=c1>// 仅在访问时进行昂贵的解析
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>return</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>parse</span><span class=p>(</span><span class=nx>raw</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>parse</span><span class=p>(</span><span class=nx>raw</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div><div class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"><div class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">Click to expand and view more</div></div></div></div><script>(function(){const s="code-17",n=document.querySelector('.copy-code-btn[data-code-id="'+s+'"]'),t=document.querySelector('.collapse-code-btn[data-code-id="'+s+'"]'),e=document.getElementById(s);if(!e)return;if(n){const s=n.querySelector(".copy-icon"),t=n.querySelector(".copy-text");n.addEventListener("click",async function(){try{let o="";const i=e.querySelector(".lntd:last-child code");if(i)o=i.textContent||i.innerText;else{const t=e.querySelector("code");if(t){const e=t.querySelector(".ln");if(e){const e=t.querySelectorAll(".cl");if(e.length>0)o=Array.from(e).map(e=>{const t=e.textContent||e.innerText;return t.replace(/\n+$/,"")}).join(`
 `).replace(/\n+$/,"");else{const e=t.textContent||t.innerText;o=e.replace(/^\d+/gm,"").replace(/^\s+/gm,"")}}else o=t.textContent||t.innerText}else o=e.textContent||e.innerText}o=o.trim(),await navigator.clipboard.writeText(o),s.innerHTML=`
@@ -1072,7 +1072,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-18 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-18><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// 具有自动内存管理的文件缓存
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>class</span> <span class=nx>ReadFileState</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>class</span> <span class=nx>ReadFileState</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=kr>private</span> <span class=nx>cache</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Map</span><span class=p>&lt;</span><span class=nt>string</span><span class=p>,</span> <span class=na>WeakRef</span><span class=p>&lt;</span><span class=nt>FileContent</span><span class=p>&gt;&gt;();</span>
 </span></span><span class=line><span class=cl>  <span class=kr>private</span> <span class=nx>registry</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>FinalizationRegistry</span><span class=p>((</span><span class=nx>path</span>: <span class=kt>string</span><span class=p>)</span> <span class=o>=&gt;</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=k>this</span><span class=p>.</span><span class=nx>cache</span><span class=p>.</span><span class=k>delete</span><span class=p>(</span><span class=nx>path</span><span class=p>);</span>

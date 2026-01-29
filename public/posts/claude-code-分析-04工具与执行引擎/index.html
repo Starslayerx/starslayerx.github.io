@@ -1,4 +1,4 @@
-<!doctype html><html lang=en-US data-theme=nord><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta http-equiv=X-UA-Compatible content="IE=edge"><title>Claude Code 分析 04：工具与执行引擎 | Starslayerx' Blog</title><meta name=description content='🛠️ 工具与执行引擎 graph LR subgraph "工具生命周期" LLM[LLM 决策] --> ToolUse[ToolUseBlock] ToolUse --> Validation{输入验证} Validation -->|通过|...'><meta name=keywords content="Agent"><meta name=author content="Starlsayerx"><meta name=language content="en-US"><meta name=robots content="index, follow"><link rel=canonical href=https://starslayerx.github.io/posts/claude-code-%E5%88%86%E6%9E%90-04%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E/><link rel=icon type=image/svg+xml href=/favicon.svg><link rel=manifest href=/site.webmanifest><meta property="og:url" content="https://starslayerx.github.io/posts/claude-code-%E5%88%86%E6%9E%90-04%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E/"><meta property="og:site_name" content="Starslayerx' Blog"><meta property="og:title" content="Claude Code 分析 04：工具与执行引擎"><meta property="og:description" content='🛠️ 工具与执行引擎 graph LR subgraph "工具生命周期" LLM[LLM 决策] --> ToolUse[ToolUseBlock] ToolUse --> Validation{输入验证} Validation -->|通过| Permission{权限检查} Validation -->|失败| ErrorResult[错误结果] Permission -->|允许| Execute["Tool.call()"] Permission -->|拒绝| ErrorResult Permission -->|询问| UserPrompt[用户对话框] UserPrompt -->|允许| Execute UserPrompt -->|拒绝| ErrorResult Execute --> Progress[产出进度] Progress --> Progress Progress --> Result[产出结果] Result --> Transform[mapToolResult] Transform --> ToolResultBlock ErrorResult --> ToolResultBlock ToolResultBlock --> LLM end 工具执行管道：全程异步生成器 Claude Code 工具系统最迷人的方面是在整个执行管道中使用异步生成器。这允许在保持清晰的错误边界的同时流式传输进度更新：'><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-11-14T12:00:00+01:00"><meta property="article:modified_time" content="2025-11-14T12:00:00+01:00"><meta property="article:tag" content="Agent"><meta property="og:image" content="https://starslayerx.github.io/images/og-default.avif"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://starslayerx.github.io/images/og-default.avif"><meta name=twitter:title content="Claude Code 分析 04：工具与执行引擎"><meta name=twitter:description content='🛠️ 工具与执行引擎 graph LR subgraph "工具生命周期" LLM[LLM 决策] --> ToolUse[ToolUseBlock] ToolUse --> Validation{输入验证} Validation -->|通过| Permission{权限检查} Validation -->|失败| ErrorResult[错误结果] Permission -->|允许| Execute["Tool.call()"] Permission -->|拒绝| ErrorResult Permission -->|询问| UserPrompt[用户对话框] UserPrompt -->|允许| Execute UserPrompt -->|拒绝| ErrorResult Execute --> Progress[产出进度] Progress --> Progress Progress --> Result[产出结果] Result --> Transform[mapToolResult] Transform --> ToolResultBlock ErrorResult --> ToolResultBlock ToolResultBlock --> LLM end 工具执行管道：全程异步生成器 Claude Code 工具系统最迷人的方面是在整个执行管道中使用异步生成器。这允许在保持清晰的错误边界的同时流式传输进度更新：'><meta itemprop=name content="Claude Code 分析 04：工具与执行引擎"><meta itemprop=description content='🛠️ 工具与执行引擎 graph LR subgraph "工具生命周期" LLM[LLM 决策] --> ToolUse[ToolUseBlock] ToolUse --> Validation{输入验证} Validation -->|通过| Permission{权限检查} Validation -->|失败| ErrorResult[错误结果] Permission -->|允许| Execute["Tool.call()"] Permission -->|拒绝| ErrorResult Permission -->|询问| UserPrompt[用户对话框] UserPrompt -->|允许| Execute UserPrompt -->|拒绝| ErrorResult Execute --> Progress[产出进度] Progress --> Progress Progress --> Result[产出结果] Result --> Transform[mapToolResult] Transform --> ToolResultBlock ErrorResult --> ToolResultBlock ToolResultBlock --> LLM end 工具执行管道：全程异步生成器 Claude Code 工具系统最迷人的方面是在整个执行管道中使用异步生成器。这允许在保持清晰的错误边界的同时流式传输进度更新：'><meta itemprop=datePublished content="2025-11-14T12:00:00+01:00"><meta itemprop=dateModified content="2025-11-14T12:00:00+01:00"><meta itemprop=wordCount content="5796"><meta itemprop=image content="https://starslayerx.github.io/images/og-default.avif"><meta itemprop=keywords content="Agent"><script>window.HUGO_SEARCH_CONFIG={searchIndexURL:'"/index.json"'}</script><script>window.HUGO_GALLERY_CONFIG={justified_gallery:!1,lightbox:!1,justified:'{"calculateitemsheight":false,"gutter":30,"lastrow":"center","maxrowscount":999999,"resizedebounce":100,"rowheight":300,"rowheighttolerance":0.25,"transitionduration":"0.3s"}',lightbox_options:'{"descposition":"bottom","draggable":true,"height":"80vh","loop":true,"preload":true,"touchnavigation":true,"width":"80vw","zoomable":true}'}</script><link rel=stylesheet href=/css/compiled.min.dff4075e98d99819a938687dfd3989b3446aa37588d980a15c21ca71be8699d4.css integrity="sha256-3/QHXpjZmBmpOGh9/TmJs0Rqo3WI2YChXCHKcb6GmdQ=" crossorigin=anonymous><link rel=stylesheet href=/css/chroma.min.491df36221f739b5948a747a0351f100ee7ccaaf466d9f46288bf06de1d59123.css integrity="sha256-SR3zYiH3ObWUinR6A1HxAO58yq9GbZ9GKIvwbeHVkSM=" crossorigin=anonymous><script src=/js/main.ba969e49a7a874e6938fe689a7dcaa00cb64cb4d429c2cf98d09bde512a16c6d.js integrity="sha256-upaeSaeodOaTj+aJp9yqAMtky01CnCz5jQm95RKhbG0=" crossorigin=anonymous></script><script src=/js/gumshoe.polyfills.min.js></script><script src=/js/toc.70654aebf0b738a78ae2df95297cc10ebc6e590f3c942dd1325fa852f50038b2.js integrity="sha256-cGVK6/C3OKeK4t+VKXzBDrxuWQ88lC3RMl+oUvUAOLI=" crossorigin=anonymous defer></script><script src=/js/search.de3eba3540834efb8328121784bff4774e06362412ee41eee665f5b4f987f393.js integrity="sha256-3j66NUCDTvuDKBIXhL/0d04GNiQS7kHu5mX1tPmH85M=" crossorigin=anonymous defer></script><script src=/js/dock.e02f422517e001d9fb6bea1e9e8b0e89e9d2e486ad4641f275bb3e36ce2ae79f.js integrity="sha256-4C9CJRfgAdn7a+oenosOienS5IatRkHydbs+Ns4q558=" crossorigin=anonymous defer></script><script>(function(){const e=localStorage.getItem("theme")||"system",n=localStorage.getItem("colorScheme")||"nord";document.documentElement.setAttribute("data-theme",n);function t(){e==="dark"||e==="system"&&window.matchMedia("(prefers-color-scheme: dark)").matches?document.documentElement.classList.add("dark"):document.documentElement.classList.remove("dark")}t(),e==="system"&&window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",t)})()</script></head><body class="bg-background text-foreground min-h-screen antialiased"><div id=reading-progress-container class="reading-progress-container pointer-events-none fixed top-0 right-0 left-0 z-50 transition-opacity duration-300 ease-out" data-height=3 data-smooth-scroll=true data-hide-on-complete=false><div class="reading-progress-bg w-full"></div><div id=reading-progress-bar class="from-primary to-primary/80 reading-progress-bar
+<!doctype html><html lang=en-US data-theme=nord><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta http-equiv=X-UA-Compatible content="IE=edge"><title>Claude Code 分析 04：工具与执行引擎 | Starslayerx' Blog</title><meta name=description content='🛠️ 工具与执行引擎 graph LR subgraph "工具生命周期" LLM[LLM 决策] --> ToolUse[ToolUseBlock] ToolUse --> Validation{输入验证} Validation -->|通过|...'><meta name=keywords content="Agent"><meta name=author content="Starlsayerx"><meta name=language content="en-US"><meta name=robots content="index, follow"><link rel=canonical href=https://starslayerx.github.io/posts/claude-code-%E5%88%86%E6%9E%90-04%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E/><link rel=icon type=image/svg+xml href=/favicon.svg><link rel=manifest href=/site.webmanifest><meta property="og:url" content="https://starslayerx.github.io/posts/claude-code-%E5%88%86%E6%9E%90-04%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E/"><meta property="og:site_name" content="Starslayerx' Blog"><meta property="og:title" content="Claude Code 分析 04：工具与执行引擎"><meta property="og:description" content='🛠️ 工具与执行引擎 graph LR subgraph "工具生命周期" LLM[LLM 决策] --> ToolUse[ToolUseBlock] ToolUse --> Validation{输入验证} Validation -->|通过| Permission{权限检查} Validation -->|失败| ErrorResult[错误结果] Permission -->|允许| Execute["Tool.call()"] Permission -->|拒绝| ErrorResult Permission -->|询问| UserPrompt[用户对话框] UserPrompt -->|允许| Execute UserPrompt -->|拒绝| ErrorResult Execute --> Progress[产出进度] Progress --> Progress Progress --> Result[产出结果] Result --> Transform[mapToolResult] Transform --> ToolResultBlock ErrorResult --> ToolResultBlock ToolResultBlock --> LLM end 工具执行管道：全程异步生成器 Claude Code 工具系统最迷人的方面是在整个执行管道中使用异步生成器。这允许在保持清晰的错误边界的同时流式传输进度更新：'><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-11-14T12:00:00+01:00"><meta property="article:modified_time" content="2025-11-14T12:00:00+01:00"><meta property="article:tag" content="Agent"><meta property="og:image" content="https://starslayerx.github.io/images/og-default.avif"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://starslayerx.github.io/images/og-default.avif"><meta name=twitter:title content="Claude Code 分析 04：工具与执行引擎"><meta name=twitter:description content='🛠️ 工具与执行引擎 graph LR subgraph "工具生命周期" LLM[LLM 决策] --> ToolUse[ToolUseBlock] ToolUse --> Validation{输入验证} Validation -->|通过| Permission{权限检查} Validation -->|失败| ErrorResult[错误结果] Permission -->|允许| Execute["Tool.call()"] Permission -->|拒绝| ErrorResult Permission -->|询问| UserPrompt[用户对话框] UserPrompt -->|允许| Execute UserPrompt -->|拒绝| ErrorResult Execute --> Progress[产出进度] Progress --> Progress Progress --> Result[产出结果] Result --> Transform[mapToolResult] Transform --> ToolResultBlock ErrorResult --> ToolResultBlock ToolResultBlock --> LLM end 工具执行管道：全程异步生成器 Claude Code 工具系统最迷人的方面是在整个执行管道中使用异步生成器。这允许在保持清晰的错误边界的同时流式传输进度更新：'><meta itemprop=name content="Claude Code 分析 04：工具与执行引擎"><meta itemprop=description content='🛠️ 工具与执行引擎 graph LR subgraph "工具生命周期" LLM[LLM 决策] --> ToolUse[ToolUseBlock] ToolUse --> Validation{输入验证} Validation -->|通过| Permission{权限检查} Validation -->|失败| ErrorResult[错误结果] Permission -->|允许| Execute["Tool.call()"] Permission -->|拒绝| ErrorResult Permission -->|询问| UserPrompt[用户对话框] UserPrompt -->|允许| Execute UserPrompt -->|拒绝| ErrorResult Execute --> Progress[产出进度] Progress --> Progress Progress --> Result[产出结果] Result --> Transform[mapToolResult] Transform --> ToolResultBlock ErrorResult --> ToolResultBlock ToolResultBlock --> LLM end 工具执行管道：全程异步生成器 Claude Code 工具系统最迷人的方面是在整个执行管道中使用异步生成器。这允许在保持清晰的错误边界的同时流式传输进度更新：'><meta itemprop=datePublished content="2025-11-14T12:00:00+01:00"><meta itemprop=dateModified content="2025-11-14T12:00:00+01:00"><meta itemprop=wordCount content="5796"><meta itemprop=image content="https://starslayerx.github.io/images/og-default.avif"><meta itemprop=keywords content="Agent"><script>window.HUGO_SEARCH_CONFIG={searchIndexURL:'"/index.json"'}</script><script>window.HUGO_GALLERY_CONFIG={justified_gallery:!1,lightbox:!1,justified:'{"calculateitemsheight":false,"gutter":30,"lastrow":"center","maxrowscount":999999,"resizedebounce":100,"rowheight":300,"rowheighttolerance":0.25,"transitionduration":"0.3s"}',lightbox_options:'{"descposition":"bottom","draggable":true,"height":"80vh","loop":true,"preload":true,"touchnavigation":true,"width":"80vw","zoomable":true}'}</script><link rel=stylesheet href=/css/compiled.min.338a4488a1a13fb6d418dd89049bdfcf9d0e9f9d92f9603e4eb3f538ef13b169.css integrity="sha256-M4pEiKGhP7bUGN2JBJvfz50On52S+WA+TrP1OO8TsWk=" crossorigin=anonymous><link rel=stylesheet href=/css/chroma.min.491df36221f739b5948a747a0351f100ee7ccaaf466d9f46288bf06de1d59123.css integrity="sha256-SR3zYiH3ObWUinR6A1HxAO58yq9GbZ9GKIvwbeHVkSM=" crossorigin=anonymous><script src=/js/main.ba969e49a7a874e6938fe689a7dcaa00cb64cb4d429c2cf98d09bde512a16c6d.js integrity="sha256-upaeSaeodOaTj+aJp9yqAMtky01CnCz5jQm95RKhbG0=" crossorigin=anonymous></script><script src=/js/gumshoe.polyfills.min.js></script><script src=/js/toc.70654aebf0b738a78ae2df95297cc10ebc6e590f3c942dd1325fa852f50038b2.js integrity="sha256-cGVK6/C3OKeK4t+VKXzBDrxuWQ88lC3RMl+oUvUAOLI=" crossorigin=anonymous defer></script><script src=/js/search.de3eba3540834efb8328121784bff4774e06362412ee41eee665f5b4f987f393.js integrity="sha256-3j66NUCDTvuDKBIXhL/0d04GNiQS7kHu5mX1tPmH85M=" crossorigin=anonymous defer></script><script src=/js/dock.e02f422517e001d9fb6bea1e9e8b0e89e9d2e486ad4641f275bb3e36ce2ae79f.js integrity="sha256-4C9CJRfgAdn7a+oenosOienS5IatRkHydbs+Ns4q558=" crossorigin=anonymous defer></script><script>(function(){const e=localStorage.getItem("theme")||"system",n=localStorage.getItem("colorScheme")||"nord";document.documentElement.setAttribute("data-theme",n);function t(){e==="dark"||e==="system"&&window.matchMedia("(prefers-color-scheme: dark)").matches?document.documentElement.classList.add("dark"):document.documentElement.classList.remove("dark")}t(),e==="system"&&window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",t)})()</script></head><body class="bg-background text-foreground min-h-screen antialiased"><div id=reading-progress-container class="reading-progress-container pointer-events-none fixed top-0 right-0 left-0 z-50 transition-opacity duration-300 ease-out" data-height=3 data-smooth-scroll=true data-hide-on-complete=false><div class="reading-progress-bg w-full"></div><div id=reading-progress-bar class="from-primary to-primary/80 reading-progress-bar
 transition-all duration-150 ease-out
 absolute top-0 left-0 w-0 bg-gradient-to-r"></div></div><script>(function(){"use strict";const t=document.getElementById("reading-progress-container"),o=document.getElementById("reading-progress-bar");if(!t||!o)return;const a={smoothScroll:t.dataset.smoothScroll==="true",hideOnComplete:t.dataset.hideOnComplete==="true"};let n=!0,l=null;function r(){const t=window.pageYOffset||document.documentElement.scrollTop,n=document.documentElement.scrollHeight,s=window.innerHeight,e=n-s;return e<=0?0:Math.min(Math.max(t/e*100,0),100)}function c(){const e=r();o.style.width=e+"%",a.hideOnComplete&&e>=99.5?n&&(t.style.opacity="0",n=!1):n||(t.style.opacity="1",n=!0)}let s=!1;function e(){s||(requestAnimationFrame(()=>{c(),s=!1}),s=!0)}function i(){window.addEventListener("scroll",e,{passive:!0}),window.addEventListener("resize",e,{passive:!0}),document.addEventListener("visibilitychange",()=>{document.hidden||e()}),e(),window.addEventListener("beforeunload",()=>{window.removeEventListener("scroll",e),window.removeEventListener("resize",e)})}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",i):i()})()</script><header class="sticky top-0 z-50 mx-auto max-w-4xl px-4 py-6"><div class="border-border bg-card/80 flex items-center rounded-xl border px-6 py-4 shadow-sm backdrop-blur-sm"><div class="hidden w-full items-center md:flex"><div class="flex items-center"><a href=/ class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full transition-transform duration-200 hover:scale-105" aria-label="Starslayerx' Blog"><img src=/images/logo.svg alt="Starslayerx' Blog" class="h-full w-full object-cover"></a></div><nav class="mx-8 flex flex-1 items-center justify-center"><div class="flex items-center space-x-1"><a href=/posts/ class="nav-link
 text-muted-foreground hover:text-primary hover:bg-primary/10
@@ -88,7 +88,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-1 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-1><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// 核心工具执行函数（重构版）
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>async</span> <span class=kd>function</span><span class=o>*</span> <span class=nx>executeTool</span><span class=p>(</span>
+</span></span></span><span class=line><span class=cl><span class=kr>async</span> <span class=kd>function</span><span class=o>*</span> <span class=nx>executeTool</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>  <span class=nx>toolUse</span>: <span class=kt>ToolUseBlock</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>  <span class=nx>toolDef</span>: <span class=kt>ToolDefinition</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>  <span class=nx>context</span>: <span class=kt>ToolUseContext</span><span class=p>,</span>
@@ -96,12 +96,12 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>  <span class=nx>assistantMessage</span>: <span class=kt>CliMessage</span>
 </span></span><span class=line><span class=cl><span class=p>)</span><span class=o>:</span> <span class=nx>AsyncGenerator</span><span class=p>&lt;</span><span class=nt>CliMessage</span><span class=p>,</span> <span class=na>void</span><span class=p>,</span> <span class=na>void</span><span class=p>&gt;</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=c1>// 阶段 1：使用 Zod 进行输入验证
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>const</span> <span class=nx>validationStart</span> <span class=o>=</span> <span class=nx>performance</span><span class=p>.</span><span class=nx>now</span><span class=p>();</span>
+</span></span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>validationStart</span> <span class=o>=</span> <span class=nx>performance</span><span class=p>.</span><span class=nx>now</span><span class=p>();</span>
 </span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>validation</span> <span class=o>=</span> <span class=nx>toolDef</span><span class=p>.</span><span class=nx>inputSchema</span><span class=p>.</span><span class=nx>safeParse</span><span class=p>(</span><span class=nx>toolUse</span><span class=p>.</span><span class=nx>input</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nx>validation</span><span class=p>.</span><span class=nx>success</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=c1>// 为 LLM 消费格式化 Zod 错误
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>errorMessage</span> <span class=o>=</span> <span class=nx>formatZodError</span><span class=p>(</span><span class=nx>validation</span><span class=p>.</span><span class=nx>error</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>errorMessage</span> <span class=o>=</span> <span class=nx>formatZodError</span><span class=p>(</span><span class=nx>validation</span><span class=p>.</span><span class=nx>error</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=k>yield</span> <span class=nx>createToolResultMessage</span><span class=p>({</span>
 </span></span><span class=line><span class=cl>      <span class=nx>tool_use_id</span>: <span class=kt>toolUse.id</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>content</span><span class=o>:</span> <span class=p>[{</span>
@@ -114,7 +114,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 阶段 2：权限检查
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>const</span> <span class=nx>permissionResult</span> <span class=o>=</span> <span class=k>await</span> <span class=nx>checkToolPermission</span><span class=p>(</span>
+</span></span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>permissionResult</span> <span class=o>=</span> <span class=k>await</span> <span class=nx>checkToolPermission</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>    <span class=nx>toolDef</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>    <span class=nx>validation</span><span class=p>.</span><span class=nx>data</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>    <span class=nx>context</span><span class=p>.</span><span class=nx>getToolPermissionContext</span><span class=p>(),</span>
@@ -135,7 +135,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=p>(</span><span class=nx>permissionResult</span><span class=p>.</span><span class=nx>behavior</span> <span class=o>===</span> <span class=s1>&#39;ask&#39;</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=c1>// 为权限对话框产出 UI 事件
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>yield</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>yield</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=kr>type</span><span class=o>:</span> <span class=s1>&#39;permission_request&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>toolName</span>: <span class=kt>toolDef.name</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>input</span>: <span class=kt>validation.data</span><span class=p>,</span>
@@ -143,7 +143,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>};</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 等待用户决策（由外层循环处理）
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>decision</span> <span class=o>=</span> <span class=k>await</span> <span class=nx>permissionFn</span><span class=p>(</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>decision</span> <span class=o>=</span> <span class=k>await</span> <span class=nx>permissionFn</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>      <span class=nx>toolDef</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>validation</span><span class=p>.</span><span class=nx>data</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>permissionResult</span>
@@ -163,17 +163,17 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 阶段 3：带进度跟踪的工具执行
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=k>try</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>  <span class=k>try</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>executeStart</span> <span class=o>=</span> <span class=nx>performance</span><span class=p>.</span><span class=nx>now</span><span class=p>();</span>
 </span></span><span class=line><span class=cl>    <span class=kd>let</span> <span class=nx>progressCount</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=kd>let</span> <span class=nx>finalResult</span> <span class=o>=</span> <span class=kc>null</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 调用工具的异步生成器
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>for</span> <span class=k>await</span> <span class=p>(</span><span class=kr>const</span> <span class=nx>output</span> <span class=k>of</span> <span class=nx>toolDef</span><span class=p>.</span><span class=nx>call</span><span class=p>(</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=k>await</span> <span class=p>(</span><span class=kr>const</span> <span class=nx>output</span> <span class=k>of</span> <span class=nx>toolDef</span><span class=p>.</span><span class=nx>call</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>      <span class=nx>validation</span><span class=p>.</span><span class=nx>data</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>context</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=kc>undefined</span><span class=p>,</span> <span class=c1>// mcpContext - 按要求跳过
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=nx>assistantMessage</span>
+</span></span></span><span class=line><span class=cl>      <span class=nx>assistantMessage</span>
 </span></span><span class=line><span class=cl>    <span class=p>))</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=nx>output</span><span class=p>.</span><span class=kr>type</span> <span class=o>===</span> <span class=s1>&#39;progress&#39;</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=nx>progressCount</span><span class=o>++</span><span class=p>;</span>
@@ -192,7 +192,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 阶段 4：结果转换
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>if</span> <span class=p>(</span><span class=nx>finalResult</span> <span class=o>!==</span> <span class=kc>null</span><span class=p>)</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nx>finalResult</span> <span class=o>!==</span> <span class=kc>null</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=kr>const</span> <span class=nx>content</span> <span class=o>=</span> <span class=nx>toolDef</span><span class=p>.</span><span class=nx>mapToolResultToToolResultBlockParam</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>        <span class=nx>finalResult</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>        <span class=nx>toolUse</span><span class=p>.</span><span class=nx>id</span>
@@ -207,7 +207,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span> <span class=k>catch</span> <span class=p>(</span><span class=nx>error</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=c1>// 带丰富上下文的错误处理
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>yield</span> <span class=nx>createToolResultMessage</span><span class=p>({</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>yield</span> <span class=nx>createToolResultMessage</span><span class=p>({</span>
 </span></span><span class=line><span class=cl>      <span class=nx>tool_use_id</span>: <span class=kt>toolUse.id</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>content</span>: <span class=kt>formatToolError</span><span class=p>(</span><span class=nx>error</span><span class=p>,</span> <span class=nx>toolDef</span><span class=p>),</span>
 </span></span><span class=line><span class=cl>      <span class=nx>is_error</span>: <span class=kt>true</span>
@@ -241,13 +241,13 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-2 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-2><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// Shell 解析器实现（从反编译中重构）
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>class</span> <span class=nx>ShellParser</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>class</span> <span class=nx>ShellParser</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=kr>private</span> <span class=kr>static</span> <span class=nx>OPERATORS</span> <span class=o>=</span> <span class=sr>/(\\|\\||&amp;&amp;|;;|\\|&amp;|\\||&lt;|&gt;|&gt;&gt;|&amp;|\\(|\\))/</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>  <span class=kr>private</span> <span class=kr>static</span> <span class=nx>SINGLE_QUOTE</span> <span class=o>=</span> <span class=sr>/^&#39;([^&#39;]*)&#39;$/</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>  <span class=kr>private</span> <span class=kr>static</span> <span class=nx>DOUBLE_QUOTE</span> <span class=o>=</span> <span class=sr>/^&#34;([^&#34;\\]*(\\.[^&#34;\\]*)*)&#34;$/</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 魔法：用于对象嵌入的随机哨兵值
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>private</span> <span class=kr>static</span> <span class=nx>SENTINEL</span> <span class=o>=</span> <span class=nx>crypto</span><span class=p>.</span><span class=nx>randomBytes</span><span class=p>(</span><span class=mi>16</span><span class=p>).</span><span class=nx>toString</span><span class=p>(</span><span class=s1>&#39;hex&#39;</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>  <span class=kr>private</span> <span class=kr>static</span> <span class=nx>SENTINEL</span> <span class=o>=</span> <span class=nx>crypto</span><span class=p>.</span><span class=nx>randomBytes</span><span class=p>(</span><span class=mi>16</span><span class=p>).</span><span class=nx>toString</span><span class=p>(</span><span class=s1>&#39;hex&#39;</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=kr>static</span> <span class=nx>parse</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>    <span class=nx>command</span>: <span class=kt>string</span><span class=p>,</span>
@@ -255,13 +255,13 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=nx>opts</span><span class=o>?:</span> <span class=p>(</span><span class=nx>token</span>: <span class=kt>string</span><span class=p>)</span> <span class=o>=&gt;</span> <span class=kt>any</span>
 </span></span><span class=line><span class=cl>  <span class=p>)</span><span class=o>:</span> <span class=nx>ParsedCommand</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=c1>// 阶段 1：带对象序列化的变量展开
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>expandedCommand</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>expandVariables</span><span class=p>(</span><span class=nx>command</span><span class=p>,</span> <span class=nx>env</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>expandedCommand</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>expandVariables</span><span class=p>(</span><span class=nx>command</span><span class=p>,</span> <span class=nx>env</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 阶段 2：标记化
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>tokens</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>tokenize</span><span class=p>(</span><span class=nx>expandedCommand</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>tokens</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>tokenize</span><span class=p>(</span><span class=nx>expandedCommand</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 阶段 3：如果提供了 opts，则对象再水化
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>if</span> <span class=p>(</span><span class=nx>opts</span> <span class=o>&amp;&amp;</span> <span class=k>typeof</span> <span class=nx>opts</span> <span class=o>===</span> <span class=s1>&#39;function&#39;</span><span class=p>)</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nx>opts</span> <span class=o>&amp;&amp;</span> <span class=k>typeof</span> <span class=nx>opts</span> <span class=o>===</span> <span class=s1>&#39;function&#39;</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=nx>tokens</span><span class=p>.</span><span class=nx>map</span><span class=p>(</span><span class=nx>token</span> <span class=o>=&gt;</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>isSerializedObject</span><span class=p>(</span><span class=nx>token</span><span class=p>))</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>          <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>deserializeObject</span><span class=p>(</span><span class=nx>token</span><span class=p>);</span>
@@ -283,7 +283,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>        <span class=kr>const</span> <span class=nx>value</span> <span class=o>=</span> <span class=nx>env</span><span class=p>[</span><span class=nx>varName</span><span class=p>];</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>        <span class=c1>// 创新之处：使用哨兵序列化对象
-</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=k>if</span> <span class=p>(</span><span class=k>typeof</span> <span class=nx>value</span> <span class=o>===</span> <span class=s1>&#39;object&#39;</span> <span class=o>&amp;&amp;</span> <span class=nx>value</span> <span class=o>!==</span> <span class=kc>null</span><span class=p>)</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=k>typeof</span> <span class=nx>value</span> <span class=o>===</span> <span class=s1>&#39;object&#39;</span> <span class=o>&amp;&amp;</span> <span class=nx>value</span> <span class=o>!==</span> <span class=kc>null</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>          <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>SENTINEL</span> <span class=o>+</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>stringify</span><span class=p>(</span><span class=nx>value</span><span class=p>)</span> <span class=o>+</span> <span class=k>this</span><span class=p>.</span><span class=nx>SENTINEL</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>        <span class=p>}</span>
 </span></span><span class=line><span class=cl>
@@ -304,7 +304,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>      <span class=kr>const</span> <span class=nx>next</span> <span class=o>=</span> <span class=nx>command</span><span class=p>[</span><span class=nx>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>];</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>      <span class=c1>// 处理引号和转义
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nx>escape</span><span class=p>)</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nx>escape</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=nx>char</span> <span class=o>===</span> <span class=s2>&#34;&#39;&#34;</span> <span class=o>&amp;&amp;</span> <span class=o>!</span><span class=nx>inDoubleQuote</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>          <span class=nx>inSingleQuote</span> <span class=o>=</span> <span class=o>!</span><span class=nx>inSingleQuote</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>          <span class=nx>current</span> <span class=o>+=</span> <span class=nx>char</span><span class=p>;</span>
@@ -327,7 +327,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>      <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>      <span class=c1>// 不在引号中时处理运算符
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nx>inSingleQuote</span> <span class=o>&amp;&amp;</span> <span class=o>!</span><span class=nx>inDoubleQuote</span><span class=p>)</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nx>inSingleQuote</span> <span class=o>&amp;&amp;</span> <span class=o>!</span><span class=nx>inDoubleQuote</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=kr>const</span> <span class=nx>remaining</span> <span class=o>=</span> <span class=nx>command</span><span class=p>.</span><span class=nx>slice</span><span class=p>(</span><span class=nx>i</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>        <span class=kr>const</span> <span class=nx>operatorMatch</span> <span class=o>=</span> <span class=nx>remaining</span><span class=p>.</span><span class=nx>match</span><span class=p>(</span><span class=sr>/^(\\|\\||&amp;&amp;|;;|\\|&amp;|\\||&lt;|&gt;|&gt;&gt;|&amp;|\\(|\\))/</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
@@ -342,7 +342,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>        <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>        <span class=c1>// 处理空白
-</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=k>if</span> <span class=p>(</span><span class=sr>/\s/</span><span class=p>.</span><span class=nx>test</span><span class=p>(</span><span class=nx>char</span><span class=p>))</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=sr>/\s/</span><span class=p>.</span><span class=nx>test</span><span class=p>(</span><span class=nx>char</span><span class=p>))</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>          <span class=k>if</span> <span class=p>(</span><span class=nx>current</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>            <span class=nx>tokens</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=nx>current</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>            <span class=nx>current</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span><span class=p>;</span>
@@ -376,7 +376,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>parse</span><span class=p>(</span><span class=nx>json</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=k>catch</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=nx>token</span><span class=p>;</span> <span class=c1>// 回退到字符串
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>}</span>
+</span></span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div><div class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"><div class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">Click to expand and view more</div></div></div></div><script>(function(){const s="code-2",n=document.querySelector('.copy-code-btn[data-code-id="'+s+'"]'),t=document.querySelector('.collapse-code-btn[data-code-id="'+s+'"]'),e=document.getElementById(s);if(!e)return;if(n){const s=n.querySelector(".copy-icon"),t=n.querySelector(".copy-text");n.addEventListener("click",async function(){try{let o="";const i=e.querySelector(".lntd:last-child code");if(i)o=i.textContent||i.innerText;else{const t=e.querySelector("code");if(t){const e=t.querySelector(".ln");if(e){const e=t.querySelectorAll(".cl");if(e.length>0)o=Array.from(e).map(e=>{const t=e.textContent||e.innerText;return t.replace(/\n+$/,"")}).join(`
 `).replace(/\n+$/,"");else{const e=t.textContent||t.innerText;o=e.replace(/^\d+/gm,"").replace(/^\s+/gm,"")}}else o=t.textContent||t.innerText}else o=e.textContent||e.innerText}o=o.trim(),await navigator.clipboard.writeText(o),s.innerHTML=`
@@ -437,7 +437,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-4 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-4><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// ReadTool 实现（重构版）
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>ReadToolDefinition</span>: <span class=kt>ToolDefinition</span> <span class=o>=</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>ReadToolDefinition</span>: <span class=kt>ToolDefinition</span> <span class=o>=</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=nx>name</span><span class=o>:</span> <span class=s1>&#39;ReadFileTool&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>  <span class=nx>description</span><span class=o>:</span> <span class=s1>&#39;带行号读取文件内容，支持文本和图像&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>
@@ -451,40 +451,40 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=p>{</span> <span class=nx>file_path</span><span class=p>,</span> <span class=nx>offset</span> <span class=o>=</span> <span class=mi>1</span><span class=p>,</span> <span class=nx>limit</span> <span class=o>=</span> <span class=mi>2000</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>input</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 进度：开始读取
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>yield</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>yield</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=kr>type</span><span class=o>:</span> <span class=s1>&#39;progress&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>toolUseID</span>: <span class=kt>context.currentToolUseId</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>data</span><span class=o>:</span> <span class=p>{</span> <span class=nx>status</span><span class=o>:</span> <span class=sb>`Reading </span><span class=si>${</span><span class=nx>path</span><span class=p>.</span><span class=nx>basename</span><span class=p>(</span><span class=nx>file_path</span><span class=p>)</span><span class=si>}</span><span class=sb>...`</span> <span class=p>}</span>
 </span></span><span class=line><span class=cl>    <span class=p>};</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 检查文件是否存在
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>stats</span> <span class=o>=</span> <span class=k>await</span> <span class=nx>fs</span><span class=p>.</span><span class=nx>stat</span><span class=p>(</span><span class=nx>file_path</span><span class=p>).</span><span class=k>catch</span><span class=p>(()</span> <span class=o>=&gt;</span> <span class=kc>null</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>stats</span> <span class=o>=</span> <span class=k>await</span> <span class=nx>fs</span><span class=p>.</span><span class=nx>stat</span><span class=p>(</span><span class=nx>file_path</span><span class=p>).</span><span class=k>catch</span><span class=p>(()</span> <span class=o>=&gt;</span> <span class=kc>null</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nx>stats</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=k>throw</span> <span class=k>new</span> <span class=nb>Error</span><span class=p>(</span><span class=sb>`File not found: </span><span class=si>${</span><span class=nx>file_path</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 检测文件类型
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>mimeType</span> <span class=o>=</span> <span class=k>await</span> <span class=nx>detectMimeType</span><span class=p>(</span><span class=nx>file_path</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>mimeType</span> <span class=o>=</span> <span class=k>await</span> <span class=nx>detectMimeType</span><span class=p>(</span><span class=nx>file_path</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nx>mimeType</span><span class=p>.</span><span class=nx>startsWith</span><span class=p>(</span><span class=s1>&#39;image/&#39;</span><span class=p>))</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=c1>// 处理图像文件
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=kr>const</span> <span class=nx>imageData</span> <span class=o>=</span> <span class=k>await</span> <span class=k>this</span><span class=p>.</span><span class=nx>readImage</span><span class=p>(</span><span class=nx>file_path</span><span class=p>,</span> <span class=nx>context</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>      <span class=kr>const</span> <span class=nx>imageData</span> <span class=o>=</span> <span class=k>await</span> <span class=k>this</span><span class=p>.</span><span class=nx>readImage</span><span class=p>(</span><span class=nx>file_path</span><span class=p>,</span> <span class=nx>context</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>      <span class=k>yield</span> <span class=p>{</span> <span class=kr>type</span><span class=o>:</span> <span class=s1>&#39;result&#39;</span><span class=p>,</span> <span class=nx>data</span>: <span class=kt>imageData</span> <span class=p>};</span>
 </span></span><span class=line><span class=cl>      <span class=k>return</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nx>file_path</span><span class=p>.</span><span class=nx>endsWith</span><span class=p>(</span><span class=s1>&#39;.ipynb&#39;</span><span class=p>))</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=c1>// 处理 Jupyter notebooks
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=kr>const</span> <span class=nx>notebookData</span> <span class=o>=</span> <span class=k>await</span> <span class=k>this</span><span class=p>.</span><span class=nx>readNotebook</span><span class=p>(</span><span class=nx>file_path</span><span class=p>,</span> <span class=nx>offset</span><span class=p>,</span> <span class=nx>limit</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>      <span class=kr>const</span> <span class=nx>notebookData</span> <span class=o>=</span> <span class=k>await</span> <span class=k>this</span><span class=p>.</span><span class=nx>readNotebook</span><span class=p>(</span><span class=nx>file_path</span><span class=p>,</span> <span class=nx>offset</span><span class=p>,</span> <span class=nx>limit</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>      <span class=k>yield</span> <span class=p>{</span> <span class=kr>type</span><span class=o>:</span> <span class=s1>&#39;result&#39;</span><span class=p>,</span> <span class=nx>data</span>: <span class=kt>notebookData</span> <span class=p>};</span>
 </span></span><span class=line><span class=cl>      <span class=k>return</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 使用流式处理文本文件
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>content</span> <span class=o>=</span> <span class=k>await</span> <span class=k>this</span><span class=p>.</span><span class=nx>readTextFile</span><span class=p>(</span><span class=nx>file_path</span><span class=p>,</span> <span class=nx>offset</span><span class=p>,</span> <span class=nx>limit</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>content</span> <span class=o>=</span> <span class=k>await</span> <span class=k>this</span><span class=p>.</span><span class=nx>readTextFile</span><span class=p>(</span><span class=nx>file_path</span><span class=p>,</span> <span class=nx>offset</span><span class=p>,</span> <span class=nx>limit</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 更新文件缓存
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>context</span><span class=p>.</span><span class=nx>readFileState</span><span class=p>.</span><span class=kr>set</span><span class=p>(</span><span class=nx>file_path</span><span class=p>,</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>    <span class=nx>context</span><span class=p>.</span><span class=nx>readFileState</span><span class=p>.</span><span class=kr>set</span><span class=p>(</span><span class=nx>file_path</span><span class=p>,</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=nx>content</span>: <span class=kt>content.fullContent</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>timestamp</span>: <span class=kt>stats.mtimeMs</span>
 </span></span><span class=line><span class=cl>    <span class=p>});</span>
@@ -506,12 +506,12 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=nx>lineNumber</span> <span class=o>&gt;=</span> <span class=nx>offset</span> <span class=o>&amp;&amp;</span> <span class=nx>lines</span><span class=p>.</span><span class=nx>length</span> <span class=o>&lt;</span> <span class=nx>limit</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>          <span class=c1>// 截断长行
-</span></span></span><span class=line><span class=cl><span class=c1></span>          <span class=kr>const</span> <span class=nx>truncatedLine</span> <span class=o>=</span> <span class=nx>line</span><span class=p>.</span><span class=nx>length</span> <span class=o>&gt;</span> <span class=mi>2000</span>
+</span></span></span><span class=line><span class=cl>          <span class=kr>const</span> <span class=nx>truncatedLine</span> <span class=o>=</span> <span class=nx>line</span><span class=p>.</span><span class=nx>length</span> <span class=o>&gt;</span> <span class=mi>2000</span>
 </span></span><span class=line><span class=cl>            <span class=o>?</span> <span class=nx>line</span><span class=p>.</span><span class=nx>substring</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>2000</span><span class=p>)</span> <span class=o>+</span> <span class=s1>&#39;... (truncated)&#39;</span>
 </span></span><span class=line><span class=cl>            <span class=o>:</span> <span class=nx>line</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>          <span class=c1>// 使用行号格式化（cat -n 风格）
-</span></span></span><span class=line><span class=cl><span class=c1></span>          <span class=nx>lines</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=sb>`</span><span class=si>${</span><span class=nx>lineNumber</span><span class=si>}</span><span class=sb>\\t</span><span class=si>${</span><span class=nx>truncatedLine</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>          <span class=nx>lines</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=sb>`</span><span class=si>${</span><span class=nx>lineNumber</span><span class=si>}</span><span class=sb>\\t</span><span class=si>${</span><span class=nx>truncatedLine</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>        <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=nx>lines</span><span class=p>.</span><span class=nx>length</span> <span class=o>&gt;=</span> <span class=nx>limit</span><span class=p>)</span> <span class=p>{</span>
@@ -535,7 +535,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>metadata</span> <span class=o>=</span> <span class=k>await</span> <span class=nx>sharp</span><span class=p>(</span><span class=nx>buffer</span><span class=p>).</span><span class=nx>metadata</span><span class=p>();</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 如果太大则调整大小
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kd>let</span> <span class=nx>processedBuffer</span> <span class=o>=</span> <span class=nx>buffer</span><span class=p>;</span>
+</span></span></span><span class=line><span class=cl>    <span class=kd>let</span> <span class=nx>processedBuffer</span> <span class=o>=</span> <span class=nx>buffer</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nx>metadata</span><span class=p>.</span><span class=nx>width</span> <span class=o>&gt;</span> <span class=mi>1024</span> <span class=o>||</span> <span class=nx>metadata</span><span class=p>.</span><span class=nx>height</span> <span class=o>&gt;</span> <span class=mi>1024</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=nx>processedBuffer</span> <span class=o>=</span> <span class=k>await</span> <span class=nx>sharp</span><span class=p>(</span><span class=nx>buffer</span><span class=p>)</span>
 </span></span><span class=line><span class=cl>        <span class=p>.</span><span class=nx>resize</span><span class=p>(</span><span class=mi>1024</span><span class=p>,</span> <span class=mi>1024</span><span class=p>,</span> <span class=p>{</span>
@@ -569,7 +569,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 空文件处理
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nx>result</span><span class=p>.</span><span class=nx>formattedContent</span> <span class=o>||</span> <span class=nx>result</span><span class=p>.</span><span class=nx>formattedContent</span><span class=p>.</span><span class=nx>trim</span><span class=p>()</span> <span class=o>===</span> <span class=s1>&#39;&#39;</span><span class=p>)</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nx>result</span><span class=p>.</span><span class=nx>formattedContent</span> <span class=o>||</span> <span class=nx>result</span><span class=p>.</span><span class=nx>formattedContent</span><span class=p>.</span><span class=nx>trim</span><span class=p>()</span> <span class=o>===</span> <span class=s1>&#39;&#39;</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=p>[{</span>
 </span></span><span class=line><span class=cl>        <span class=kr>type</span><span class=o>:</span> <span class=s1>&#39;text&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>        <span class=nx>text</span><span class=o>:</span> <span class=s1>&#39;&lt;system-reminder&gt;Warning: the file exists but the contents are empty.&lt;/system-reminder&gt;&#39;</span>
@@ -577,7 +577,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 正常文本结果
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>return</span> <span class=p>[{</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=p>[{</span>
 </span></span><span class=line><span class=cl>      <span class=kr>type</span><span class=o>:</span> <span class=s1>&#39;text&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>text</span>: <span class=kt>result.formattedContent</span> <span class=o>+</span>
 </span></span><span class=line><span class=cl>            <span class=p>(</span><span class=nx>result</span><span class=p>.</span><span class=nx>truncated</span> <span class=o>?</span> <span class=s1>&#39;\\n... (content truncated)&#39;</span> <span class=o>:</span> <span class=s1>&#39;&#39;</span><span class=p>)</span>
@@ -613,7 +613,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-5 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-5><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// EditTool 实现，带验证管道
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>EditToolDefinition</span>: <span class=kt>ToolDefinition</span> <span class=o>=</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>EditToolDefinition</span>: <span class=kt>ToolDefinition</span> <span class=o>=</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=nx>name</span><span class=o>:</span> <span class=s1>&#39;EditFileTool&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>  <span class=nx>description</span><span class=o>:</span> <span class=s1>&#39;在文件中执行精确的字符串替换并进行验证&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>
@@ -628,19 +628,19 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=p>{</span> <span class=nx>file_path</span><span class=p>,</span> <span class=nx>old_string</span><span class=p>,</span> <span class=nx>new_string</span><span class=p>,</span> <span class=nx>expected_replacements</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>input</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 验证 1：文件已被读取
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>cachedFile</span> <span class=o>=</span> <span class=nx>context</span><span class=p>.</span><span class=nx>readFileState</span><span class=p>.</span><span class=kr>get</span><span class=p>(</span><span class=nx>file_path</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>cachedFile</span> <span class=o>=</span> <span class=nx>context</span><span class=p>.</span><span class=nx>readFileState</span><span class=p>.</span><span class=kr>get</span><span class=p>(</span><span class=nx>file_path</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nx>cachedFile</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=k>throw</span> <span class=k>new</span> <span class=nb>Error</span><span class=p>(</span><span class=s1>&#39;File must be read with ReadFileTool before editing&#39;</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 验证 2：文件未被外部更改
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>currentStats</span> <span class=o>=</span> <span class=k>await</span> <span class=nx>fs</span><span class=p>.</span><span class=nx>stat</span><span class=p>(</span><span class=nx>file_path</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>currentStats</span> <span class=o>=</span> <span class=k>await</span> <span class=nx>fs</span><span class=p>.</span><span class=nx>stat</span><span class=p>(</span><span class=nx>file_path</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nx>currentStats</span><span class=p>.</span><span class=nx>mtimeMs</span> <span class=o>!==</span> <span class=nx>cachedFile</span><span class=p>.</span><span class=nx>timestamp</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=k>throw</span> <span class=k>new</span> <span class=nb>Error</span><span class=p>(</span><span class=s1>&#39;File has been modified externally since last read&#39;</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 验证 3：无操作检查
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>if</span> <span class=p>(</span><span class=nx>old_string</span> <span class=o>===</span> <span class=nx>new_string</span><span class=p>)</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nx>old_string</span> <span class=o>===</span> <span class=nx>new_string</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=k>throw</span> <span class=k>new</span> <span class=nb>Error</span><span class=p>(</span><span class=s1>&#39;old_string and new_string cannot be identical&#39;</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
@@ -651,7 +651,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>};</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 计数出现次数
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>occurrences</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>countOccurrences</span><span class=p>(</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>occurrences</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>countOccurrences</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>      <span class=nx>cachedFile</span><span class=p>.</span><span class=nx>content</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>old_string</span>
 </span></span><span class=line><span class=cl>    <span class=p>);</span>
@@ -667,7 +667,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 执行替换
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>newContent</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>performReplacement</span><span class=p>(</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>newContent</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>performReplacement</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>      <span class=nx>cachedFile</span><span class=p>.</span><span class=nx>content</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>old_string</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>new_string</span><span class=p>,</span>
@@ -675,7 +675,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 生成差异预览
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>diff</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>generateDiff</span><span class=p>(</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>diff</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>generateDiff</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>      <span class=nx>cachedFile</span><span class=p>.</span><span class=nx>content</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>newContent</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>file_path</span>
@@ -691,20 +691,20 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>};</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 写入文件
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>await</span> <span class=k>this</span><span class=p>.</span><span class=nx>writeFileWithBackup</span><span class=p>(</span><span class=nx>file_path</span><span class=p>,</span> <span class=nx>newContent</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>await</span> <span class=k>this</span><span class=p>.</span><span class=nx>writeFileWithBackup</span><span class=p>(</span><span class=nx>file_path</span><span class=p>,</span> <span class=nx>newContent</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 更新缓存
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>context</span><span class=p>.</span><span class=nx>readFileState</span><span class=p>.</span><span class=kr>set</span><span class=p>(</span><span class=nx>file_path</span><span class=p>,</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>    <span class=nx>context</span><span class=p>.</span><span class=nx>readFileState</span><span class=p>.</span><span class=kr>set</span><span class=p>(</span><span class=nx>file_path</span><span class=p>,</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=nx>content</span>: <span class=kt>newContent</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>timestamp</span>: <span class=kt>Date.now</span><span class=p>()</span>
 </span></span><span class=line><span class=cl>    <span class=p>});</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 生成结果片段
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>snippet</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>getContextSnippet</span><span class=p>(</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>snippet</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>getContextSnippet</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>      <span class=nx>newContent</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>new_string</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=mi>5</span> <span class=c1>// 上下文行数
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=k>yield</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=kr>type</span><span class=o>:</span> <span class=s1>&#39;result&#39;</span><span class=p>,</span>
@@ -719,7 +719,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=nx>countOccurrences</span><span class=p>(</span><span class=nx>content</span>: <span class=kt>string</span><span class=p>,</span> <span class=nx>searchString</span>: <span class=kt>string</span><span class=p>)</span><span class=o>:</span> <span class=kt>number</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=c1>// 转义特殊正则字符
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>escaped</span> <span class=o>=</span> <span class=nx>searchString</span><span class=p>.</span><span class=nx>replace</span><span class=p>(</span><span class=sr>/[.*+?^${}()|[\]\\]/g</span><span class=p>,</span> <span class=s1>&#39;\\$&amp;&#39;</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>escaped</span> <span class=o>=</span> <span class=nx>searchString</span><span class=p>.</span><span class=nx>replace</span><span class=p>(</span><span class=sr>/[.*+?^${}()|[\]\\]/g</span><span class=p>,</span> <span class=s1>&#39;\\$&amp;&#39;</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>regex</span> <span class=o>=</span> <span class=k>new</span> <span class=nb>RegExp</span><span class=p>(</span><span class=nx>escaped</span><span class=p>,</span> <span class=s1>&#39;g&#39;</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=p>(</span><span class=nx>content</span><span class=p>.</span><span class=nx>match</span><span class=p>(</span><span class=nx>regex</span><span class=p>)</span> <span class=o>||</span> <span class=p>[]).</span><span class=nx>length</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>  <span class=p>},</span>
@@ -731,7 +731,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=nx>limit</span>: <span class=kt>number</span>
 </span></span><span class=line><span class=cl>  <span class=p>)</span><span class=o>:</span> <span class=kt>string</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=c1>// 替换期间对某些字符的特殊处理
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>tempOld</span> <span class=o>=</span> <span class=nx>oldString</span><span class=p>.</span><span class=nx>replace</span><span class=p>(</span><span class=sr>/\$/g</span><span class=p>,</span> <span class=s1>&#39;$$$$&#39;</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>tempOld</span> <span class=o>=</span> <span class=nx>oldString</span><span class=p>.</span><span class=nx>replace</span><span class=p>(</span><span class=sr>/\$/g</span><span class=p>,</span> <span class=s1>&#39;$$$$&#39;</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>tempNew</span> <span class=o>=</span> <span class=nx>newString</span><span class=p>.</span><span class=nx>replace</span><span class=p>(</span><span class=sr>/\$/g</span><span class=p>,</span> <span class=s1>&#39;$$$$&#39;</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=kd>let</span> <span class=nx>result</span> <span class=o>=</span> <span class=nx>content</span><span class=p>;</span>
@@ -790,7 +790,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-6 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-6><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// MultiEditTool - 复杂的顺序编辑编排
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>MultiEditToolDefinition</span>: <span class=kt>ToolDefinition</span> <span class=o>=</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>MultiEditToolDefinition</span>: <span class=kt>ToolDefinition</span> <span class=o>=</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=nx>name</span><span class=o>:</span> <span class=s1>&#39;MultiEditFileTool&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>  <span class=nx>description</span><span class=o>:</span> <span class=s1>&#39;原子性地对文件应用多个编辑&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>
@@ -807,7 +807,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=p>{</span> <span class=nx>file_path</span><span class=p>,</span> <span class=nx>edits</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>input</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 加载文件内容
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>cachedFile</span> <span class=o>=</span> <span class=nx>context</span><span class=p>.</span><span class=nx>readFileState</span><span class=p>.</span><span class=kr>get</span><span class=p>(</span><span class=nx>file_path</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>cachedFile</span> <span class=o>=</span> <span class=nx>context</span><span class=p>.</span><span class=nx>readFileState</span><span class=p>.</span><span class=kr>get</span><span class=p>(</span><span class=nx>file_path</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nx>cachedFile</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=k>throw</span> <span class=k>new</span> <span class=nb>Error</span><span class=p>(</span><span class=s1>&#39;File must be read before editing&#39;</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
@@ -822,7 +822,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>};</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 模拟所有编辑以检查冲突
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kd>let</span> <span class=nx>workingContent</span> <span class=o>=</span> <span class=nx>cachedFile</span><span class=p>.</span><span class=nx>content</span><span class=p>;</span>
+</span></span></span><span class=line><span class=cl>    <span class=kd>let</span> <span class=nx>workingContent</span> <span class=o>=</span> <span class=nx>cachedFile</span><span class=p>.</span><span class=nx>content</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>editResults</span> <span class=o>=</span> <span class=p>[];</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=p>(</span><span class=kd>let</span> <span class=nx>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&lt;</span> <span class=nx>edits</span><span class=p>.</span><span class=nx>length</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
@@ -838,7 +838,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>      <span class=p>};</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>      <span class=c1>// 检查此编辑是否有效
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=kr>const</span> <span class=nx>occurrences</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>countOccurrences</span><span class=p>(</span>
+</span></span></span><span class=line><span class=cl>      <span class=kr>const</span> <span class=nx>occurrences</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>countOccurrences</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>        <span class=nx>workingContent</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>        <span class=nx>edit</span><span class=p>.</span><span class=nx>old_string</span>
 </span></span><span class=line><span class=cl>      <span class=p>);</span>
@@ -858,7 +858,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>      <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>      <span class=c1>// 将编辑应用到工作副本
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=nx>workingContent</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>performReplacement</span><span class=p>(</span>
+</span></span></span><span class=line><span class=cl>      <span class=nx>workingContent</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>performReplacement</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>        <span class=nx>workingContent</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>        <span class=nx>edit</span><span class=p>.</span><span class=nx>old_string</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>        <span class=nx>edit</span><span class=p>.</span><span class=nx>new_string</span><span class=p>,</span>
@@ -872,7 +872,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 所有编辑已验证 - 现在原子性应用
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>yield</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>yield</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=kr>type</span><span class=o>:</span> <span class=s1>&#39;progress&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>toolUseID</span>: <span class=kt>context.currentToolUseId</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>data</span><span class=o>:</span> <span class=p>{</span> <span class=nx>status</span><span class=o>:</span> <span class=s1>&#39;Applying all edits...&#39;</span> <span class=p>}</span>
@@ -881,7 +881,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=k>await</span> <span class=k>this</span><span class=p>.</span><span class=nx>writeFileWithBackup</span><span class=p>(</span><span class=nx>file_path</span><span class=p>,</span> <span class=nx>workingContent</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 更新缓存
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>context</span><span class=p>.</span><span class=nx>readFileState</span><span class=p>.</span><span class=kr>set</span><span class=p>(</span><span class=nx>file_path</span><span class=p>,</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>    <span class=nx>context</span><span class=p>.</span><span class=nx>readFileState</span><span class=p>.</span><span class=kr>set</span><span class=p>(</span><span class=nx>file_path</span><span class=p>,</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=nx>content</span>: <span class=kt>workingContent</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>timestamp</span>: <span class=kt>Date.now</span><span class=p>()</span>
 </span></span><span class=line><span class=cl>    <span class=p>});</span>
@@ -897,13 +897,13 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>  <span class=p>},</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 编辑序列的冲突检测
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>detectEditConflicts</span><span class=p>(</span><span class=nx>edits</span>: <span class=kt>EditSequence</span><span class=p>[])</span><span class=o>:</span> <span class=nx>ConflictReport</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>  <span class=nx>detectEditConflicts</span><span class=p>(</span><span class=nx>edits</span>: <span class=kt>EditSequence</span><span class=p>[])</span><span class=o>:</span> <span class=nx>ConflictReport</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>conflicts</span> <span class=o>=</span> <span class=p>[];</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=p>(</span><span class=kd>let</span> <span class=nx>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&lt;</span> <span class=nx>edits</span><span class=p>.</span><span class=nx>length</span> <span class=o>-</span> <span class=mi>1</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=k>for</span> <span class=p>(</span><span class=kd>let</span> <span class=nx>j</span> <span class=o>=</span> <span class=nx>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>;</span> <span class=nx>j</span> <span class=o>&lt;</span> <span class=nx>edits</span><span class=p>.</span><span class=nx>length</span><span class=p>;</span> <span class=nx>j</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=c1>// 检查编辑 j 的 old_string 是否包含编辑 i 的 new_string
-</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=k>if</span> <span class=p>(</span><span class=nx>edits</span><span class=p>[</span><span class=nx>j</span><span class=p>].</span><span class=nx>old_string</span><span class=p>.</span><span class=nx>includes</span><span class=p>(</span><span class=nx>edits</span><span class=p>[</span><span class=nx>i</span><span class=p>].</span><span class=nx>new_string</span><span class=p>))</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=nx>edits</span><span class=p>[</span><span class=nx>j</span><span class=p>].</span><span class=nx>old_string</span><span class=p>.</span><span class=nx>includes</span><span class=p>(</span><span class=nx>edits</span><span class=p>[</span><span class=nx>i</span><span class=p>].</span><span class=nx>new_string</span><span class=p>))</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>          <span class=nx>conflicts</span><span class=p>.</span><span class=nx>push</span><span class=p>({</span>
 </span></span><span class=line><span class=cl>            <span class=nx>edit1</span>: <span class=kt>i</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>            <span class=nx>edit2</span>: <span class=kt>j</span><span class=p>,</span>
@@ -913,7 +913,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>        <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>        <span class=c1>// 检查重叠区域
-</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=k>if</span> <span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>editsOverlap</span><span class=p>(</span><span class=nx>edits</span><span class=p>[</span><span class=nx>i</span><span class=p>],</span> <span class=nx>edits</span><span class=p>[</span><span class=nx>j</span><span class=p>]))</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>editsOverlap</span><span class=p>(</span><span class=nx>edits</span><span class=p>[</span><span class=nx>i</span><span class=p>],</span> <span class=nx>edits</span><span class=p>[</span><span class=nx>j</span><span class=p>]))</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>          <span class=nx>conflicts</span><span class=p>.</span><span class=nx>push</span><span class=p>({</span>
 </span></span><span class=line><span class=cl>            <span class=nx>edit1</span>: <span class=kt>i</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>            <span class=nx>edit2</span>: <span class=kt>j</span><span class=p>,</span>
@@ -956,7 +956,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-7 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-7><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// BashTool 实现，支持沙盒
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>BashToolDefinition</span>: <span class=kt>ToolDefinition</span> <span class=o>=</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>BashToolDefinition</span>: <span class=kt>ToolDefinition</span> <span class=o>=</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=nx>name</span><span class=o>:</span> <span class=s1>&#39;BashTool&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>  <span class=nx>description</span><span class=o>:</span> <span class=s1>&#39;使用流式输出执行 shell 命令&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>
@@ -969,15 +969,15 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>  <span class=p>}),</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 命令的复杂权限检查
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>async</span> <span class=nx>checkPermissions</span><span class=p>(</span><span class=nx>input</span><span class=p>,</span> <span class=nx>context</span><span class=p>,</span> <span class=nx>permContext</span><span class=p>)</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>  <span class=kr>async</span> <span class=nx>checkPermissions</span><span class=p>(</span><span class=nx>input</span><span class=p>,</span> <span class=nx>context</span><span class=p>,</span> <span class=nx>permContext</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=p>{</span> <span class=nx>command</span><span class=p>,</span> <span class=nx>sandbox</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>input</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 提取命令组件
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>parsed</span> <span class=o>=</span> <span class=nx>ShellParser</span><span class=p>.</span><span class=nx>parse</span><span class=p>(</span><span class=nx>command</span><span class=p>,</span> <span class=nx>process</span><span class=p>.</span><span class=nx>env</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>parsed</span> <span class=o>=</span> <span class=nx>ShellParser</span><span class=p>.</span><span class=nx>parse</span><span class=p>(</span><span class=nx>command</span><span class=p>,</span> <span class=nx>process</span><span class=p>.</span><span class=nx>env</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>baseCommand</span> <span class=o>=</span> <span class=nx>parsed</span><span class=p>[</span><span class=mi>0</span><span class=p>];</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 禁止命令检查
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>FORBIDDEN</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;find&#39;</span><span class=p>,</span> <span class=s1>&#39;grep&#39;</span><span class=p>,</span> <span class=s1>&#39;cat&#39;</span><span class=p>,</span> <span class=s1>&#39;head&#39;</span><span class=p>,</span> <span class=s1>&#39;tail&#39;</span><span class=p>,</span> <span class=s1>&#39;ls&#39;</span><span class=p>];</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>FORBIDDEN</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;find&#39;</span><span class=p>,</span> <span class=s1>&#39;grep&#39;</span><span class=p>,</span> <span class=s1>&#39;cat&#39;</span><span class=p>,</span> <span class=s1>&#39;head&#39;</span><span class=p>,</span> <span class=s1>&#39;tail&#39;</span><span class=p>,</span> <span class=s1>&#39;ls&#39;</span><span class=p>];</span>
 </span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nx>FORBIDDEN</span><span class=p>.</span><span class=nx>includes</span><span class=p>(</span><span class=nx>baseCommand</span><span class=p>)</span> <span class=o>&amp;&amp;</span> <span class=o>!</span><span class=nx>permContext</span><span class=p>.</span><span class=nx>mode</span><span class=p>.</span><span class=nx>includes</span><span class=p>(</span><span class=s1>&#39;bypass&#39;</span><span class=p>))</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=nx>behavior</span><span class=o>:</span> <span class=s1>&#39;deny&#39;</span><span class=p>,</span>
@@ -986,7 +986,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 危险命令需要明确权限
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>DANGEROUS</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;rm&#39;</span><span class=p>,</span> <span class=s1>&#39;dd&#39;</span><span class=p>,</span> <span class=s1>&#39;mkfs&#39;</span><span class=p>,</span> <span class=s1>&#39;fdisk&#39;</span><span class=p>,</span> <span class=s1>&#39;kill&#39;</span><span class=p>];</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>DANGEROUS</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;rm&#39;</span><span class=p>,</span> <span class=s1>&#39;dd&#39;</span><span class=p>,</span> <span class=s1>&#39;mkfs&#39;</span><span class=p>,</span> <span class=s1>&#39;fdisk&#39;</span><span class=p>,</span> <span class=s1>&#39;kill&#39;</span><span class=p>];</span>
 </span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nx>DANGEROUS</span><span class=p>.</span><span class=nx>some</span><span class=p>(</span><span class=nx>cmd</span> <span class=o>=&gt;</span> <span class=nx>command</span><span class=p>.</span><span class=nx>includes</span><span class=p>(</span><span class=nx>cmd</span><span class=p>)))</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=nx>behavior</span><span class=o>:</span> <span class=s1>&#39;ask&#39;</span><span class=p>,</span>
@@ -996,16 +996,16 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 沙盒模式分析
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>if</span> <span class=p>(</span><span class=nx>sandbox</span> <span class=o>===</span> <span class=kc>true</span><span class=p>)</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nx>sandbox</span> <span class=o>===</span> <span class=kc>true</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=c1>// 在沙盒中可用的命令
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=kr>const</span> <span class=nx>SANDBOX_SAFE</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;echo&#39;</span><span class=p>,</span> <span class=s1>&#39;pwd&#39;</span><span class=p>,</span> <span class=s1>&#39;env&#39;</span><span class=p>,</span> <span class=s1>&#39;date&#39;</span><span class=p>,</span> <span class=s1>&#39;which&#39;</span><span class=p>];</span>
+</span></span></span><span class=line><span class=cl>      <span class=kr>const</span> <span class=nx>SANDBOX_SAFE</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;echo&#39;</span><span class=p>,</span> <span class=s1>&#39;pwd&#39;</span><span class=p>,</span> <span class=s1>&#39;env&#39;</span><span class=p>,</span> <span class=s1>&#39;date&#39;</span><span class=p>,</span> <span class=s1>&#39;which&#39;</span><span class=p>];</span>
 </span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=nx>SANDBOX_SAFE</span><span class=p>.</span><span class=nx>includes</span><span class=p>(</span><span class=nx>baseCommand</span><span class=p>))</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=p>{</span> <span class=nx>behavior</span><span class=o>:</span> <span class=s1>&#39;allow&#39;</span> <span class=p>};</span>
 </span></span><span class=line><span class=cl>      <span class=p>}</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 默认权限检查
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>return</span> <span class=k>await</span> <span class=kr>super</span><span class=p>.</span><span class=nx>checkPermissions</span><span class=p>(</span><span class=nx>input</span><span class=p>,</span> <span class=nx>context</span><span class=p>,</span> <span class=nx>permContext</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=k>await</span> <span class=kr>super</span><span class=p>.</span><span class=nx>checkPermissions</span><span class=p>(</span><span class=nx>input</span><span class=p>,</span> <span class=nx>context</span><span class=p>,</span> <span class=nx>permContext</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>  <span class=p>},</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=kr>async</span> <span class=o>*</span><span class=nx>call</span><span class=p>(</span><span class=nx>input</span><span class=p>,</span> <span class=nx>context</span><span class=p>)</span> <span class=p>{</span>
@@ -1022,17 +1022,17 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>};</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 准备执行环境
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>execOptions</span> <span class=o>=</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>execOptions</span> <span class=o>=</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=nx>cwd</span>: <span class=kt>context.cwd</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>env</span><span class=o>:</span> <span class=p>{</span> <span class=p>...</span><span class=nx>process</span><span class=p>.</span><span class=nx>env</span><span class=p>,</span> <span class=nx>CLAUDE_CODE</span><span class=o>:</span> <span class=s1>&#39;true&#39;</span> <span class=p>},</span>
 </span></span><span class=line><span class=cl>      <span class=nx>timeout</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>maxBuffer</span>: <span class=kt>10</span> <span class=o>*</span> <span class=mi>1024</span> <span class=o>*</span> <span class=mi>1024</span><span class=p>,</span> <span class=c1>// 10MB
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=nx>killSignal</span><span class=o>:</span> <span class=s1>&#39;SIGTERM&#39;</span>
+</span></span></span><span class=line><span class=cl>      <span class=nx>killSignal</span><span class=o>:</span> <span class=s1>&#39;SIGTERM&#39;</span>
 </span></span><span class=line><span class=cl>    <span class=p>};</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nx>sandbox</span> <span class=o>&amp;&amp;</span> <span class=nx>process</span><span class=p>.</span><span class=nx>platform</span> <span class=o>===</span> <span class=s1>&#39;darwin&#39;</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=c1>// macOS sandbox-exec
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=kr>const</span> <span class=nx>profile</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>generateSandboxProfile</span><span class=p>();</span>
+</span></span></span><span class=line><span class=cl>      <span class=kr>const</span> <span class=nx>profile</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>generateSandboxProfile</span><span class=p>();</span>
 </span></span><span class=line><span class=cl>      <span class=kr>const</span> <span class=nx>sandboxedCommand</span> <span class=o>=</span> <span class=sb>`sandbox-exec -p &#39;</span><span class=si>${</span><span class=nx>profile</span><span class=si>}</span><span class=sb>&#39; </span><span class=si>${</span><span class=nx>command</span><span class=si>}</span><span class=sb>`</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=k>yield</span><span class=o>*</span> <span class=k>this</span><span class=p>.</span><span class=nx>executeCommand</span><span class=p>(</span><span class=nx>sandboxedCommand</span><span class=p>,</span> <span class=nx>execOptions</span><span class=p>,</span> <span class=nx>context</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
@@ -1048,16 +1048,16 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=kd>let</span> <span class=nx>stderr</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=kd>let</span> <span class=nx>outputSize</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>MAX_OUTPUT</span> <span class=o>=</span> <span class=mi>1024</span> <span class=o>*</span> <span class=mi>1024</span><span class=p>;</span> <span class=c1>// 1MB 限制
-</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 流式传输 stdout
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>child</span><span class=p>.</span><span class=nx>stdout</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;data&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>chunk</span><span class=p>)</span> <span class=o>=&gt;</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>    <span class=nx>child</span><span class=p>.</span><span class=nx>stdout</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;data&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>chunk</span><span class=p>)</span> <span class=o>=&gt;</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=kr>const</span> <span class=nx>text</span> <span class=o>=</span> <span class=nx>chunk</span><span class=p>.</span><span class=nx>toString</span><span class=p>();</span>
 </span></span><span class=line><span class=cl>      <span class=nx>stdout</span> <span class=o>+=</span> <span class=nx>text</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>      <span class=nx>outputSize</span> <span class=o>+=</span> <span class=nx>chunk</span><span class=p>.</span><span class=nx>length</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=nx>outputSize</span> <span class=o>&lt;</span> <span class=nx>MAX_OUTPUT</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=c1>// 使用流式输出产出进度
-</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=nx>context</span><span class=p>.</span><span class=nx>yieldProgress</span><span class=p>({</span>
+</span></span></span><span class=line><span class=cl>        <span class=nx>context</span><span class=p>.</span><span class=nx>yieldProgress</span><span class=p>({</span>
 </span></span><span class=line><span class=cl>          <span class=kr>type</span><span class=o>:</span> <span class=s1>&#39;stdout&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>          <span class=nx>data</span>: <span class=kt>text</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>          <span class=nx>partial</span>: <span class=kt>true</span>
@@ -1066,7 +1066,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>});</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 流式传输 stderr
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>child</span><span class=p>.</span><span class=nx>stderr</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;data&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>chunk</span><span class=p>)</span> <span class=o>=&gt;</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>    <span class=nx>child</span><span class=p>.</span><span class=nx>stderr</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;data&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>chunk</span><span class=p>)</span> <span class=o>=&gt;</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=kr>const</span> <span class=nx>text</span> <span class=o>=</span> <span class=nx>chunk</span><span class=p>.</span><span class=nx>toString</span><span class=p>();</span>
 </span></span><span class=line><span class=cl>      <span class=nx>stderr</span> <span class=o>+=</span> <span class=nx>text</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>      <span class=nx>outputSize</span> <span class=o>+=</span> <span class=nx>chunk</span><span class=p>.</span><span class=nx>length</span><span class=p>;</span>
@@ -1081,7 +1081,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>});</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 处理进程完成
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>result</span> <span class=o>=</span> <span class=k>await</span> <span class=k>new</span> <span class=nx>Promise</span><span class=p>((</span><span class=nx>resolve</span><span class=p>,</span> <span class=nx>reject</span><span class=p>)</span> <span class=o>=&gt;</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>result</span> <span class=o>=</span> <span class=k>await</span> <span class=k>new</span> <span class=nx>Promise</span><span class=p>((</span><span class=nx>resolve</span><span class=p>,</span> <span class=nx>reject</span><span class=p>)</span> <span class=o>=&gt;</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=nx>child</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;error&#39;</span><span class=p>,</span> <span class=nx>reject</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>      <span class=nx>child</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;exit&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>code</span><span class=p>,</span> <span class=nx>signal</span><span class=p>)</span> <span class=o>=&gt;</span> <span class=p>{</span>
@@ -1096,7 +1096,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>      <span class=p>});</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>      <span class=c1>// 处理中止信号
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=nx>context</span><span class=p>.</span><span class=nx>abortController</span><span class=p>.</span><span class=nx>signal</span><span class=p>.</span><span class=nx>addEventListener</span><span class=p>(</span><span class=s1>&#39;abort&#39;</span><span class=p>,</span> <span class=p>()</span> <span class=o>=&gt;</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>      <span class=nx>context</span><span class=p>.</span><span class=nx>abortController</span><span class=p>.</span><span class=nx>signal</span><span class=p>.</span><span class=nx>addEventListener</span><span class=p>(</span><span class=s1>&#39;abort&#39;</span><span class=p>,</span> <span class=p>()</span> <span class=o>=&gt;</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=nx>child</span><span class=p>.</span><span class=nx>kill</span><span class=p>(</span><span class=s1>&#39;SIGTERM&#39;</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>      <span class=p>});</span>
 </span></span><span class=line><span class=cl>    <span class=p>});</span>
@@ -1109,7 +1109,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=nx>generateSandboxProfile</span><span class=p>()</span><span class=o>:</span> <span class=kt>string</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=c1>// macOS 的限制性沙盒配置
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>return</span> <span class=sb>`
+</span></span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=sb>`
 </span></span></span><span class=line><span class=cl><span class=sb>      (version 1)
 </span></span></span><span class=line><span class=cl><span class=sb>      (deny default)
 </span></span></span><span class=line><span class=cl><span class=sb>      (allow process-exec (literal &#34;/bin/bash&#34;))
@@ -1122,9 +1122,9 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>  <span class=p>},</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// Git 工作流自动化
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>async</span> <span class=o>*</span><span class=nx>handleGitCommit</span><span class=p>(</span><span class=nx>args</span><span class=p>,</span> <span class=nx>context</span><span class=p>)</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>  <span class=kr>async</span> <span class=o>*</span><span class=nx>handleGitCommit</span><span class=p>(</span><span class=nx>args</span><span class=p>,</span> <span class=nx>context</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=c1>// 阶段 1：并行信息收集
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=p>[</span><span class=nx>status</span><span class=p>,</span> <span class=nx>diff</span><span class=p>,</span> <span class=nx>log</span><span class=p>]</span> <span class=o>=</span> <span class=k>await</span> <span class=nx>Promise</span><span class=p>.</span><span class=nx>all</span><span class=p>([</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=p>[</span><span class=nx>status</span><span class=p>,</span> <span class=nx>diff</span><span class=p>,</span> <span class=nx>log</span><span class=p>]</span> <span class=o>=</span> <span class=k>await</span> <span class=nx>Promise</span><span class=p>.</span><span class=nx>all</span><span class=p>([</span>
 </span></span><span class=line><span class=cl>      <span class=k>this</span><span class=p>.</span><span class=nx>runCommand</span><span class=p>(</span><span class=s1>&#39;git status --porcelain&#39;</span><span class=p>),</span>
 </span></span><span class=line><span class=cl>      <span class=k>this</span><span class=p>.</span><span class=nx>runCommand</span><span class=p>(</span><span class=s1>&#39;git diff --cached&#39;</span><span class=p>),</span>
 </span></span><span class=line><span class=cl>      <span class=k>this</span><span class=p>.</span><span class=nx>runCommand</span><span class=p>(</span><span class=s1>&#39;git log -5 --oneline&#39;</span><span class=p>)</span>
@@ -1140,15 +1140,15 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>};</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 阶段 2：生成提交消息
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>commitAnalysis</span> <span class=o>=</span> <span class=k>await</span> <span class=k>this</span><span class=p>.</span><span class=nx>analyzeChangesForCommit</span><span class=p>(</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>commitAnalysis</span> <span class=o>=</span> <span class=k>await</span> <span class=k>this</span><span class=p>.</span><span class=nx>analyzeChangesForCommit</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>      <span class=nx>status</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>diff</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>context</span>
 </span></span><span class=line><span class=cl>    <span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 阶段 3：使用 HEREDOC 执行提交
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>commitCommand</span> <span class=o>=</span> <span class=sb>`git commit -m &#34;$(cat &lt;&lt;&#39;EOF&#39;
-</span></span></span><span class=line><span class=cl><span class=sb></span><span class=si>${</span><span class=nx>commitAnalysis</span><span class=p>.</span><span class=nx>message</span><span class=si>}</span><span class=sb>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>commitCommand</span> <span class=o>=</span> <span class=sb>`git commit -m &#34;$(cat &lt;&lt;&#39;EOF&#39;
+</span></span></span><span class=line><span class=cl><span class=si>${</span><span class=nx>commitAnalysis</span><span class=p>.</span><span class=nx>message</span><span class=si>}</span><span class=sb>
 </span></span></span><span class=line><span class=cl><span class=sb>
 </span></span></span><span class=line><span class=cl><span class=sb>Co-authored-by: Claude &lt;claude@anthropic.com&gt;
 </span></span></span><span class=line><span class=cl><span class=sb>EOF
@@ -1245,7 +1245,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-9 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-9><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// GrepTool 带优化策略
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>GrepToolDefinition</span>: <span class=kt>ToolDefinition</span> <span class=o>=</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>GrepToolDefinition</span>: <span class=kt>ToolDefinition</span> <span class=o>=</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=nx>name</span><span class=o>:</span> <span class=s1>&#39;GrepTool&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>  <span class=nx>description</span><span class=o>:</span> <span class=s1>&#39;跨文件快速正则表达式搜索&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>
@@ -1259,7 +1259,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=p>{</span> <span class=nx>regex</span><span class=p>,</span> <span class=nx>path</span><span class=p>,</span> <span class=nx>include_pattern</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>input</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 验证正则表达式
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>try</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>try</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=k>new</span> <span class=nb>RegExp</span><span class=p>(</span><span class=nx>regex</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=k>catch</span> <span class=p>(</span><span class=nx>e</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=k>throw</span> <span class=k>new</span> <span class=nb>Error</span><span class=p>(</span><span class=sb>`Invalid regex: </span><span class=si>${</span><span class=nx>e</span><span class=p>.</span><span class=nx>message</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
@@ -1272,13 +1272,13 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>};</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 使用 ripgrep 以获得性能
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>rgCommand</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>buildRipgrepCommand</span><span class=p>(</span><span class=nx>regex</span><span class=p>,</span> <span class=nx>path</span><span class=p>,</span> <span class=nx>include_pattern</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>rgCommand</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>buildRipgrepCommand</span><span class=p>(</span><span class=nx>regex</span><span class=p>,</span> <span class=nx>path</span><span class=p>,</span> <span class=nx>include_pattern</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>matches</span> <span class=o>=</span> <span class=k>await</span> <span class=k>this</span><span class=p>.</span><span class=nx>executeRipgrep</span><span class=p>(</span><span class=nx>rgCommand</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 按文件分组并限制结果
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>fileGroups</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>groupMatchesByFile</span><span class=p>(</span><span class=nx>matches</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>fileGroups</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>groupMatchesByFile</span><span class=p>(</span><span class=nx>matches</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>topFiles</span> <span class=o>=</span> <span class=k>this</span><span class=p>.</span><span class=nx>selectTopFiles</span><span class=p>(</span><span class=nx>fileGroups</span><span class=p>,</span> <span class=mi>20</span><span class=p>);</span> <span class=c1>// 前 20 个文件
-</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=k>yield</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=kr>type</span><span class=o>:</span> <span class=s1>&#39;result&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>data</span><span class=o>:</span> <span class=p>{</span>
@@ -1295,7 +1295,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>      <span class=s1>&#39;--files-with-matches&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=s1>&#39;--sort=modified&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=s1>&#39;--max-count=10&#39;</span><span class=p>,</span> <span class=c1>// 限制每个文件的匹配数
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=s1>&#39;-e&#39;</span><span class=p>,</span> <span class=nx>regex</span><span class=p>,</span>
+</span></span></span><span class=line><span class=cl>      <span class=s1>&#39;-e&#39;</span><span class=p>,</span> <span class=nx>regex</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>path</span>
 </span></span><span class=line><span class=cl>    <span class=p>];</span>
 </span></span><span class=line><span class=cl>
@@ -1304,7 +1304,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 忽略常见非文本文件
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>ignorePatterns</span> <span class=o>=</span> <span class=p>[</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>ignorePatterns</span> <span class=o>=</span> <span class=p>[</span>
 </span></span><span class=line><span class=cl>      <span class=s1>&#39;*.jpg&#39;</span><span class=p>,</span> <span class=s1>&#39;*.png&#39;</span><span class=p>,</span> <span class=s1>&#39;*.gif&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=s1>&#39;*.mp4&#39;</span><span class=p>,</span> <span class=s1>&#39;*.mov&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=s1>&#39;*.zip&#39;</span><span class=p>,</span> <span class=s1>&#39;*.tar&#39;</span><span class=p>,</span> <span class=s1>&#39;*.gz&#39;</span><span class=p>,</span>
@@ -1347,7 +1347,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-10 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-10><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// AgentTool - 最复杂的工具
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>AgentToolDefinition</span>: <span class=kt>ToolDefinition</span> <span class=o>=</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>AgentToolDefinition</span>: <span class=kt>ToolDefinition</span> <span class=o>=</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=nx>name</span><span class=o>:</span> <span class=s1>&#39;AgentTool&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>  <span class=nx>description</span><span class=o>:</span> <span class=s1>&#39;启动子代理执行复杂任务&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>
@@ -1371,15 +1371,15 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>};</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 准备子代理配置
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>subAgentConfig</span> <span class=o>=</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>subAgentConfig</span> <span class=o>=</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=nx>tools</span>: <span class=kt>this.filterToolsForSubAgent</span><span class=p>(</span><span class=nx>context</span><span class=p>.</span><span class=nx>options</span><span class=p>.</span><span class=nx>tools</span><span class=p>),</span>
 </span></span><span class=line><span class=cl>      <span class=nx>model</span>: <span class=kt>model</span> <span class=o>||</span> <span class=s1>&#39;claude-3-haiku-20240307&#39;</span><span class=p>,</span> <span class=c1>// 默认快速模型
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=nx>maxTokens</span>: <span class=kt>this.calculateTokenBudget</span><span class=p>(</span><span class=nx>prompt</span><span class=p>),</span>
+</span></span></span><span class=line><span class=cl>      <span class=nx>maxTokens</span>: <span class=kt>this.calculateTokenBudget</span><span class=p>(</span><span class=nx>prompt</span><span class=p>),</span>
 </span></span><span class=line><span class=cl>      <span class=nx>systemPrompt</span>: <span class=kt>this.buildSubAgentPrompt</span><span class=p>(</span><span class=nx>prompt</span><span class=p>)</span>
 </span></span><span class=line><span class=cl>    <span class=p>};</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 执行子代理
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>results</span> <span class=o>=</span> <span class=k>await</span> <span class=k>this</span><span class=p>.</span><span class=nx>executeSubAgents</span><span class=p>(</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>results</span> <span class=o>=</span> <span class=k>await</span> <span class=k>this</span><span class=p>.</span><span class=nx>executeSubAgents</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>      <span class=nx>prompt</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>parallelTasksCount</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>subAgentConfig</span><span class=p>,</span>
@@ -1387,7 +1387,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 报告进度
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>for</span> <span class=p>(</span><span class=kr>const</span> <span class=nx>result</span> <span class=k>of</span> <span class=nx>results</span><span class=p>)</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=p>(</span><span class=kr>const</span> <span class=nx>result</span> <span class=k>of</span> <span class=nx>results</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=k>yield</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=kr>type</span><span class=o>:</span> <span class=s1>&#39;progress&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>        <span class=nx>toolUseID</span>: <span class=kt>context.currentToolUseId</span><span class=p>,</span>
@@ -1399,7 +1399,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 综合阶段
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>if</span> <span class=p>(</span><span class=nx>results</span><span class=p>.</span><span class=nx>length</span> <span class=o>&gt;</span> <span class=mi>1</span><span class=p>)</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nx>results</span><span class=p>.</span><span class=nx>length</span> <span class=o>&gt;</span> <span class=mi>1</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=k>yield</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=kr>type</span><span class=o>:</span> <span class=s1>&#39;progress&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>        <span class=nx>toolUseID</span>: <span class=kt>context.currentToolUseId</span><span class=p>,</span>
@@ -1420,10 +1420,10 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=nx>filterToolsForSubAgent</span><span class=p>(</span><span class=nx>allTools</span>: <span class=kt>ToolDefinition</span><span class=p>[])</span><span class=o>:</span> <span class=nx>ToolDefinition</span><span class=p>[]</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=c1>// 防止无限递归
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>return</span> <span class=nx>allTools</span><span class=p>.</span><span class=nx>filter</span><span class=p>(</span><span class=nx>tool</span> <span class=o>=&gt;</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>allTools</span><span class=p>.</span><span class=nx>filter</span><span class=p>(</span><span class=nx>tool</span> <span class=o>=&gt;</span>
 </span></span><span class=line><span class=cl>      <span class=nx>tool</span><span class=p>.</span><span class=nx>name</span> <span class=o>!==</span> <span class=s1>&#39;AgentTool&#39;</span> <span class=o>&amp;&amp;</span>
 </span></span><span class=line><span class=cl>      <span class=nx>tool</span><span class=p>.</span><span class=nx>name</span> <span class=o>!==</span> <span class=s1>&#39;UpdateTodoTool&#39;</span> <span class=c1>// 子代理不管理待办事项
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=p>);</span>
 </span></span><span class=line><span class=cl>  <span class=p>},</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=kr>async</span> <span class=nx>executeSubAgents</span><span class=p>(</span>
@@ -1433,17 +1433,17 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=nx>context</span>: <span class=kt>ToolUseContext</span>
 </span></span><span class=line><span class=cl>  <span class=p>)</span><span class=o>:</span> <span class=nx>Promise</span><span class=p>&lt;</span><span class=nt>SubAgentResult</span><span class=err>[]</span><span class=p>&gt;</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=c1>// 如果并行则拆分任务
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>subtasks</span> <span class=o>=</span> <span class=nx>count</span> <span class=o>&gt;</span> <span class=mi>1</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>subtasks</span> <span class=o>=</span> <span class=nx>count</span> <span class=o>&gt;</span> <span class=mi>1</span>
 </span></span><span class=line><span class=cl>      <span class=o>?</span> <span class=k>this</span><span class=p>.</span><span class=nx>splitTask</span><span class=p>(</span><span class=nx>prompt</span><span class=p>,</span> <span class=nx>count</span><span class=p>)</span>
 </span></span><span class=line><span class=cl>      <span class=o>:</span> <span class=p>[</span><span class=nx>prompt</span><span class=p>];</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 创建链接到父级的中止控制器
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>subControllers</span> <span class=o>=</span> <span class=nx>subtasks</span><span class=p>.</span><span class=nx>map</span><span class=p>(()</span> <span class=o>=&gt;</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>subControllers</span> <span class=o>=</span> <span class=nx>subtasks</span><span class=p>.</span><span class=nx>map</span><span class=p>(()</span> <span class=o>=&gt;</span>
 </span></span><span class=line><span class=cl>      <span class=k>this</span><span class=p>.</span><span class=nx>createLinkedAbortController</span><span class=p>(</span><span class=nx>context</span><span class=p>.</span><span class=nx>abortController</span><span class=p>)</span>
 </span></span><span class=line><span class=cl>    <span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 使用并发限制并行执行
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>executions</span> <span class=o>=</span> <span class=nx>subtasks</span><span class=p>.</span><span class=nx>map</span><span class=p>((</span><span class=nx>task</span><span class=p>,</span> <span class=nx>index</span><span class=p>)</span> <span class=o>=&gt;</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>executions</span> <span class=o>=</span> <span class=nx>subtasks</span><span class=p>.</span><span class=nx>map</span><span class=p>((</span><span class=nx>task</span><span class=p>,</span> <span class=nx>index</span><span class=p>)</span> <span class=o>=&gt;</span>
 </span></span><span class=line><span class=cl>      <span class=k>this</span><span class=p>.</span><span class=nx>runSubAgent</span><span class=p>({</span>
 </span></span><span class=line><span class=cl>        <span class=nx>task</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>        <span class=nx>index</span><span class=p>,</span>
@@ -1451,13 +1451,13 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>        <span class=nx>controller</span>: <span class=kt>subControllers</span><span class=p>[</span><span class=nx>index</span><span class=p>],</span>
 </span></span><span class=line><span class=cl>        <span class=nx>sharedState</span><span class=o>:</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>          <span class=nx>readFileState</span>: <span class=kt>context.readFileState</span><span class=p>,</span> <span class=c1>// 共享缓存
-</span></span></span><span class=line><span class=cl><span class=c1></span>          <span class=nx>permissionContext</span>: <span class=kt>context.getToolPermissionContext</span><span class=p>()</span>
+</span></span></span><span class=line><span class=cl>          <span class=nx>permissionContext</span>: <span class=kt>context.getToolPermissionContext</span><span class=p>()</span>
 </span></span><span class=line><span class=cl>        <span class=p>}</span>
 </span></span><span class=line><span class=cl>      <span class=p>})</span>
 </span></span><span class=line><span class=cl>    <span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 使用 parallelMap 进行受控并发
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>results</span> <span class=o>=</span> <span class=p>[];</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>results</span> <span class=o>=</span> <span class=p>[];</span>
 </span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=k>await</span> <span class=p>(</span><span class=kr>const</span> <span class=nx>result</span> <span class=k>of</span> <span class=nx>parallelMap</span><span class=p>(</span><span class=nx>executions</span><span class=p>,</span> <span class=mi>5</span><span class=p>))</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=nx>results</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=nx>result</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
@@ -1476,9 +1476,9 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span></span><span class=line><span class=cl><span class=sb>
 </span></span></span><span class=line><span class=cl><span class=sb>原始任务：</span><span class=si>${</span><span class=nx>originalPrompt</span><span class=si>}</span><span class=sb>
 </span></span></span><span class=line><span class=cl><span class=sb>
-</span></span></span><span class=line><span class=cl><span class=sb></span><span class=si>${</span><span class=nx>results</span><span class=p>.</span><span class=nx>map</span><span class=p>((</span><span class=nx>r</span><span class=p>,</span> <span class=nx>i</span><span class=p>)</span> <span class=o>=&gt;</span> <span class=sb>`
+</span></span></span><span class=line><span class=cl><span class=si>${</span><span class=nx>results</span><span class=p>.</span><span class=nx>map</span><span class=p>((</span><span class=nx>r</span><span class=p>,</span> <span class=nx>i</span><span class=p>)</span> <span class=o>=&gt;</span> <span class=sb>`
 </span></span></span><span class=line><span class=cl><span class=sb>子代理 </span><span class=si>${</span><span class=nx>i</span> <span class=o>+</span> <span class=mi>1</span><span class=si>}</span><span class=sb> 发现：
-</span></span></span><span class=line><span class=cl><span class=sb></span><span class=si>${</span><span class=nx>r</span><span class=p>.</span><span class=nx>content</span><span class=si>}</span><span class=sb>
+</span></span></span><span class=line><span class=cl><span class=si>${</span><span class=nx>r</span><span class=p>.</span><span class=nx>content</span><span class=si>}</span><span class=sb>
 </span></span></span><span class=line><span class=cl><span class=sb>
 </span></span></span><span class=line><span class=cl><span class=sb>使用的 Token：</span><span class=si>${</span><span class=nx>r</span><span class=p>.</span><span class=nx>usage</span><span class=p>.</span><span class=nx>total_tokens</span><span class=si>}</span><span class=sb>
 </span></span></span><span class=line><span class=cl><span class=sb>使用的工具：</span><span class=si>${</span><span class=nx>r</span><span class=p>.</span><span class=nx>toolsUsed</span><span class=p>.</span><span class=nx>join</span><span class=p>(</span><span class=s1>&#39;, &#39;</span><span class=p>)</span> <span class=o>||</span> <span class=s1>&#39;None&#39;</span><span class=si>}</span><span class=sb>
@@ -1488,7 +1488,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span></span><span class=line><span class=cl><span class=sb>    `</span><span class=p>.</span><span class=nx>trim</span><span class=p>();</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 使用快速模型进行综合
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>synthesizer</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SubAgentExecutor</span><span class=p>({</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>synthesizer</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SubAgentExecutor</span><span class=p>({</span>
 </span></span><span class=line><span class=cl>      <span class=nx>prompt</span>: <span class=kt>synthesisPrompt</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>model</span><span class=o>:</span> <span class=s1>&#39;claude-3-haiku-20240307&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>isSynthesis</span>: <span class=kt>true</span><span class=p>,</span>
@@ -1500,7 +1500,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=nx>calculateTokenBudget</span><span class=p>(</span><span class=nx>prompt</span>: <span class=kt>string</span><span class=p>)</span><span class=o>:</span> <span class=kt>number</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=c1>// 启发式：更长的提示获得更多 token
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>baseTokens</span> <span class=o>=</span> <span class=mi>2000</span><span class=p>;</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>baseTokens</span> <span class=o>=</span> <span class=mi>2000</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>promptComplexity</span> <span class=o>=</span> <span class=nx>prompt</span><span class=p>.</span><span class=nx>split</span><span class=p>(</span><span class=s1>&#39; &#39;</span><span class=p>).</span><span class=nx>length</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>multiplier</span> <span class=o>=</span> <span class=nb>Math</span><span class=p>.</span><span class=nx>min</span><span class=p>(</span><span class=nx>promptComplexity</span> <span class=o>/</span> <span class=mi>50</span><span class=p>,</span> <span class=mi>3</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
@@ -1511,11 +1511,11 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=p>[{</span>
 </span></span><span class=line><span class=cl>      <span class=kr>type</span><span class=o>:</span> <span class=s1>&#39;text&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=nx>text</span>: <span class=kt>result</span> <span class=c1>// 已由综合格式化
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>}];</span>
+</span></span></span><span class=line><span class=cl>    <span class=p>}];</span>
 </span></span><span class=line><span class=cl>  <span class=p>},</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=nx>isReadOnly</span>: <span class=kt>true</span> <span class=c1>// 子代理继承父级权限
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>};</span></span></span></code></pre></div><div class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"><div class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">Click to expand and view more</div></div></div></div><script>(function(){const s="code-10",n=document.querySelector('.copy-code-btn[data-code-id="'+s+'"]'),t=document.querySelector('.collapse-code-btn[data-code-id="'+s+'"]'),e=document.getElementById(s);if(!e)return;if(n){const s=n.querySelector(".copy-icon"),t=n.querySelector(".copy-text");n.addEventListener("click",async function(){try{let o="";const i=e.querySelector(".lntd:last-child code");if(i)o=i.textContent||i.innerText;else{const t=e.querySelector("code");if(t){const e=t.querySelector(".ln");if(e){const e=t.querySelectorAll(".cl");if(e.length>0)o=Array.from(e).map(e=>{const t=e.textContent||e.innerText;return t.replace(/\n+$/,"")}).join(`
+</span></span></span><span class=line><span class=cl><span class=p>};</span></span></span></code></pre></div><div class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"><div class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200">Click to expand and view more</div></div></div></div><script>(function(){const s="code-10",n=document.querySelector('.copy-code-btn[data-code-id="'+s+'"]'),t=document.querySelector('.collapse-code-btn[data-code-id="'+s+'"]'),e=document.getElementById(s);if(!e)return;if(n){const s=n.querySelector(".copy-icon"),t=n.querySelector(".copy-text");n.addEventListener("click",async function(){try{let o="";const i=e.querySelector(".lntd:last-child code");if(i)o=i.textContent||i.innerText;else{const t=e.querySelector("code");if(t){const e=t.querySelector(".ln");if(e){const e=t.querySelectorAll(".cl");if(e.length>0)o=Array.from(e).map(e=>{const t=e.textContent||e.innerText;return t.replace(/\n+$/,"")}).join(`
 `).replace(/\n+$/,"");else{const e=t.textContent||t.innerText;o=e.replace(/^\d+/gm,"").replace(/^\s+/gm,"")}}else o=t.textContent||t.innerText}else o=e.textContent||e.innerText}o=o.trim(),await navigator.clipboard.writeText(o),s.innerHTML=`
   <svg class="h-3 w-3"
     fill="none"
@@ -1543,25 +1543,25 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-11 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-11><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// 工具指令编译器（重构版）
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>class</span> <span class=nx>ToolInstructionCompiler</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>class</span> <span class=nx>ToolInstructionCompiler</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=kr>static</span> <span class=nx>compileSystemPrompt</span><span class=p>(</span><span class=nx>tools</span>: <span class=kt>ToolDefinition</span><span class=p>[])</span><span class=o>:</span> <span class=kt>string</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=sb>`
 </span></span></span><span class=line><span class=cl><span class=sb>## 可用工具
 </span></span></span><span class=line><span class=cl><span class=sb>
 </span></span></span><span class=line><span class=cl><span class=sb>您可以使用以下工具：
 </span></span></span><span class=line><span class=cl><span class=sb>
-</span></span></span><span class=line><span class=cl><span class=sb></span><span class=si>${</span><span class=nx>tools</span><span class=p>.</span><span class=nx>map</span><span class=p>(</span><span class=nx>tool</span> <span class=o>=&gt;</span> <span class=sb>`
+</span></span></span><span class=line><span class=cl><span class=si>${</span><span class=nx>tools</span><span class=p>.</span><span class=nx>map</span><span class=p>(</span><span class=nx>tool</span> <span class=o>=&gt;</span> <span class=sb>`
 </span></span></span><span class=line><span class=cl><span class=sb>### </span><span class=si>${</span><span class=nx>tool</span><span class=p>.</span><span class=nx>name</span><span class=si>}</span><span class=sb>
-</span></span></span><span class=line><span class=cl><span class=sb></span><span class=si>${</span><span class=nx>tool</span><span class=p>.</span><span class=nx>description</span><span class=si>}</span><span class=sb>
+</span></span></span><span class=line><span class=cl><span class=si>${</span><span class=nx>tool</span><span class=p>.</span><span class=nx>description</span><span class=si>}</span><span class=sb>
 </span></span></span><span class=line><span class=cl><span class=sb>
-</span></span></span><span class=line><span class=cl><span class=sb></span><span class=si>${</span><span class=nx>tool</span><span class=p>.</span><span class=nx>prompt</span> <span class=o>||</span> <span class=s1>&#39;&#39;</span><span class=si>}</span><span class=sb>
+</span></span></span><span class=line><span class=cl><span class=si>${</span><span class=nx>tool</span><span class=p>.</span><span class=nx>prompt</span> <span class=o>||</span> <span class=s1>&#39;&#39;</span><span class=si>}</span><span class=sb>
 </span></span></span><span class=line><span class=cl><span class=sb>
 </span></span></span><span class=line><span class=cl><span class=sb>输入架构：
 </span></span></span><span class=line><span class=cl><span class=sb>\`\`\`json
-</span></span></span><span class=line><span class=cl><span class=sb></span><span class=si>${</span><span class=nx>JSON</span><span class=p>.</span><span class=nx>stringify</span><span class=p>(</span><span class=nx>tool</span><span class=p>.</span><span class=nx>inputJSONSchema</span> <span class=o>||</span> <span class=nx>zodToJsonSchema</span><span class=p>(</span><span class=nx>tool</span><span class=p>.</span><span class=nx>inputSchema</span><span class=p>),</span> <span class=kc>null</span><span class=p>,</span> <span class=mi>2</span><span class=p>)</span><span class=si>}</span><span class=sb>
+</span></span></span><span class=line><span class=cl><span class=si>${</span><span class=nx>JSON</span><span class=p>.</span><span class=nx>stringify</span><span class=p>(</span><span class=nx>tool</span><span class=p>.</span><span class=nx>inputJSONSchema</span> <span class=o>||</span> <span class=nx>zodToJsonSchema</span><span class=p>(</span><span class=nx>tool</span><span class=p>.</span><span class=nx>inputSchema</span><span class=p>),</span> <span class=kc>null</span><span class=p>,</span> <span class=mi>2</span><span class=p>)</span><span class=si>}</span><span class=sb>
 </span></span></span><span class=line><span class=cl><span class=sb>\`\`\`
 </span></span></span><span class=line><span class=cl><span class=sb>
-</span></span></span><span class=line><span class=cl><span class=sb></span><span class=si>${</span><span class=k>this</span><span class=p>.</span><span class=nx>getToolSpecificInstructions</span><span class=p>(</span><span class=nx>tool</span><span class=p>)</span><span class=si>}</span><span class=sb>
+</span></span></span><span class=line><span class=cl><span class=si>${</span><span class=k>this</span><span class=p>.</span><span class=nx>getToolSpecificInstructions</span><span class=p>(</span><span class=nx>tool</span><span class=p>)</span><span class=si>}</span><span class=sb>
 </span></span></span><span class=line><span class=cl><span class=sb>`</span><span class=p>).</span><span class=nx>join</span><span class=p>(</span><span class=s1>&#39;\\n---\\n&#39;</span><span class=p>)</span><span class=si>}</span><span class=sb>
 </span></span></span><span class=line><span class=cl><span class=sb>
 </span></span></span><span class=line><span class=cl><span class=sb>## 工具使用指南
@@ -1661,9 +1661,9 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-12 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-12><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// 工具内存优化模式
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>class</span> <span class=nx>ToolMemoryManager</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>class</span> <span class=nx>ToolMemoryManager</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=c1>// 模式 1：流式处理大文件
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>static</span> <span class=kr>async</span> <span class=o>*</span><span class=nx>streamLargeFile</span><span class=p>(</span><span class=nx>path</span>: <span class=kt>string</span><span class=p>,</span> <span class=nx>chunkSize</span> <span class=o>=</span> <span class=mi>64</span> <span class=o>*</span> <span class=mi>1024</span><span class=p>)</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>  <span class=kr>static</span> <span class=kr>async</span> <span class=o>*</span><span class=nx>streamLargeFile</span><span class=p>(</span><span class=nx>path</span>: <span class=kt>string</span><span class=p>,</span> <span class=nx>chunkSize</span> <span class=o>=</span> <span class=mi>64</span> <span class=o>*</span> <span class=mi>1024</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>stream</span> <span class=o>=</span> <span class=nx>createReadStream</span><span class=p>(</span><span class=nx>path</span><span class=p>,</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=nx>highWaterMark</span>: <span class=kt>chunkSize</span>
 </span></span><span class=line><span class=cl>    <span class=p>});</span>
@@ -1672,23 +1672,23 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>      <span class=k>yield</span> <span class=nx>chunk</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>      <span class=c1>// 在分块之间允许 GC
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=k>if</span> <span class=p>(</span><span class=kr>global</span><span class=p>.</span><span class=nx>gc</span><span class=p>)</span> <span class=kr>global</span><span class=p>.</span><span class=nx>gc</span><span class=p>();</span>
+</span></span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=kr>global</span><span class=p>.</span><span class=nx>gc</span><span class=p>)</span> <span class=kr>global</span><span class=p>.</span><span class=nx>gc</span><span class=p>();</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 模式 2：文件缓存的弱引用
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>private</span> <span class=kr>static</span> <span class=nx>fileCache</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Map</span><span class=p>&lt;</span><span class=nt>string</span><span class=p>,</span> <span class=na>WeakRef</span><span class=p>&lt;</span><span class=nt>FileContent</span><span class=p>&gt;&gt;();</span>
+</span></span></span><span class=line><span class=cl>  <span class=kr>private</span> <span class=kr>static</span> <span class=nx>fileCache</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Map</span><span class=p>&lt;</span><span class=nt>string</span><span class=p>,</span> <span class=na>WeakRef</span><span class=p>&lt;</span><span class=nt>FileContent</span><span class=p>&gt;&gt;();</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=kr>static</span> <span class=nx>cacheFile</span><span class=p>(</span><span class=nx>path</span>: <span class=kt>string</span><span class=p>,</span> <span class=nx>content</span>: <span class=kt>FileContent</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>ref</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>WeakRef</span><span class=p>(</span><span class=nx>content</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=k>this</span><span class=p>.</span><span class=nx>fileCache</span><span class=p>.</span><span class=kr>set</span><span class=p>(</span><span class=nx>path</span><span class=p>,</span> <span class=nx>ref</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 注册清理
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>this</span><span class=p>.</span><span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=nx>content</span><span class=p>,</span> <span class=nx>path</span><span class=p>);</span>
+</span></span></span><span class=line><span class=cl>    <span class=k>this</span><span class=p>.</span><span class=nx>registry</span><span class=p>.</span><span class=nx>register</span><span class=p>(</span><span class=nx>content</span><span class=p>,</span> <span class=nx>path</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=c1>// 模式 3：结果大小限制
-</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>static</span> <span class=nx>truncateResult</span><span class=p>(</span><span class=nx>result</span>: <span class=kt>string</span><span class=p>,</span> <span class=nx>maxSize</span> <span class=o>=</span> <span class=mi>100</span><span class=nx>_000</span><span class=p>)</span><span class=o>:</span> <span class=kt>string</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>  <span class=kr>static</span> <span class=nx>truncateResult</span><span class=p>(</span><span class=nx>result</span>: <span class=kt>string</span><span class=p>,</span> <span class=nx>maxSize</span> <span class=o>=</span> <span class=mi>100</span><span class=nx>_000</span><span class=p>)</span><span class=o>:</span> <span class=kt>string</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nx>result</span><span class=p>.</span><span class=nx>length</span> <span class=o>&lt;=</span> <span class=nx>maxSize</span><span class=p>)</span> <span class=k>return</span> <span class=nx>result</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>result</span><span class=p>.</span><span class=nx>substring</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=nx>maxSize</span><span class=p>)</span> <span class=o>+</span>
@@ -1722,7 +1722,7 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 <button class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none" data-code-id=code-13 title=Copy aria-label=Copy>
 <span class=copy-icon><svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
 </span><span class="copy-text hidden sm:inline">Copy</span></button></div></div><div class="code-block-content relative" id=code-13><div class=highlight><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=c1>// 所有文件操作的路径验证
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>class</span> <span class=nx>PathSecurityValidator</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=kr>class</span> <span class=nx>PathSecurityValidator</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=kr>static</span> <span class=nx>isPathSafe</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>    <span class=nx>requestedPath</span>: <span class=kt>string</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>    <span class=nx>context</span>: <span class=kt>ToolUseContext</span>
@@ -1730,13 +1730,13 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>resolved</span> <span class=o>=</span> <span class=nx>path</span><span class=p>.</span><span class=nx>resolve</span><span class=p>(</span><span class=nx>requestedPath</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 检查主工作目录
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>cwd</span> <span class=o>=</span> <span class=nx>context</span><span class=p>.</span><span class=nx>options</span><span class=p>.</span><span class=nx>cwd</span> <span class=o>||</span> <span class=nx>process</span><span class=p>.</span><span class=nx>cwd</span><span class=p>();</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>cwd</span> <span class=o>=</span> <span class=nx>context</span><span class=p>.</span><span class=nx>options</span><span class=p>.</span><span class=nx>cwd</span> <span class=o>||</span> <span class=nx>process</span><span class=p>.</span><span class=nx>cwd</span><span class=p>();</span>
 </span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nx>resolved</span><span class=p>.</span><span class=nx>startsWith</span><span class=p>(</span><span class=nx>cwd</span><span class=p>))</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=kc>true</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 检查额外允许的目录
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>additionalDirs</span> <span class=o>=</span> <span class=nx>context</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>additionalDirs</span> <span class=o>=</span> <span class=nx>context</span>
 </span></span><span class=line><span class=cl>      <span class=p>.</span><span class=nx>getToolPermissionContext</span><span class=p>()</span>
 </span></span><span class=line><span class=cl>      <span class=p>.</span><span class=nx>additionalWorkingDirectories</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>
@@ -1747,13 +1747,13 @@ focus:ring-primary/20 relative flex items-center gap-3 rounded-md px-4 py-3 text
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=c1>// 检查拒绝模式
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>DENIED_PATHS</span> <span class=o>=</span> <span class=p>[</span>
+</span></span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>DENIED_PATHS</span> <span class=o>=</span> <span class=p>[</span>
 </span></span><span class=line><span class=cl>      <span class=s1>&#39;/etc/passwd&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=s1>&#39;/etc/shadow&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=s1>&#39;~/.ssh/id_rsa&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>      <span class=s1>&#39;/System&#39;</span><span class=p>,</span> <span class=c1>// macOS
-</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=s1>&#39;/Windows/System32&#39;</span> <span class=c1>// Windows
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=p>];</span>
+</span></span></span><span class=line><span class=cl>      <span class=s1>&#39;/Windows/System32&#39;</span> <span class=c1>// Windows
+</span></span></span><span class=line><span class=cl>    <span class=p>];</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=o>!</span><span class=nx>DENIED_PATHS</span><span class=p>.</span><span class=nx>some</span><span class=p>(</span><span class=nx>denied</span> <span class=o>=&gt;</span>
 </span></span><span class=line><span class=cl>      <span class=nx>resolved</span><span class=p>.</span><span class=nx>includes</span><span class=p>(</span><span class=nx>denied</span><span class=p>)</span>

@@ -2,7 +2,7 @@
 date = '2025-11-05T8:00:00+08:00'
 draft = false
 title = 'PostgreSQL 01: Introduction'
-tags = ['PostgreSQL']
+tags = ['PostgreSQL', 'Database']
 +++
 
 ## PostgreSQL 的安装与配置
