@@ -1,5 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Database on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/database/</link><description>Recent content in Database on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Sun, 24 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/database/index.xml" rel="self" type="application/rss+xml"/><item><title>Redis List</title><link>https://starslayerx.github.io/posts/redis-list/</link><pubDate>Sun, 24 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-list/</guid><description>&lt;h2 id="list-列表">List 列表&lt;/h2>
-&lt;p>Redis 的列表是一种线性的有序结构, 可以按照元素被推入列表的顺序来存储元素, 这些元素即可以是文字顺序, 也可以是二进制顺序, 且元素可重复出现.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Database on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/database/</link><description>Recent content in Database on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Mon, 17 Nov 2025 08:00:00 +0100</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/database/index.xml" rel="self" type="application/rss+xml"/><item><title>Postgresql 03: psql Tool Introduction</title><link>https://starslayerx.github.io/posts/postgresql-03-psql-tool-introduction/</link><pubDate>Mon, 17 Nov 2025 08:00:00 +0100</pubDate><guid>https://starslayerx.github.io/posts/postgresql-03-psql-tool-introduction/</guid><description>&lt;h3 id="psql-介绍">psql 介绍&lt;/h3>
+&lt;p>psql 是 PostgreSQL 中的一个交互式命令行工具，类似 Oracle 的 sqlplus，它允许用户交互式输入 SQL 语句或命令，然后发送给 PostgreSQL 服务器，再显示结果。
+此外，psql 还有大量类似 shell 的特性来编写脚本，实现自动化操作。&lt;/p></description></item><item><title>PostgreSQL 02: SQL Basis</title><link>https://starslayerx.github.io/posts/postgresql-02-sql-basis/</link><pubDate>Fri, 07 Nov 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/postgresql-02-sql-basis/</guid><description>&lt;h2 id="sql-入门">SQL 入门&lt;/h2>
+&lt;p>SQL (Structured Query Language) 是关系数据库最重要的操作语言，且影响已经超出了数据库领域，这篇文章介绍基础部分。&lt;/p>
+&lt;h3 id="语句分类">语句分类&lt;/h3>
+&lt;p>SQL 命令一般分为 DQL、DML、DDL 三类：&lt;/p>
 &lt;ul>
 &lt;li>
-&lt;p>LPUSH: 将元素推入列表左端&lt;/p></description></item></channel></rss>
+&lt;p>DQL: Data Query Language 数据查询语句，基本就是 SELECT 查询命令，用于数据查询。&lt;/p></description></item><item><title>PostgreSQL 01: Introduction</title><link>https://starslayerx.github.io/posts/postgresql-01-introduction/</link><pubDate>Wed, 05 Nov 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/postgresql-01-introduction/</guid><description>&lt;h2 id="postgresql-的安装与配置">PostgreSQL 的安装与配置&lt;/h2>
+&lt;h3 id="安装">安装&lt;/h3>
+&lt;p>brew 安装后 &lt;code>brew services start postgresql@17&lt;/code> 可以启动服务，使用 &lt;code>brew services list&lt;/code> 查看服务状态。
+也可以通过设定环境变量 &lt;code>export PGDATA=/opt/homebrew/var/postgresql@17&lt;/code> 后使用命令 &lt;code>initdb&lt;/code> 创建数据库簇，然后 &lt;code>pg_ctl start -D $PGDATA&lt;/code> 启动。
+停止命令为 &lt;code>pg_ctl stop -D $PGDATA [-m SHOWDOWN-MODE]&lt;/code>，其中 -m 是服务器停止方法：&lt;/p></description></item></channel></rss>
