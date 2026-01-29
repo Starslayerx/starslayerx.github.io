@@ -12,11 +12,11 @@ tags = ['Python']
 ```python
 import time
 
-def call_qwen(messages: list, model: str = "qwen-max", temperature: float = 0.7):
-    """调用 Qwen API (模拟)"""
-    print(f"正在请求 API (模型: {model})...")
+def call_qwen(messages: list, model: str = 'qwen-max', temperature: float = 0.7):
+    '''调用 Qwen API (模拟)'''
+    print(f'正在请求 API (模型: {model})...')
     time.sleep(1) # 模拟网络耗时
-    return {"content": "这是 AI 的回复", "usage": 100}
+    return {'content': '这是 AI 的回复', 'usage': 100}
 ```
 
 ---
@@ -31,10 +31,10 @@ run_api = call_qwen
 
 # 2. 作为参数传递
 def logger(func, *args, **kwargs):
-    print("准备开始调用...")
+    print('[INFO] Calling qwen ...')
     return func(*args, **kwargs)
 
-logger(call_qwen, [{"role": "user", "content": "你好"}])
+logger(call_qwen, [{'role': 'user', 'content': '你好'}])
 ```
 
 ---
@@ -53,7 +53,7 @@ def make_cached_qwen():
         # 简单起见，用最后一条消息的内容当 Key
         key = messages[-1]['content']
         if key in cache:
-            print(" 命中缓存")
+            print(' 命中缓存')
             return cache[key]
 
         result = call_qwen(messages, **kwargs)
@@ -101,7 +101,7 @@ call_qwen_with_cache = cache_wrapper(call_qwen)
 
 ```python
 @cache_wrapper
-def call_qwen(messages, model="qwen-max", **kwargs):
+def call_qwen(messages, model='qwen-max', **kwargs):
     # ...
     pass
 ```
@@ -150,7 +150,7 @@ print(add(5, 10)) # 15
 print(add_config(5)(10)) # 15
 ```
 
-**为什么讲这个**？因为“带参数的装饰器”本质上就是柯里化的应用。
+“带参数的装饰器” 本质上就是类似柯里化的应用，理解了柯里化的思想，就更容易理解装饰器的原理。
 
 ---
 
@@ -177,7 +177,7 @@ def llm_cache(ttl=3600):
             if key in cache:
                 val, timestamp = cache[key]
                 if now - timestamp < ttl:
-                    print(" 命中有效缓存")
+                    print(' 命中有效缓存')
                     return val
 
             result = func(*args, **kwargs)
@@ -190,7 +190,7 @@ def llm_cache(ttl=3600):
 # 然后执行 @decorator
 @llm_cache(ttl=10)
 def call_qwen(messages, **kwargs):
-    return {"content": "..."}
+    return {'content': '...'}
 ```
 
 ---
@@ -216,7 +216,7 @@ class LLMCache:
 
 @LLMCache(ttl=300)
 def call_qwen(messages, **kwargs):
-    return {"content": "..."}
+    return {'content': '...'}
 ```
 
 **总结**：
