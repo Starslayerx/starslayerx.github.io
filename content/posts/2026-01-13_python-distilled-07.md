@@ -1468,16 +1468,16 @@ dispatcher.handle(Cyclist())  # handle_Cyclist()
 ```Python
 _registry = { }  # 注册表
 def register_decorder(cls):
-    for mt in cls.minetypes:
-        _registry[mt.minetype] = cls
+    for mt in cls.mimetypes:
+        _registry[mt.mimetype] = cls
     return cls
 
 # Factory function that uses the registry
-def create_decoder(minetype):
-    return _registry[minetype]()
+def create_decoder(mimetype):
+    return _registry[mimetype]()
 ```
 
-在这个例子中，`register_decorder()` 函数会查找类内部的 `minetypes` 属性。
+在这个例子中，`register_decorder()` 函数会查找类内部的 `mimetypes` 属性。
 如果找到该项，就会使用它将该类加入一个字典中，该字典用于将 MIME 类型映射到类对象。
 为了使用这个函数，在类定义之前将其作为装饰器使用。
 
@@ -1621,10 +1621,658 @@ class B(Base):
 例如，类注册：
 
 ```Python
-class DecoderBase():
-    _registry =  {}
+class DecoderBase:
+    _registry = {}
     @classmethod
     def __init_subclass__(cls):
-        for mt in cls.minetypes:
+        for mt in cls.mimetypes:
             DecoderBase._registry[mt.mimetype] = cls
+
+def create_decoder(mimetype):
+    return DecoderBase._registry[mimetype]()
+
+class TextDecoder(DecoderBase):
+    mimetypes = [ 'text/plain' ]
+    def decode(self, data):
+        ...
+
+class HTMLDecoder(DecoderBase):
+    mimetypes = [ 'text/html' ]
+    def decode(self, data):
+        ...
+
+class ImageDecoder(DecoderBase):
+    mimetypes = [ 'image/png', 'image/jpg', 'image/gif' ]
+    def decode(self, data):
+        ...
+
+decoder = create_decoder('image/jpg')
 ```
+
+这里是一个类从 `__init__()` 方法自动创建 `__repr__()` 方法的例子：
+
+```Python
+import inspect
+
+class Base:
+    @classmethod
+    def __init_subclass__(cls):
+        # Create a __repr__ method
+        args = list(inspect.signature(cls).parameters)
+        argvals = ', '.join('{self.%s!r}' % arg for arg in args)
+        code = 'def __repr__(self):\n'
+        code += '  return f"{cls.__name__}({argvals})"\n'
+        locs = { }
+        exec(code, locs)
+        cls.__repr__ = locs['__repr__']
+
+class Point(Base):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+```
+
+如果使用了多层继承，则应该使用 `super()` 来确保所有实现了 `__init_subclass__()` 的类都能被调用。
+
+```Python
+class A:
+    @classmethod
+    def __init_subclass__(cls):
+        print('A.init_subclass')
+        super().__init_subclass__()
+
+class B:
+    @classmethod
+    def __init_subclass__(cls):
+        print('B.init_subclass')
+        super().__init_subclass__()
+
+# 应该能看到两个类的输出
+class C(A, B):
+    pass
+```
+
+通过 `__init_subclass__` 来实现 supervising inheritance 监督继承是 Python 最强大的自定义特性之一。
+大部分力量源于其隐含特性，一个顶级基类可以借此悄无声息地监督整个子类层次结构。
+这种监督机制可以注册类、重写方法、执行验证等操作。
+
+## The Object Life Cycle and Memmory Management
+
+当定义一个类时，实现的类就是创建新实例的工厂。
+
+```Python
+class Amount:
+    def __init__(self, owner, balance):
+        self.owner = owner
+        self.balance = balance
+
+a = Amount('Guido', 1000.0)
+b = Amount('Eva', 25.0)
+```
+
+实例的创建通过两个步骤完成:
+首先使用特殊方法 `__new__()` 创建新实例，然后使用 `__init__()` 对其进行初始化。
+
+例如 `a = Account('Guido', 1000.0)` 会执行以下步骤：
+
+```Python
+a = Account.__new__(Accound, 'Guido', 1000.0)
+if isinstance(a, Account):
+    Account.__init__('Guido', 1000.0)
+```
+
+除了第一个参数接收的类本身而非实例外，`__new__()` 通常接收与 `__init__()` 相同的参数。
+有时候会看到 `__new__()` 仅传入单个参数调用。
+然而，`__new__()` 的默认实现通常只是直接忽略它们。
+有时候会看到 `__new__()` 仅被传入单个参数调用。
+
+比如这样写也可以：
+
+```Python
+a = Account.__new__(Account)
+Account.__init__('Guido', 1000.0)
+```
+
+直接使用 `__new__()` 方法并不常见，但有时会用它来创建实例，同时绕过对 `__init__()` 方法的调用。
+
+类方法就有这样的，例如：
+
+```Python
+import time
+
+class Date:
+    def __init__(self, year, month, day):
+        self.year = year
+        self.month = month
+        self.day = day
+
+    @classmethod
+    def today(cls):
+        t = time.localtime()
+        self = cls.__new__(cls)  # Make instance
+        self.year = t.tm_year
+        self.month = t.tm_month
+        self.day = t.tm_year
+        return self
+```
+
+执行对象序列化的模块，如 pickle 在反序列化对象时也会利用 `__new__()` 方法来重新创建实例。
+这是在不调用 `__init__()` 的情况下完成的。
+
+有时，类会定义 `__new__()` 方法，以改变实例创建的某些方面。
+典型的应用包括实例缓存 instance caching、单例模式 singleton 和不可变性 immutability。
+
+假如你希望 Date 类实现日期驻留，缓存 Date 实例并复用有相同年月日的现有对象。
+这是一种实现方式：
+
+```Python
+class Date:
+    _cache = { }
+
+    @staticmethod
+    def __new__(cls, year, month, day):
+        self = Date._cache.get((year, month, day))
+        if not self:
+            self = super().__new__(cls)
+            self.year = year
+            self.month = month
+            self.day = day
+            Date._cache[year, month, day] = self
+        return self
+
+    def __init__(self, year, month, day):
+        pass
+
+d = Date(2012, 12, 21)
+e = Date(2012, 12, 21)
+
+assert d is e  # same object
+```
+
+在这个例子中，类维护一个内部字典，用于存储先前创建的 Date 实例。
+在创建新的 Date 对象时，会首先查询缓存。
+如果找到匹配项，则返回该实例。
+否则，会创建并初始化新的实例。
+
+此解决方案的一个微秒之处在于其空的 `__init__()` 方法。
+即使已经缓存了，每次调用 `Date()` 仍然会调用 `__init__()`。
+为了避免这个情况，该方法仅执行空操作，实例的实际创建发生在首次创建实例时的 `__new__()` 方法中。
+
+有方法可以避免对 `__init__()` 的额外调用，但这需要一些巧妙的技巧。
+避免这种情况的一种方法是让 `__new__()` 返回一个完全不同的类型实例。
+另一种解决方案是使用元类 metaclass。
+
+实例一但创建就会通过引用计数管理，如果引用计数归零会立刻消毁。
+当要消毁实例的时候，解释器首先寻找该对象上的 `__del__` 方法，然后调用它。
+
+```Python
+class Account(object):
+    def __init__(self, owner, balance):
+        self.owner = owner
+        self.balance = balance
+
+    def __del__(self):
+        print('Deleting Account')
+
+a = Account('Guido', 1000.0)
+del a
+# Deleting Account
+```
+
+有时，程序会使用 `del` 语句来删除对某个对象的引用。
+如果这导致引用计数归零，则会调用 `__del__()` 方法。
+但并不是总会调用该方法，因为该对象往往还有其他引用。
+此外，还有许多其他导致对象被删除的方法。
+
+例如，变量名的重新赋值或函数中变量超出作用域的情况：
+
+```Python
+a = Account('Guido', 1000.0)
+a = 42  # Deleting Account
+
+def func():
+    a = Account('Guido', 1000.0)
+func()  # Deleting Account
+```
+
+在实际中，很少需要定义 `__del__()` 方法。
+唯一的例外是，当消毁对象需要进行额外清理操作时，例如关闭文件、断开网络连接或是否其他系统资源。
+即使在这些情况下，依赖 `__del__()` 来实现正确的关闭也是危险的，因为无法保证该方法会在可能被调用的时候执行。
+为了清晰的关闭资源，应该提供专门的 `close()` 方法。
+同是也想要让类支持上下文管理器协议，这样就可以使用 `with` 语句。
+
+下面是一个覆盖所有情况的例子：
+
+```Python
+class SomeClass:
+    def __init__(self):
+        self.resource = open_resource()
+
+    def __del__(self):
+        self.close()
+
+    def close(self):
+        self.resource.close()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, ty, val, tb):
+        self.close()
+
+# 通过 __del__() 关闭
+s = SomeClass()
+del s
+
+# 显示关闭
+s=  SomeClass()
+s.close()
+
+# 在 context 块结束后关闭
+with SomeClass() as s:
+    ...
+```
+
+再次强调，在大多数类中都没有必要编写 `__del__()` 方法。
+Python 本身就有垃圾回收机制，没有自己实现的必要，除非在对象消毁过程中有额外的行为需要执行。
+即使这样，你可能也不需要 `__del__()`。类可能早已编写为能自己合理地自我清除。
+
+除了引用计数和对象消毁本身存在的诸多风险外，还有某些编程模式。
+尤其设计父子关系、图结构或缓存的场景，还可能引发所谓的 “引用循环” 问题。
+
+例如：
+
+```Python
+class SomeClass:
+    def __del__(self):
+        print('Deleting')
+
+parent = SomeClass()
+child = SomeClass()
+
+# 创建一个父子循环引用
+parent.child = child
+child.parent = parent
+
+# 尝试删除：没有输出 Deleting
+del parent
+del child
+```
+
+在这个例子中，变量名称被消毁了，但 `__del__()` 方法却没有被调用。
+这两个对象每个内部都有另一个的引用。因此，引用计数无法降到 0。
+为了应对这种情况，一个特殊的循环检测垃圾回收器会定期运行。
+最终这些对象会被回收，但很难预测何时会发生。
+如果想要强制垃圾回收，可以运行 `gc.collect()`。
+`gc` 模块还包含多种与循环垃圾回收及内存监控相关的其他技能。
+
+由于垃圾回收的不可预测性，`__del__()` 方法在使用上存在一些限制。
+首先，任何从 `__del__()` 方法中传播出的异常都会被打印到 `sys.stderr`，除此之外将被忽略。
+其次，`__del__()` 方法应避免涉及获取锁或其他资源的操作。
+这样做可能导致死锁，当 `__del__()` 在信号处理和线程的第七层内部回调圈中执行无关函数时意外触发。
+如果一定要使用 `__del__` 方法，请保持其简明。
+
+## Weak References
+
+有时候变量还存在，但你希望他们被回收。
+例如上面的 `Date` 类型，该类型一但添加缓存就无法取消。
+
+解决上面问题的一种方法是弱引用 `weakref` 模块。
+弱引用是一种引用对象，但是不增加引用计数的方式。
+
+```Python
+import weakref
+
+a = Account('Guido', 1000.0)
+a_ref = weakref.ref(a)
+# <weakref at 0x104617188; to 'Account' at 0x1046105c0>
+
+del a
+a_ref
+# <weakref at 0x104617188; dead>
+```
+
+为了获取弱引用指向的对象，需要像无参函数那样调用它。
+这将返回被指向的对象或 `None`：
+
+```Python
+acct = a_ref()
+if acct is not None:
+    acct.withdraw()
+
+# 简洁写法
+if acct := a_ref():
+    acct.withdraw()
+```
+
+弱引用通常与缓存及其他高级内存管理技术结合使用。
+下面是一个修改后的 `Data` 类型，能够自动移除不存在引用的缓存：
+
+```Python
+import weakref
+
+class Date:
+    _cache = { }
+
+    def __new__(cls, year, month, day):
+        selfref = Date._cache.get((year, month, day))
+        if not selfref:
+            self = super().__new__(cls)
+            self.year = year
+            self.month = month
+            self.day = day
+            Date._cache[year, month, day] = weakref.ref(self)
+        else:
+            self = selfref()
+        return self
+
+    def __init__(self, year, month, day):
+        pass
+
+    def __del__(self):
+        del Date._cache[self.year, self.month, self.day]
+```
+
+支持弱引用要求实例具有可变的 `__weakref__` 属性。
+用户定义的类通常默认有该属性。
+然而，内部类型和特定的数据类型不支持。
+如果想为这些类型创建弱引用，可以通过添加了 `__weakref__` 属性的变体来实现。
+
+```Python
+class wdict(dict):
+    __slots__ = ('__weakref__', )
+
+w = wdict()
+w_ref = weakref.ref(w)
+```
+
+## Internal Object Representation and Attribute Binding
+
+与实例关联的状态存储在一个字典中，该字典可通过实际的 `__dict__` 属性访问。
+该字典包含每个实例独有的数据，例如这个例子：
+
+```Python
+a = Account('Guido', 1100.0)
+a.__dict__
+# {'owner': 'Guido', 'balance': 1100.0}
+```
+
+任何时间都可以添加新属性：
+
+```Python
+a.number = 123456  # Add attribute 'number' to a.__dict__
+a.__dict__['number'] = 654321
+```
+
+对实例的修改总是会反应在其本地的 `__dict__` 属性中，除非该属性由 property 管理。
+同样，如果直接修改 `__dict__` 则也会反应在实例属性上。
+
+实例通过一个特殊属性 `__class__` 与类关联。
+类本身也只是一个覆盖在字典上的薄层，这个字典可以在其自身的 `__dict__` 属性中找到。
+类字段是存放方法的地方，例如：
+
+```Python
+a.__class__
+# <class '__main__.Account'>
+
+Account.__dict__.keys()
+# dict_keys(['__module__', '__init__', '__repr__', 'deposit', 'withdraw', 'inquiry', '__dict__', '__weakref__', '__doc__'])
+
+Account.__dict__['withdraw']
+# <function Account.withdraw at 0x108204158>
+```
+
+类通过特殊属性 `__base__` 连接到他们的基类 base class，其为一个基类的元组。
+`__base__` 属性只用于提供信息。
+继承的实际运行实现依赖于 `__mro__` 属性，该属性是一个按搜索顺序排列的所有父类元组。
+这一底层结构构成了实例属性进行获取、设置和删除等所有操作的基础。
+
+当属性使用 `obj.name = value`时，会调用特殊方法 `obj.__setattr__('name', value)`。
+如果同 `del obj.name` 删除属性，则会调用特殊方法 `obj.__delattr__('name')`。
+这些默认方法用于从 obj 对象的 `__dict__` 本地变量中修改或删除对象，除非请求的对象是 property 或 descriptor。
+这种情况下，set 和 delete 操作将由与该属性关联的函数执行。
+
+对于属性查找，例如 `obj.name` 会调用特殊方法 `obj.__getattribute('name')`。
+该方法执行查找属性的搜索过程，其通常会检查属性，查看本地 `__dict__` 属性，检查类型字典并搜索 MRO。
+如果该搜索过程失败，最后会调用类的 `obj.__getattr('name')` 方法。
+如果还失败则抛出异常。
+
+用户定义的类型可以根据需要实现自己的属性访问函数。
+例如，这里有一个表，它限制了可以设置的属性名称：
+
+```Python
+class Account:
+    def __init__(self. owner, balance):
+        self.owner = owner
+        self.balance = balance
+
+    def __setattr__(self, name, value):
+        if name not in {'owner', 'balance'}:
+            raise AttributeError(f'No attribute {name}')
+        super().__setattr__(name, value)
+
+# Example
+a = Account('Guido', 1000.0)
+a.balance  # OK
+a.amount   # AttributeError
+```
+
+一个重新实现这些方法的类，应该依赖 `super()` 提供的默认实现来执行属性的实际工作。
+这是因为默认实现已经处理了类中更高级的特性，如描述符和属性。
+如果不使用 `super()`，则将需要自行处理这些细节。
+
+## Proxies, Wrappers and Delegation
+
+有时，类会围绕另一个对象实现一个包装层，以创建一种代理 proxy 对象。
+代理对象保留暴露与另一个对象相同的接口，但由于各种原因，并不通过继承和原始对象关联。
+这与组合有所不同，组合是从其他对象创建一个全新的对象，但新对象拥有自己独特的方法和属性。
+
+这有许多种情况，例如，在分布式计算中，真实的对象实现可能在远程云服务器里。
+和服务器交互的客户端可能使用和服务器对象一样的代理对象，但实际上其会将所有对象通过网络传递消息。
+一个常见的实现技术涉及使用 `__getattr__()` 方法，下面是一个简单的示例：
+
+```Python
+class A:
+    def spam(self):
+        print('A.spam')
+    def grok(self):
+        print('A.grok')
+    def yow(self):
+        print('A.yow')
+
+class LoggedA:
+    def __init__(self):
+        self._a = A()
+
+    def __getattr__(self, name):
+        print('Accessing', name)
+        # Delegate to internal A instance
+        return getattr(self._a, name)
+
+a = LoggedA()
+a.spam()  # Accessing spam\n A.spam
+a.yow()   # Accessing yow\n A.yow()
+```
+
+有时候代理作为继承的替代，例如：
+
+```Python
+class A:
+    def spam(self):
+        print('A.spam')
+
+    def grok(self):
+        print('A.grok')
+
+    def yow(self):
+        print('A.yow')
+
+class B:
+    def __init__(self):
+        self._a = A()
+
+    def grok(self):
+        print('B.grok')
+
+    def __getattr__(self, name):
+        return getattr(self._a, name)
+
+# Example
+b = B()
+b.spam()  # A.spam
+b.grok()  # B.grok
+b.yow()   # A.yow
+```
+
+在这个例子中，B 看上去和继承了 A 一样，并重定义了一个方法。
+这是观察到的行为，但并未使用继承，相反，B 内部持有一个对 A 的引用。
+A 的某些方法可以被重新定义，例如，所有其他方法都通过 `__getattr__()` 方法进行委托。
+
+通过 `__getattr__()` 转发属性查找是一种常见技术。
+但注意，它不适用与映射到特殊方法的操作：
+
+```Python
+class ListLink:
+    def __init__(self):
+        self._item = list()
+
+    def __getattr__(self, name):
+        return getattr(self._items, name)
+
+# Example
+a = ListLink()
+a.append(1)     # ✓
+a.insert(0, 2)  # ✓
+a.sort()        # ✓
+
+len(a)  # Fails: No __len__() method
+a[0]    # Fails: No __getitem__() method
+```
+
+在此例中，该类成功地将所有标准列表方法转发给内部列表。
+然而，Python 的标准运算符均无法使用。
+要使其生效，必须显示实现所需要的特殊方法：
+
+```Python
+class ListLink:
+    def __init__(self):
+        self._items = list()
+
+    def __getattr__(self, name):
+        return getattr(self._items, name)
+
+    def __len__(self):
+        return len(self._items)
+
+    def __getitem__(self, index):
+        return self._item[index]
+
+    def __setitem__(self, index, value):
+        return self._item[index] = value
+```
+
+## Reducing momory use with `__slots__`
+
+前面提到过，实例存储在类字典中。
+如果要创建大量实例，这会产生大量内存开销。
+如果知道属性名称是固定的，可以在一个 `__slots__` 的特殊变量中指定这些名称。
+
+```Python
+class Account(object):
+    __slots__ = ('owner', 'balance')
+    ...
+```
+
+Slots 是一种定义提示，允许 Python 对内存和执行速度进行优化。
+使用 `__slots__` 的类实例不再使用字典存储数据。
+相反，会使用一个更加紧凑的数组类型。
+在创建大量对象的程序中，使用 `__slots__` 可以显著减少内存占用，并略微提升执行效率。
+
+1. 使用更加紧凑的数据结构，减少内存占用
+
+2. 寻址方式不同，原来的 dict 需要计算哈希，现在的使用偏移量 offset，速度更快
+
+`__slote__` 中仅包含实例数据属性。
+无需列出方法、属性、类变量或其他任何类级属性。
+本质上，这些名称与通常出现在实例 `__dict__` 字典中的键名称相同。
+
+要注意在继承使用 `__slots__` 的基类的时候，子类也许要定义 `__slots__`，即使不定义任何自己的属性。
+如果不这样会，解释器会默认认为需要动态特性，导致子类变得更慢。
+
+`__slots__` 的存在不会影响诸如 `__getattribute__()`、`__getattr__()` 和 `__setattr__()` 等方法在类中被重新定义的调用。
+然而，如果要实现这些方法，注意实例不再拥有 `__dict__` 属性。
+
+## Descriptors
+
+通常情况下，属性访问对应字典操作。
+如果需要更加精细的控制，可通过用户自定义的获取、设置和删除函数路由属性访问。
+属性的使用依赖于称为描述符 descriptors 的底层构造。
+描述符 descriptors 是管理属性访问的类级对象，通过实现 `__get__()`、`__set__()` 或 `__delete__()` 等特殊方法，可以直接接入属性访问机制并定制相关操作。
+
+下面是个例子：
+
+```Python
+class Typed:
+    excepted_type = object
+
+    def __set_name__(self, cls, name):
+        self.key = name
+
+    def __get__(self, instance, cls):
+        if instance:
+            return instance.__dict__[self.key]
+        else:
+            return self
+
+    def __set__(self, instance, value):
+        if not isinstance(value, self.excepted_type):
+            raise TypeError(f'Excepted {self.excepted_type}')
+        isinstance.__dict__[self.key] = value
+
+    def __delete__(self, instance):
+        raise AttrubuteError('Can\'t delete attribute')
+
+class Integer(Typed):
+    excepted_type = int
+
+class Float(Typed):
+    excepted_type = float
+
+class String(Typed):
+    excepted_type = str
+
+# Example
+class Account:
+    owner = String()
+    balance = Float()
+
+    def __init__(self, owner, balance):
+        self.owner = owner
+        self.balance = balance
+```
+
+在这个例子中，`Typed` 类定义了一个描述符，当属性被赋值时进行类型检查。
+如果尝试删除该属性则会引发错误。
+`Inreger`、 `Float` 和 `String` 子类则特化了 `Typed` 以匹配特定类型。
+在另一个类中使用这些类，会使这些属性在访问时自动调用相应的 `__get__()`、`__set__()` 或 `__delete__()` 方法。
+
+例如：
+
+```Python
+a = Account('Guido', 1000.0)
+b = a.owner      # Calls Account.owner.__get__(a, Account)
+a.owner = 'Eva'  # Calls Account.owner.__set__(a, 'Eva')
+del a.owner      # Calls Account.owner.__delete__(a)
+```
+
+描述符只能在类级别实例化。
+在 `__init__()` 或其他方法内部创建描述符对象，从而基于每个实例创建描述符，这种做法是不合法的。
+
+描述符的 `__set_name__()` 方法会在类定义完成后、任何实例创建之前被调用。
+它的作用是告知描述符该属性在类中使用的名称。
+
+例如，`balance = Float()` 定义会调用 `Float.__set_name__(Account, 'balance)` 并通知 descriptor 其所属的类及使用的名称。
+
+---
+
+这部分越来越难懂了，跳过 ing ...

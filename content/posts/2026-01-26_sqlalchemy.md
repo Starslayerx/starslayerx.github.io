@@ -440,3 +440,271 @@ q = select(Product).where(
 ```Python
 q = select(Product).where(Product.name.like('%Sinclair%'))
 ```
+
+列属性上面的 `like()` 方法接收一个搜索模式字符串，并返回所有匹配该模式的结果。
+该模式定义了要搜索的文本，其中使用 `%` 字符作为通配符，可匹配零个、一个或多个字符。
+并使用 `_` 来匹配单个字符。
+
+下面是一些例子：
+
+- `Sinclair%` 以 Sinclair 开头的项
+- `%Sinclair` 以 Sinclair 结尾的项
+- `% Sinclair` 以 空格+Sinclair 结尾的项
+- `R__%` 以 R 开头并跟随两个字符的项
+- `_` 单字符长的项
+
+`like()` 函数是大小写敏感的，如果希望忽略大小写形式，应该使用 `ilike()` 函数。
+
+可以通过 `where()` 子句指定下限和上限两个条件来请求一些列条目。
+但更清晰的做饭是使用模型类列属性提供的 `between()` 方法。
+例如，下面例子返回 1970 年代生产的产品：
+
+```Python
+q = select(Product.year.between(year, 1970, 1979))
+```
+
+如果要查看生生的 SQL，可以直接打印出来
+
+```Python
+print(q)
+# SELECT products.id, products.name, products.manufacturer, products.year, products.country, products.cpu
+# FROM products
+# WHERE products.year BETWEEN :year_1 AND :year_2
+```
+
+此处可见，查询过滤器中定义的文字并未插入到渲染后的 SQL 语句中。
+相反，他们由 `:year_1` 和 `:year_2` 这样的占位符替代。
+这是防止 SQL 注入的良好实践，SQLAlchemy 会自动实现。
+
+出于调试目的，可能希望查询包含实际字面值的 SQL 查询。
+尽管这种做法可能不安全，但下面展示了如何指示 SQLAlchemy 在渲染查询时，同时显示所有字面量参数：
+
+```Python
+print(q.compile(compile_kwargs={'literal_binds': True}))
+# SELECT products.id, products.name, products.manufacturer, products.year,products.country, products.cpu
+# FROM products
+# WHERE products.year
+# BETWEEN 1970 AND 1979
+```
+
+#### Order of Results
+
+上面查询结果是按照数据库选择的顺序返回的，但关系数据库可以直接将结果高效地进行排序。
+`order_by()` 方法可以用来对结果进行排序。
+
+```Python
+q = select(Product).order_by(Product.name)
+session.scalars(q).all()
+```
+
+也可以使用 `desc()` 让其逆序排序，例如下面例子按年份逆序排序：
+
+```Python
+q = select(Product).order_by(Product.name.desc())
+session.scalars(q).all()
+```
+
+有时候单一的排序标准是不够的。
+例如，在最后结果中会有一些计算机都是同一年制造的，这些计算机之间就是任意排序了。
+`order_by()` 方法接受多个参数，每个参数会添加一层排序。
+
+例如在之前的例子上，添加一层按产品名称排序：
+
+```Python
+q = select(Product).order_by(Product.year.desc(), Product.name.asc())
+```
+
+注意其中的 `asc()` 方法，是按照产品名称升序排序，有时候这样写会更加清晰可读。
+
+#### Access to Individual Columns
+
+在之前的所有查询例子中，都是返回一整行的每一项。
+`select()` 方法实际上十分灵活，可以选择指定的项。
+
+```Python
+q = select(Product.name)
+session.scalars(q).all()
+# [ 'Acorn Atom', ..., 'GEM 1000' ]
+
+q = select(Product.name, Product.manufacturer)
+session.execute(q).all()
+# [('Acorn Atom', 'Acorn Computers Ltd'), ('BBC Micro', 'Acorn Computers Ltd'), ...]
+```
+
+#### Aggregation Function
+
+Aggregation Function: 聚合函数
+
+`select()` 函数也可以配合 SQL 函数使用，这些 SQL 函数会对检索到的数据进行即时求值，从而实现数据转换。
+一个很有用的函数是 `count()`，它会将所有结果行替换为数量。
+下一个例子阐明了如何查询数据库中数据的数量：
+
+```Python
+from sqlalchemy import func
+
+q = select(func.count(Product.id))
+r = session.scalar(q)
+# 149
+```
+
+上面使用的 `count()` 函数将结果降低为单个值，`scalar()` 方法用于检索它。
+在这个例子中，使用 `Product.id` 作为参数是任意的，任何 Product 类的列都可以，结果一样，因为数据本身不重要。
+下面是不需要任何列的结果统计方式：
+
+```Python
+q = select(func.count()).select_from(Product)
+r = session.scalar(q)
+# 149
+```
+
+在这种形式，`count()` 函数没有给予任何参数。
+使用此格式时，必须添加 `select_from()` 方法来配置查询中使用的表。
+因为 SQLALchemy 无法根据传递给 `select()` 函数的参数自动确定该表。
+
+还有一队有用的 SQL 函数 `min()` 和 `max()`。
+以下示例返回数据库中产品制造的首个和最后年份：
+
+```Python
+q = select(func.min(Product.year), func.max(Product.year))
+r = session.execute(q)
+r.first()
+# (1969, 1995)
+```
+
+该方法要使用 `execute()` 因为有两个结果。
+`min()` 和 `max()` 函数会将结果缩减为单行，因此像之前示例那样使用 `all()` 来获取结果已无必要。
+当预先确定查询结果只有单行时，使用 `first()` 或 `one()` 方法更为便捷，其中后者会在查询时返回非单行时抛出异常。
+
+#### Result Grouping
+
+当前数据库仅将 product 作为首要实体，但有时应用程序要检索相关数据属性，例如制造商。
+下面是获取制造商列表的尝试：
+
+```Python
+q = select(Product.manufacturer).order_by(Product.manufacturer)
+session.scalars(q).all()
+# ['Acorn Computers Ltd', 'Acorn Computers Ltd', ..., 'West Computer AS']
+```
+
+但显然这里存在一个问题。
+尽管查询只检索制造商信息，但查询的表包含产品数据，因此每个结果行对应一个产品。
+如果某家制造商在数据库中有多个产品，他就会多次出现。
+以字母顺序排列时，排名首位的制造商 Acorn Computers Ltd 就连续出现六次。
+
+每当数据库查询可能返回重复结果时，添加 `distinct()` 子句会指示数据库合并相同的结果。
+
+```Python
+q = select(Product.manufacturer).order_by(Product.manufacturer).distinct()
+session.scalars(q).all()
+# ['Acorn Computers Ltd', 'AGAT', ..., 'West Computer AS']
+```
+
+你可能会想将 `distinct()` 子句与 `count()` 聚合函数结合使用，以查明数据库中存在多少制造商。
+不幸的是，`distinct()` 函数无法与 `count()` 聚合函数结合使用，因为数据库会在 `distinct()` 前计算数量。
+
+如果要计算唯一结果的数量，可以在 `count()` 函数内部对要计数的对象调用 `distinct()` 方法。
+
+```Python
+q = select(func.count(Product.manufacturer.distinct()))
+r = session.scalar(q)
+# 76
+```
+
+使用 `distinct()` 来合并结果的能力很有限，因为只有当两行结果完全相同时，数据库才会把它们折叠成一行。
+举例来说，这种方式无法 “列出每个厂商以及它最早和最晚活跃年份”。
+因为一旦把 `Product.year` 作为第二个字段加入查询，不同年份会让行变得不再相同，从而改变 `distinct()` 能合并哪些结果。
+
+`group_by()` 函数提供了更加灵活的结果分组方案。
+上述返回制造商列表的查询同样可以通过 `group_by()` 实现：
+
+```Python
+q = (select(Product.manufacturer)
+        .group_by(Product.manufacturer)
+        .order_by(Product.manufacturer))
+```
+
+这样的结果相同，但使用 `group_by()` 可以添加额外的查询列，只要通过函数将每个组的数据聚合成单一值。
+下一个示例将获取制造商列表，包括其运营的起始与结束年份，以及他们生产的型号数量：
+
+```Python
+q = (select(
+        Product.manufacturer,
+        func.min(Product.year),
+        func.max(Product.year),
+        func.count()
+    )
+    .group_by(Product.manufacturer)
+    .order_by(Product.manufacturer)
+)
+
+session.execute(q).all()
+# [('Acorn Computers Ltd', 1980, 1995, 6), ..., ('West Computer AS', 1984, 1984, 1)]
+```
+
+上面执行逻辑是：
+
+- 分组 (Group By): 将 Product 根据 manufacturer 把数据扔进不同的“桶” 里
+- 聚合 (Aggregation): 每个桶内计算 `func.min/max/count`
+- 选择 (Select): 根据选择要求把结果挑出来
+- 排序 (Order By): 根据排序要求，把结果排序
+
+> DISTINCT 对“结果整行”去重，GROUP BY 是按某些列建立分组
+
+在前面已经介绍过，`where()` 方法可以用于筛选查询返回的结果集，并会在结果分组前进行计算。
+因此该子句无法用于筛选分组后的结果。
+`having()` 子句用于筛选分组和聚合后的结果，下面是一个示例，用于获取拥有 5 个或更多型号的制造商列表及其实际数量：
+
+```Python
+q = (select(
+        Product.manufacturer,
+        func.count()
+    )
+    .group_by(Product.manufacturer)
+    .having(func.count() >= 5)
+    .order_by(Product.manufacturer)
+)
+
+session.execute(q).all()
+# [('Acorn Computers Ltd', 6), ('Amstrad', 7), ..., ('Timex Sinclair', 6)]
+```
+
+你可能注意到在这个例子中 `count()` 出现了两次。
+首先在 `select()` 部分出现一次，然后在 `having()` 方法中又出现一次。
+为了确保 `count()` 只用编写一次，使用 `label()` 方法计算结果关联一个标签，随后在需要该数据的两个位置直接引用此标签即可。
+
+```Python
+num_products = func.count().label(None)
+q = (select(
+        Product.manufacturer,
+        num_products
+    )
+    .group_by(Product.manufacturer)
+    .having(num_products >= 5)
+    .order_by(Product.manufacturer)
+)
+```
+
+`label()` 方法的参数是标签的名称，当传入 `None` 时由 SQLALchemy 自动生成，确保选取唯一名称。
+让 SQLALchemy 自动命名是可行的，关键在于将标签实例赋值给 `num_products` 变量。
+当然，如果希望为标签指定名称，也同样允许：
+
+```Python
+num_products = func.count().label('num_products')
+```
+
+#### Pagination
+
+对于很长的查询结果，一个常见的方式是限制最大数量。
+`limit()` 方法用于设置查询的最大返回数量。
+交互式或网络应用中，用户通常可以按指定页面大小的增量向前或向后流览结果。
+
+实现查询结果的分页功能，需使用 `limit()` 方法设定每页大小，并指定从何处开始获取数据。
+选择开始位置最简单的方法是在查询中添加 `offset()` 方法。
+该方法用于检索结果的起始索引，上述例子查询可通过添加 `offset(0)` 进行泛化。
+若要获取包含三条结果的第二页数据，可按如下方式构架查询：
+
+```Python
+q = select(Product.order_by(Product.name).limit(3).offset(3))
+session.execute(q).all()
+# [Product(131, "Aamber Pegasus"), Product(84, "ABC 80"), Product(5, "Acorn Archimedes")]
+```
