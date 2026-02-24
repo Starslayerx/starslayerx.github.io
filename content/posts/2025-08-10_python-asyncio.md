@@ -2,7 +2,7 @@
 date = '2025-08-10T8:00:00+08:00'
 draft = true
 title = 'Python Asyncio Introduce'
-tags = ["Python"]
+tags = ['Python', 'Asyncio']
 +++
 
 ### Fast Introduce

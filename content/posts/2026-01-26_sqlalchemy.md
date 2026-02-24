@@ -696,15 +696,77 @@ num_products = func.count().label('num_products')
 
 对于很长的查询结果，一个常见的方式是限制最大数量。
 `limit()` 方法用于设置查询的最大返回数量。
-交互式或网络应用中，用户通常可以按指定页面大小的增量向前或向后流览结果。
-
-实现查询结果的分页功能，需使用 `limit()` 方法设定每页大小，并指定从何处开始获取数据。
-选择开始位置最简单的方法是在查询中添加 `offset()` 方法。
-该方法用于检索结果的起始索引，上述例子查询可通过添加 `offset(0)` 进行泛化。
-若要获取包含三条结果的第二页数据，可按如下方式构架查询：
+在后面的查询中，最多返回了 3 个字母表排序的结果。
 
 ```Python
-q = select(Product.order_by(Product.name).limit(3).offset(3))
+q = select(Product).order_by(Product.name).limit(3)
 session.execute(q).all()
 # [Product(131, "Aamber Pegasus"), Product(84, "ABC 80"), Product(5, "Acorn Archimedes")]
 ```
+
+限制查询数量防止查询结果太大无法处理。
+当执行较长查询时，一种常见的做法是提供分页选项，以便分批次获取结果。
+在交互式或网络应用中，用户通常可以选择指定页面大小的增量在结果中前后翻页。
+
+实现分页查询结果包括为 `limit()` 方法设置页面大小，并指示从哪个位置开始检索结果。
+最简单的方法是选择一个起始位置，并添加 `offset()` 方法到查询中去。
+此方法为要检索的结果设置起始索引，通过添加 `offset(0)` 可以将上述示例查询进行泛化。
+查询第二页的 3 个结果可以这样完成：
+
+```Python
+q = select(Product).order_by(Product.name).limit(3).offset(3)  # OFFSET 3: 跳过前三条记录
+session.scalars(q).all()
+# [Product(131, "Aamber Pegasus"), Product(84, "ABC 80"), Product(5, "Acorn Archimedes")]
+```
+
+使用 `offset()` 分页实际上一般被认为是有问题的，首先大多数数据库对其并没有高效的实现。
+但更重要的是，对于频繁变化的数据集，它可能会产生令人困惑的结果，即导致 Drifting 飘移。
+
+例如上面的例子，如果有个叫 "AAA" 的产品添加进去了，用户再查看第三个页面的请求的第一个结果将会是 `"Acorn Archimedes`.
+类似地，如果一个产品被删除，其他产品的位置也会发生变化。
+
+一种更可靠地指定，从何处如何开始返回结果的方法是，使用最后返回的项目作为参考。
+这样请求第二个页面的方法就是：
+
+```Python
+q = select(Product).order_by(Product.name).where(Product.name > 'A700').limit(3)
+```
+
+查询将会返回上面一样的结果，但好处是 item 的插入或删除值不会导致结果重复或省略。
+缺点在于，当反向流览结果列表时，情况会变得稍微复杂一些。
+
+当看到了第二页的查询结果后，回到第一页的查询如下：
+
+```Python
+q = (select(Product)
+        .order_by(Product.name.desc())
+        .where(Product.name < 'Aamber Pegasus')
+        .limit(3)
+)
+session.scalars(q).all()
+# [Product(6, "A7000"), Product(11, "6128 Plus"), Product(10, "464 Plus")]
+```
+
+但这个代码看上去就不再像是第一页了。
+`order_by()` 子句必须使用 `desc()` 进行反向排序，以便查询能引用紧邻第二页起始产品 "Aamber Pegasus" 之前的三个项目，而这会导致结果以相反的顺序呈现。
+因此应用会需要在呈现给用户前再次反转结果。
+
+---
+
+这叫做 Keyset Pegination 键集分页，举个例子说明为什么要 `desc()`：
+
+```
+A, B, C, D, E, F, G
+```
+
+- 如果是正向获取下一页，`WHERE Product.name > E` 得到 `F, G`
+- 如果是反向获取上一页，`WHERE Product.name < E` 得到 `A, B, C, D`  
+  因此为了获取紧邻的三项，要使用 `DESC` 逆向排序，得到 `D, C, B`，然后再通过应用层反转得到 `B, C, D`
+
+---
+
+使用哪种分页方式要看具体的情况。
+使用 `where()` 子句的替代实现方案非常稳健，因为它不会因数据变化而重复或跳过任何项目。
+但这会更加复杂，此外，`where()` 方案不允许随机跳转，用户一次只能移动一页。
+
+#### Obtain an Element by its Primary Key
