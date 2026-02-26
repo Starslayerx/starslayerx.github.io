@@ -9,7 +9,21 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="s1">&amp;#39;content&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39;这是 AI 的回复&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;usage&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">100&lt;/span>&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
 &lt;h3 id="1-函数是一等公民-first-class-citizen">1. 函数是一等公民 (First-Class Citizen)&lt;/h3>
-&lt;p>在 Python 中，函数可以像变量一样被传递和赋值。&lt;/p></description></item><item><title>Python Tricks Part 6: Generators</title><link>https://starslayerx.github.io/posts/python-tricks-part-6-generators/</link><pubDate>Fri, 09 Jan 2026 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-tricks-part-6-generators/</guid><description>&lt;p>生成器是 Python 中一种强大的特性，其通常被介绍为一种定义新型迭代模式的便捷方式。
+&lt;p>在 Python 中，函数可以像变量一样被传递和赋值。&lt;/p></description></item><item><title>Python Tricks Part 8: Modules and Packages</title><link>https://starslayerx.github.io/posts/python-tricks-part-8-modules-and-packages/</link><pubDate>Tue, 13 Jan 2026 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-tricks-part-8-modules-and-packages/</guid><description>&lt;p>Python 程序由 modules 和 packages 组成，使用 &lt;code>import&lt;/code> 语句导入。&lt;/p>
+&lt;h2 id="modules-and-the-import-statement">Modules and the import Statement&lt;/h2>
+&lt;p>任何 Python 源文件都可以作为一个模块导入，例如下面 &lt;code>module.py&lt;/code> 代码：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">37&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">func&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s1">&amp;#39;func says that a is &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">class&lt;/span> &lt;span class="nc">SomeClass&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="nf">method&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;method says hi&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;loaded module&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>改文件包含一些常见的编程元素，包括一个全局变量、一个函数、一个类定义 和 最后的语句。
+通过下面方法导入：&lt;/p></description></item><item><title>Python Tricks Part 6: Generators</title><link>https://starslayerx.github.io/posts/python-tricks-part-6-generators/</link><pubDate>Fri, 09 Jan 2026 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-tricks-part-6-generators/</guid><description>&lt;p>生成器是 Python 中一种强大的特性，其通常被介绍为一种定义新型迭代模式的便捷方式。
 但生成器从根本上改变了整个函数执行的模式，本篇文章重点关注：生成器、生成器委托、基于生成器的协程，以及生成器的其他内部机制。&lt;/p></description></item><item><title>Python PEP 683: Immoral Objects</title><link>https://starslayerx.github.io/posts/python-pep-683-immoral-objects/</link><pubDate>Tue, 23 Dec 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-pep-683-immoral-objects/</guid><description>&lt;p>&lt;a href="https://peps.python.org/pep-0683/">PEP 683&lt;/a> 改变了 Python 原有引用计数的一些逻辑，下面简单介绍一下。&lt;/p>
 &lt;p>CPython 的“引用计数可变性”已经成为并发、性能和未来发展的系统性障碍。&lt;/p>
 &lt;hr>

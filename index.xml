@@ -9,7 +9,21 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="s1">&amp;#39;content&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39;这是 AI 的回复&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;usage&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">100&lt;/span>&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
 &lt;h3 id="1-函数是一等公民-first-class-citizen">1. 函数是一等公民 (First-Class Citizen)&lt;/h3>
-&lt;p>在 Python 中，函数可以像变量一样被传递和赋值。&lt;/p></description></item><item><title>CS144 - lab0</title><link>https://starslayerx.github.io/posts/cs144-lab0/</link><pubDate>Sun, 11 Jan 2026 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/cs144-lab0/</guid><description>&lt;p>&lt;a href="https://cs144.github.io/">CS 144: Introduction to Computer Networking, Fall 2025&lt;/a>&lt;/p>
+&lt;p>在 Python 中，函数可以像变量一样被传递和赋值。&lt;/p></description></item><item><title>Python Tricks Part 8: Modules and Packages</title><link>https://starslayerx.github.io/posts/python-tricks-part-8-modules-and-packages/</link><pubDate>Tue, 13 Jan 2026 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-tricks-part-8-modules-and-packages/</guid><description>&lt;p>Python 程序由 modules 和 packages 组成，使用 &lt;code>import&lt;/code> 语句导入。&lt;/p>
+&lt;h2 id="modules-and-the-import-statement">Modules and the import Statement&lt;/h2>
+&lt;p>任何 Python 源文件都可以作为一个模块导入，例如下面 &lt;code>module.py&lt;/code> 代码：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">37&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">func&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s1">&amp;#39;func says that a is &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">class&lt;/span> &lt;span class="nc">SomeClass&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="nf">method&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;method says hi&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;loaded module&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>改文件包含一些常见的编程元素，包括一个全局变量、一个函数、一个类定义 和 最后的语句。
+通过下面方法导入：&lt;/p></description></item><item><title>CS144 - lab0</title><link>https://starslayerx.github.io/posts/cs144-lab0/</link><pubDate>Sun, 11 Jan 2026 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/cs144-lab0/</guid><description>&lt;p>&lt;a href="https://cs144.github.io/">CS 144: Introduction to Computer Networking, Fall 2025&lt;/a>&lt;/p>
 &lt;p>本篇文章对应 &lt;code>check0.pdf&lt;/code> 的内容&lt;/p>
 &lt;h2 id="3-network-by-hand">3 Network by hand&lt;/h2>
 &lt;h3 id="31-fetch-a-web-page">3.1 Fetch a Web page&lt;/h3>
