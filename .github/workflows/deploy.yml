@@ -11,11 +11,15 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v3
+        with:
+          submodules: recursive
+          fetch-depth: 0
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.148.2'
+          hugo-version: '0.154.5'
+          extended: true
 
       - name: Build
         run: hugo --minify

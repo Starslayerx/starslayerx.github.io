@@ -1,3 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Graphics on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/graphics/</link><description>Recent content in Graphics on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Wed, 22 Oct 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/graphics/index.xml" rel="self" type="application/rss+xml"/><item><title>Understanding SVG Paths</title><link>https://starslayerx.github.io/posts/understanding-svg-paths/</link><pubDate>Wed, 22 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/understanding-svg-paths/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Graphics on Starslayerx&#39; Blog</title>
+    <link>http://localhost:1313/tags/graphics/</link>
+    <description>Recent content in Graphics on Starslayerx&#39; Blog</description>
+    <image>
+      <title>Starslayerx&#39; Blog</title>
+      <url>http://localhost:1313/images/og-default.avif</url>
+      <link>http://localhost:1313/images/og-default.avif</link>
+    </image>
+    <generator>Hugo -- 0.154.5</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 22 Oct 2025 08:00:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/graphics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Understanding SVG Paths</title>
+      <link>http://localhost:1313/posts/understanding-svg-paths/</link>
+      <pubDate>Wed, 22 Oct 2025 08:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/understanding-svg-paths/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;如果你曾经看过一个 icon 的 SVG 代码，你可能会注意到他们通常是有一个 &lt;code&gt;&amp;lt;path&amp;gt;&lt;/code&gt; 元素和一个神秘的 &lt;code&gt;d&lt;/code&gt; 属性实现的。
-你可能以为他们不过是设计师最喜欢的矢量图形编辑器的输出，虽然可能是正确的，但有些过度简化了。&lt;/p&gt;</description></item></channel></rss>
+你可能以为他们不过是设计师最喜欢的矢量图形编辑器的输出，虽然可能是正确的，但有些过度简化了。&lt;/p&gt;
+&lt;p&gt;理解这个属性的内部运作机制将是前端技能的一大助力，它让你能够做到以前从未想过的事情，比如制作弯曲的动画。
+这份指南将会谈到 &lt;code&gt;d&lt;/code&gt; 属性，也被称为 &lt;strong&gt;path data&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;a-path-is-a-series-of-commands-路径是一系列命令&#34;&gt;A Path is a Series of Commands 路径是一系列命令&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;d&lt;/code&gt; 属性实际上是一系列命令，告诉浏览器如何绘制 path，如果将属性内容规范一下，将会是下面这样：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;M 12.0 7.2
+C 10.5 5.6 8.1 5.2 6.3 6.7
+C 4.5 8.1 4.2 10.6 5.7 12.4
+L 12.0 18.3
+L 18.3 12.4
+C 19.7 10.6 19.5 8.1 17.7 6.7
+C 15.8 5.2 13.4 5.6 12.0 7.2
+Z
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;为了绘制出 path，浏览器按照顺序执行这些命令，每个命令绘制一小部分。
+所有的 path 命令都遵循同样的语法，单个字母 + 一系列数字，字母代表命令类型，二数字则是命令的参数。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

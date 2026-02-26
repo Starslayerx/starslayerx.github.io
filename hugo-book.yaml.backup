@@ -1,0 +1,100 @@
+baseURL: "https://starslayerx.github.io/"
+languageCode: en-US
+defaultContentLanguage: en
+title: "Starslayerx' Blog"
+theme: "hugo-book"
+
+# Enable emoji support
+enableEmoji: true
+
+# Enable Git info for last modified dates
+enableGitInfo: true
+
+# Keep path case
+disablePathToLower: true
+
+# Permalinks configuration
+permalinks:
+  posts: /posts/:slug/
+  pages: /:slug/
+
+# Pagination
+pagination:
+  pagerSize: 6
+  path: "page"
+
+# Languages
+languages:
+  en:
+    languageCode: en-US
+    languageName: "English"
+    weight: 1
+  zh-cn:
+    languageCode: zh-CN
+    languageName: "简体中文"
+    weight: 2
+
+# Taxonomies
+taxonomies:
+  category: categories
+  tag: tags
+
+# Menu configuration for hugo-book
+menu:
+  after:
+    - name: "GitHub"
+      url: "https://github.com/Starslayerx"
+      weight: 10
+
+# Theme parameters
+params:
+  # Basic site info
+  description: "A personal blog and documentation site"
+  keywords: ["Hugo", "Blog", "Documentation", "Technology", "Programming"]
+
+  # Hugo Book theme settings
+  BookTheme: "auto"  # light, dark, or auto
+  BookToC: true  # Enable table of contents on pages
+  BookSearch: true  # Enable search functionality
+  BookComments: false  # Disable comments by default
+  BookSection: "docs"  # Root section for documentation
+  BookMenuBundle: false
+  BookDateFormat: "January 2, 2006"
+
+  # Repository links (optional, for "Edit this page" links)
+  BookRepo: "https://github.com/Starslayerx"
+  # BookEditPath: "edit/main"  # Uncomment to enable edit links
+
+  # Author info
+  author:
+    name: "Starslayerx"
+    email: "starslayerxleo@gmail.com"
+
+# Markup configuration
+markup:
+  tableOfContents:
+    startLevel: 2
+    endLevel: 4
+    ordered: false
+  goldmark:
+    renderer:
+      unsafe: true  # Enable HTML in markdown
+  highlight:
+    codeFences: true
+    guessSyntax: false
+    lineNos: false
+    lineNumbersInTable: false
+    noClasses: false
+    style: github
+    tabWidth: 2
+
+# Output formats
+outputs:
+  home: ["HTML", "RSS"]
+  section: ["HTML", "RSS"]
+
+# Module configuration
+module:
+  hugoVersion:
+    extended: true
+    min: 0.146.0

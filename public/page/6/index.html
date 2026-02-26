@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head>
+	<meta name="generator" content="Hugo 0.154.5"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Starslayerx&#39; Blog</title>
+<meta name="keywords" content="Blog, Technology, Programming, Hugo, PaperMod">
+<meta name="description" content="A personal blog about technology, programming, and daily notes">
+<meta name="author" content="Starslayerx">
+<link rel="canonical" href="http://localhost:1313/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e&#43;Ge/K3X9WmUVz&#43;1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.svg">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon.svg">
+<link rel="apple-touch-icon" href="http://localhost:1313/favicon.svg">
+<link rel="mask-icon" href="http://localhost:1313/favicon.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/index.xml" title="rss">
+<link rel="alternate" type="application/json" href="http://localhost:1313/index.json" title="json">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/">
+<link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/zh-cn/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="http://localhost:1313/">
+  <meta property="og:site_name" content="Starslayerx&#39; Blog">
+  <meta property="og:title" content="Home">
+  <meta property="og:description" content="A personal blog about technology, programming, and daily notes">
+  <meta property="og:locale" content="en-US">
+  <meta property="og:type" content="website">
+      <meta property="og:image" content="http://localhost:1313/images/og-default.avif">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/images/og-default.avif">
+<meta name="twitter:title" content="Home">
+<meta name="twitter:description" content="A personal blog about technology, programming, and daily notes">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Starslayerx' Blog",
+  "url": "http://localhost:1313/",
+  "description": "A personal blog about technology, programming, and daily notes",
+  "logo": "http://localhost:1313/favicon.svg",
+  "sameAs": [
+      "https://github.com/Starslayerx", "mailto:starslayerxleo@gmail.com", "/index.xml"
+  ]
+}
+</script>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Starslayerx&#39; Blog (Alt + H)">
+                <img src="http://localhost:1313/favicon.svg" alt="" aria-label="logo"
+                    height="35">Starslayerx&#39; Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                    <ul class="lang-switch"><li>|</li>
+                        <li>
+                            <a href="http://localhost:1313/zh-cn/" title="简体中文"
+                                aria-label="简体中文">Zh-Cn</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="Archives">
+                    <span>Archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Docker - Containers
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>像 VMware 或 KVM 这类虚拟化系统, 他们运行在虚拟化层上运行完整的 Linux 内核与操作系统. 这种架构能提供极强的隔离性, 因为每个虚拟机都搭载独立的内核, 这些内核各自运行在硬甲虚拟化层之上的隔离内存空间中.
+而容器技术有着根本性差异, 所有容器共享同一个内核, 工作负载间的隔离性全通过内核机制实现, 这种模式被称为操作系统级虚拟化 operating system virtualization.
+runc/libcontainer 提供了一个很好的定义: A container is a self-contained execution environment that shares the kernel of the host system and is isolated from other containers in the system.
+容器最大的优势就在于性能, 当运行一个进程的时候, 只有小部分的代码在内核中用于管理容器. 如今, 容器几乎在任何地方运行. Docker 和 OCI 镜像提供了生成环境中软件的打包格式, 并为 Kubernetes 和大多数 “serverless” 云技术打下了基础.
+所谓的 serverless 技术并不是真的没有服务器: 它们依赖其他人的服务器来完成工作, 这样应用开发者就无需关心管理硬甲和操作系统了. Creating a Container 创建容器的命令 docker container run 实际上是包装在一起的两条命令. 第一件事是从基本的镜像中创建一个容器, 可以通过 docker container create 命令实现. 第二件事是执行容器, 同样地, 可以通过 docker container start 命令实现.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-09-23 08:00:00 +0800 CST'>September 23, 2025</span>&nbsp;·&nbsp;<span>9 min</span>&nbsp;·&nbsp;<span>1877 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Docker - Containers" href="http://localhost:1313/posts/docker-containers/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">uv - Python package manager
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>这篇文章深入介绍 uv 管理 Python 项目的使用
+Features Python versions uv python install: 安装 Python 版本 uv python list: 查看可用的 Python 版本 uv python find: 查找安装的 Python 版本 uv python pin: 固定当前项目的 Python 版本 uv python uninstall: 卸载一个 Python 版本 Scripts uv run: 运行一个脚本 uv add --script: 为脚本添加一个依赖 uv remove --script: 移除一个依赖 Projects 使用 pyproject.toml 配置项目
+uv init: 创建一个 Python 项目 uv add: 为项目添加依赖 uv remove: 删除项目依赖 uv sync: 同步环境下的依赖 uv lock: 为项目依赖创建一个锁文件 uv run: 在项目环境执行命令 uv tree: 查看项目依赖树 uv build: 将项目构建为分发归档文件 uv publish: 将项目发布到包索引 Tools 允许与安装工具
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-09-22 08:00:00 +0800 CST'>September 22, 2025</span>&nbsp;·&nbsp;<span>11 min</span>&nbsp;·&nbsp;<span>2131 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to uv - Python package manager" href="http://localhost:1313/posts/uv-python-package-manager/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Morden Javascript Tutorial Chapter 2 - Fundamentals: 11~18
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>2.11 Logical operators There are four logical operators in JavaScript: || (ORA), &amp;&amp; (AND), ! (NOT), ?? (Nullish Coalescing 空值合并).
+|| OR result = a || b There are four logical combinations:
+alter( true || true ); // true alert( false || true ); // true alert( true || false ); // true alert( false || false ); // false If an operand is not a boolean it’s converted to be a boolean for the evaluation.
+if (1 || 0) { // works like (true || false) alter(&#39;truthy!&#39;); } OR “||” finds the first truthy value result = value1 || value2 || value3 The OR || operator does the following:
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-09-21 08:00:00 +0800 CST'>September 21, 2025</span>&nbsp;·&nbsp;<span>22 min</span>&nbsp;·&nbsp;<span>4603 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Morden Javascript Tutorial Chapter 2 - Fundamentals: 11~18" href="http://localhost:1313/posts/morden-javascript-tutorial-chapter-2-fundamentals-11~18/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">English for Programmers - 03
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Unit 3. Discussing Code vocabulary - Modifiers When discussing code, modifiers can be extremely useful for making your feedback constructive and precise.
+modifiers: words that change the meaning of a sentence For example, a colleague asks:
+What do you think of the website?
+Response 1: It’s good When I click something it loads very quickly and I can navigate it easyily without any instructions.
+Response 2: It’s good! It’s very responsive and can be navigated intuitively.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-09-20 08:00:00 +0800 CST'>September 20, 2025</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>390 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to English for Programmers - 03" href="http://localhost:1313/posts/english-for-programmers-03/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Redis Bitmap
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Bitmap 位图 Redis 的位图 bitmap 是由多个二进制位组成的数组, 数组中的每个二进制都有与之对应的偏移量(索引), 用户通过这些偏移量可以对位图中指定的一个或多个二进制位进行操作.
+Redis 为位图提供了一系列操作命令, 通过这些命令, 用户可以:
+设置或获取索引位上的二进制值 统计位图中有多少个二进制位被设置成了1 查找位图中, 第一个被设置为指定值的二进制位, 并返回其偏移量 对一个或多个位图执行逻辑并、逻辑或、逻辑异或以及逻辑非运算 将指定类型的整数存储到位图中 SETBIT: 设置二进制位的值 SETBIT bitmap offset value 为位图指定偏移量上的二进制位设置值, 该命令会返回二进制位被设置之前的旧值作为结果.
+当执行 SETBIT 时, 如果位图不存在, 或者位图当前的大小无法满足用户想要执行的设置操作, 那么 Redis 将对被设置的位图进行扩展, 使得位图可以满足用户的设置请求. 由于位图的扩展以字节为单位, 所以扩展后的位图包含的二进制数量可能会比用户要求的稍多一些. 且在扩展的同时, 会将未设置的二进制位初始化为 0.
+与一些可以使用负数的 Redis 命令不同, SETBIT 命令只能使用正数偏移量, 尝试输入负数作为偏移量将引发一个错误
+复杂度: O(1) GETBIT: 获取二进制位的值 GETBIT bitmap offset 与 SETBIT 命令一样, GETBIT 命令也只能接受正数作为偏移量.
+对于偏移量超过位图索引的命令, GETBIT 命令将返回 0 作为结果.
+复杂度: O(1) BITOCUNT: 统计被设置的二进制数量 BITCOUNT key 对于值为 10010100 的位图 bitmap001, 可以通过执行以下命令来统计有多少个二进制位被设置成了1:
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-09-19 08:00:00 +0800 CST'>September 19, 2025</span>&nbsp;·&nbsp;<span>5 min</span>&nbsp;·&nbsp;<span>1009 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Redis Bitmap" href="http://localhost:1313/posts/redis-bitmap/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Redis HyperLogLog
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>之前曾介绍过使用 Redis 集和构建唯一计数器, 并将这个计数器用于计算网站的唯一房客 IP. 虽然使用集和实现唯一计数器可以实现该功能, 但这个方法有一个明显的缺陷: 随着被计数元素的不断增多, 唯一计数器占用的内存也会越来越大; 计数器越多, 他们的体积越大, 这一情况就会越严峻.
+以计算唯一访客 IP 为例:
+存储一个 IPv4 格式的 IP 地址最多需要 15 个字节 根据网站的规模不同, 每天出现的唯一 IP 可能会有数十万、数百万个 为了记录网站在不同时期的访客, 并进行相关的数据分析, 网站可能需要次序地记录每天的唯一访客 IP 数量 综上, 如果一个网站想要长时间记录访客 IP, 就必须创建多个唯一计数器. 如果访客比较多, 那么它创建的每个唯一计数器都将包含大量元素, 并因此占用相当一部分内存.
+为了高效解决计算机唯一访客 IP 数量这类问题, 其中一种方法就是 HyperLogLog.
+HyperLogLog 简介 HyperLogLog 是一个专门为了计算集和的基数而创建的概率算法, 对于一个给定的集和, HyperLogLog 可以计算出这个集合的近似基数: 近似基数并非集和的实际基数, 它可能会比实际的基数大一点或者小一点, 但误差会在一个合理范围内. 因此, 那些不需要知道实际基数的程序就可以把这个近似基数当作集合的基数来使用.
+HyperLogLog 的优点在于计算近似基础所需的内存并不会因为集和的大小而改变, 无论集和包含元素有多少个, HyperLogLog 进行计算所需的内存总是固定的, 无论集和包含元素多少个, HyperLogLog 进行计算所需的内存总是固定的, 并且是非常少的.
+PFADD: 对集和元素进行计数 PFADD hyperloglog element [element ...] 根据给定元素是否已经进行过计数, PFADD 命令可能返回0, 也可能返回1:
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-09-18 08:00:00 +0800 CST'>September 18, 2025</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>456 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Redis HyperLogLog" href="http://localhost:1313/posts/redis-hyperloglog/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Morden Javascript Tutorial Chapter 2 - Fundamentals: 06~10
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>2.6 Interaction: alert, prompt, confirm Will introduce alert, prompt and confirm in this chapter.
+alert It shows a message and waits for the user to press “OK”.
+alert(&#34;Hello&#34;); prompt This function prompt accepts two arguments
+result = prompt(title, [default]); It shows a modal window with a text message, an input field for the visitor, and the buttons OK/Cancel.
+title: The text to show the visitor. default: An optional second parameter, the initial value for the input field.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-09-17 08:00:00 +0800 CST'>September 17, 2025</span>&nbsp;·&nbsp;<span>15 min</span>&nbsp;·&nbsp;<span>3118 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Morden Javascript Tutorial Chapter 2 - Fundamentals: 06~10" href="http://localhost:1313/posts/morden-javascript-tutorial-chapter-2-fundamentals-06~10/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Morden Javascript Tutorial Chapter 2 - Fundamentals: 01~05
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>2.1 Hellow Wrold Firtly, let’s see how to attach a script to a webpage. For server-side environments (like Node.js), you can execute this script with a command like node my.js
+The “script” tag JavaScript programs can be inserted almost anywhere into an HTML docuemnt using the &lt;script&gt; tag
+&lt;!DOCTYPE html&gt; &lt;html&gt; &lt;body&gt; &lt;p&gt;Before this script...&lt;/p&gt; &lt;script&gt; alert(&#34;Hello, World!&#34;); &lt;/script&gt; &lt;p&gt;...After the script...&lt;/p&gt; &lt;/body&gt; &lt;/html&gt; The &lt;script&gt; tag contains JavaScript code which is automatically executed when the browser process the tag.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-09-16 08:00:00 +0800 CST'>September 16, 2025</span>&nbsp;·&nbsp;<span>16 min</span>&nbsp;·&nbsp;<span>3234 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Morden Javascript Tutorial Chapter 2 - Fundamentals: 01~05" href="http://localhost:1313/posts/morden-javascript-tutorial-chapter-2-fundamentals-01~05/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Morden Javascript Tutorial Chapter 1 - An Introduction
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>An Introduction to JavaScript Let’s see what’s so special about JavaScript, what we can achieve with it, and what other technologies play well with it.
+Why is it call JavaScript? JavaScript initially called “Live Script”. But Java was popular at that time, so it was decided that positioning a new language as a “younger brother” of Java would help. But as it evolved, JavaScript became a fully independent language with its won specification called ECMAScript, and now it has no relation to Java at all.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-09-15 08:00:00 +0800 CST'>September 15, 2025</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>622 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Morden Javascript Tutorial Chapter 1 - An Introduction" href="http://localhost:1313/posts/morden-javascript-tutorial-chapter-1-an-introduction/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">English for Programmers - 02
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Unit 2. Code Review &amp; Testing this unit will cover:
+Differentiate between various testing strategies Write professional guidelines Sound more natural and smooth when asking questions Use colloquial language in speaking to give and accept feedback vocabulary - None Pharses 词汇: 名词短语 Testing 测试是软件开发中的重要短语, 用于检查软件是否达到特定的标准和用户需求.
+使用这些名词语句来证明英语名词的专业性:
+None Desciption Example time box an allocated period of time for completing a task - allcate a 2-hour time box for regression testing stress test a method to assess a system’s performance under heavy loads - simulate 1000 users accessing the login page at the same time sanity check 健全性测试 a quick check to verify that something is as expected - are the units of the output value correct? ad hoc test 临时测试 a test performed without predefined test cases or plans - input unexpected characters into a search bar edge case a problem that only happens in extreme situations - upload an empty, 0-byte file 一些名词短语也可以当作动词使用:
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-09-12 08:00:00 +0800 CST'>September 12, 2025</span>&nbsp;·&nbsp;<span>4 min</span>&nbsp;·&nbsp;<span>777 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to English for Programmers - 02" href="http://localhost:1313/posts/english-for-programmers-02/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="http://localhost:1313/page/5/">
+      «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="http://localhost:1313/page/7/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Starslayerx&#39; Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

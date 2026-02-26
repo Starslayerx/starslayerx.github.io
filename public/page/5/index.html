@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head>
+	<meta name="generator" content="Hugo 0.154.5"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Starslayerx&#39; Blog</title>
+<meta name="keywords" content="Blog, Technology, Programming, Hugo, PaperMod">
+<meta name="description" content="A personal blog about technology, programming, and daily notes">
+<meta name="author" content="Starslayerx">
+<link rel="canonical" href="http://localhost:1313/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e&#43;Ge/K3X9WmUVz&#43;1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.svg">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon.svg">
+<link rel="apple-touch-icon" href="http://localhost:1313/favicon.svg">
+<link rel="mask-icon" href="http://localhost:1313/favicon.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/index.xml" title="rss">
+<link rel="alternate" type="application/json" href="http://localhost:1313/index.json" title="json">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/">
+<link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/zh-cn/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="http://localhost:1313/">
+  <meta property="og:site_name" content="Starslayerx&#39; Blog">
+  <meta property="og:title" content="Home">
+  <meta property="og:description" content="A personal blog about technology, programming, and daily notes">
+  <meta property="og:locale" content="en-US">
+  <meta property="og:type" content="website">
+      <meta property="og:image" content="http://localhost:1313/images/og-default.avif">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/images/og-default.avif">
+<meta name="twitter:title" content="Home">
+<meta name="twitter:description" content="A personal blog about technology, programming, and daily notes">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Starslayerx' Blog",
+  "url": "http://localhost:1313/",
+  "description": "A personal blog about technology, programming, and daily notes",
+  "logo": "http://localhost:1313/favicon.svg",
+  "sameAs": [
+      "https://github.com/Starslayerx", "mailto:starslayerxleo@gmail.com", "/index.xml"
+  ]
+}
+</script>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Starslayerx&#39; Blog (Alt + H)">
+                <img src="http://localhost:1313/favicon.svg" alt="" aria-label="logo"
+                    height="35">Starslayerx&#39; Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                    <ul class="lang-switch"><li>|</li>
+                        <li>
+                            <a href="http://localhost:1313/zh-cn/" title="简体中文"
+                                aria-label="简体中文">Zh-Cn</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="Archives">
+                    <span>Archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">PostgreSQL 01: Introduction
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>PostgreSQL 的安装与配置 安装 brew 安装后 brew services start postgresql@17 可以启动服务，使用 brew services list 查看服务状态。 也可以通过设定环境变量 export PGDATA=/opt/homebrew/var/postgresql@17 后使用命令 initdb 创建数据库簇，然后 pg_ctl start -D $PGDATA 启动。 停止命令为 pg_ctl stop -D $PGDATA [-m SHOWDOWN-MODE]，其中 -m 是服务器停止方法：
+smart: 等所有连接终止后，关闭数据库。如果客户端连不上，则无法关闭数据库。
+fast: 快速关闭数据库，断开客户端连接，让已有的事务回滚，然后关闭数据库。相当于 Oracle 关闭时的 immediate 模式。
+immediate: 立即关闭数据库，相当于数据库进程立即停止，直接退出，下次启动数据库需要恢复。相当于 Oracle 关闭时的 abort 模式。
+PostgreSQL 数据库中的 immediate 关机模式相当于 Oracle 数据库中的 abort 关机模式，而 Oracle 中的 immediate 关机模式实际上对应的是 PostgreSQL 中的 fast 模式。
+配置 PostgreSQL 数据库的配置主要通过修改数据目录下的 postgresql.conf 和 pg_hba.conf 文件来实现的。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-11-05 08:00:00 +0800 CST'>November 5, 2025</span>&nbsp;·&nbsp;<span>1 min</span>&nbsp;·&nbsp;<span>198 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to PostgreSQL 01: Introduction" href="http://localhost:1313/posts/postgresql-01-introduction/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Python Standrad Library - Python Runtime Services - sys
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>sys - System-specific pararmeters and functions 该模块提供解释器使用或报错的变量的访问，以及一些和解释器强互动的函数。
+sys.abiflags
+Python 解释器的 ABI (Application Binary Interface) 标志字符串，用于表示 Python 解释器的编译配置。
+API 是应用程序二进制接口，定义了程序在二进制级别如何交互。
+sys.addaudithook(hook)
+将可调用的对象 hook 附加到当前（子）解释器的审计钩子 (Audit Hook) 列表中，用于监控和记录 Python 运行时的敏感操作。
+这里的 hook 是一个回调函数 (Callback Function): 把一个函数作为参数传递给另一个函数，并在合适的时机”回头调用“它。
+sys.argv
+一个列表，其中包含了被传递给 Python 脚本的命令行参数。 argv[0] 为脚本名称，如果通过命令参数 -c 执行，则 argv[0] 会被设置为字符串 -c。 如果没有脚本名，则为空字符串。
+sys.audit(event, *args)
+引发一个审计事件并触发任何激活的审计钩子。
+sys.base_exex_prefix
+sys.base_prefix
+属性 系统 Python 虚拟环境 说明 sys.prefix /usr/local /path/to/venv 当前环境的纯 Python 文件路径 sys.base_prefix /usr/local /usr/local 原始安装的纯 Python 文件路径 sys.exec_prefix /usr/local /path/to/venv 当前环境的二进制文件路径 sys.base_exec_prefix /usr/local /usr/local 原始安装的二进制文件路径 sys.byteorder
+本地字节顺序的指示符，在大端序（最高有效位有限）操作系统上值为 &#39;big&#39;，小端序操作系统为 &#39;little&#39;
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-10-30 08:00:00 +0800 CST'>October 30, 2025</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>365 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Python Standrad Library - Python Runtime Services - sys" href="http://localhost:1313/posts/python-standrad-library-python-runtime-services-sys/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Fastapi Lifespan Events
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Lifespan Events 生命周期事件 通过生命周期事件可以定义在应用开启之前需要执行的代码，这意味着这些代码会在开始接收外部请求之前被执行一次。 同样地，也可以定义应用在关闭的时候定义需要执行的代码，在尽力处理完所有请求后，该代码会被执行一次。
+这对于设置需要在整个 app 的请求间共享的资源时非常有用，或者是需要进行清理工作的时候。 例如，一个数据库连接池，或者加载一个共享的机器学习模型。
+Use Case 使用示例 下面通过一个例子说明如何使用。
+假如你有一个机器学习模型，并且需要让其处理请求，由于请求都共享同一个模型，因此不是一个请求对应一个模型，或一个用户一个模型。 假设模型加载需要一定的时间，因为要从磁盘中读取大量的数据，因此不能每个请求都去加载一次。 你可以在顶层的模块文件中定义加载，但这意味着当进行简单的自动化测试的时候，也会加载该模型，这样就会很慢。
+这就是需要解决的问题，需要在请求响应之前加载模型，也不是在代码被加载的时候加载模型。
+Lifespan 生命周期 可以通过在 FastAPI app 中使用 lifespan 参数来定义启动和关闭逻辑，以及一个 “context manager” (上下文管理器)。
+通过下面这种方法创建一个含 yield 的 function
+from contextlib import asynccontextmanager from fastapi impor FastAPI def fake_answer_to_everything_ml_model(x: float): return x * 42 ml_models = {} @asynccontextmanager async def lifespan(app: FastAPI): # Load the ML model ml_models[&#34;answer_to_everything&#34;] = fake_answer_to_everything_ml_model yield # Clean up the ML models and release the resources ml_models.clear() app = FastAPI(lifespan=lifespan) @app.get(&#34;/predict&#34;) async def predict(x: float): result = ml_models[&#34;answer_to_everything&#34;](x) return {&#34;result&#34;: result} 这里在生成器 yield 之前将模拟的昂贵函数放入机器学习字典中。 这段代码将在应用程序接收请求之前执行，即启动阶段。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-10-24 08:00:00 +0800 CST'>October 24, 2025</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>245 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Fastapi Lifespan Events" href="http://localhost:1313/posts/fastapi-lifespan-events/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Fastapi Straming Response
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p></p>
+  </div>
+  <footer class="entry-footer"><span title='2025-10-23 08:00:00 +0800 CST'>October 23, 2025</span>&nbsp;·&nbsp;<span>0 min</span>&nbsp;·&nbsp;<span>0 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Fastapi Straming Response" href="http://localhost:1313/posts/fastapi-straming-response/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Morden Javascript Tutorial Chapter 3.1 - Code Quailty
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>3.1 Debugging in the browser Debugging is the process of finding and fixing errors with a script. All morden browsers and most other environments support debugging tools - a special UI in developer tools that makes debugging much easier. It also allows to trace the code step by step to see what exactly is going on.
+The “Sources” panel The Sources panel has 3 parts:
+The File Navigator pane lists HTML, Javascript, CSS and other files, including images that are attatched to the page. Chrome extensions may appera here too. The Code Editor pane shows the source code. The Javascript Debugging pane is for debugging, we’ll explore it soon. Console 按 Esc 可以打开控制台，在其中可以输入命令，按回车执行。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-10-23 08:00:00 +0800 CST'>October 23, 2025</span>&nbsp;·&nbsp;<span>1 min</span>&nbsp;·&nbsp;<span>189 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Morden Javascript Tutorial Chapter 3.1 - Code Quailty" href="http://localhost:1313/posts/morden-javascript-tutorial-chapter-3.1-code-quailty/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Understanding SVG Paths
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Overview 如果你曾经看过一个 icon 的 SVG 代码，你可能会注意到他们通常是有一个 &lt;path&gt; 元素和一个神秘的 d 属性实现的。 你可能以为他们不过是设计师最喜欢的矢量图形编辑器的输出，虽然可能是正确的，但有些过度简化了。
+理解这个属性的内部运作机制将是前端技能的一大助力，它让你能够做到以前从未想过的事情，比如制作弯曲的动画。 这份指南将会谈到 d 属性，也被称为 path data。
+A Path is a Series of Commands 路径是一系列命令 d 属性实际上是一系列命令，告诉浏览器如何绘制 path，如果将属性内容规范一下，将会是下面这样：
+M 12.0 7.2 C 10.5 5.6 8.1 5.2 6.3 6.7 C 4.5 8.1 4.2 10.6 5.7 12.4 L 12.0 18.3 L 18.3 12.4 C 19.7 10.6 19.5 8.1 17.7 6.7 C 15.8 5.2 13.4 5.6 12.0 7.2 Z 为了绘制出 path，浏览器按照顺序执行这些命令，每个命令绘制一小部分。 所有的 path 命令都遵循同样的语法，单个字母 &#43; 一系列数字，字母代表命令类型，二数字则是命令的参数。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-10-22 08:00:00 +0800 CST'>October 22, 2025</span>&nbsp;·&nbsp;<span>8 min</span>&nbsp;·&nbsp;<span>1618 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Understanding SVG Paths" href="http://localhost:1313/posts/understanding-svg-paths/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Fastapi CORS
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>CORS 或 “Corss-Origin Resource Sharing” 即“跨域资源共享”，指的当前端在浏览器中运行的 JavaScript 代码与后端进行通信，而后端与前端“源”不同的情况。
+Origin 源</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-10-11 08:00:00 +0800 CST'>October 11, 2025</span>&nbsp;·&nbsp;<span>1 min</span>&nbsp;·&nbsp;<span>10 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Fastapi CORS" href="http://localhost:1313/posts/fastapi-cors/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Fastapi Background Tasks
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Background Tasks 后台任务 你可以定义一个在返回响应之后运行的后台任务。 这对请求之后执行一些操作十分有用，客户端无需一直等待操作任务完成再接收响应。
+这包含一些例子：
+执行操作后发送电子邮件
+由于连接邮件服务器并发送邮件一般会比较“慢”（几秒钟），你可以立刻返回响应并在后台发送邮件请求。 处理数据
+例如，你收到了一个文件需要缓慢处理，你可以返回一个 “Accepted” 响应 (HTTP 202) 并在后台处理文件。 Using Background Tasks 使用后台任务 首先要导入 BackgroundTasks 并在执行函数中定义一个路径参数，使用 BackgroundTasks 类型声明。
+from fastapi import BackgroundTasks, FastAPI app = FastAPI() def write_notification(email: str, message=&#34;&#34;): with open(&#34;log.txt&#34;, mode=&#34;w&#34;) as email_file: content = f&#34;notification for {email}: {message}&#34; email_file.write(content) @app.post(&#34;/send-notification/{email}&#34;) async def send_notification(email: str, backgroud_tasks: Background(Tasks): # Add parameter here background_tasks.add_task(write_notification, email, message=&#34;some notification&#34;) # add backgroud task here return {&#34;message&#34;: &#34;Notification sent in the background&#34;} Create a task function 创建任务函数 创建一个函数放到后台运行，只是一个接收参数的基本函数，可以是 async def 或者就普通的 def 函数，FastAPI 会正确的处理它。
+在这个例子中的任务函数将会编写文件，并且写入操作不使用 async 或 await 故使用 def 定义了一个基本的函数。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-10-10 08:00:00 +0800 CST'>October 10, 2025</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>261 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Fastapi Background Tasks" href="http://localhost:1313/posts/fastapi-background-tasks/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Fastapi Middleware
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Middleware 你可以添加中间件到 FastAPI 应用中。
+“中间件” 是一个函数，它在每个请求被特定路径操作之前对其进行处理，同时在每个响应返回之前也对其进行处理。
+在到达应用程序之前处理请求 可以在请求中做一些事情，或运行任何需要的代码 将处理后的请求传递给应用程序 之后处理应用程序返回的响应 可以对响应做一些事情，或运行任何需要的代码 然后返回响应 Create a Middleware 创建一个中间件 想要创建一个中间件，你可以在函数上面使用装饰器 @app.middleware(&#34;http&#34;)，该函数接受：
+request 请求 一个函数 call_next 并将会接收 request 作为一个参数 该函数会将 request 传递给对应的路径操作 然后返回对应路由操作生成的 response 你可以修改或者直接返回 response import time from fastapi import FastAPI, Request app = FastAPI() @app.middleware(&#34;http&#34;) async def add_process_time_header(request: Request, call_next): ... TIP
+自定义专属 headers 可以使用 X-prefix 来添加。
+但如果你有一个自定义的 header 并想要客户端能够看到这些信息，你需要使用 Starlette’s CORS docs 中的参数参数 expose_headers 将其加入你的 CORS 设置里 (CORS (Corss-Origin Resource Sharing))。
+Before and after the response 在响应前后 你也可以在 request 前后运行代码，也可以在 response 前后运行代码。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-10-09 08:00:00 +0800 CST'>October 9, 2025</span>&nbsp;·&nbsp;<span>1 min</span>&nbsp;·&nbsp;<span>164 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Fastapi Middleware" href="http://localhost:1313/posts/fastapi-middleware/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Python Standrad Library - File and Directory Access - pathlib
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>pathlib - Object-oriented filesystem paths 此模块提供表示文件系统路径的类，其语义适用于不同的操作系统。 路径类分为：
+用于纯计算无 I/O 的 pure paths 继承 pure paths 但是有 I/O 操作的 concrete paths 基本使用 导入 Path
+from pathlib import Path p = Path(&#39;.&#39;) 列出所有子目录
+[x for x in p.iterdir() if x.is_dir()] 列出所有 py 源码文件
+list(p.glob(&#39;**/*.py&#39;)) 在目录树中移动
+p = Path(&#39;/etc&#39;) q = p / &#39;init.d&#39; / &#39;reboot&#39; # .resolve() 方法会解析所有符号链接，返回文件绝对路径 # mac os 中的 /etc 实际上是一个符号链接，指向 /private/etc q.resolve() 查询文件路径
+q.exists() # 文件是否存在 q.is_dir() # 是否为目录 打开一个文件
+q = Path(&#39;.&#39;) / &#39;file.py&#39; with q.open() as f: # 读取第一行内容 f.readline() Pure paths 纯路径 Pure path 对象提供路径处理操作，这些操作无需真的访问操作系统。 有三种方法来操作这些类，也被称为 flavours (风格)：
+class pathlib.PurePath(*pathsegemnts)
+为一个通用的类，代表当前系统的路径风格
+&gt;&gt;&gt; PurePath(&#39;setup.py&#39;) PurePosixPath(&#39;setup.py&#39;) pathsegments 的每个元素即可以是代表一个路径的字符串，也可以是实现了 os.PathLike 接口的对象，其中 fspath() 方法返回一个字符串，例如另一个路径对象：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-10-03 08:00:00 +0800 CST'>October 3, 2025</span>&nbsp;·&nbsp;<span>9 min</span>&nbsp;·&nbsp;<span>1706 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Python Standrad Library - File and Directory Access - pathlib" href="http://localhost:1313/posts/python-standrad-library-file-and-directory-access-pathlib/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="http://localhost:1313/page/4/">
+      «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="http://localhost:1313/page/6/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Starslayerx&#39; Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

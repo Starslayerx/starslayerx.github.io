@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>FastAPI | Starslayerx&#39; Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="A personal blog about technology, programming, and daily notes">
+<meta name="author" content="Starslayerx">
+<link rel="canonical" href="http://localhost:1313/tags/fastapi/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e&#43;Ge/K3X9WmUVz&#43;1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.svg">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon.svg">
+<link rel="apple-touch-icon" href="http://localhost:1313/favicon.svg">
+<link rel="mask-icon" href="http://localhost:1313/favicon.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/fastapi/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/tags/fastapi/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="http://localhost:1313/tags/fastapi/">
+  <meta property="og:site_name" content="Starslayerx&#39; Blog">
+  <meta property="og:title" content="FastAPI">
+  <meta property="og:description" content="A personal blog about technology, programming, and daily notes">
+  <meta property="og:locale" content="en-US">
+  <meta property="og:type" content="website">
+      <meta property="og:image" content="http://localhost:1313/images/og-default.avif">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/images/og-default.avif">
+<meta name="twitter:title" content="FastAPI">
+<meta name="twitter:description" content="A personal blog about technology, programming, and daily notes">
+
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Starslayerx&#39; Blog (Alt + H)">
+                <img src="http://localhost:1313/favicon.svg" alt="" aria-label="logo"
+                    height="35">Starslayerx&#39; Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                    <ul class="lang-switch"><li>|</li>
+                        <li>
+                            <a href="http://localhost:1313/zh-cn/" title="简体中文"
+                                aria-label="简体中文">Zh-Cn</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="Archives">
+                    <span>Archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/tags/">Tags</a></div>
+  <h1>
+    FastAPI
+    <a href="/tags/fastapi/index.xml" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">FastAPI Parameters and Validations
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>这篇文章介绍 FastAPI 中的参数验证功能
+Query Parameters and String Validations FastAPI 允许为参数声明额外的信息和验证规则
+from fastapi import FastAPI app = FastAPI() @app.get(&#34;/items/&#34;) async def read_items(q: str | None = None): results = {&#34;items&#34;: [{&#34;item_id&#34;: &#34;Foo&#34;}, {&#34;item_id&#34;: &#34;Bar&#34;}]} if q: results.update({&#34;q&#34;: q}) return results q 是类型为 str | None 的查询参数, 这意味着它可以是字符串, 也可以是 None. 其默认值是 None, 因此 FastAPI 会识别它为“可选参数”
+FastAPI 通过 = None 的默认值知道该参数是非必填的
+使用 str | None 还能帮助编辑器提供更好的类型提示和错误检测
+Additional validation 额外验证 即使 q 是可选的, 但仍然可以设置条件: 如果提供了 q, 则长度不能超过50个字符
+使用 Query 和 Annotated 来实现
+from typing import Annotated from fastapi import FastAPI, Query app = FastAPI() @app.get(&#34;/items/&#34;) async def read_items(q: Annotated[str | None, Query(max_length=50)] = None): results = {&#34;items&#34;: [{&#34;item_id&#34;: &#34;Foo&#34;}, {&#34;item_id&#34;: &#34;Bar&#34;}]} if q: results.update({&#34;q&#34;: q}) return results 使用 Annotated 包装后, 就可以传递额外的元数据(Query(max_length=5)), 用于校验或者文档
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-07 08:00:00 +0800 CST'>August 7, 2025</span>&nbsp;·&nbsp;<span>4 min</span>&nbsp;·&nbsp;<span>779 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to FastAPI Parameters and Validations" href="http://localhost:1313/posts/fastapi-parameters-and-validations/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">FastAPI Parameters
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>FastAPI 是一个现代、快速（高性能）的 Python Web 框架, 它自动处理参数的解析、验证和文档生成
+本文将介绍 FastAPI 中三类最常用的参数: 路径参数 (Path Parameters)、查询参数 (Query Parameters) 和 请求体(Request Body) 的用法与原理
+1. Path Parameters 路径参数 路径参数是 URL 路径中的动态部分, 使用 {} 包裹表示
+from fastapi import FastAPI app = FastAPI() @app.get(&#34;/items/{item_id}&#34;) async def read_item(item_id: str): return {&#34;item_id&#34;: item_id} 访问 /items/foo 返回:
+{&#34;item_id&#34;: &#34;foo&#34;} Data conversion &amp; validation 类型声明与自动转换 可以为路径参数声明类型, FastAPI 会自动解析并验证:
+@app.get(&#34;/items/{item_id}&#34;) async def read_item(item_id: int): return {&#34;item_id&#34;: item_id} 访问 /items/3, item_id 会被转换为 int 类型
+Routing orders 路由匹配顺序 路径匹配按声明顺序执行, 例如
+@app.get(&#34;/users/me&#34;) async def read_user_me(): return {&#34;user_id&#34;: &#34;current_user&#34;} @app.get(&#34;/users/{user_id}&#34;) async def read_user(user_id: str): return {&#34;user_id&#34;: user_id} 必须先声明 /users/me, 否则会被 /users/{user_id} 捕获
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-06 08:00:00 +0800 CST'>August 6, 2025</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>525 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to FastAPI Parameters" href="http://localhost:1313/posts/fastapi-parameters/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">How FastAPI Works
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>FastAPI 的工作原理: 从 routing 到 lifecycle 以及在现实中的使用
+FastAPI FastAPI 是一个现代的 Python Web 框架, 注重高性能和开发效率. 旨在帮助开发者编写结构清晰、可靠的API, 同时尽量减少样板代码 (boilerplate)
+其由以下两个库驱动:
+Starlette: 负责 Web 服务器逻辑、路由、中间件和异步能力 Pydantic: 基于 Python 类型提示, 处理数据验证、解析和序列化 此外, Fastapi 还有输入验证、基于 Swagger UI 的自动文档生成和代码清晰化的基础
+API 请求周期 Fastapi 的请求生命周期如下
+客户端请求 (Client Request) ↓ FastAPI App ↓ 中间件（Middleware） ↓ 路由匹配 (Route Matching) ↓ 依赖注入（Dependency Injection） ↓ 输入验证 (Input Validation) ↓ 端点函数 (Endpoint) ↓ 响应序列化 (Response Serialization) ↓ 客户端响应 (Client Response) 请求首先进入 FastAPI 应用 (本质就是一个 Starlette 应用) 所有中间件优先执行 (如: 日志、错误处理、CORS等) 路由器检查路径和方法, 找到对应的处理函数 FastAPI 使用Depends解析依赖 使用 Pydantic 自动解析并验证输入数据 执行端点函数, 参数验证完毕 返回结果被序列化为合适的响应格式 (JSON) 响应返回给客户端 路由 Router 在应用对象上定义
+适合小项目或原型验证
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-03 08:30:00 +0800 CST'>August 3, 2025</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>322 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to How FastAPI Works" href="http://localhost:1313/posts/how-fastapi-works/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="http://localhost:1313/tags/fastapi/">
+      «&nbsp;Prev&nbsp;
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Starslayerx&#39; Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

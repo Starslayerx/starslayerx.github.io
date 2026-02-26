@@ -7,3 +7,9 @@
 [submodule "themes/hugo-narrow"]
 	path = themes/hugo-narrow
 	url = https://github.com/tom2almighty/hugo-narrow.git
+[submodule "themes/hugo-book"]
+	path = themes/hugo-book
+	url = https://github.com/alex-shpak/hugo-book.git
+[submodule "themes/PaperMod"]
+	path = themes/PaperMod
+	url = https://github.com/adityatelange/hugo-PaperMod.git

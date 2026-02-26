@@ -1,19 +1,320 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Redis on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/redis/</link><description>Recent content in Redis on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Fri, 19 Sep 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/redis/index.xml" rel="self" type="application/rss+xml"/><item><title>Redis Bitmap</title><link>https://starslayerx.github.io/posts/redis-bitmap/</link><pubDate>Fri, 19 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-bitmap/</guid><description>&lt;h2 id="bitmap-位图"&gt;Bitmap 位图&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Redis on Starslayerx&#39; Blog</title>
+    <link>http://localhost:1313/tags/redis/</link>
+    <description>Recent content in Redis on Starslayerx&#39; Blog</description>
+    <image>
+      <title>Starslayerx&#39; Blog</title>
+      <url>http://localhost:1313/images/og-default.avif</url>
+      <link>http://localhost:1313/images/og-default.avif</link>
+    </image>
+    <generator>Hugo -- 0.154.5</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 19 Sep 2025 08:00:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/redis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redis Bitmap</title>
+      <link>http://localhost:1313/posts/redis-bitmap/</link>
+      <pubDate>Fri, 19 Sep 2025 08:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/redis-bitmap/</guid>
+      <description>&lt;h2 id=&#34;bitmap-位图&#34;&gt;Bitmap 位图&lt;/h2&gt;
 &lt;p&gt;Redis 的位图 bitmap 是由多个二进制位组成的数组,
 数组中的每个二进制都有与之对应的偏移量(索引),
-用户通过这些偏移量可以对位图中指定的一个或多个二进制位进行操作.&lt;/p&gt;</description></item><item><title>Redis HyperLogLog</title><link>https://starslayerx.github.io/posts/redis-hyperloglog/</link><pubDate>Thu, 18 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-hyperloglog/</guid><description>&lt;p&gt;之前曾介绍过使用 Redis 集和构建唯一计数器, 并将这个计数器用于计算网站的唯一房客 IP.
+用户通过这些偏移量可以对位图中指定的一个或多个二进制位进行操作.&lt;/p&gt;
+&lt;p&gt;Redis 为位图提供了一系列操作命令, 通过这些命令, 用户可以:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;设置或获取索引位上的二进制值&lt;/li&gt;
+&lt;li&gt;统计位图中有多少个二进制位被设置成了1&lt;/li&gt;
+&lt;li&gt;查找位图中, 第一个被设置为指定值的二进制位, 并返回其偏移量&lt;/li&gt;
+&lt;li&gt;对一个或多个位图执行逻辑并、逻辑或、逻辑异或以及逻辑非运算&lt;/li&gt;
+&lt;li&gt;将指定类型的整数存储到位图中&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;setbit-设置二进制位的值&#34;&gt;SETBIT: 设置二进制位的值&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-Redis&#34; data-lang=&#34;Redis&#34;&gt;SETBIT bitmap offset value
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;为位图指定偏移量上的二进制位设置值, 该命令会返回二进制位被设置之前的旧值作为结果.&lt;/p&gt;
+&lt;p&gt;当执行 SETBIT 时, 如果位图不存在, 或者位图当前的大小无法满足用户想要执行的设置操作, 那么 Redis 将对被设置的位图进行扩展, 使得位图可以满足用户的设置请求. 由于位图的扩展以字节为单位, 所以扩展后的位图包含的二进制数量可能会比用户要求的稍多一些. 且在扩展的同时, 会将未设置的二进制位初始化为 0.&lt;/p&gt;
+&lt;p&gt;与一些可以使用负数的 Redis 命令不同, SETBIT 命令只能使用正数偏移量, 尝试输入负数作为偏移量将引发一个错误&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;复杂度: O(1)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;getbit-获取二进制位的值&#34;&gt;GETBIT: 获取二进制位的值&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-Redis&#34; data-lang=&#34;Redis&#34;&gt;GETBIT bitmap offset
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;与 SETBIT 命令一样, GETBIT 命令也只能接受正数作为偏移量.&lt;br&gt;
+对于偏移量超过位图索引的命令, GETBIT 命令将返回 0 作为结果.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;复杂度: O(1)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;bitocunt-统计被设置的二进制数量&#34;&gt;BITOCUNT: 统计被设置的二进制数量&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-Redis&#34; data-lang=&#34;Redis&#34;&gt;BITCOUNT key
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;对于值为 10010100 的位图 bitmap001, 可以通过执行以下命令来统计有多少个二进制位被设置成了1:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Redis HyperLogLog</title>
+      <link>http://localhost:1313/posts/redis-hyperloglog/</link>
+      <pubDate>Thu, 18 Sep 2025 08:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/redis-hyperloglog/</guid>
+      <description>&lt;p&gt;之前曾介绍过使用 Redis 集和构建唯一计数器, 并将这个计数器用于计算网站的唯一房客 IP.
 虽然使用集和实现唯一计数器可以实现该功能, 但这个方法有一个明显的缺陷:
-随着被计数元素的不断增多, 唯一计数器占用的内存也会越来越大; 计数器越多, 他们的体积越大, 这一情况就会越严峻.&lt;/p&gt;</description></item><item><title>Redis Ordered Set</title><link>https://starslayerx.github.io/posts/redis-ordered-set/</link><pubDate>Sat, 30 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-ordered-set/</guid><description>&lt;p&gt;Redis 的有序集和(ordered set)同时具有&amp;quot;有序&amp;quot;和&amp;quot;集和&amp;quot;两种性质, 这种结构中每个元素都由一个成员和一个与成员相关联的分值组成, 其中成员与字符串方式存储, 而分值以64位双精度浮点数格式存储.&lt;/p&gt;</description></item><item><title>Redis Set</title><link>https://starslayerx.github.io/posts/redis-set/</link><pubDate>Tue, 26 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-set/</guid><description>&lt;p&gt;Redis 的集和 set 键允许用户将任意多个不同的元素存储到集和中, 既可以是文本数据, 也可以是二进制数据. 其与列表有以下两个明显的区别:&lt;/p&gt;
+随着被计数元素的不断增多, 唯一计数器占用的内存也会越来越大; 计数器越多, 他们的体积越大, 这一情况就会越严峻.&lt;/p&gt;
+&lt;p&gt;以计算唯一访客 IP 为例:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;存储一个 IPv4 格式的 IP 地址最多需要 15 个字节&lt;/li&gt;
+&lt;li&gt;根据网站的规模不同, 每天出现的唯一 IP 可能会有数十万、数百万个&lt;/li&gt;
+&lt;li&gt;为了记录网站在不同时期的访客, 并进行相关的数据分析, 网站可能需要次序地记录每天的唯一访客 IP 数量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;综上, 如果一个网站想要长时间记录访客 IP, 就必须创建多个唯一计数器. 如果访客比较多, 那么它创建的每个唯一计数器都将包含大量元素, 并因此占用相当一部分内存.&lt;/p&gt;
+&lt;p&gt;为了高效解决计算机唯一访客 IP 数量这类问题, 其中一种方法就是 HyperLogLog.&lt;/p&gt;
+&lt;h2 id=&#34;hyperloglog-简介&#34;&gt;HyperLogLog 简介&lt;/h2&gt;
+&lt;p&gt;HyperLogLog 是一个专门为了计算集和的基数而创建的概率算法, 对于一个给定的集和, HyperLogLog 可以计算出这个集合的近似基数:
+近似基数并非集和的实际基数, 它可能会比实际的基数大一点或者小一点, 但误差会在一个合理范围内.
+因此, 那些不需要知道实际基数的程序就可以把这个近似基数当作集合的基数来使用.&lt;/p&gt;
+&lt;p&gt;HyperLogLog 的优点在于计算近似基础所需的内存并不会因为集和的大小而改变, 无论集和包含元素有多少个, HyperLogLog 进行计算所需的内存总是固定的, 无论集和包含元素多少个, HyperLogLog 进行计算所需的内存总是固定的, 并且是非常少的.&lt;/p&gt;
+&lt;h3 id=&#34;pfadd-对集和元素进行计数&#34;&gt;PFADD: 对集和元素进行计数&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-Redis&#34; data-lang=&#34;Redis&#34;&gt;PFADD hyperloglog element [element ...]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;根据给定元素是否已经进行过计数, PFADD 命令可能返回0, 也可能返回1:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Redis Ordered Set</title>
+      <link>http://localhost:1313/posts/redis-ordered-set/</link>
+      <pubDate>Sat, 30 Aug 2025 08:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/redis-ordered-set/</guid>
+      <description>&lt;p&gt;Redis 的有序集和(ordered set)同时具有&amp;quot;有序&amp;quot;和&amp;quot;集和&amp;quot;两种性质, 这种结构中每个元素都由一个成员和一个与成员相关联的分值组成, 其中成员与字符串方式存储, 而分值以64位双精度浮点数格式存储.&lt;/p&gt;
+&lt;p&gt;例如下面一个记录薪水的集和:&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;成员&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;分值&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&amp;ldquo;perter&amp;rdquo;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;3500&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&amp;ldquo;bob&amp;rdquo;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;3800&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&amp;ldquo;jack&amp;rdquo;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;4500&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&amp;ldquo;tom&amp;rdquo;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;5000&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&amp;ldquo;mary&amp;rdquo;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;5500&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;与集和一样, 有序集和中的元素都是唯一的, 同时, 成员将按照分值大小进行排序.&lt;br&gt;
+有序集和分值除了可以是数字外, 还可以是字符串 &amp;ldquo;+inf&amp;rdquo; 或者 &amp;ldquo;-inf&amp;rdquo;, 这两个特殊值分别表示无穷大和无穷小.&lt;br&gt;
+虽然有序集和的成员不可相同, 但是分值可以是相同的, 当两个或多个成员拥有相同的分值时，Redis 将按照这些成员在字典序中的大小对其进行排列.&lt;/p&gt;
+&lt;p&gt;有序集合是Redis提供的所有数据结构中最为灵活的一种, 它可以以多种不同的方式获取数据, 比如根据成员获取分值、根据分值获取成员、根据成员的排名获取成员、根据指定的分值范围获取多个成员等.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;ZADD: 添加或更新成员&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ZADD sorted_set socre number [score number ...]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;默认情况下, ZADD 命令将返回成功添加的新成员数量作为返回值, 对于更新操作会返回0(未添加新成员).&lt;br&gt;
+使用 &lt;code&gt;XX | NX&lt;/code&gt; 选项来显示地指示命令 只更新 或 只添加操作&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ZADD sorted [XX|NX] socre member [socre member ...]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;若要返回所有被修改的成员数量(新添加 + 更新数量), 可使用 CH 选项&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ZADD sorted_set [CH] socre number [score number ...]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;复杂度: O(M * log(N)) 其中 M 为给定成员数量, N 为有序集和的成员数量&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Redis Set</title>
+      <link>http://localhost:1313/posts/redis-set/</link>
+      <pubDate>Tue, 26 Aug 2025 08:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/redis-set/</guid>
+      <description>&lt;p&gt;Redis 的集和 set 键允许用户将任意多个不同的元素存储到集和中, 既可以是文本数据, 也可以是二进制数据. 其与列表有以下两个明显的区别:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;列表可以存储重复元素, 而集和只存储非重复元素&lt;/li&gt;
 &lt;li&gt;列表以有序方式存储元素, 而集和则以无序方式存储元素&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;下面介绍结合键的各个命令&lt;/p&gt;</description></item><item><title>Redis List</title><link>https://starslayerx.github.io/posts/redis-list/</link><pubDate>Sun, 24 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-list/</guid><description>&lt;h2 id="list-列表"&gt;List 列表&lt;/h2&gt;
+&lt;p&gt;下面介绍结合键的各个命令&lt;/p&gt;
+&lt;h2 id=&#34;set-集和&#34;&gt;Set 集和&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;SADD: 将元素添加到集和&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;SADD set element [element ...]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;返回成功添加的新元素数量作为返回值, 由于集和不存储相同元素, 所以会自动忽略重复的元素&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;SREM: 从集和中移出元素&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;SREM set element [element ...]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;返回被移除的元素数量, 同样的, 不存在的元素会被忽略&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;SMOVE: 将元素从一个集和移动到另一个集和&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;SMOVE source target element
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;移动操作成功时返回1, 若不存在于源集和, 返回0.&lt;br&gt;
+如果 source 的元素不存在, 则返回0表示失败.&lt;br&gt;
+如果 target 的元素已存在, 则会覆盖该元素. 从结果来看, 并不会导致 target 中元素变化, 但是会导致 source 中的该元素消失.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;SMEMBERS: 获取集和包含的所有元素&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;SMEMBERS set
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;由于集和是无序的, 且 SMEMBERS 命令不会进行任何排序操作, 所以根据元素添加的顺序不同, 含相同元素的集和执行该命令结果可能不同.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;SCARD: 获取集和包含的元素数量&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;SCARD set
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;SISMEMBER: 检查给定元素是否存在于集和&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Redis List</title>
+      <link>http://localhost:1313/posts/redis-list/</link>
+      <pubDate>Sun, 24 Aug 2025 08:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/redis-list/</guid>
+      <description>&lt;h2 id=&#34;list-列表&#34;&gt;List 列表&lt;/h2&gt;
 &lt;p&gt;Redis 的列表是一种线性的有序结构, 可以按照元素被推入列表的顺序来存储元素, 这些元素即可以是文字顺序, 也可以是二进制顺序, 且元素可重复出现.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;LPUSH: 将元素推入列表左端&lt;/p&gt;</description></item><item><title>Redis Hash</title><link>https://starslayerx.github.io/posts/redis-hash/</link><pubDate>Thu, 21 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-hash/</guid><description>&lt;h2 id="散列"&gt;散列&lt;/h2&gt;
+&lt;p&gt;LPUSH: 将元素推入列表左端&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;LPUSH list item [item item ...]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;LPUSH 命令会返回当前元素数量&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;RPUSH: 将元素推入列表右端&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;RPUSH list item [item item ...]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;LPUSHX, RPUSHX: 只对已存在的列表执行推入操作&lt;br&gt;
+上面两条命令, 在列表不存在的情况下, 会自动创建空列表, 并将元素推入列表中.&lt;br&gt;
+且上面命令每次只能推入一个元素&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;LPOP: 弹出列表最左端的元素, 并返回被移出的元素&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;POP list
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;空列表 POP 会返回空值 (nil)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;RPOP: 弹出列表最右端的元素&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;RPOP list
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;RPOPLPUSH: 将列表右端弹出的元素推入列表左端&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;RPOPLPUSH source target
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;source 和 target 可以是相同列表, 也可以是不同列表. 但不能为空列表, 否则会返回空(nil)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;示例-先入先出队列&#34;&gt;示例: 先入先出队列&lt;/h3&gt;
+&lt;p&gt;许多电商网站都会在节日时推出一些秒杀活动, 这些活动会放出数量有限的商品供用户抢购, 秒杀系统的一个特点就是短时间内会有大量用户进行相同的购买操作, 如果使用事务或者锁去实现秒杀程序, 那么会因为锁和事务的重试性而导致性能低下, 并且由于重试的存在, 成功购买商品的用户可能并不是最早购买操作的用户, 因此这种秒杀系统并不公平.&lt;br&gt;
+解决方法之一就是把用户的购买操作都放入先进先出队列里面, 然后以队列的方式处理用户购买操作, 这样的程序就可以不使用锁或者事务实现秒杀系统, 且更加公平.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Redis Hash</title>
+      <link>http://localhost:1313/posts/redis-hash/</link>
+      <pubDate>Thu, 21 Aug 2025 08:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/redis-hash/</guid>
+      <description>&lt;h2 id=&#34;散列&#34;&gt;散列&lt;/h2&gt;
 &lt;p&gt;Redis 散列键 hash key 会将一个键和一个散列在数据库里关联起来, 散列中可以存任意多个字段 field.
-与字符串一样, 散列字段和值既可以是文本数据, 也可以是二进制数据.&lt;/p&gt;</description></item><item><title>Redis String</title><link>https://starslayerx.github.io/posts/redis-string/</link><pubDate>Tue, 19 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-string/</guid><description>&lt;p&gt;介绍Redis中的字符串键&lt;/p&gt;
-&lt;h2 id="字符串"&gt;字符串&lt;/h2&gt;
-&lt;p&gt;字符串建是 Redis 最基本的键值对类型, 这种类型的键值对会在数据库中把单独的一个值关联起来, 被关联的键和值可以为文本, 也可以是图片, 视屏, 音频等二进制数据.&lt;/p&gt;</description></item></channel></rss>
+与字符串一样, 散列字段和值既可以是文本数据, 也可以是二进制数据.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;HSET: 为字段设置值&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;HEST hash field value
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;若已给定的字段是否已经存在与散列中, 该设置为一次更新操作, 覆盖旧值后返回0.&lt;br&gt;
+相反, 则为一次创建操作, 命令将在散列里面关联起给定的字段和值, 然后返回1.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;HSETNX: 只在字段不存在的情况下设置值&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;HSETNX hash field value
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;HSETNX 命令在字段不存在且成功设置值时, 返回1.&lt;br&gt;
+字段已存在并设置值未成功时, 返回0.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;HGET: 获取字段的值&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;HGET hash field
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;若查找的不存在的散列或字段, 则会返回空(nil)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;示例-短网址生成&#34;&gt;示例: 短网址生成&lt;/h3&gt;
+&lt;p&gt;为了给用户提供更多空间, 并记录用户在网站上的链接点击行为, 大部分社交网站都会将用户输入的网址转换为短网址. 当用户点击段网址时, 后台就会进行数据统计, 并引导用户跳转到原地址.&lt;br&gt;
+创建短网址本质上就是, 要创建出短网址ID与目标网址之间的映射, 并让用户访问短网址时, 根据短网址的ID映射记录中找出与之相对应的目标网址.&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;短网址 ID&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;目标网址&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;RqRRz8n&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;a href=&#34;http://redisdoc.com/geo/index.html&#34;&gt;http://redisdoc.com/geo/index.html&lt;/a&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;RUwtQBx&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;a href=&#34;http://item.jd.com/117910607.html&#34;&gt;http://item.jd.com/117910607.html&lt;/a&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;HINCRBY: 对字段存储的整数值执行加法或减法操作&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;HINCRBY hash field increment
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;与字符串 INCRBY 命令一样, 如果散列字段里面存储着能够被 Redis 解释为整数的数字, 那么用户就可以使用 HINCRBY 命令为该字段的值加上指定的整数增量.&lt;br&gt;
+该命令执行成功后, 将返回字段当前的值为命令的结果. 若要执行减法操作, increment 传入负数即可.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Redis String</title>
+      <link>http://localhost:1313/posts/redis-string/</link>
+      <pubDate>Tue, 19 Aug 2025 08:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/redis-string/</guid>
+      <description>&lt;p&gt;介绍Redis中的字符串键&lt;/p&gt;
+&lt;h2 id=&#34;字符串&#34;&gt;字符串&lt;/h2&gt;
+&lt;p&gt;字符串建是 Redis 最基本的键值对类型, 这种类型的键值对会在数据库中把单独的一个值关联起来, 被关联的键和值可以为文本, 也可以是图片, 视屏, 音频等二进制数据.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;SET: 为字符串键设置值 O(1)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;SET key value&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;```Redis
+SET number &amp;quot;10086&amp;quot;
+&amp;gt; OK
+
+SET book &amp;quot;Redis in action&amp;quot;
+&amp;gt; OK
+```
+
+对于已经存在的 key, 再次赋值会覆盖原值, 若不想覆盖后面添加参数 NX, 相反, 默认 XX 允许覆盖
+```Redis
+SET key &amp;quot;10086&amp;quot; NX
+&amp;gt; (nil)
+
+SET key &amp;quot;10086&amp;quot; XX
+&amp;gt; OK
+```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;GET: 获取字符串键的值 O(1)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;GET key&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;```Redis
+GET number
+&amp;gt; &amp;quot;10086&amp;quot;
+```
+
+对于不存在的值, 返回空
+```Redis
+GET key_new
+&amp;gt; (nil)
+```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;GETSET: 获取旧值并更新值 O(1)&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

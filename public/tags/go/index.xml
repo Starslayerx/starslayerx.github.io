@@ -1,2 +1,47 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Go on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/go/</link><description>Recent content in Go on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Wed, 27 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/go/index.xml" rel="self" type="application/rss+xml"/><item><title>From Python to Go</title><link>https://starslayerx.github.io/posts/from-python-to-go/</link><pubDate>Wed, 27 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/from-python-to-go/</guid><description>&lt;p&gt;&lt;a href="https://telemetryharbor.com/blog/from-python-to-go-why-we-rewrote-our-ingest-pipeline-at-telemetry-harbor/"&gt;From Python to Go: Why We Rewrote Our Ingest Pipeline at Telemetry Harbor&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;我们将 Telemetry Harbor 的摄取管道从 Python FastAPI 重写为 Go，原因是遇到了严重的性能瓶颈。迁移后，效率提升了 10 倍，数据完整性因严格类型检查而得到加强，系统也拥有了稳定、可扩展的高并发时间序列数据摄取基础。&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Go on Starslayerx&#39; Blog</title>
+    <link>http://localhost:1313/tags/go/</link>
+    <description>Recent content in Go on Starslayerx&#39; Blog</description>
+    <image>
+      <title>Starslayerx&#39; Blog</title>
+      <url>http://localhost:1313/images/og-default.avif</url>
+      <link>http://localhost:1313/images/og-default.avif</link>
+    </image>
+    <generator>Hugo -- 0.154.5</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 27 Aug 2025 08:00:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>From Python to Go</title>
+      <link>http://localhost:1313/posts/from-python-to-go/</link>
+      <pubDate>Wed, 27 Aug 2025 08:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/from-python-to-go/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://telemetryharbor.com/blog/from-python-to-go-why-we-rewrote-our-ingest-pipeline-at-telemetry-harbor/&#34;&gt;From Python to Go: Why We Rewrote Our Ingest Pipeline at Telemetry Harbor&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;我们将 Telemetry Harbor 的摄取管道从 Python FastAPI 重写为 Go，原因是遇到了严重的性能瓶颈。迁移后，效率提升了 10 倍，数据完整性因严格类型检查而得到加强，系统也拥有了稳定、可扩展的高并发时间序列数据摄取基础。&lt;/p&gt;
+&lt;h4 id=&#34;背景打造一个时间序列数据平台&#34;&gt;背景：打造一个时间序列数据平台&lt;/h4&gt;
+&lt;p&gt;Telemetry Harbor 源自我们在汽车行业积累的经验。几乎每个项目都要重复搭建相同的基础设施：数据库、后端、数据摄取管道、可视化界面。每次都要花费数周时间，这让我们萌生了打造一个开箱即用平台的想法。&lt;/p&gt;
+&lt;p&gt;当时的市场方案并不理想。InfluxDB 的商业化策略让许多关键特性被锁在付费墙后，版本迁移成本高且在大数据负载下表现不佳。TimescaleDB 与 ClickHouse 技术上更强大，但依旧需要用户自行构建后端与摄取管道。我们看到了缺口——需要一个极简、可靠、可直接使用的平台。&lt;/p&gt;
+&lt;h4 id=&#34;python-fastapi原型开发的正确选择&#34;&gt;Python FastAPI：原型开发的正确选择&lt;/h4&gt;
+&lt;p&gt;MVP 阶段，我们在开发速度与运行性能之间权衡。最终选择了 Python FastAPI，因为它允许我们：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;快速验证市场假设&lt;/li&gt;
+&lt;li&gt;迅速收集客户反馈并迭代&lt;/li&gt;
+&lt;li&gt;在低成本下尝试多种方案&lt;/li&gt;
+&lt;li&gt;尽快上线以抢占市场&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;早期架构非常直接：HTTP API（避免防火墙问题）、Redis + RQ 队列、TimescaleDB。测试效果良好，但很快暴露了性能隐患——RQ 的同步处理方式无法支撑高吞吐场景。&lt;/p&gt;
+&lt;h4 id=&#34;性能瓶颈python-无法跟上增长&#34;&gt;性能瓶颈：Python 无法跟上增长&lt;/h4&gt;
+&lt;p&gt;随着数据量上升，性能问题逐渐浮现：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;空闲 CPU 占用：10%&lt;/li&gt;
+&lt;li&gt;中等负载：约 40% CPU&lt;/li&gt;
+&lt;li&gt;高负载：120–300% CPU（峰值 800%），频繁崩溃&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;问题不仅在于 RQ 的同步限制，而是整个 Python 架构在常规负载下都难以维持稳定。这迫使我们考虑全面重写。&lt;/p&gt;
+&lt;h4 id=&#34;迁移决策为什么选择-go&#34;&gt;迁移决策：为什么选择 Go？&lt;/h4&gt;
+&lt;p&gt;我们评估了 Rust 和 Go：&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

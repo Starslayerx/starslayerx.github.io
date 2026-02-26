@@ -1,13 +1,129 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PostgreSQL on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/postgresql/</link><description>Recent content in PostgreSQL on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Mon, 17 Nov 2025 08:00:00 +0100</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/postgresql/index.xml" rel="self" type="application/rss+xml"/><item><title>Postgresql 03: psql Tool Introduction</title><link>https://starslayerx.github.io/posts/postgresql-03-psql-tool-introduction/</link><pubDate>Mon, 17 Nov 2025 08:00:00 +0100</pubDate><guid>https://starslayerx.github.io/posts/postgresql-03-psql-tool-introduction/</guid><description>&lt;h3 id="psql-介绍"&gt;psql 介绍&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>PostgreSQL on Starslayerx&#39; Blog</title>
+    <link>http://localhost:1313/tags/postgresql/</link>
+    <description>Recent content in PostgreSQL on Starslayerx&#39; Blog</description>
+    <image>
+      <title>Starslayerx&#39; Blog</title>
+      <url>http://localhost:1313/images/og-default.avif</url>
+      <link>http://localhost:1313/images/og-default.avif</link>
+    </image>
+    <generator>Hugo -- 0.154.5</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 20 Nov 2025 08:00:00 +0100</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Postgresql 04: Data Type</title>
+      <link>http://localhost:1313/posts/postgresql-04-data-type/</link>
+      <pubDate>Thu, 20 Nov 2025 08:00:00 +0100</pubDate>
+      <guid>http://localhost:1313/posts/postgresql-04-data-type/</guid>
+      <description>&lt;p&gt;这篇文章介绍 PostgreSQL 数据类型&lt;/p&gt;
+&lt;h3 id=&#34;数据类型的输入与转换&#34;&gt;数据类型的输入与转换&lt;/h3&gt;
+&lt;p&gt;对于简单的数据类型，正常输入就行了&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;142&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;hello world&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;对于复杂的数据类型，可以按照“类型名”加上单引号括起来的类型格式来输入&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;bit&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;11110011&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;实际上所有的数据类型都可以使用上面的输入方法&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;1&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;2&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;PostgreSQL 支持标准 SQL 的数据类型转换函数 CAST 来进行数据类型转&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQl&#34; data-lang=&#34;SQl&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;CAST&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;5&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AS&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;CAST&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;2014-07-17&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AS&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;date&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;还可以使用更加简洁的双冒号写法进行类型转换&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQl&#34; data-lang=&#34;SQl&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;5&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;2014-07-17&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;date&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;布尔类型&#34;&gt;布尔类型&lt;/h2&gt;
+&lt;p&gt;boolean 的只要么是 true 要么是 false，如果是 unknown 状态使用 NULL 表示。
+boolean 可以使用不带引号的 TRUE 或者 FALSE 表示，也可以使用其他表示“真”和“假”的带引号字符表示，
+如 &amp;rsquo;true&amp;rsquo;、&amp;lsquo;false&amp;rsquo;、&amp;lsquo;yes&amp;rsquo;、&amp;rsquo;no&amp;rsquo; 等，并且大小写不敏感。&lt;/p&gt;
+&lt;p&gt;布尔类型的常见逻辑操作符有：AND、OR、NOT，并使用 IS 比较运算符，例如 &lt;code&gt;expression IS TRUE&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;数值类型&#34;&gt;数值类型&lt;/h2&gt;
+&lt;h3 id=&#34;整数类型&#34;&gt;整数类型&lt;/h3&gt;
+&lt;p&gt;整数类型有三种：smallint (2 Byte)、int (4 Byte)、bigint (8 Byte)，注意 PostgreSQL 中没有 MySQL 的 tinyint (1 Byte), mediumint (3 Byte) 两种类型。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Postgresql 03: psql Tool Introduction</title>
+      <link>http://localhost:1313/posts/postgresql-03-psql-tool-introduction/</link>
+      <pubDate>Mon, 17 Nov 2025 08:00:00 +0100</pubDate>
+      <guid>http://localhost:1313/posts/postgresql-03-psql-tool-introduction/</guid>
+      <description>&lt;h3 id=&#34;psql-介绍&#34;&gt;psql 介绍&lt;/h3&gt;
 &lt;p&gt;psql 是 PostgreSQL 中的一个交互式命令行工具，类似 Oracle 的 sqlplus，它允许用户交互式输入 SQL 语句或命令，然后发送给 PostgreSQL 服务器，再显示结果。
-此外，psql 还有大量类似 shell 的特性来编写脚本，实现自动化操作。&lt;/p&gt;</description></item><item><title>PostgreSQL 02: SQL Basis</title><link>https://starslayerx.github.io/posts/postgresql-02-sql-basis/</link><pubDate>Fri, 07 Nov 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/postgresql-02-sql-basis/</guid><description>&lt;h2 id="sql-入门"&gt;SQL 入门&lt;/h2&gt;
+此外，psql 还有大量类似 shell 的特性来编写脚本，实现自动化操作。&lt;/p&gt;
+&lt;p&gt;在安装 postgresql 的时候，会创建一个与初始化数据库时的操作系统同名的数据库用户，这个用户是这个数据库的超级用户。
+因此，在 OS 用户下登陆数据库时，会执行操作系统认证，因此无需用户名和密码，也可以通过修改 pg_hba.conf 文件来要求用户输入密码。&lt;/p&gt;
+&lt;p&gt;psql 也支持使用命令行参数来查询信息和执行 SQL，这种非交互模式与 linux 命令就没有太大区别了。
+例如使用 &lt;code&gt;psql -l&lt;/code&gt; 查看数据库，当然也可以通过命令进入数据库后，输出 &lt;code&gt;\l&lt;/code&gt; 命令查看有哪些数据库。
+默认会有一个叫 postgres 的数据库，这是默认安装后就有的一个数据库。
+还有两个模板数据库，template0 和 template1。&lt;/p&gt;
+&lt;p&gt;当用户创建创建数据库时，是从模板数据库 template1 克隆来的，因此通常可以订制 template1 中的内容，例如添加一些表和函数，这样后续创建的数据库也会有这些表和函数。
+template0 是一个最简化的数据库，如果指明从此数据库克隆，将创建出一个最简化的数据库。&lt;/p&gt;
+&lt;p&gt;使用 &lt;code&gt;\d&lt;/code&gt; 查看有哪些表，使用 &lt;code&gt;\c&lt;/code&gt; 连接到某数据库。连接命令格式如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;psql -h &amp;lt;hostname or ip&amp;gt; -p &amp;lt;port&amp;gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;数据库名称&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;用户名称&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;也可以通过环境变量指定&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PGDATABASE&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;db_name
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PGHOST&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ip
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PGPORT&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;port
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PGUSER&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;postgres
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;psql-常用命令&#34;&gt;psql 常用命令&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;\h&lt;/code&gt; 命令查询 SQL 语法&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>PostgreSQL 02: SQL Basis</title>
+      <link>http://localhost:1313/posts/postgresql-02-sql-basis/</link>
+      <pubDate>Fri, 07 Nov 2025 08:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/postgresql-02-sql-basis/</guid>
+      <description>&lt;h2 id=&#34;sql-入门&#34;&gt;SQL 入门&lt;/h2&gt;
 &lt;p&gt;SQL (Structured Query Language) 是关系数据库最重要的操作语言，且影响已经超出了数据库领域，这篇文章介绍基础部分。&lt;/p&gt;
-&lt;h3 id="语句分类"&gt;语句分类&lt;/h3&gt;
+&lt;h3 id=&#34;语句分类&#34;&gt;语句分类&lt;/h3&gt;
 &lt;p&gt;SQL 命令一般分为 DQL、DML、DDL 三类：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;DQL: Data Query Language 数据查询语句，基本就是 SELECT 查询命令，用于数据查询。&lt;/p&gt;</description></item><item><title>PostgreSQL 01: Introduction</title><link>https://starslayerx.github.io/posts/postgresql-01-introduction/</link><pubDate>Wed, 05 Nov 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/postgresql-01-introduction/</guid><description>&lt;h2 id="postgresql-的安装与配置"&gt;PostgreSQL 的安装与配置&lt;/h2&gt;
-&lt;h3 id="安装"&gt;安装&lt;/h3&gt;
+&lt;p&gt;DQL: Data Query Language 数据查询语句，基本就是 SELECT 查询命令，用于数据查询。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;DML: Data Manipulation Language 数据操纵语言，主要用于插入、更新、删除数据，即 INSERT、UPDATE、DELETE 三类。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;DDL: Data Definition Language 数据定义语言，用于创建、删除、修改表、索引等数据库对象的语言。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;词法结构&#34;&gt;词法结构&lt;/h3&gt;
+&lt;p&gt;每次执行的 SQL 语句可以由多条 SQL 命令组成，多条 SQL 语句命令之间由分号 (;) 分隔。&lt;/p&gt;
+&lt;p&gt;SQL 命令由一系列记号组成，这些记号可以由关键字、标识符、双引号包围的标识符、常量和单引号包围的常量组成。
+SQL 命令中可以有注释，这些注释在 PostgreSQL 中等同于空白。&lt;/p&gt;
+&lt;p&gt;例如下面这些 SQL 命令&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-SQL&#34; data-lang=&#34;SQL&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;OSDBA_TABLE01&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;UPDATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;OSDBA_TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SET&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;COL1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;64&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;INSERT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INTO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;OSDBA_TABLE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;VALUES&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;232&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;hello osdba&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;ddl-语句&#34;&gt;DDL 语句&lt;/h4&gt;
+&lt;p&gt;使用 &lt;code&gt;psql&lt;/code&gt; 会默认连接到和用户名一样的数据库中，也可以使用命令 &lt;code&gt;psql postgres&lt;/code&gt; 来连接到默认数据库，或者 &lt;code&gt;creatdb db_name&lt;/code&gt; 创建新数据库。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>PostgreSQL 01: Introduction</title>
+      <link>http://localhost:1313/posts/postgresql-01-introduction/</link>
+      <pubDate>Wed, 05 Nov 2025 08:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/postgresql-01-introduction/</guid>
+      <description>&lt;h2 id=&#34;postgresql-的安装与配置&#34;&gt;PostgreSQL 的安装与配置&lt;/h2&gt;
+&lt;h3 id=&#34;安装&#34;&gt;安装&lt;/h3&gt;
 &lt;p&gt;brew 安装后 &lt;code&gt;brew services start postgresql@17&lt;/code&gt; 可以启动服务，使用 &lt;code&gt;brew services list&lt;/code&gt; 查看服务状态。
 也可以通过设定环境变量 &lt;code&gt;export PGDATA=/opt/homebrew/var/postgresql@17&lt;/code&gt; 后使用命令 &lt;code&gt;initdb&lt;/code&gt; 创建数据库簇，然后 &lt;code&gt;pg_ctl start -D $PGDATA&lt;/code&gt; 启动。
-停止命令为 &lt;code&gt;pg_ctl stop -D $PGDATA [-m SHOWDOWN-MODE]&lt;/code&gt;，其中 -m 是服务器停止方法：&lt;/p&gt;</description></item></channel></rss>
+停止命令为 &lt;code&gt;pg_ctl stop -D $PGDATA [-m SHOWDOWN-MODE]&lt;/code&gt;，其中 -m 是服务器停止方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;smart: 等所有连接终止后，关闭数据库。如果客户端连不上，则无法关闭数据库。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;fast: 快速关闭数据库，断开客户端连接，让已有的事务回滚，然后关闭数据库。相当于 Oracle 关闭时的 immediate 模式。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;immediate: 立即关闭数据库，相当于数据库进程立即停止，直接退出，下次启动数据库需要恢复。相当于 Oracle 关闭时的 abort 模式。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PostgreSQL 数据库中的 immediate 关机模式相当于 Oracle 数据库中的 abort 关机模式，而 Oracle 中的 immediate 关机模式实际上对应的是 PostgreSQL 中的 fast 模式。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;配置&#34;&gt;配置&lt;/h3&gt;
+&lt;p&gt;PostgreSQL 数据库的配置主要通过修改数据目录下的 postgresql.conf 和 pg_hba.conf 文件来实现的。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

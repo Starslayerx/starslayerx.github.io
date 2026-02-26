@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Python | Starslayerx&#39; Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="A personal blog about technology, programming, and daily notes">
+<meta name="author" content="Starslayerx">
+<link rel="canonical" href="http://localhost:1313/tags/python/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e&#43;Ge/K3X9WmUVz&#43;1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.svg">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon.svg">
+<link rel="apple-touch-icon" href="http://localhost:1313/favicon.svg">
+<link rel="mask-icon" href="http://localhost:1313/favicon.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/python/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/tags/python/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="http://localhost:1313/tags/python/">
+  <meta property="og:site_name" content="Starslayerx&#39; Blog">
+  <meta property="og:title" content="Python">
+  <meta property="og:description" content="A personal blog about technology, programming, and daily notes">
+  <meta property="og:locale" content="en-US">
+  <meta property="og:type" content="website">
+      <meta property="og:image" content="http://localhost:1313/images/og-default.avif">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/images/og-default.avif">
+<meta name="twitter:title" content="Python">
+<meta name="twitter:description" content="A personal blog about technology, programming, and daily notes">
+
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Starslayerx&#39; Blog (Alt + H)">
+                <img src="http://localhost:1313/favicon.svg" alt="" aria-label="logo"
+                    height="35">Starslayerx&#39; Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                    <ul class="lang-switch"><li>|</li>
+                        <li>
+                            <a href="http://localhost:1313/zh-cn/" title="简体中文"
+                                aria-label="简体中文">Zh-Cn</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="Archives">
+                    <span>Archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/tags/">Tags</a></div>
+  <h1>
+    Python
+    <a href="/tags/python/index.xml" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Dealing With Grabage in Python
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Grabage Collection In Python 本篇文章介绍 Python 中的 Grabage Collection (GC) 机制介绍
+What’s Python Object? Python 对象中有三样东西: 类型(Type)、值(value)和引用计数(reference count), 当给变量命名时, Python 会自动检测其类型, 值在定义对象时声明, 引用计数是指该对象名称的数量.
+首先来看一个类
+class Person: def __init__(self, name, unique_id, spouse): self.name = name self.unique_id = unique_id self.spouse = spouse def __del__(self): print( # !r: 调用 repr() 来获取该对象的字符串表达式 # !s: str() # !a: ascii() f&#34;Object {self.unique_id!r} is about to be removed from memory. Goodbye!&#34; ) 该 Person 类有以下3个属性:
+name: 人名 unique_id: 唯一性 id spouse: 将为 None 或者将存储另一个 Person 对象 有一个特殊方法 __del__(), 这个特殊方法有一定的误导性. 该方法并不像 __len__() 与 len() 或者 __iter__() 与 iter() 那样与 del 关键字相关联. __del__() 特殊方法并不定义当对对象引用时 del 会发送什么, 相反, __del__() 是一个终结器 finaliser: 它在对象被消毁之前从内存中移除之间被调用.
+因此, __del__() 中 print() 调用的字符串仅在 Python 即将从内存中移除对象时显示.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-09-08 08:00:00 +0800 CST'>September 8, 2025</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>241 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Dealing With Grabage in Python" href="http://localhost:1313/posts/dealing-with-grabage-in-python/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Asyncio vs Gevents in Python
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>python 中 asyncio 和 gevent 是两种协程(在一个线程内实现并发)的实现, 这篇文章对比介绍这两者实现.
+下面先介绍一下基础概念:
+Coroutines 协程 在 Python 中, 协程是可以暂停和继续运行的函数, 使得其是否适合并发编程. 定义使用 async def 语法, 协程运行编写非阻塞的操作. 在协程内, await 关键字用于暂停执行, 直到给定的任务完成, 从而运行其他协程在此其间并发运行.
+Event Loop 事件循环 事件循环是一种控制结构, 它不断地处理一系列事件, 处理任务并管理程序的执行流程. 等待事件发生, 处理后再等待下一个事件. 这种机制确保程序能够以高效有序的方式响应事件, 例如用户输入、计时器或者消息.
+下面是事件循环如何管理协程:
+任务提交: 当向事件循环提交一个协程时, 其被封装在一个 Task 对象中, 然后任务被安排在事件循环上运行.
+内部队列: 事件循环使用几个内部数据结构来管理和调度这些任务
+就绪队列 (Ready Queue): 包含可以立即运行的任务. I/O 选择器 (I/O Selector): 监控文件描述符, 并根据 I/O 准备情况调度任务 计划回调 (Scheduled Callbacks): 管理计划在一定延迟后运行的任务. 调度: 事件循环不断检查这些队列和数据结构, 以确定哪些任务已准备好执行. 然后它运行这些任务, 在遇到 await 语句时, 根据需要暂停和恢复它们.
+并发管理: 通过交错执行多个协程, 事件循环无需多个线程即可实现并发. 在任何时候, 只有一个任务会运行, 但如果一个任务是 I/O 密集型的, 它会切换到另一个任务, 给人一种并行的错觉.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-29 08:00:00 +0800 CST'>August 29, 2025</span>&nbsp;·&nbsp;<span>4 min</span>&nbsp;·&nbsp;<span>694 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Asyncio vs Gevents in Python" href="http://localhost:1313/posts/asyncio-vs-gevents-in-python/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">From Python to Go
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>From Python to Go: Why We Rewrote Our Ingest Pipeline at Telemetry Harbor
+我们将 Telemetry Harbor 的摄取管道从 Python FastAPI 重写为 Go，原因是遇到了严重的性能瓶颈。迁移后，效率提升了 10 倍，数据完整性因严格类型检查而得到加强，系统也拥有了稳定、可扩展的高并发时间序列数据摄取基础。
+背景：打造一个时间序列数据平台 Telemetry Harbor 源自我们在汽车行业积累的经验。几乎每个项目都要重复搭建相同的基础设施：数据库、后端、数据摄取管道、可视化界面。每次都要花费数周时间，这让我们萌生了打造一个开箱即用平台的想法。
+当时的市场方案并不理想。InfluxDB 的商业化策略让许多关键特性被锁在付费墙后，版本迁移成本高且在大数据负载下表现不佳。TimescaleDB 与 ClickHouse 技术上更强大，但依旧需要用户自行构建后端与摄取管道。我们看到了缺口——需要一个极简、可靠、可直接使用的平台。
+Python FastAPI：原型开发的正确选择 MVP 阶段，我们在开发速度与运行性能之间权衡。最终选择了 Python FastAPI，因为它允许我们：
+快速验证市场假设 迅速收集客户反馈并迭代 在低成本下尝试多种方案 尽快上线以抢占市场 早期架构非常直接：HTTP API（避免防火墙问题）、Redis &#43; RQ 队列、TimescaleDB。测试效果良好，但很快暴露了性能隐患——RQ 的同步处理方式无法支撑高吞吐场景。
+性能瓶颈：Python 无法跟上增长 随着数据量上升，性能问题逐渐浮现：
+空闲 CPU 占用：10% 中等负载：约 40% CPU 高负载：120–300% CPU（峰值 800%），频繁崩溃 问题不仅在于 RQ 的同步限制，而是整个 Python 架构在常规负载下都难以维持稳定。这迫使我们考虑全面重写。
+迁移决策：为什么选择 Go？ 我们评估了 Rust 和 Go：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-27 08:00:00 +0800 CST'>August 27, 2025</span>&nbsp;·&nbsp;<span>1 min</span>&nbsp;·&nbsp;<span>148 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to From Python to Go" href="http://localhost:1313/posts/from-python-to-go/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Intorduce UUID
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>UUID(Universally Unique Identifier, 通用唯一标识符) 是一种标准化的128位标识符, 用于在分布式系统中生成几乎不会重复的唯一 ID. 最早于 IETF 制定为 RFC 4122 标准, 保证在不同机器、不同时间生成的 ID 也能保持全局唯一.
+UUID 通常以16进制表示, 采用5段结构, 用连字符 - 分隔, 例如:
+550e8400-e29b-41d4-a716-446655440000 有如下特点:
+全局唯一 无中心依赖 不可预测 跨平台通用 UUID 有以下不同版本:
+版本 生成 特点 v1 基于时间戳 &#43; MAC 地址 按时间排序，含生成设备信息 v3 基于命名空间的 MD5 哈希 输入相同则输出相同(MD5 已不再安全) v4 基于操作系统的随机数生成 完全随机, 最常用 v5 基于命名空间的 SHA-1 哈希 与 v3 类似, 但使用 SHA-1 v6~v8 现代版本(草案) 提高排序性能和隐私保护 其中, 对于需要时间有序的使用 v1, 大多数通用场景使用 v4
+UUID 的应用场景
+数据库主键(分布式环境避免冲突) 会话标识(Session ID、Token) 文件命名(防止重名) 分布式系统节点 ID 追踪请求链路(Trace ID) 示例代码
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-16 08:00:00 +0800 CST'>August 16, 2025</span>&nbsp;·&nbsp;<span>1 min</span>&nbsp;·&nbsp;<span>138 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Intorduce UUID" href="http://localhost:1313/posts/intorduce-uuid/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Python Generics
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>本篇文件介绍 Python 中的 泛型(Generics)
+Intro 在没有泛型的情况下, 会遇上以下几个问题:
+难以表达意图
+假设你编写了一个函数, 它接受一个列表, 并返回列表中的第一个元素. 在不使用类型提示的情况下, 这个函数可以处理任何类型的列表, 但我们无法在函数签名中表达&#34;返回的元素的类型与列表中的元素类型相同&#34;这个意图
+def get_first_element(items): return items[0] 丧失类型信息
+如果使用类型提示, 可能会像下面这样写, 但这样会丢失类型信息. list[Any] 表示可以接收任何类型的列表, 但 -&gt; Any 意味着不知道返回的元素类型是什么, 这使得 mypy 等静态类型检测工具无法追踪类型, 降低了代码的可读性和安全性
+from typing import Any def get_first_element(items: list[Any]) -&gt; Any: return items[0] # 调用时, 类型检查工具无法得知 first_str 的类型 first_str = get_first_element([&#34;hello&#34;, &#34;world&#34;]) 代码重复
+如果为每种可能的类型都编写一个单独的函数, 则会导致代码重复
+def get_first_int(items: list[int]) -&gt; int: return items[0] def get_first_str(items: list[str]) -&gt; str: return items[0] 通过引入 类型变量 (TypeVar) 来解决问题, 类型变量就像一个占位符, 代表在未来某时刻会被具体指定的类型
+from typing import TypeVar T = TypeVar(&#34;T&#34;) def get_first_element(items: list[T]) -&gt; T: return items[0] # 现在, 类型检查工具可以正确推断出类型 first_str: str = get_first_element([&#34;hello&#34;, &#34;world&#34;]) first_int: int = get_first_element([1, 2, 3]) T = TypeVar(&#39;T&#39;) 定义了一个名为 T 的类型变量, 这里 T 只是一个约定俗成的名字, 也可以使用其他字母 items: list[T] 表示 items 是一个列表, 其内部元素类型是 T -&gt; T: 返回类型也是 T 当使用 [&#34;hello&#34;, &#34;world&#34;] 调用函数时, 静态类型检查器会推断出 T 是 str, 返回类型为 str 当使用 [1, 2, 3] 调用函数时, T 被推断为 int 注意: 这个函数假设列表非空, 如果传入空列表会抛出 IndexError
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-14 08:00:00 +0800 CST'>August 14, 2025</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>553 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Python Generics" href="http://localhost:1313/posts/python-generics/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Python Strings
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>这篇文章总结一下 Python 中字符串的类型
+Unicode String 字符串 u 在 Python3 中是多余的, 因为所有的普通字符串默认都是 Unicode, 但在 Python2 中, u 用来显示的表示 Unicode 字符串, 现在保留这个是为了向后兼容
+Fromatted String 格式化字符串 f 前缀用于创建格式化字符串, 这是最常见的字符串格式方法, 运行在字符串中嵌入表达式, 在求值时转换为普通的 str
+name = &#34;World&#34; greeting = f&#34;Hello, {name}!&#34; # 结果: &#34;Hello, World!&#34; Raw String 原始字符串 r 前缀用于创建原始字符串, 会忽略反斜杠 \ 的转义功能, 在编写文件路径或正则表达式的时候非常有用, 可以避免大量的反斜杠转义
+path = r&#34;C:\Users\Documents&#34; # 单个反斜杠 &#39; regex = r&#34;\bword\b&#34; # \b 不会被转义 Bytes String 字节串 b 前缀用于创建字节串字面量, 表示一个不可变的字节序列, 而不是 Unicode 文本, 字节串主要用于二进制数据, 例如图像文件、网络数据或压缩文件等
+binary_data = b&#34;Hello&#34; # 存储的是 ASCII 编码的字节 Template String 模板字符串 t 前缀用于创建模板字符串, 这是 Python 3.14 引入的新功能, 由 PEP 750 通过.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-13 08:00:00 +0800 CST'>August 13, 2025</span>&nbsp;·&nbsp;<span>1 min</span>&nbsp;·&nbsp;<span>151 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Python Strings" href="http://localhost:1313/posts/python-strings/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Python Asyncio Introduce
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Fast Introduce 下面代码中, 定义了一个 main() 协程函数, 然后通过 asyncio.run() 来执行它
+import asyncio import time async def main(): print(f&#34;{time.ctime()} Hello!&#34;) await asyncio.sleep(1.0) print(f&#34;{time.ctime()} Goodbye!&#34;) asyncio.run(main()) 在实践中, 大多数基于 asyncio 的代码都会使用 run() 函数, 但是要了解实际发生了什么, 参考下面这段代码 (实现了同样的功能)
+import asyncio import time async def main(): print(f&#34;{time.ctime()} Hello!&#34;) await asyncio.sleep(1.0) print(f&#34;{time.ctime()} Goodbye!&#34;) loop = asyncio.get_event_loop() # 1 task = loop.create_task(main()) # 2 loop.run_until_complete(task) # 3 pending = asyncio.all_tasks(loop=loop) # 4 for task in pending: # 5 task.cancel() group = asyncio.gather(*pending, return_exceptions=True) # 6 loop.run_until_complete(group) # 7 loop.close() # 8 代码解释:
+获取事件循环: 使用 get_event_loop() 创建一个事件循环实例(如果当前线程没有 loop 就会创建一个), 一个线程中, 多次调用 get_running_loop() 会返回同一个 loop 对象
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-10 08:00:00 +0800 CST'>August 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span>&nbsp;·&nbsp;<span>159 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Python Asyncio Introduce" href="http://localhost:1313/posts/python-asyncio-introduce/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Python Function Parameters
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>今天是周日, 简单写点吧, 简单总结一下 Python 中函数参数
+Python Function Parameters Python 函数参数机制非常灵活丰富, 理解各种参数类型及其用法对于写出优雅、易维护的代码非常重要. 本文将介绍 Python 中函数参数的种类与用法, 并详细讲解 Python 3.8 引入的参数分隔符 / 和 *, 帮助你更好地设计函数接口.
+1. Postional Arguments 位置参数 函数定义中最常见的参数, 调用时按顺序传入值
+def greet(name, age): print(f&#34;Hello, {name}. You are {age} years old.&#34;) greet(&#34;Alice&#34;, 30) # Hello, Alice. You are 30 years old. 2. Keyword Arguments 关键字参数 调用时以 key=value 形式传入, 顺序可变
+greet(age=30, name=&#34;Alice&#34;) 3. Default Arguments 默认参数 定义函数时给参数赋默认值, 调用时可省略
+def greet(name, age=20): print(f&#34;Hello, {name}. You are {age} years old.&#34;) greet(&#34;Bob&#34;) # 使用默认年龄20 greet(&#34;Bob&#34;, 25) # 指定年龄 注意: 使用默认参数尽量不要使用可变类型(mutable), 例如列表, 因为默认参数是存储在函数中的, 而非函数实例中, 多次调用会改变默认值的内容. def greet(names: list[str] = [&#34;Alice&#34;, &#34;Bob&#34;]): ... 若希望使用默认值, 建议使用下面这种方法
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-10 08:00:00 +0800 CST'>August 10, 2025</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>278 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Python Function Parameters" href="http://localhost:1313/posts/python-function-parameters/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Python Tricks
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>1. The Self-Replicating Trick 将一个含有空列表的列表乘5, 得到有5个空列表的列表
+x = [[]] * 5 x [[], [], [], [], []]
+当使用.append(&#34;x&#34;)方法时, 所有列表都被修改
+x[0].append(&#34;x&#34;) x [[“x”], [“x”], [“x”], [“x”], [“x”]]
+打印其 id 可以看到, id 都相同
+for item in x: print(id(item)) 4417579584
+4417579584
+4417579584
+4417579584
+4417579584
+或者使用set()发现 id 唯一
+set(id(item) for item in x) {4417579584}
+也就是说, 当使用乘法的时候, 创建了5个内部列表的引用副本
+使用反汇编发现, 只创建了两个列表, 并执行乘5
+dis.dis(&#34;[[]] * 5&#34;) 0 0 RESUME 0 # 用于支持解释器恢复 (py3.11) 1 2 BUILD_LIST 0 # 构造一个空列表[], 压栈 4 BUILD_LIST 1 # 从栈顶取一个对象, 构造列表[[]] 6 LOAD_CONST 0 (5) # 加载常量 5 8 BINARY_OP 5 (*) # 对栈顶两个元素执行乘法 12 RETURN_VALUE # 返回栈顶结果 The alternative 如果要构造独立列表, 应改用列表推导式
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-05 08:00:00 +0800 CST'>August 5, 2025</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>432 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Python Tricks" href="http://localhost:1313/posts/python-tricks/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Executing arbitrary Python code from a comment
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>通过注释执行任意Python代码
+问题描述 Q: 只能控制一行的.py代码中注释的内容(\n\r均会被替换为空字符), 如何执行任意代码?
+A: 在注释#中, 构造一个.zip 文件, python 会将该内容当成一个zip包执行, 触发任意代码执行
+解决方案 从 Python 3.5 起, 可以直接执行一个 .zip 文件
+python myapp.zip 前提是ZIP 包中包含一个顶层的__main__.py文件, Python 会把它当作 zipapp, 自动解压并运行__main__.py
+Python 会从末尾找到 ZIP 的目录结构, 而不是依赖文件头, 所以前面的“垃圾”字节会被忽略
+Python 源码中的任何行, 只要以 # 开头, 解释器都会忽略后面内容, 因此可以:
+把 ZIP 文件的数据藏在 Python 源码中的注释中（开头加 #） 把 ZIP 数据直接拼接在 Python 文件的后面, 只保证文件头部分是合法 Python ZIP 不关心前缀, Python 只要最前面是有效源码, 也不会管后面 难点 ZIP 文件头包含二进制字段，比如
+偏移量（文件数据相对于 ZIP 开头的位置） 长度（文件名长度、注释长度等） 这些值写死在 header 里, 是十六进制整数 如果这些字节中出现了像 \x00、\xFF 等非 ASCII 内容, Python 就不能把它当注释 解决方法: 暴力穷举合法组合
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-04 08:00:00 +0800 CST'>August 4, 2025</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>561 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Executing arbitrary Python code from a comment" href="http://localhost:1313/posts/executing-arbitrary-python-code-from-a-comment/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="http://localhost:1313/tags/python/page/2/">
+      «&nbsp;Prev&nbsp;
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Starslayerx&#39; Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

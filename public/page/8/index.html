@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head>
+	<meta name="generator" content="Hugo 0.154.5"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Starslayerx&#39; Blog</title>
+<meta name="keywords" content="Blog, Technology, Programming, Hugo, PaperMod">
+<meta name="description" content="A personal blog about technology, programming, and daily notes">
+<meta name="author" content="Starslayerx">
+<link rel="canonical" href="http://localhost:1313/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e&#43;Ge/K3X9WmUVz&#43;1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.svg">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon.svg">
+<link rel="apple-touch-icon" href="http://localhost:1313/favicon.svg">
+<link rel="mask-icon" href="http://localhost:1313/favicon.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/index.xml" title="rss">
+<link rel="alternate" type="application/json" href="http://localhost:1313/index.json" title="json">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/">
+<link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/zh-cn/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="http://localhost:1313/">
+  <meta property="og:site_name" content="Starslayerx&#39; Blog">
+  <meta property="og:title" content="Home">
+  <meta property="og:description" content="A personal blog about technology, programming, and daily notes">
+  <meta property="og:locale" content="en-US">
+  <meta property="og:type" content="website">
+      <meta property="og:image" content="http://localhost:1313/images/og-default.avif">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/images/og-default.avif">
+<meta name="twitter:title" content="Home">
+<meta name="twitter:description" content="A personal blog about technology, programming, and daily notes">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Starslayerx' Blog",
+  "url": "http://localhost:1313/",
+  "description": "A personal blog about technology, programming, and daily notes",
+  "logo": "http://localhost:1313/favicon.svg",
+  "sameAs": [
+      "https://github.com/Starslayerx", "mailto:starslayerxleo@gmail.com", "/index.xml"
+  ]
+}
+</script>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Starslayerx&#39; Blog (Alt + H)">
+                <img src="http://localhost:1313/favicon.svg" alt="" aria-label="logo"
+                    height="35">Starslayerx&#39; Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                    <ul class="lang-switch"><li>|</li>
+                        <li>
+                            <a href="http://localhost:1313/zh-cn/" title="简体中文"
+                                aria-label="简体中文">Zh-Cn</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="Archives">
+                    <span>Archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Make an AI Coding Agent in python
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>这篇文件介绍如何使用 Python 制作一个基础的 AI 编程助手
+Minimal AI Coding Agent 下面是一个 AI Coding Agent 至少需要的功能
+Chat loop 对话循环 Call an LLM 调用大语言模型 Add tools to call 增加工具调用 Handle tool request 处理工具调用请求 Step 1: Chat Loop 首先, 聊天循环一直循环等待用户输入, Python 的 “input” 方法可以获取用户输入
+print(&#34;Type q to quit&#34;) while True: user_message = input(&#34;You: &#34;) if user_message == &#34;q&#34;: break ai_message = f&#34;You said {user_message}... so insightful&#34; print(ai_message) 目前主流的 LLM 都是无状态的, 所以需要我们手动的去管理对话上下文, 这里使用一个 fake_ai 函数模拟真实的 LLM 调用, 并包含 role 和 content 内容
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-09-01 08:00:00 +0800 CST'>September 1, 2025</span>&nbsp;·&nbsp;<span>11 min</span>&nbsp;·&nbsp;<span>2265 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Make an AI Coding Agent in python" href="http://localhost:1313/posts/make-an-ai-coding-agent-in-python/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">KMP Algorithm
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>KMP 算法 思想 KMP 算法, 全程 Knuth-Morris-Pratt 算法, 是一种高效的字符串匹配算法. 它的核心思想是:
+在匹配过程中, 当发生文本串(text)与模式串(pattern)不匹配时, 能够利用已匹配过的部分信息, 智能地移动模式串, 从而避免从头开始匹配, 达到提高匹配效率的目的.
+KMP算法的巧妙之处在于:
+它认为, 当发生不匹配时, 将模式串仅仅右移一位是&#34;愚蠢&#34;的. 当某个地方不匹配时, 表明前面实际上有部分内容已经匹配了. 如果直接从头开始匹配, 就浪费了这些信息. 有时前面已经匹配部分会有&#34;重复&#34;的性质, 可以利用这种性质, 让子串一次多移动几步, 从而加速匹配速度.
+举例 主串S和模式串P
+S = BBC ABCDAB ABCDABCDABDE P = ABCDABD 当匹配到下面这种情况时:
+S = BBC ABCDAB ABCDABCDABDE P = ABCDABD 这里的 D 和上面空格不匹配, 此时保理匹配就直接向右移动一位, 但是通过观察已经匹配的部分 “ABCDAB” 可以发现, 该部分有相同的前后缀 “AB”, 因此可以直接将子串的 “A” 对准主串中后缀 “AB” 里面的 “A”:
+S = BBC ABCDAB ABCDABCDABDE P = ABCDABD 此时, S 的指针不用改变, 将 P 的指针回到 “C” 的位置就行了. 通过这种方法, 大大提升了效率.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-31 08:00:00 +0800 CST'>August 31, 2025</span>&nbsp;·&nbsp;<span>6 min</span>&nbsp;·&nbsp;<span>1133 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to KMP Algorithm" href="http://localhost:1313/posts/kmp-algorithm/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Redis Ordered Set
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Redis 的有序集和(ordered set)同时具有&#34;有序&#34;和&#34;集和&#34;两种性质, 这种结构中每个元素都由一个成员和一个与成员相关联的分值组成, 其中成员与字符串方式存储, 而分值以64位双精度浮点数格式存储.
+例如下面一个记录薪水的集和:
+成员 分值 “perter” 3500 “bob” 3800 “jack” 4500 “tom” 5000 “mary” 5500 与集和一样, 有序集和中的元素都是唯一的, 同时, 成员将按照分值大小进行排序.
+有序集和分值除了可以是数字外, 还可以是字符串 “&#43;inf” 或者 “-inf”, 这两个特殊值分别表示无穷大和无穷小.
+虽然有序集和的成员不可相同, 但是分值可以是相同的, 当两个或多个成员拥有相同的分值时，Redis 将按照这些成员在字典序中的大小对其进行排列.
+有序集合是Redis提供的所有数据结构中最为灵活的一种, 它可以以多种不同的方式获取数据, 比如根据成员获取分值、根据分值获取成员、根据成员的排名获取成员、根据指定的分值范围获取多个成员等.
+ZADD: 添加或更新成员
+ZADD sorted_set socre number [score number ...] 默认情况下, ZADD 命令将返回成功添加的新成员数量作为返回值, 对于更新操作会返回0(未添加新成员).
+使用 XX | NX 选项来显示地指示命令 只更新 或 只添加操作
+ZADD sorted [XX|NX] socre member [socre member ...] 若要返回所有被修改的成员数量(新添加 &#43; 更新数量), 可使用 CH 选项
+ZADD sorted_set [CH] socre number [score number ...] 复杂度: O(M * log(N)) 其中 M 为给定成员数量, N 为有序集和的成员数量
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-30 08:00:00 +0800 CST'>August 30, 2025</span>&nbsp;·&nbsp;<span>4 min</span>&nbsp;·&nbsp;<span>646 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Redis Ordered Set" href="http://localhost:1313/posts/redis-ordered-set/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Asyncio vs Gevents in Python
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>python 中 asyncio 和 gevent 是两种协程(在一个线程内实现并发)的实现, 这篇文章对比介绍这两者实现.
+下面先介绍一下基础概念:
+Coroutines 协程 在 Python 中, 协程是可以暂停和继续运行的函数, 使得其是否适合并发编程. 定义使用 async def 语法, 协程运行编写非阻塞的操作. 在协程内, await 关键字用于暂停执行, 直到给定的任务完成, 从而运行其他协程在此其间并发运行.
+Event Loop 事件循环 事件循环是一种控制结构, 它不断地处理一系列事件, 处理任务并管理程序的执行流程. 等待事件发生, 处理后再等待下一个事件. 这种机制确保程序能够以高效有序的方式响应事件, 例如用户输入、计时器或者消息.
+下面是事件循环如何管理协程:
+任务提交: 当向事件循环提交一个协程时, 其被封装在一个 Task 对象中, 然后任务被安排在事件循环上运行.
+内部队列: 事件循环使用几个内部数据结构来管理和调度这些任务
+就绪队列 (Ready Queue): 包含可以立即运行的任务. I/O 选择器 (I/O Selector): 监控文件描述符, 并根据 I/O 准备情况调度任务 计划回调 (Scheduled Callbacks): 管理计划在一定延迟后运行的任务. 调度: 事件循环不断检查这些队列和数据结构, 以确定哪些任务已准备好执行. 然后它运行这些任务, 在遇到 await 语句时, 根据需要暂停和恢复它们.
+并发管理: 通过交错执行多个协程, 事件循环无需多个线程即可实现并发. 在任何时候, 只有一个任务会运行, 但如果一个任务是 I/O 密集型的, 它会切换到另一个任务, 给人一种并行的错觉.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-29 08:00:00 +0800 CST'>August 29, 2025</span>&nbsp;·&nbsp;<span>4 min</span>&nbsp;·&nbsp;<span>694 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Asyncio vs Gevents in Python" href="http://localhost:1313/posts/asyncio-vs-gevents-in-python/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Prompt Organization
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>这篇文章旨在介绍 Python 中常用的提示词组织方式
+f-string 使用 f 字符串填充变量得到提示词
+def get_prompt(query: str) -&gt; list[dict]: SYSTEM_PROMPT = f&#34;&#34;&#34;... ... 多行提示词, 也可以填充变量 &#34;&#34;&#34; USER_PROMPT = f&#34;&#34;&#34;INPUT: {query} .... &#34;&#34;&#34; return [ {&#34;role&#34;: &#34;system&#34;, &#34;content&#34;: SYSTEM_PROMPT}, {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: USER_PROMPT}, ] 这种方法实现简单, 速度快, 但是:
+多行字符串由于填充变量的需要, 需写在函数内, 导致代码格式混乱 # 实际上, 多行字符串还可以这样实现, 但也不太时候提示词太多的时候, 但这样代码格式会更加优雅 system_prompt = ( f&#34;你是一名{role}负责...\n&#34; f&#34;具体规则:\n&#34; f&#34;1. ....&#34; f&#34;2. ....&#34; ) 上面这种方法会将多行字符串合并, 注意不要加逗号, 不然就变成元组了 通过代码构造提示词, 任何修改都需要修改代码, 扩展性差 string.Template 使用 Python 元素字符串模板
+SYSTEM_PROMPT = string.Template(&#34;&#34;&#34;你是一名$role 多行提示词... &#34;&#34;&#34;) USER_PROMPT = string.Template(&#34;&#34;&#34;INPUT: $query &#34;&#34;&#34;) def get_prompt(role: str, query: str) -&gt; list[dict]: system_prompt = SYSTEM_PROMPT.subtitute(role=&#34;助手&#34;) user_prompt = USER_PROMPT.subtitute(query=&#34;问题...&#34;) return [ {&#34;role&#34;: &#34;system&#34;, &#34;content&#34;: system_prompt}, {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: user_prompt}, ] 使用模板字符串, 模板则不必写在函数内, 且模板字符串可以选择替换部分变量, 使用 .safe_substitute()方法传入一个字典, 例如 {&#34;query&#34;: &#34;问题...&#34;}, 对没有传入的变量解析为 $var
+对比 f-string, 模板字符串更加灵活, 且可以只传入部分值
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-28 08:00:00 +0800 CST'>August 28, 2025</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>305 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Prompt Organization" href="http://localhost:1313/posts/prompt-organization/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">From Python to Go
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>From Python to Go: Why We Rewrote Our Ingest Pipeline at Telemetry Harbor
+我们将 Telemetry Harbor 的摄取管道从 Python FastAPI 重写为 Go，原因是遇到了严重的性能瓶颈。迁移后，效率提升了 10 倍，数据完整性因严格类型检查而得到加强，系统也拥有了稳定、可扩展的高并发时间序列数据摄取基础。
+背景：打造一个时间序列数据平台 Telemetry Harbor 源自我们在汽车行业积累的经验。几乎每个项目都要重复搭建相同的基础设施：数据库、后端、数据摄取管道、可视化界面。每次都要花费数周时间，这让我们萌生了打造一个开箱即用平台的想法。
+当时的市场方案并不理想。InfluxDB 的商业化策略让许多关键特性被锁在付费墙后，版本迁移成本高且在大数据负载下表现不佳。TimescaleDB 与 ClickHouse 技术上更强大，但依旧需要用户自行构建后端与摄取管道。我们看到了缺口——需要一个极简、可靠、可直接使用的平台。
+Python FastAPI：原型开发的正确选择 MVP 阶段，我们在开发速度与运行性能之间权衡。最终选择了 Python FastAPI，因为它允许我们：
+快速验证市场假设 迅速收集客户反馈并迭代 在低成本下尝试多种方案 尽快上线以抢占市场 早期架构非常直接：HTTP API（避免防火墙问题）、Redis &#43; RQ 队列、TimescaleDB。测试效果良好，但很快暴露了性能隐患——RQ 的同步处理方式无法支撑高吞吐场景。
+性能瓶颈：Python 无法跟上增长 随着数据量上升，性能问题逐渐浮现：
+空闲 CPU 占用：10% 中等负载：约 40% CPU 高负载：120–300% CPU（峰值 800%），频繁崩溃 问题不仅在于 RQ 的同步限制，而是整个 Python 架构在常规负载下都难以维持稳定。这迫使我们考虑全面重写。
+迁移决策：为什么选择 Go？ 我们评估了 Rust 和 Go：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-27 08:00:00 +0800 CST'>August 27, 2025</span>&nbsp;·&nbsp;<span>1 min</span>&nbsp;·&nbsp;<span>148 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to From Python to Go" href="http://localhost:1313/posts/from-python-to-go/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Redis Set
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Redis 的集和 set 键允许用户将任意多个不同的元素存储到集和中, 既可以是文本数据, 也可以是二进制数据. 其与列表有以下两个明显的区别:
+列表可以存储重复元素, 而集和只存储非重复元素 列表以有序方式存储元素, 而集和则以无序方式存储元素 下面介绍结合键的各个命令
+Set 集和 SADD: 将元素添加到集和
+SADD set element [element ...] 返回成功添加的新元素数量作为返回值, 由于集和不存储相同元素, 所以会自动忽略重复的元素
+SREM: 从集和中移出元素
+SREM set element [element ...] 返回被移除的元素数量, 同样的, 不存在的元素会被忽略
+SMOVE: 将元素从一个集和移动到另一个集和
+SMOVE source target element 移动操作成功时返回1, 若不存在于源集和, 返回0.
+如果 source 的元素不存在, 则返回0表示失败.
+如果 target 的元素已存在, 则会覆盖该元素. 从结果来看, 并不会导致 target 中元素变化, 但是会导致 source 中的该元素消失.
+SMEMBERS: 获取集和包含的所有元素
+SMEMBERS set 由于集和是无序的, 且 SMEMBERS 命令不会进行任何排序操作, 所以根据元素添加的顺序不同, 含相同元素的集和执行该命令结果可能不同.
+SCARD: 获取集和包含的元素数量
+SCARD set SISMEMBER: 检查给定元素是否存在于集和
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-26 08:00:00 +0800 CST'>August 26, 2025</span>&nbsp;·&nbsp;<span>4 min</span>&nbsp;·&nbsp;<span>780 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Redis Set" href="http://localhost:1313/posts/redis-set/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Documenting REST APIs with OpenAPI
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>本章介绍如何使用 OpenAPI 来为 API 编写文档. OpenAPI 是描述 RESTful API 最流行的标准, 拥有丰富的生态系统, 可以用于测试、验证和可视化 API. 大多数编程语言都支持 OpenAPI 规范的库.
+OpenAPI 使用 JSON Schema 来描述 API 的结构和模型, 因此首先介绍 JSON Schema 的工作原理. JSON Schema 是一种用于定义 JSON 文档结构的规范, 包括文档中值的类型和格式.
+Using JSON Schema to model data 使用 JSON Schema 对数据建模
+JSON Schema 是一种规范标准, 用于定义 JSON 文档的结构及其属性的类型和格式. JSON Schema 规范通常定义一个具有特定属性或特性的对象, 由键值对的关联数组表示, 如下面这样:
+{ &#34;status&#34;: { &#34;type&#34;: &#34;string&#34; } } 在 JSON Schema 规范中, 每个属性都以键值对的形式出现, 其中值是该属性的描述符 一个属性最基本的描述符就是 type, 上面例子中, 指定类型为字符串 JSON Schema 支持以下基本数据类型:
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-25 08:00:00 +0800 CST'>August 25, 2025</span>&nbsp;·&nbsp;<span>9 min</span>&nbsp;·&nbsp;<span>1727 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Documenting REST APIs with OpenAPI" href="http://localhost:1313/posts/documenting-rest-apis-with-openapi/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Redis List
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>List 列表 Redis 的列表是一种线性的有序结构, 可以按照元素被推入列表的顺序来存储元素, 这些元素即可以是文字顺序, 也可以是二进制顺序, 且元素可重复出现.
+LPUSH: 将元素推入列表左端
+LPUSH list item [item item ...] LPUSH 命令会返回当前元素数量
+RPUSH: 将元素推入列表右端
+RPUSH list item [item item ...] LPUSHX, RPUSHX: 只对已存在的列表执行推入操作
+上面两条命令, 在列表不存在的情况下, 会自动创建空列表, 并将元素推入列表中.
+且上面命令每次只能推入一个元素
+LPOP: 弹出列表最左端的元素, 并返回被移出的元素
+POP list 空列表 POP 会返回空值 (nil)
+RPOP: 弹出列表最右端的元素
+RPOP list RPOPLPUSH: 将列表右端弹出的元素推入列表左端
+RPOPLPUSH source target source 和 target 可以是相同列表, 也可以是不同列表. 但不能为空列表, 否则会返回空(nil)
+示例: 先入先出队列 许多电商网站都会在节日时推出一些秒杀活动, 这些活动会放出数量有限的商品供用户抢购, 秒杀系统的一个特点就是短时间内会有大量用户进行相同的购买操作, 如果使用事务或者锁去实现秒杀程序, 那么会因为锁和事务的重试性而导致性能低下, 并且由于重试的存在, 成功购买商品的用户可能并不是最早购买操作的用户, 因此这种秒杀系统并不公平.
+解决方法之一就是把用户的购买操作都放入先进先出队列里面, 然后以队列的方式处理用户购买操作, 这样的程序就可以不使用锁或者事务实现秒杀系统, 且更加公平.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-24 08:00:00 +0800 CST'>August 24, 2025</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>489 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Redis List" href="http://localhost:1313/posts/redis-list/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Rust Alternaitve Tools
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>常用工具的 rust 替代品.
+Introduction 在 Unix 生态中, 许多命令行工具都是用 C 编写的, 经过几十年的优化, 性能和稳定性都非常优秀. 然而, 近年来, Rust 以其安全性、内存管理优势和现代化开发体验, 成为系统级工具开发的理想选择.
+首先更新 cargo, 不同系统都可以使用 cargo 安装, 当然也可以使用系统的包管理器安装
+rustup update stable 有需要的话修改源, 一般在 ~/.cargo/config.toml, 下面是科大源
+[source.crates-io] replace-with = &#39;ustc&#39; [source.ustc] registry = &#34;sparse&#43;https://mirrors.ustc.edu.cn/crates.io-index/&#34; [registries.ustc] index = &#34;sparse&#43;https://mirrors.ustc.edu.cn/crates.io-index/&#34; Filesystem &amp; Archiving 文件系统与归档 exa 替代 ls: 彩色支持 Git 状态的 ls 替代品
+常用参数: -1: 一行显示一个文件 -l: 显示文件细节信息 -F: 在目录文件名末添加斜杠符号 -T: 树状显示 -R: 递归显示所有文件 --icons: 显示图标 zoxide 替代 cd: 基于访问频率的快速目录跳转工具
+常用参数: z foo # 匹配 foo 的路径 z foo bar # 匹配 foo &amp; bar 的路径 z - # 回到之前目录 zi foo # fzf File &amp; Text Processing 文件与文本处理 bat 替代 cat: 具备语法高亮、行号显示、Git 集成等功能, 让查看文件内容更加美观 ripgrep 替代 grep: 使用 Rust 编写的极速文本搜索工具, 支持递归搜索、正则表达式、忽略规则(.gitignore)等 fd 替代 find: 提供简单直观的语法、更快的搜索性能, 并默认支持彩色输出和忽略 .gitignore 文件 System Monitoring &amp; Management 系统监控与管理 bottom 替代 top / htop: 一个现代化的系统资源监控工具, 支持 CPU、内存、磁盘、网络等多种指标显示, 并提供交互式界面 procs 替代 ps: 更人性化的进程信息显示, 支持彩色输出、树状显示、搜索与过滤 Wrapping up Rust 的安全性和高性能使其成为编写现代 Linux 工具的理想选择. 这些替代品不仅提供了更好的用户体验, 还利用 Rust 的并发优势和零成本抽象提升了性能. 其他一些 rust 工具:
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-23 08:00:00 +0800 CST'>August 23, 2025</span>&nbsp;·&nbsp;<span>1 min</span>&nbsp;·&nbsp;<span>160 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Rust Alternaitve Tools" href="http://localhost:1313/posts/rust-alternaitve-tools/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="http://localhost:1313/page/7/">
+      «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="http://localhost:1313/page/9/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Starslayerx&#39; Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

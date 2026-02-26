@@ -1,297 +1,89 @@
 baseURL: "https://starslayerx.github.io/"
 languageCode: en-US
 defaultContentLanguage: en
-defaultContentLanguageInSubdir: false
 title: "Starslayerx' Blog"
-theme: "hugo-narrow"
+theme: "PaperMod"
 
-
-hasCJKLanguage: true
+# Enable emoji support
 enableEmoji: true
 
+# Enable robots.txt
+enableRobotsTXT: true
+
+# Build settings
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+# Permalinks
 permalinks:
   posts: /posts/:slug/
   pages: /:slug/
-  
-# pagination
-pagination:
-  pagerSize: 6
-  path: "page"
 
+# Pagination
+pagination:
+  pagerSize: 10
+
+# Languages
 languages:
   en:
     languageCode: en-US
     languageName: "English"
     weight: 1
+    params:
+      languageAltTitle: English
+    menu:
+      main:
+        - name: Posts
+          url: /posts/
+          weight: 10
+        - name: Archives
+          url: /archives/
+          weight: 20
+        - name: Categories
+          url: /categories/
+          weight: 30
+        - name: Tags
+          url: /tags/
+          weight: 40
+        - name: Search
+          url: /search/
+          weight: 50
+
   zh-cn:
     languageCode: zh-CN
     languageName: "简体中文"
     weight: 2
+    params:
+      languageAltTitle: 简体中文
+    menu:
+      main:
+        - name: 文章
+          url: /zh-cn/posts/
+          weight: 10
+        - name: 归档
+          url: /zh-cn/archives/
+          weight: 20
+        - name: 分类
+          url: /zh-cn/categories/
+          weight: 30
+        - name: 标签
+          url: /zh-cn/tags/
+          weight: 40
 
-# 分类法配置
+# Taxonomies
 taxonomies:
   category: categories
   tag: tags
 
-menus:
-  main:
-    - name: nav.posts
-      pageRef: /posts
-      weight: 20
-      params:
-        icon: posts
-    - name: nav.categories
-      pageRef: /categories
-      weight: 30
-      params:
-        icon: categories
-    - name: nav.tags
-      pageRef: /tags
-      weight: 40
-      params:
-        icon: tags
-    - name: nav.archives
-      pageRef: /archives
-      weight: 50
-      params:
-        icon: archive
-
-
-  # footer menu
-  footer:
-    - name: About
-      pageRef: /about
-      weight: 10
-      params:
-        icon: about
-    - name: Contact
-      url: https://google.com
-      weight: 20
-      params:
-        icon: contact
-    - name: RSS Feed
-      url: /index.xml
-      weight: 30
-      params:
-        icon: rss
-
-  # footer social link
-  social:
-    - name: GitHub
-      url: https://github.com/Starslayerx
-      weight: 10
-      params:
-        icon: github
-    - name: Email
-      url: mailto:starslayerxleo@gmail.com
-      weight: 40
-      params:
-        icon: email
-
-params:
-  # Basic site info with SEO
-  description: "A modern, clean, and minimal Hugo theme built with Tailwind CSS 4.0. Support custom themes, dark mode, and responsive design."
-  keywords: ["Hugo", "Blog", "Theme", "Technology", "Programming"]
-  defaultAuthor: "Starlsayerx"
-  language: "en-US"
-  shortName: "Hugo Narrow"  # PWA
-  images:
-  - "/images/og-default.avif"
-
-  logo:
-    image: "/images/logo.svg"  # Logo path rel to static folder, leave empty use site title and primary color
-    link: "/"                  # click to home page
-  favicon:
-    svg: "/favicon.svg"        # SVG format favicon (recommended)
-
-
-  author:
-    name: "Starslayerx"
-    title: "sx's blog"
-    description: "Just some daily notes, being developing ..."
-    avatar: "/images/avatar.svg"
-    social:
-      - name: "GitHub"
-        url: "https://github.com/starslayerx"
-        icon: "github"
-      - name: "Email"
-        url: "mailto:starslayerxleo@gmail.com"
-        icon: "email"
-
-  # UI Components Control
-  showThemeSwitch: true      # Set to false to hide theme style switcher (palette icon)
-  showDarkModeSwitch: true   # Set to false to hide dark mode switcher (sun/moon icon)
-  showLanguageSwitch: true   # Set to false to hide language switcher
-
-  # Header sticky effect
-  stickyHeader: true  # Set to true to enable sticky navigation bar
-
-  # default color scheme
-  colorScheme: "nord"
-  themes:
-    default:
-      name: "Default"
-      order: 1
-    claude:
-      name: "Claude"
-      order: 2
-    bumblebee:
-      name: "Bumblebee"
-      order: 3
-    emerald:
-      name: "Emerald"
-      order: 4
-    nord:
-      name: "Nord"
-      order: 5
-    sunset:
-      name: "Sunset"
-      order: 6
-    abyss:
-      name: "Abyss"
-      order: 7
-    dracula:
-      name: "Dracula"
-      order: 8
-    amethyst:
-      name: "Amethyst"
-      order: 9
-    slate:
-      name: "Slate"
-      order: 10
-    twitter:
-      name: "Twitter"
-      order: 11
-
-
+# Outputs
+outputs:
   home:
-    recentPostsCount: 5 # Number of recent posts to show on the home page
+    - HTML
+    - RSS
+    - JSON  # needed for search
 
-  post:
-    showRelated: true           # show related posts
-    relatedPostsCount: 3        # posts number
-  
-    license:
-      show: false
-      author: "Hugo Narrow"
-      name: "CC BY-NC-SA 4.0"
-      description: "This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. Please attribute the source, use non-commercially, and maintain the same license."
-      url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
-      displayName: "CC BY-NC-SA 4.0"
-
-  # comments
-  comments:
-    enabled: false
-    # giscus, disqus, utterances, waline, artalk, twikoo
-    system: "giscus"
-
-    giscus:
-      repo: "tom2almighty/hugo-narrow-giscus"
-      repoId: "R_kgDOO2gwLg"
-      category: "General"
-      categoryId: "DIC_kwDOO2gwLs4CrEaf"
-      mapping: "pathname"
-      strict: "0"
-      reactionsEnabled: "1"
-      emitMetadata: "0"
-      inputPosition: "bottom"
-      theme: "preferred_color_scheme"
-      lang: "en"
-
-    disqus:
-      shortname: ""
-
-
-    utterances:
-      repo: "" 
-      issueTerm: "pathname"
-      label: "comment"
-      theme: "preferred-color-scheme"
-
-
-    waline:
-      serverURL: ""
-      lang: "zh-CN"
-
-
-    artalk:
-      server: ""
-      site: ""
-      locale: "zh-CN" # String|Object|"auto"
-      darkMode: "auto"
-      gravatar:
-        mirror: "https://cravatar.cn/avatar/"
-
-
-    twikoo:
-      envId: ""
-      region: "ap-shanghai"
-      path: ""
-      lang: "zh-CN"
-
-
-  analytics:
-    enabled: false
-    baidu:
-      enabled: false
-      id: "your-baidu-analytics-id"
-    clarity:
-      enabled: false
-      analytics: "your-clarity-analytics-id"
-    google:
-      enabled: false
-      id: "your-google-analytics-id"
-    umami: 
-      enabled: false
-      id: "your-umami-website-id"
-      src: "https://umami.com/myscript.js"
-      domains: "example.domain.com"
-
-
-  katex:
-    enabled: true
-    delimiters:
-      - left: "$$"
-        right: "$$"
-        display: true
-      - left: "$"
-        right: "$"
-        display: false
-      - left: "\\("
-        right: "\\)"
-        display: false
-      - left: "\\["
-        right: "\\]"
-        display: true
-      
-  mermaid:
-    enabled: false
-
-  # GLightbox
-  lightbox:
-    enabled: false
-    loop: true
-    width: 80vw
-    height: 80vh
-    touchNavigation: true
-    draggable: true
-    zoomable: true
-    preload: true
-    descPosition: bottom
-
-  # Justified Gallery
-  justified_gallery:
-    enabled: false
-    rowHeight: 300
-    gutter: 30
-    lastRow: center
-    transitionDuration: 0.3s
-    resizeDebounce: 100
-    rowHeightTolerance: 0.25
-    maxRowsCount: 999999
-    calculateItemsHeight: false
-
-
+# Markup
 markup:
   tableOfContents:
     startLevel: 2
@@ -299,45 +91,148 @@ markup:
     ordered: false
   goldmark:
     renderer:
-      unsafe: true
+      unsafe: true  # Allow HTML in markdown
   highlight:
+    anchorLineNos: false
     codeFences: true
     guessSyntax: false
     lineNos: false
-    lineNumbersInTable: false # Set to false
     noClasses: false
-    style: github # No need to change
-    tabWidth: 2
+    style: monokai
 
+# Privacy settings
+privacy:
+  vimeo:
+    disabled: false
+    simple: true
+  x:
+    disabled: false
+    enableDNT: true
+    simple: true
+  instagram:
+    disabled: false
+    simple: true
+  youtube:
+    disabled: false
+    privacyEnhanced: true
 
-codeblock:
-  collapse:
-    enabled: true
-    defaultState: expanded  # expanded, collapsed
-    autoCollapseLines: 30
-    autoCollapseHeight: 400
-    collapsedHeight: 120
+# Services
+services:
+  instagram:
+    disableInlineCSS: true
+  x:
+    disableInlineCSS: true
 
-readingProgress:
-  enabled: true
-  height: 3
-  showOnHomepage: false
-  smoothScroll: true
-  hideOnComplete: false
+# PaperMod theme parameters
+params:
+  env: production  # to enable google analytics, opengraph, twitter-cards and schema
+  title: "Starslayerx' Blog"
+  description: "A personal blog about technology, programming, and daily notes"
+  keywords: [Blog, Technology, Programming, Hugo, PaperMod]
+  author: "Starslayerx"
+  images: ["/images/og-default.avif"]  # Link for OpenGraph, Twitter Cards
+  DateFormat: "January 2, 2006"
+  defaultTheme: auto  # dark, light, auto
+  disableThemeToggle: false
 
+  # Show reading time and word count
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowWordCount: true
+  ShowRssButtonInSectionTermList: true
+  UseHugoToc: true
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+  comments: false
+  hidemeta: false
+  hideSummary: false
+  showtoc: true  # Show table of contents
+  tocopen: false  # Keep TOC closed by default
 
+  # Assets
+  assets:
+    disableHLJS: false  # to disable highlight.js
+    disableFingerprinting: false
+    favicon: "/favicon.svg"
+    favicon16x16: "/favicon.svg"
+    favicon32x32: "/favicon.svg"
+    apple_touch_icon: "/favicon.svg"
+    safari_pinned_tab: "/favicon.svg"
 
+  # Profile mode (optional, can use home-info mode instead)
+  # profileMode:
+  #   enabled: false
+  #   title: "Starslayerx"
+  #   subtitle: "Welcome to my blog"
+  #   imageUrl: "/images/avatar.svg"
+  #   imageWidth: 120
+  #   imageHeight: 120
+  #   buttons:
+  #     - name: Posts
+  #       url: posts
+  #     - name: Tags
+  #       url: tags
 
-outputs:
-  home: ["HTML", "RSS", "JSON", "WebAppManifest"]
+  # Home-info mode
+  homeInfoParams:
+    Title: "Welcome to Starslayerx' Blog 👋"
+    Content: >
+      Just some daily notes about technology, programming, and life.
 
-# 自定义输出格式
-outputFormats:
-  WebAppManifest:
-    mediaType: "application/manifest+json"
-    baseName: "site"
-    isPlainText: true
+      - 🔨 Currently developing and learning
 
+      - 📝 Sharing thoughts and experiences
+
+      - 🌱 Always growing
+
+  # Social icons
+  socialIcons:
+    - name: github
+      url: "https://github.com/Starslayerx"
+    - name: email
+      url: "mailto:starslayerxleo@gmail.com"
+    - name: rss
+      url: "/index.xml"
+
+  # Analytics (disabled by default)
+  # analytics:
+  #   google:
+  #     SiteVerificationTag: "XYZabc"
+
+  # Cover image settings
+  cover:
+    hidden: false  # hide everywhere but not in structured data
+    hiddenInList: false  # hide on list pages and home
+    hiddenInSingle: false  # hide on single page
+    responsiveImages: true
+    linkFullImages: true
+
+  # Edit post link (optional)
+  # editPost:
+  #   URL: "https://github.com/Starslayerx/blog/tree/main/content"
+  #   Text: "Suggest Changes"
+  #   appendFilePath: true
+
+  # Label (optional)
+  label:
+    text: "Starslayerx' Blog"
+    icon: "/favicon.svg"
+    iconHeight: 35
+
+  # Search settings
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
+
+# Module configuration
 module:
   hugoVersion:
     extended: true

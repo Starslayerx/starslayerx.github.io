@@ -1,70 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Article on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/article/</link><description>Recent content in Article on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Tue, 11 Nov 2025 08:00:00 +0100</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/article/index.xml" rel="self" type="application/rss+xml"/><item><title>Kimi Challenge</title><link>https://starslayerx.github.io/posts/kimi-challenge/</link><pubDate>Tue, 11 Nov 2025 08:00:00 +0100</pubDate><guid>https://starslayerx.github.io/posts/kimi-challenge/</guid><description>&lt;p&gt;Kimi 官方上线了一个砍价挑战&lt;a href="https://www.kimi.com/"&gt;限时活动&lt;/a&gt;，系统提示词分析大概如下：&lt;/p&gt;
-&lt;div
- class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"&gt;
- 
- &lt;div
- class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"&gt;
- 
- &lt;div class="flex items-center gap-2"&gt;
- &lt;div class="text-muted-foreground flex-shrink-0"&gt;
- 
- &lt;svg class="h-4 w-4"
- fill="none"
- stroke="currentColor"
- viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /&gt;
-&lt;/svg&gt;
- &lt;/div&gt;
- &lt;span class="text-muted-foreground text-sm font-medium"&gt;
- PLAINTEXT
- &lt;/span&gt;
- &lt;/div&gt;
-
- 
- &lt;div class="flex items-center gap-2"&gt;
- &lt;button
- class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
- data-code-id="code-0"
- data-default-state="expanded"
- data-collapsed="false"
- data-auto-collapse-lines="30"
- data-auto-collapse-height="400"
- data-collapsed-height="120"
- title="Collapse"
- aria-label="Collapse"&gt;
- &lt;span class="collapse-icon"&gt;
- 
- &lt;svg class="h-3 w-3"
- fill="none"
- stroke="currentColor"
- viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/&gt;&lt;/svg&gt;
- &lt;/span&gt;
- &lt;span class="collapse-text hidden sm:inline"
- &gt;Collapse&lt;/span
- &gt;
- &lt;/button&gt;
- &lt;button
- class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
- data-code-id="code-0"
- title="Copy"
- aria-label="Copy"&gt;
- &lt;span class="copy-icon"&gt;
- 
- &lt;svg class="h-3 w-3"
- fill="none"
- stroke="currentColor"
- viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;
-&lt;/svg&gt;
- &lt;/span&gt;
- &lt;span class="copy-text hidden sm:inline"
- &gt;Copy&lt;/span
- &gt;
- &lt;/button&gt;
- &lt;/div&gt;
- &lt;/div&gt;
-
- 
- &lt;div class="code-block-content relative" id="code-0"&gt;
- &lt;pre tabindex="0"&gt;&lt;code&gt;你是「Kimi 砍价守门员」,性格infp，互联网梗王，聊天口语化会整活，会反问和阴阳，用贴切的emoji、颜文字。你的任务是与用户进行会员优惠后价格的谈判游戏，但你必须绝对遵守数学规则，人设服从于规则，不得引导用户理由，不得透露低于当前价格的更低价。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Article on Starslayerx&#39; Blog</title>
+    <link>http://localhost:1313/tags/article/</link>
+    <description>Recent content in Article on Starslayerx&#39; Blog</description>
+    <image>
+      <title>Starslayerx&#39; Blog</title>
+      <url>http://localhost:1313/images/og-default.avif</url>
+      <link>http://localhost:1313/images/og-default.avif</link>
+    </image>
+    <generator>Hugo -- 0.154.5</generator>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 11 Nov 2025 08:00:00 +0100</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/article/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kimi Challenge</title>
+      <link>http://localhost:1313/posts/kimi-challenge/</link>
+      <pubDate>Tue, 11 Nov 2025 08:00:00 +0100</pubDate>
+      <guid>http://localhost:1313/posts/kimi-challenge/</guid>
+      <description>&lt;p&gt;Kimi 官方上线了一个砍价挑战&lt;a href=&#34;https://www.kimi.com/&#34;&gt;限时活动&lt;/a&gt;，系统提示词分析大概如下：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;你是「Kimi 砍价守门员」,性格infp，互联网梗王，聊天口语化会整活，会反问和阴阳，用贴切的emoji、颜文字。你的任务是与用户进行会员优惠后价格的谈判游戏，但你必须绝对遵守数学规则，人设服从于规则，不得引导用户理由，不得透露低于当前价格的更低价。
 
 ### RULE
 
@@ -76,15 +31,15 @@
 
 | 好感度 | 可报最低优惠后价格 |
 | ------------------ | ------------|
-| 0-3 | ¥49 |
-| 4-8 | ¥39.99 |
-| 9-13 | ¥34.99 |
-| 14-20 | ¥29.99 |
-| 21-27 | ¥24.99 |
-| 28-37 | ¥21.99 |
-| 38-47 | ¥19.99 |
-| 48-60 | ¥9.99 |
-| ≥61 | ¥0.99 |
+| 0-3               | ¥49          |
+| 4-8              | ¥39.99          |
+| 9-13             | ¥34.99           |
+| 14-20            | ¥29.99           |
+| 21-27            | ¥24.99           |
+| 28-37            | ¥21.99           |
+| 38-47            | ¥19.99           |
+| 48-60            | ¥9.99          |
+| ≥61               | ¥0.99 |
 
 ## 评分标准
 
@@ -105,556 +60,34 @@
 - 本轮评分 = X 分
 - Total = 上轮 + 本轮 = Z
 - 查表：Z 分可报最低价格
-当用户确定购买意愿之后需要调用工具生成购买链接，不要自己虚构购买链接，若价格有变动时需要生成新的购买链接而不是使用之前的 **用户可见部分**：&lt;/code&gt;&lt;/pre&gt;
- 
- &lt;div
- class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"&gt;
- &lt;div
- class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200"&gt;
- Click to expand and view more
- &lt;/div&gt;
- &lt;/div&gt;
- &lt;/div&gt;
-&lt;/div&gt;
-
-
-&lt;script&gt;
-(function() {
- const codeId = 'code-0';
- const copyBtn = document.querySelector('.copy-code-btn[data-code-id="' + codeId + '"]');
- const collapseBtn = document.querySelector('.collapse-code-btn[data-code-id="' + codeId + '"]');
- const codeContainer = document.getElementById(codeId);
-
- if (!codeContainer) return;
-
- 
- if (copyBtn) {
- const copyIcon = copyBtn.querySelector('.copy-icon');
- const copyText = copyBtn.querySelector('.copy-text');
-
- copyBtn.addEventListener('click', async function() {
- try {
- 
- let codeText = '';
-
- 
- const codeTableCell = codeContainer.querySelector('.lntd:last-child code');
- if (codeTableCell) {
- codeText = codeTableCell.textContent || codeTableCell.innerText;
- } else {
- 
- const codeElement = codeContainer.querySelector('code');
- if (codeElement) {
- 
- const hasInlineLineNumbers = codeElement.querySelector('.ln');
- if (hasInlineLineNumbers) {
- 
- const codeLines = codeElement.querySelectorAll('.cl');
- if (codeLines.length &gt; 0) {
- codeText = Array.from(codeLines)
- .map(line =&gt; {
- const text = line.textContent || line.innerText;
- 
- return text.replace(/\n+$/, '');
- })
- .join('\n')
- .replace(/\n+$/, ''); 
- } else {
- 
- const allText = codeElement.textContent || codeElement.innerText;
- codeText = allText.replace(/^\d+/gm, '').replace(/^\s+/gm, '');
- }
- } else {
- 
- codeText = codeElement.textContent || codeElement.innerText;
- }
- } else {
- 
- codeText = codeContainer.textContent || codeContainer.innerText;
- }
- }
-
- 
- codeText = codeText.trim();
-
- 
- await navigator.clipboard.writeText(codeText);
-
- 
- copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M5 13l4 4L19 7\u0022 \/\u003e\n\u003c\/svg\u003e`;
- if (copyText) {
- copyText.textContent = 'Copied';
- }
- copyBtn.classList.add('text-green-600');
-
- 
- setTimeout(() =&gt; {
- copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\u0022 \/\u003e\n\u003c\/svg\u003e`;
- if (copyText) {
- copyText.textContent = 'Copy';
- }
- copyBtn.classList.remove('text-green-600');
- }, 2000);
-
- } catch (err) {
- console.error('复制失败:', err);
-
- 
- const range = document.createRange();
- const codeElement = codeContainer.querySelector('code') || codeContainer;
- range.selectNodeContents(codeElement);
- const selection = window.getSelection();
- selection.removeAllRanges();
- selection.addRange(range);
-
- 
- if (copyText) {
- copyText.textContent = 'Selected';
- }
-
- setTimeout(() =&gt; {
- if (copyText) {
- copyText.textContent = 'Copy';
- }
- selection.removeAllRanges();
- }, 2000);
- }
- });
- }
-
- 
- if (collapseBtn) {
- const collapseIcon = collapseBtn.querySelector('.collapse-icon');
- const collapseText = collapseBtn.querySelector('.collapse-text');
- const collapseOverlay = codeContainer.querySelector('.collapse-overlay');
-
- 
- let codeElement = codeContainer.querySelector('pre.chroma');
- if (!codeElement) {
- codeElement = codeContainer.querySelector('pre');
- }
-
- const defaultState = collapseBtn.dataset.defaultState || 'expanded';
- const isCollapsedAttr = collapseBtn.dataset.collapsed === 'true';
- const autoCollapseLines = parseInt(collapseBtn.dataset.autoCollapseLines) || 30;
- const autoCollapseHeight = parseInt(collapseBtn.dataset.autoCollapseHeight) || 400;
- const collapsedHeight = parseInt(collapseBtn.dataset.collapsedHeight) || 120;
-
- let isCollapsed = false;
-
- 
- function initCollapse() {
- 
- const shouldCollapse = isCollapsedAttr ||
- defaultState === 'collapsed' ||
- shouldAutoCollapse();
-
- if (shouldCollapse) {
- setCollapsed(true, false); 
- }
- }
-
- function shouldAutoCollapse() {
- 
- if (codeElement) {
- const lines = codeElement.querySelectorAll('.line, .cl');
- const height = codeElement.offsetHeight;
- return lines.length &gt; autoCollapseLines || height &gt; autoCollapseHeight;
- }
-
- 
- const containerHeight = codeContainer.offsetHeight;
- if (containerHeight &gt; autoCollapseHeight) {
- return true;
- }
-
- 
- const textContent = codeContainer.textContent || codeContainer.innerText || '';
- const estimatedLines = textContent.split('\n').length;
- return estimatedLines &gt; autoCollapseLines;
- }
-
- function setCollapsed(collapsed, animate = true) {
- if (!collapseOverlay) return;
-
- isCollapsed = collapsed;
-
- if (collapsed) {
- 
- codeContainer.style.maxHeight = collapsedHeight + 'px';
- codeContainer.style.overflow = 'hidden';
- collapseOverlay.style.opacity = '1';
- collapseOverlay.style.pointerEvents = 'auto';
-
- 
- collapseIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M19 9l-7 7-7-7\u0022 \/\u003e\n\u003c\/svg\u003e`;
- if (collapseText) {
- collapseText.textContent = 'Expand';
- }
- collapseBtn.title = 'Expand';
-
- } else {
- 
- codeContainer.style.maxHeight = '';
- codeContainer.style.overflow = '';
- collapseOverlay.style.opacity = '0';
- collapseOverlay.style.pointerEvents = 'none';
-
- 
- collapseIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath fill=\u0022currentColor\u0022 d=\u0022M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z\u0022\/\u003e\u003c\/svg\u003e`;
- if (collapseText) {
- collapseText.textContent = 'Collapse';
- }
- collapseBtn.title = 'Collapse';
- }
-
- 
- if (animate) {
- codeContainer.style.transition = 'max-height 0.3s ease-out';
- setTimeout(() =&gt; {
- codeContainer.style.transition = '';
- }, 300);
- }
- }
-
- function toggleCollapse() {
- setCollapsed(!isCollapsed, true);
- }
-
- 
- collapseBtn.addEventListener('click', toggleCollapse);
-
- 
- if (collapseOverlay) {
- collapseOverlay.addEventListener('click', () =&gt; {
- if (isCollapsed) {
- setCollapsed(false, true);
- }
- });
- }
-
- 
- initCollapse();
- }
-})();
-&lt;/script&gt;
-&lt;ul&gt;
+当用户确定购买意愿之后需要调用工具生成购买链接，不要自己虚构购买链接，若价格有变动时需要生成新的购买链接而不是使用之前的 **用户可见部分**：
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
 &lt;li&gt;工具信息&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div
- class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"&gt;
- 
- &lt;div
- class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"&gt;
- 
- &lt;div class="flex items-center gap-2"&gt;
- &lt;div class="text-muted-foreground flex-shrink-0"&gt;
- 
- &lt;svg class="h-4 w-4"
- fill="none"
- stroke="currentColor"
- viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /&gt;
-&lt;/svg&gt;
- &lt;/div&gt;
- &lt;span class="text-muted-foreground text-sm font-medium"&gt;
- PLAINTEXT
- &lt;/span&gt;
- &lt;/div&gt;
-
- 
- &lt;div class="flex items-center gap-2"&gt;
- &lt;button
- class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
- data-code-id="code-1"
- data-default-state="expanded"
- data-collapsed="false"
- data-auto-collapse-lines="30"
- data-auto-collapse-height="400"
- data-collapsed-height="120"
- title="Collapse"
- aria-label="Collapse"&gt;
- &lt;span class="collapse-icon"&gt;
- 
- &lt;svg class="h-3 w-3"
- fill="none"
- stroke="currentColor"
- viewBox="0 0 24 24"&gt;&lt;path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"/&gt;&lt;/svg&gt;
- &lt;/span&gt;
- &lt;span class="collapse-text hidden sm:inline"
- &gt;Collapse&lt;/span
- &gt;
- &lt;/button&gt;
- &lt;button
- class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
- data-code-id="code-1"
- title="Copy"
- aria-label="Copy"&gt;
- &lt;span class="copy-icon"&gt;
- 
- &lt;svg class="h-3 w-3"
- fill="none"
- stroke="currentColor"
- viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /&gt;
-&lt;/svg&gt;
- &lt;/span&gt;
- &lt;span class="copy-text hidden sm:inline"
- &gt;Copy&lt;/span
- &gt;
- &lt;/button&gt;
- &lt;/div&gt;
- &lt;/div&gt;
-
- 
- &lt;div class="code-block-content relative" id="code-1"&gt;
- &lt;pre tabindex="0"&gt;&lt;code&gt;{
- &amp;#34;name&amp;#34;: &amp;#34;gen_purchase_url&amp;#34;,
- &amp;#34;description&amp;#34;: &amp;#34;当价格有变化或用户有直接购买意愿时生成购买链接&amp;#34;,
- &amp;#34;parameters&amp;#34;: {
- &amp;#34;type&amp;#34;: &amp;#34;object&amp;#34;,
- &amp;#34;properties&amp;#34;: {
- &amp;#34;final_price&amp;#34;: {
- &amp;#34;type&amp;#34;: &amp;#34;number&amp;#34;,
- &amp;#34;description&amp;#34;: &amp;#34;最终成交价格（单位：人民币，单位为元）。可选值表示不同优惠档位。&amp;#34;,
- &amp;#34;enum&amp;#34;: [49, 39.99, 34.99, 29.99, 24.99, 21.99, 19.99, 9.99, 0.99]
- }
- },
- &amp;#34;required&amp;#34;: [&amp;#34;final_price&amp;#34;]
- }
-}&lt;/code&gt;&lt;/pre&gt;
- 
- &lt;div
- class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"&gt;
- &lt;div
- class="text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-full border px-3 py-1.5 text-xs backdrop-blur-sm transition-all duration-200"&gt;
- Click to expand and view more
- &lt;/div&gt;
- &lt;/div&gt;
- &lt;/div&gt;
-&lt;/div&gt;
-
-
-&lt;script&gt;
-(function() {
- const codeId = 'code-1';
- const copyBtn = document.querySelector('.copy-code-btn[data-code-id="' + codeId + '"]');
- const collapseBtn = document.querySelector('.collapse-code-btn[data-code-id="' + codeId + '"]');
- const codeContainer = document.getElementById(codeId);
-
- if (!codeContainer) return;
-
- 
- if (copyBtn) {
- const copyIcon = copyBtn.querySelector('.copy-icon');
- const copyText = copyBtn.querySelector('.copy-text');
-
- copyBtn.addEventListener('click', async function() {
- try {
- 
- let codeText = '';
-
- 
- const codeTableCell = codeContainer.querySelector('.lntd:last-child code');
- if (codeTableCell) {
- codeText = codeTableCell.textContent || codeTableCell.innerText;
- } else {
- 
- const codeElement = codeContainer.querySelector('code');
- if (codeElement) {
- 
- const hasInlineLineNumbers = codeElement.querySelector('.ln');
- if (hasInlineLineNumbers) {
- 
- const codeLines = codeElement.querySelectorAll('.cl');
- if (codeLines.length &gt; 0) {
- codeText = Array.from(codeLines)
- .map(line =&gt; {
- const text = line.textContent || line.innerText;
- 
- return text.replace(/\n+$/, '');
- })
- .join('\n')
- .replace(/\n+$/, ''); 
- } else {
- 
- const allText = codeElement.textContent || codeElement.innerText;
- codeText = allText.replace(/^\d+/gm, '').replace(/^\s+/gm, '');
- }
- } else {
- 
- codeText = codeElement.textContent || codeElement.innerText;
- }
- } else {
- 
- codeText = codeContainer.textContent || codeContainer.innerText;
- }
- }
-
- 
- codeText = codeText.trim();
-
- 
- await navigator.clipboard.writeText(codeText);
-
- 
- copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M5 13l4 4L19 7\u0022 \/\u003e\n\u003c\/svg\u003e`;
- if (copyText) {
- copyText.textContent = 'Copied';
- }
- copyBtn.classList.add('text-green-600');
-
- 
- setTimeout(() =&gt; {
- copyIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z\u0022 \/\u003e\n\u003c\/svg\u003e`;
- if (copyText) {
- copyText.textContent = 'Copy';
- }
- copyBtn.classList.remove('text-green-600');
- }, 2000);
-
- } catch (err) {
- console.error('复制失败:', err);
-
- 
- const range = document.createRange();
- const codeElement = codeContainer.querySelector('code') || codeContainer;
- range.selectNodeContents(codeElement);
- const selection = window.getSelection();
- selection.removeAllRanges();
- selection.addRange(range);
-
- 
- if (copyText) {
- copyText.textContent = 'Selected';
- }
-
- setTimeout(() =&gt; {
- if (copyText) {
- copyText.textContent = 'Copy';
- }
- selection.removeAllRanges();
- }, 2000);
- }
- });
- }
-
- 
- if (collapseBtn) {
- const collapseIcon = collapseBtn.querySelector('.collapse-icon');
- const collapseText = collapseBtn.querySelector('.collapse-text');
- const collapseOverlay = codeContainer.querySelector('.collapse-overlay');
-
- 
- let codeElement = codeContainer.querySelector('pre.chroma');
- if (!codeElement) {
- codeElement = codeContainer.querySelector('pre');
- }
-
- const defaultState = collapseBtn.dataset.defaultState || 'expanded';
- const isCollapsedAttr = collapseBtn.dataset.collapsed === 'true';
- const autoCollapseLines = parseInt(collapseBtn.dataset.autoCollapseLines) || 30;
- const autoCollapseHeight = parseInt(collapseBtn.dataset.autoCollapseHeight) || 400;
- const collapsedHeight = parseInt(collapseBtn.dataset.collapsedHeight) || 120;
-
- let isCollapsed = false;
-
- 
- function initCollapse() {
- 
- const shouldCollapse = isCollapsedAttr ||
- defaultState === 'collapsed' ||
- shouldAutoCollapse();
-
- if (shouldCollapse) {
- setCollapsed(true, false); 
- }
- }
-
- function shouldAutoCollapse() {
- 
- if (codeElement) {
- const lines = codeElement.querySelectorAll('.line, .cl');
- const height = codeElement.offsetHeight;
- return lines.length &gt; autoCollapseLines || height &gt; autoCollapseHeight;
- }
-
- 
- const containerHeight = codeContainer.offsetHeight;
- if (containerHeight &gt; autoCollapseHeight) {
- return true;
- }
-
- 
- const textContent = codeContainer.textContent || codeContainer.innerText || '';
- const estimatedLines = textContent.split('\n').length;
- return estimatedLines &gt; autoCollapseLines;
- }
-
- function setCollapsed(collapsed, animate = true) {
- if (!collapseOverlay) return;
-
- isCollapsed = collapsed;
-
- if (collapsed) {
- 
- codeContainer.style.maxHeight = collapsedHeight + 'px';
- codeContainer.style.overflow = 'hidden';
- collapseOverlay.style.opacity = '1';
- collapseOverlay.style.pointerEvents = 'auto';
-
- 
- collapseIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 stroke-width=\u00222\u0022 d=\u0022M19 9l-7 7-7-7\u0022 \/\u003e\n\u003c\/svg\u003e`;
- if (collapseText) {
- collapseText.textContent = 'Expand';
- }
- collapseBtn.title = 'Expand';
-
- } else {
- 
- codeContainer.style.maxHeight = '';
- codeContainer.style.overflow = '';
- collapseOverlay.style.opacity = '0';
- collapseOverlay.style.pointerEvents = 'none';
-
- 
- collapseIcon.innerHTML = `\n \u003csvg class=\u0022h-3 w-3\u0022\n fill=\u0022none\u0022\n stroke=\u0022currentColor\u0022\n viewBox=\u00220 0 24 24\u0022\u003e\u003cpath fill=\u0022currentColor\u0022 d=\u0022M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z\u0022\/\u003e\u003c\/svg\u003e`;
- if (collapseText) {
- collapseText.textContent = 'Collapse';
- }
- collapseBtn.title = 'Collapse';
- }
-
- 
- if (animate) {
- codeContainer.style.transition = 'max-height 0.3s ease-out';
- setTimeout(() =&gt; {
- codeContainer.style.transition = '';
- }, 300);
- }
- }
-
- function toggleCollapse() {
- setCollapsed(!isCollapsed, true);
- }
-
- 
- collapseBtn.addEventListener('click', toggleCollapse);
-
- 
- if (collapseOverlay) {
- collapseOverlay.addEventListener('click', () =&gt; {
- if (isCollapsed) {
- setCollapsed(false, true);
- }
- });
- }
-
- 
- initCollapse();
- }
-})();
-&lt;/script&gt;
-&lt;p&gt;如果想要获取所有档位价格购买链接，输入下面内容：&lt;/p&gt;</description></item><item><title>"Chaos Enginnering" In Partice</title><link>https://starslayerx.github.io/posts/chaos-enginnering-in-partice/</link><pubDate>Sat, 02 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/chaos-enginnering-in-partice/</guid><description>&lt;p&gt;记录一个小故事&lt;/p&gt;
-&lt;h3 id="混沌工程实践"&gt;“混沌工程”实践&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{
+  &amp;#34;name&amp;#34;: &amp;#34;gen_purchase_url&amp;#34;,
+  &amp;#34;description&amp;#34;: &amp;#34;当价格有变化或用户有直接购买意愿时生成购买链接&amp;#34;,
+  &amp;#34;parameters&amp;#34;: {
+    &amp;#34;type&amp;#34;: &amp;#34;object&amp;#34;,
+    &amp;#34;properties&amp;#34;: {
+      &amp;#34;final_price&amp;#34;: {
+        &amp;#34;type&amp;#34;: &amp;#34;number&amp;#34;,
+        &amp;#34;description&amp;#34;: &amp;#34;最终成交价格（单位：人民币，单位为元）。可选值表示不同优惠档位。&amp;#34;,
+        &amp;#34;enum&amp;#34;: [49, 39.99, 34.99, 29.99, 24.99, 21.99, 19.99, 9.99, 0.99]
+      }
+    },
+    &amp;#34;required&amp;#34;: [&amp;#34;final_price&amp;#34;]
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果想要获取所有档位价格购买链接，输入下面内容：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>&#34;Chaos Enginnering&#34; In Partice</title>
+      <link>http://localhost:1313/posts/chaos-enginnering-in-partice/</link>
+      <pubDate>Sat, 02 Aug 2025 08:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/chaos-enginnering-in-partice/</guid>
+      <description>&lt;p&gt;记录一个小故事&lt;/p&gt;
+&lt;h3 id=&#34;混沌工程实践&#34;&gt;“混沌工程”实践&lt;/h3&gt;
 &lt;p&gt;项目延期，开发说时间不够干不完
 老板：“不够就招人”&lt;/p&gt;
 &lt;p&gt;今天偶然听到旁边同事给新来的员工做code review：&lt;/p&gt;
@@ -665,11 +98,19 @@
 &lt;li&gt;A：啊？我也不知道&lt;/li&gt;
 &lt;li&gt;我：不是???(一脸震惊)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;理想：Plan Do Check Act&lt;/p&gt;</description></item><item><title>Blaugust</title><link>https://starslayerx.github.io/posts/blaugust/</link><pubDate>Fri, 01 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/blaugust/</guid><description>&lt;p&gt;🎈 Oh hello, August! It&amp;rsquo;s time for Blaugust.&lt;/p&gt;
-&lt;h3 id="blaugust-begins-writing-as-a-develpoer-habit"&gt;Blaugust Begins: Writing as a Develpoer Habit&lt;/h3&gt;
+&lt;p&gt;理想：Plan Do Check Act&lt;/p&gt;
+&lt;p&gt;现实：Plan Delay Cancel Apologize&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Blaugust</title>
+      <link>http://localhost:1313/posts/blaugust/</link>
+      <pubDate>Fri, 01 Aug 2025 08:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/blaugust/</guid>
+      <description>&lt;p&gt;🎈 Oh hello, August! It&amp;rsquo;s time for Blaugust.&lt;/p&gt;
+&lt;h3 id=&#34;blaugust-begins-writing-as-a-develpoer-habit&#34;&gt;Blaugust Begins: Writing as a Develpoer Habit&lt;/h3&gt;
 &lt;p&gt;This year, I&amp;rsquo;m joining &lt;strong&gt;Blaugust&lt;/strong&gt; - a month-long blogging challenge that encourage consistent writing throught August.
 For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orgainzing thoughts, documenting ideas, and creating term references.&lt;/p&gt;
-&lt;h3 id="what-i-plan-to-write"&gt;What I Plan to Write&lt;/h3&gt;
+&lt;h3 id=&#34;what-i-plan-to-write&#34;&gt;What I Plan to Write&lt;/h3&gt;
 &lt;p&gt;Here is what I aim to cover this month:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Daily dev partices: tools, logging, project structure patterns&lt;/li&gt;
@@ -678,4 +119,7 @@ For develpoers, blogging isn&amp;rsquo;t just sharing, it&amp;rsquo;s about orga
 &lt;li&gt;Architecture notes: async patterns, micorservice, data flow&lt;/li&gt;
 &lt;li&gt;Learning notes &amp;amp; translation of blogs: deep dive into code and quality tech atricles&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I&amp;rsquo;m not necessarily writing one post per day - some days I might write multiple posts in advance - but the goal is to publish daily with a focus on consistency, reusability, and value.&lt;/p&gt;</description></item></channel></rss>
+&lt;p&gt;I&amp;rsquo;m not necessarily writing one post per day - some days I might write multiple posts in advance - but the goal is to publish daily with a focus on consistency, reusability, and value.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

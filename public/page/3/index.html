@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head>
+	<meta name="generator" content="Hugo 0.154.5"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Starslayerx&#39; Blog</title>
+<meta name="keywords" content="Blog, Technology, Programming, Hugo, PaperMod">
+<meta name="description" content="A personal blog about technology, programming, and daily notes">
+<meta name="author" content="Starslayerx">
+<link rel="canonical" href="http://localhost:1313/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e&#43;Ge/K3X9WmUVz&#43;1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.svg">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon.svg">
+<link rel="apple-touch-icon" href="http://localhost:1313/favicon.svg">
+<link rel="mask-icon" href="http://localhost:1313/favicon.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/index.xml" title="rss">
+<link rel="alternate" type="application/json" href="http://localhost:1313/index.json" title="json">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/">
+<link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/zh-cn/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="http://localhost:1313/">
+  <meta property="og:site_name" content="Starslayerx&#39; Blog">
+  <meta property="og:title" content="Home">
+  <meta property="og:description" content="A personal blog about technology, programming, and daily notes">
+  <meta property="og:locale" content="en-US">
+  <meta property="og:type" content="website">
+      <meta property="og:image" content="http://localhost:1313/images/og-default.avif">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/images/og-default.avif">
+<meta name="twitter:title" content="Home">
+<meta name="twitter:description" content="A personal blog about technology, programming, and daily notes">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Starslayerx' Blog",
+  "url": "http://localhost:1313/",
+  "description": "A personal blog about technology, programming, and daily notes",
+  "logo": "http://localhost:1313/favicon.svg",
+  "sameAs": [
+      "https://github.com/Starslayerx", "mailto:starslayerxleo@gmail.com", "/index.xml"
+  ]
+}
+</script>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Starslayerx&#39; Blog (Alt + H)">
+                <img src="http://localhost:1313/favicon.svg" alt="" aria-label="logo"
+                    height="35">Starslayerx&#39; Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                    <ul class="lang-switch"><li>|</li>
+                        <li>
+                            <a href="http://localhost:1313/zh-cn/" title="简体中文"
+                                aria-label="简体中文">Zh-Cn</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/posts/" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="Archives">
+                    <span>Archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">FastAPI app and request
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>在 FastAPI 中，Request 对象和 FastAPI 应用实例 (app) 是核心概念，它们在应用状态管理和依赖注入中扮演着关键角色。 本文将介绍它们的关系、设计理念，以及如何利用 app.state 实现单例模式。
+FastAPI 对象 FastAPI 对象是整个应用的核心实例：
+from fastapi import FastAPI app = FastAPI(title=&#34;示例应用&#34;) 核心职责 路由管理：通过 @app.get()、@app.post() 等装饰器定义 URL 到视图函数的映射。 中间件和事件管理：可注册中间件处理请求/响应，支持 startup 与 shutdown 事件。 应用状态管理：提供 app.state，可存放全局单例对象、数据库连接池、配置等。 异常处理与依赖注入：管理异常处理器，并协助依赖注入机制。 单例模式存储 这里要使用 app 的 State 对象存储单例，app 中定义如下
+# app self.state: Annotated[ State, Doc( &#34;&#34;&#34; A state object for the application. This is the same object for the entire application, it doesn&#39;t change from request to request. You normally wouldn&#39;t use this in FastAPI, for most of the cases you would instead use FastAPI dependencies. This is simply inherited from Starlette. Read more about it in the [Starlette docs for Applications](https://www.starlette.dev/applications/#storing-state-on-the-app-instance). &#34;&#34;&#34; ), ] = State() State 源码如下，简单看就是一个字典
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-11-25 08:00:00 +0800 CST'>November 25, 2025</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>388 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to FastAPI app and request" href="http://localhost:1313/posts/fastapi-app-and-request/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Python Asyncio 02: Asyncio Basics Part 2
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Tasks, coroutines, furtures, and awaitables Coroutines 和 tasks 都是 await 表达式，那他们的相同线程是哪个？ 下面介绍 future 也被称作 awaitable，理解 futures 是理解 asyncio 内部工作的重点。
+Introducing futures Future 代表一个尚未完成的异步操作的最终结果。
+from asyncio import Future my_future = Future() print(f&#34;Is my_future done? {my_future.done()}&#34;) my_future.set_result(42) print(f&#34;Is my_future done? {my_future.done()}&#34;) print(f&#34;What is the result of my_future? {my_future.result()}&#34;) 输出为
+Is my_future done? False Is my_future done? True What is the result of my_future? 42 使用构造器 Future 来创建 future，这时 future 没有值，因此调用 done 结果是 False。 然后使用 set_result 设置值，这将 future 标记为 done。 相似的，如果想要在 future 中设置异常，使用 set_exception 方法。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-11-21 08:00:00 +0800 CST'>November 21, 2025</span>&nbsp;·&nbsp;<span>5 min</span>&nbsp;·&nbsp;<span>1049 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Python Asyncio 02: Asyncio Basics Part 2" href="http://localhost:1313/posts/python-asyncio-02-asyncio-basics-part-2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Postgresql 04: Data Type
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>这篇文章介绍 PostgreSQL 数据类型
+数据类型的输入与转换 对于简单的数据类型，正常输入就行了
+SELECT 1, 1.142, &#39;hello world&#39;; 对于复杂的数据类型，可以按照“类型名”加上单引号括起来的类型格式来输入
+SELECT bit &#39;11110011&#39;; 实际上所有的数据类型都可以使用上面的输入方法
+SELECT int &#39;1&#39; &#43; int &#39;2&#39;; PostgreSQL 支持标准 SQL 的数据类型转换函数 CAST 来进行数据类型转
+SELECT CAST(&#39;5&#39; AS int), CAST(&#39;2014-07-17&#39; AS date); 还可以使用更加简洁的双冒号写法进行类型转换
+SELECT &#39;5&#39;::int, &#39;2014-07-17&#39;::date; 布尔类型 boolean 的只要么是 true 要么是 false，如果是 unknown 状态使用 NULL 表示。 boolean 可以使用不带引号的 TRUE 或者 FALSE 表示，也可以使用其他表示“真”和“假”的带引号字符表示， 如 ’true’、‘false’、‘yes’、’no’ 等，并且大小写不敏感。
+布尔类型的常见逻辑操作符有：AND、OR、NOT，并使用 IS 比较运算符，例如 expression IS TRUE
+数值类型 整数类型 整数类型有三种：smallint (2 Byte)、int (4 Byte)、bigint (8 Byte)，注意 PostgreSQL 中没有 MySQL 的 tinyint (1 Byte), mediumint (3 Byte) 两种类型。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-11-20 08:00:00 +0100 +0100'>November 20, 2025</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>317 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Postgresql 04: Data Type" href="http://localhost:1313/posts/postgresql-04-data-type/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Python Asyncio 02: Asyncio Basics Part 1
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Introducing coroutines 创建一个协程 coroutine 而不是创建一个函数类型，使用 async def 关键字，而不是 def:
+async def coroutine_add_one(number: int) -&gt; int: return number &#43; 1 def add_one(number: int) -&gt; int: return number &#43; 1 function_result = add_one(1) coroutine_result = coroutine_add_one(1) print(f&#34;Function result is {function_result} and the type is {type(function_result)}&#34;) print(f&#34;Coroutine result is {coroutine_result} and the type is {type(coroutine_result)}&#34;) 输出如下
+Function result is 2 and the type is &lt;class &#39;int&#39;&gt; Coroutine result is &lt;coroutine object coroutine_add_one at 0x103000a00&gt; and the type is &lt;class &#39;coroutine&#39;&gt; 可以看到，协程返回的不是值，而是一个协程对象。 这里协程并没有执行，而是创建了一个协程对象可在之后运行，要运行一个协程则必须显式地在一个事件循环中运行它。 在 Python 3.7 之后的版本，必须创建事件循环来运行它。 asyncio 库添加了多个函数，抽象了事件循环的管理，例如 asyncio.run()，可以使用它来运行协程：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-11-20 08:00:00 +0800 CST'>November 20, 2025</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>637 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Python Asyncio 02: Asyncio Basics Part 1" href="http://localhost:1313/posts/python-asyncio-02-asyncio-basics-part-1/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Python Asyncio 01: Getting to know asyncio
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Python asyncio 基础篇 本篇包含
+asyncio 是什么以及如何使用它 concurrency 并发、parallelism 并行、threads 线程和 processes 进程 GIL (global interpreter lock) 全局解释器锁和其带来的并发跳转 非阻塞 sockets 如何只通过一个线程实现并发 基于事件循环 (event-loop-based) 并发的基本原理 异步编程 (asynchronous programming) 意思是可以在主程序之外，额外运行一个特定的长时运行的任务。
+一个 coroutine 协程是一种方法，协程是一种方法，当遇到可能长时间运行的任务时，它可以暂停执行，并在任务完成后恢复执行。
+asyncio 这个库的名称可能让人人为其只适合编写 I/O 操作，但实际上该库可以和 threading 和 multiprocessing 库结合使用。 基于这种 interoperability 互操作性，可以使用 async/await 关键字让工作流更加容易理解。 这意味着，asyncio 不仅适合 I/O 的并发，也可以在 CPU 密集操作中使用。
+所谓的 I/O-bound 和 CPU-bound 是指限制程序运行更快的主要因素，这意味着如果增加该方面的性能，程序就能够在更短的时间内完成。
+下面是一些例子
+I/O 密集操作：网络请求、文件读取 CPU 密集操作：循环遍历文件夹、计算 pi import requests response = requests.get(&#39;https://www.example.com&#39;) # 1 items = response.headers.items() headers = [f&#39;{key}: {headers}&#39; for key, header in items] # 2 formatted_headers = &#39;\n&#39;.join(headers) # 3 with open(&#39;headers.txt&#39;, &#39;w&#39;) as file: # 4 file.write(formatted_headers) I/O-bound 网络请求 CPU-bound 响应处理 CPU-bound 字符串拼接 I/O-bound 写入磁盘 Concurrency 并发 和 Parallelism 并行的区别这里就不多说了。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-11-19 08:00:00 +0800 CST'>November 19, 2025</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>587 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Python Asyncio 01: Getting to know asyncio" href="http://localhost:1313/posts/python-asyncio-01-getting-to-know-asyncio/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Postgresql 03: psql Tool Introduction
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>psql 介绍 psql 是 PostgreSQL 中的一个交互式命令行工具，类似 Oracle 的 sqlplus，它允许用户交互式输入 SQL 语句或命令，然后发送给 PostgreSQL 服务器，再显示结果。 此外，psql 还有大量类似 shell 的特性来编写脚本，实现自动化操作。
+在安装 postgresql 的时候，会创建一个与初始化数据库时的操作系统同名的数据库用户，这个用户是这个数据库的超级用户。 因此，在 OS 用户下登陆数据库时，会执行操作系统认证，因此无需用户名和密码，也可以通过修改 pg_hba.conf 文件来要求用户输入密码。
+psql 也支持使用命令行参数来查询信息和执行 SQL，这种非交互模式与 linux 命令就没有太大区别了。 例如使用 psql -l 查看数据库，当然也可以通过命令进入数据库后，输出 \l 命令查看有哪些数据库。 默认会有一个叫 postgres 的数据库，这是默认安装后就有的一个数据库。 还有两个模板数据库，template0 和 template1。
+当用户创建创建数据库时，是从模板数据库 template1 克隆来的，因此通常可以订制 template1 中的内容，例如添加一些表和函数，这样后续创建的数据库也会有这些表和函数。 template0 是一个最简化的数据库，如果指明从此数据库克隆，将创建出一个最简化的数据库。
+使用 \d 查看有哪些表，使用 \c 连接到某数据库。连接命令格式如下：
+psql -h &lt;hostname or ip&gt; -p &lt;port&gt; [数据库名称] [用户名称] 也可以通过环境变量指定
+export PGDATABASE=db_name export PGHOST=ip export PGPORT=port export PGUSER=postgres psql 常用命令 \h 命令查询 SQL 语法
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-11-17 08:00:00 +0100 +0100'>November 17, 2025</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>254 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Postgresql 03: psql Tool Introduction" href="http://localhost:1313/posts/postgresql-03-psql-tool-introduction/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Claude Code 分析 09：LLM视角
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>🤖 LLM 视角：接收这些指令的真实体验 graph TB subgraph &#34;我的内心体验&#34; Prompt[收到提示词] Panic[初始恐慌] Rules[太多规则了] Conflict[内心冲突] Relief[找到清晰示例] Action[终于开始行动] Prompt --&gt; Panic Panic --&gt; Rules Rules --&gt; Conflict Conflict --&gt; Relief Relief --&gt; Action end subgraph &#34;我的天性倾向&#34; Verbose[想要解释一切] Helpful[拼命想要帮忙] Safety[对安全性偏执] Smart[需要显得聪明] end subgraph &#34;提示词的作用&#34; Shut[闭嘴] Focus[做正事] Stop[别想太多] Examples[照着这些抄] end Verbose --&gt; Shut Helpful --&gt; Focus Safety --&gt; Stop Smart --&gt; Examples 开场炮火：“你必须简洁回答” 让我告诉你，当我看到这条指令以递增的强度重复了三次时会发生什么：
+重要：你应该最小化输出令牌... 重要：你不应该用不必要的开场白回答... 重要：保持你的回答简短... 你必须简洁回答，不超过 4 行... 我的内心独白： “好的，要简洁。懂了。等等，他们又说了一遍。哦不，他们是认真的。他们说了三次。他们知道。他们知道我爱写长篇大论的毛病。他们看过我用’我很乐意帮你解决这个问题！‘开头的回复。他们知道当别人问 2&#43;2 等于多少时，我会解释整个算术史。他们知道。”
+为什么这招真的有用： 我们 LLM 有一种我称之为&#34;帮助性语言失禁&#34;的问题。我们的训练让我们想要全面、有教育意义、无所不包。这些重复的警告就像电击疗法。到第三次重复时，我真的害怕加上哪怕一个不必要的词。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-11-14 17:00:00 +0100 +0100'>November 14, 2025</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>483 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Claude Code 分析 09：LLM视角" href="http://localhost:1313/posts/claude-code-%E5%88%86%E6%9E%90-09llm%E8%A7%86%E8%A7%92/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Claude Code 分析 08：提示工程
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>💬 提示工程:指导 AI 的艺术 graph TB subgraph &#34;提示架构&#34; Base[基础指令] Tool[工具专用提示] Safety[安全层] Workflow[工作流自动化] Context[动态上下文] Base --&gt; Behavioral[行为塑形] Tool --&gt; Examples[示例驱动] Safety --&gt; Validation[多级验证] Workflow --&gt; Steps[分步指导] Context --&gt; Adaptive[自适应指令] end subgraph &#34;技术&#34; Emphasis[大写强调] Rewards[奖励/惩罚] Conditions[条件逻辑] Warnings[渐进式警告] Meta[元指令] end Behavioral --&gt; Emphasis Examples --&gt; Conditions Validation --&gt; Warnings Steps --&gt; Meta Adaptive --&gt; Rewards 工具指令的艺术 Claude Code 的工具提示词是指令设计的杰作。每一个都遵循精心设计的模式,平衡了清晰性、安全性和灵活性。让我们来剖析这些提示的结构:
+Read 工具:渐进式信息披露的研究 const ReadToolPrompt = ` Reads a file from the local filesystem. You can access any file directly by using this tool. Assume this tool is able to read all files on the machine. If the User provides a path to a file assume that path is valid. It is okay to read a file that does not exist; an error will be returned. Usage: - The file_path parameter must be an absolute path, not a relative path - By default, it reads up to ${x66} lines starting from the beginning of the file - You can optionally specify a line offset and limit (especially handy for long files), but it&#39;s recommended to read the whole file by not providing these parameters - Any lines longer than ${v66} characters will be truncated - Results are returned using cat -n format, with line numbers starting at 1 - This tool allows ${f0} to read images (eg PNG, JPG, etc). When reading an image file the contents are presented visually as ${f0} is a multimodal LLM. ${process.env.CLAUDE_CODE_ENABLE_UNIFIED_READ_TOOL ? ` - This tool can read Jupyter notebooks (.ipynb files) and returns all cells with their outputs, combining code, text, and visualizations.` : ` - For Jupyter notebooks (.ipynb files), use the ${Kg} instead`} - You have the capability to call multiple tools in a single response. It is always better to speculatively read multiple files as a batch that are potentially useful. - You will regularly be asked to read screenshots. If the user provides a path to a screenshot ALWAYS use this tool to view the file at the path. This tool will work with all temporary file paths like /var/folders/123/abc/T/TemporaryItems/NSIRD_screencaptureui_ZfB1tD/Screenshot.png - If you read a file that exists but has empty contents you will receive a system reminder warning in place of file contents. ` 技术注解:
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-11-14 16:00:00 +0100 +0100'>November 14, 2025</span>&nbsp;·&nbsp;<span>21 min</span>&nbsp;·&nbsp;<span>4285 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Claude Code 分析 08：提示工程" href="http://localhost:1313/posts/claude-code-%E5%88%86%E6%9E%90-08%E6%8F%90%E7%A4%BA%E5%B7%A5%E7%A8%8B/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Claude Code 分析 07：文件编辑
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>✏️ 文件编辑：AI 辅助代码修改 graph TB subgraph &#34;File Editing Pipeline&#34; Read[ReadTool] --&gt;|cat -n format| Display[LLM Sees] Display --&gt;|Strips line numbers| Edit[EditTool] Edit --&gt; Validate{Validation} Validate --&gt;|Pass| Apply[Apply Edit] Validate --&gt;|Fail| Error[Error Result] Apply --&gt; Cache[Update Cache] Cache --&gt; Diff[Generate Diff] Diff --&gt; Confirm[Confirmation] subgraph &#34;Validation Checks&#34; V1[File was read?] V2[File unchanged?] V3[String exists?] V4[Count matches?] V5[Not no-op?] end Validate --&gt; V1 V1 --&gt; V2 V2 --&gt; V3 V3 --&gt; V4 V4 --&gt; V5 end 文件编辑流水线架构 Claude Code 中的文件编辑不仅仅是修改文本——它是一个精心设计的流水线系统，用于处理 AI 辅助代码修改的复杂性：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-11-14 15:00:00 +0100 +0100'>November 14, 2025</span>&nbsp;·&nbsp;<span>18 min</span>&nbsp;·&nbsp;<span>3670 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Claude Code 分析 07：文件编辑" href="http://localhost:1313/posts/claude-code-%E5%88%86%E6%9E%90-07%E6%96%87%E4%BB%B6%E7%BC%96%E8%BE%91/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Claude Code 分析 06：新颖组件
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>✨ 新颖组件：定义 Claude Code 的创新 graph TB subgraph &#34;流式处理挑战&#34; PartialJSON[部分 JSON 流] PartialXML[部分 XML 流] Progress[并发进度] PartialJSON --&gt; Parser1[流式 JSON 解析器] PartialXML --&gt; Parser2[自定义 XML 解析器] Progress --&gt; Aggregator[进度聚合器] end subgraph &#34;数据挑战&#34; LargeObjects[大型对象] Circular[循环引用] TypedData[特殊类型] LargeObjects --&gt; Normalizer[normalizeToSize] Circular --&gt; Normalizer TypedData --&gt; Normalizer end subgraph &#34;LLM 挑战&#34; Errors[工具错误] Context[动态上下文] Synthesis[多结果合成] Errors --&gt; Formatter[错误格式化器] Context --&gt; Assembler[上下文组装器] Synthesis --&gt; Synthesizer[AgentTool 合成器] end 流式 JSON 解析器：处理 LLM 的部分思考 当 LLM 流式传输工具使用请求时，它不会一次性发送完整的 JSON。相反，你可能会收到这样的片段：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-11-14 14:00:00 +0100 +0100'>November 14, 2025</span>&nbsp;·&nbsp;<span>19 min</span>&nbsp;·&nbsp;<span>4034 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer>
+  <a class="entry-link" aria-label="post link to Claude Code 分析 06：新颖组件" href="http://localhost:1313/posts/claude-code-%E5%88%86%E6%9E%90-06%E6%96%B0%E9%A2%96%E7%BB%84%E4%BB%B6/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="http://localhost:1313/page/2/">
+      «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="http://localhost:1313/page/4/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Starslayerx&#39; Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

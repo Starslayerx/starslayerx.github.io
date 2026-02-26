@@ -1,4 +1,44 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/linux/</link><description>Recent content in Linux on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Thu, 18 Dec 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Shell</title><link>https://starslayerx.github.io/posts/shell/</link><pubDate>Thu, 18 Dec 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/shell/</guid><description>&lt;h2 id="terminal"&gt;Terminal&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Linux on Starslayerx&#39; Blog</title>
+    <link>http://localhost:1313/tags/linux/</link>
+    <description>Recent content in Linux on Starslayerx&#39; Blog</description>
+    <image>
+      <title>Starslayerx&#39; Blog</title>
+      <url>http://localhost:1313/images/og-default.avif</url>
+      <link>http://localhost:1313/images/og-default.avif</link>
+    </image>
+    <generator>Hugo -- 0.154.5</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 18 Dec 2025 08:00:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Shell</title>
+      <link>http://localhost:1313/posts/shell/</link>
+      <pubDate>Thu, 18 Dec 2025 08:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/posts/shell/</guid>
+      <description>&lt;h2 id=&#34;terminal&#34;&gt;Terminal&lt;/h2&gt;
 &lt;p&gt;终端是提供文本用户界面的程序，早期终端是集成设备，键盘和屏幕集成在一起，现在终端知识简单的应用程序。
 除了基本的输入输出外，终端还支持将所谓转义序列或转移码，用于光标和屏幕处理，并可能支持颜色。
-例如，使用 &lt;code&gt;Ctrl-h&lt;/code&gt; 会删除前面一个字符。&lt;/p&gt;</description></item></channel></rss>
+例如，使用 &lt;code&gt;Ctrl-h&lt;/code&gt; 会删除前面一个字符。&lt;/p&gt;
+&lt;p&gt;环境变量 TERM 可能使用了终端模拟器，其配置可以通过 &lt;code&gt;infocmp&lt;/code&gt; 获得&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;#       Reconstructed via infocmp from file: /usr/share/terminfo/74/tmux-256color
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tmux-256color|tmux with 256 colors,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        am, hs, km, mir, msgr, xenl,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        colors#256, cols#80, it#8, lines#24, pairs#32767,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        acsc=++\,\,--..00``aaffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz{{||}}~~,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        bel=^G, blink=\E[5m, bold=\E[1m, cbt=\E[Z, civis=\E[?25l,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        clear=\E[H\E[J, cnorm=\E[34h\E[?25h, cr=^M,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        ...
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;显示内容看上去很混乱，这些是&lt;/p&gt;
+&lt;h2 id=&#34;shell&#34;&gt;Shell&lt;/h2&gt;
+&lt;p&gt;shell 是一个运行在终端内部的程序，充当命令解释器。
+shell 通过流提供输入和输出处理，支持变量，有一些内置命令，处理命令执行和状态，支持交互式和脚本使用。
+最初的 shell 叫做 Bourne shell sh，即作者名字命名，现在通常被 bash 替代，即 &amp;ldquo;Bourne Again Shell&amp;rdquo; 的缩写。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;file -h /bin/sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;stream&#34;&gt;Stream&lt;/h3&gt;
+&lt;p&gt;shell 为每个进程提供了三个默认的文件描述符 (FD)，用于输入和输出：&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
