@@ -2,6 +2,7 @@
 date = '2025-11-21T8:00:00+08:00'
 draft = false
 title = 'Python Asyncio 02: Asyncio Basics Part 2'
+categories = ['Note']
 tags = ['Python', 'Asyncio']
 +++
 

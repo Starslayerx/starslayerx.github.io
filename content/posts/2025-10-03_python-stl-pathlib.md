@@ -2,6 +2,7 @@
 date = '2025-10-03T8:00:00+08:00'
 draft = false
 title = 'Python Standrad Library - File and Directory Access - pathlib'
+categories = ['Note']
 tags = ['Python']
 +++
 

@@ -2,6 +2,7 @@
 date = '2025-09-11T8:00:00+08:00'
 draft = false
 title = 'English for Programmers - 01'
+categories = ['Blog']
 tags = ['English']
 +++
 

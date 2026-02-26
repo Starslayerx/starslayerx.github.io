@@ -1,7 +1,8 @@
 +++
 date = '2025-10-11T8:00:00+08:00'
-draft = false
+draft = true
 title = 'Fastapi CORS'
+categories = ['Blog']
 tags = ['Fastapi']
 +++
 

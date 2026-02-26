@@ -2,6 +2,7 @@
 date = '2025-08-14T8:00:00+08:00'
 draft = false
 title = 'Python Generics'
+categories = ['Blog']
 tags = ["Python"]
 +++
 

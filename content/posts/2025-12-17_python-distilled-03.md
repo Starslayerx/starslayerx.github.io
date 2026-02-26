@@ -2,6 +2,7 @@
 date = '2025-12-17T8:00:00+08:00'
 draft = false
 title = 'Python Tricks Part 3: Program Structure and Control Flow'
+categories = ['Note']
 tags = ['Python']
 +++
 

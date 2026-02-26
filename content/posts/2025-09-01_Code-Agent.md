@@ -2,6 +2,7 @@
 date = '2025-09-01T8:00:00+08:00'
 draft = false
 title = 'Make an AI Coding Agent in python'
+categories = ['Blog']
 tags = ['LLMs', 'Agent']
 +++
 

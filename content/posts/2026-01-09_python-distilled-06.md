@@ -2,6 +2,7 @@
 date = '2026-01-09T8:00:00+08:00'
 draft = false
 title = 'Python Tricks Part 6: Generators'
+categories = ['Note']
 tags = ['Python']
 +++
 

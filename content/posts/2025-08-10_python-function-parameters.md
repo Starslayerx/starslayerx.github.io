@@ -2,6 +2,7 @@
 date = '2025-08-10T8:00:00+08:00'
 draft = false
 title = 'Python Function Parameters'
+categories = ['Blog']
 tags = ["Python"]
 +++
 

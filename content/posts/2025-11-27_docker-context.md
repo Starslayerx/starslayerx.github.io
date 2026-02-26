@@ -2,6 +2,7 @@
 date = '2025-11-25T8:00:00+08:00'
 draft = false
 title = 'Docker Context'
+categories = ['Blog']
 tags = ['Docker']
 +++
 

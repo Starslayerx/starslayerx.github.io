@@ -2,6 +2,7 @@
 date = '2025-09-08T8:00:00+08:00'
 draft = false
 title = 'Dealing With Grabage in Python'
+categories = ['Blog']
 tags = ['Python']
 +++
 

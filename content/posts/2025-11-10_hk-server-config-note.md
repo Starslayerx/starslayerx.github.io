@@ -2,6 +2,7 @@
 date = '2025-11-10T8:00:00+01:00'
 draft = false
 title = 'Solving SSH Lag Through Proxy: A Complete Guide to SSH on Port 443'
+categories = ['Blog']
 tags = ['Network']
 +++
 

@@ -2,6 +2,7 @@
 date = '2025-08-23T8:00:00+08:00'
 draft = false
 title = 'Rust Alternaitve Tools'
+categories = ['Blog']
 tags = ['Rust']
 +++
 

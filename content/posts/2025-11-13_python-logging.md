@@ -2,6 +2,7 @@
 date = '2025-11-11T8:00:00+01:00'
 draft = false
 title = 'Complete Python Logging Guide'
+categories = ['Note']
 tags = ['Python']
 +++
 

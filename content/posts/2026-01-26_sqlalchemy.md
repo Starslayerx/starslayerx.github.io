@@ -2,6 +2,7 @@
 date = '2026-01-26T8:00:00+01:00'
 draft = true
 title = 'SQLALchemy - Database Tables'
+categories = ['Note']
 tags = ['Python', 'Database']
 +++
 

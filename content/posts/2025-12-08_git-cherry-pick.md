@@ -2,6 +2,7 @@
 date = '2025-12-08T8:00:00+08:00'
 draft = false
 title = 'Git cherry-pick'
+categories = ['Blog']
 tags = ['Git']
 +++
 

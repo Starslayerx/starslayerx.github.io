@@ -2,6 +2,7 @@
 date = '2026-01-29T8:00:00+08:00'
 draft = false
 title = 'Python Decorators: 从入门到实战'
+categories = ['Blog']
 tags = ['Python']
 +++
 
@@ -222,4 +223,3 @@ def call_qwen(messages, **kwargs):
 **总结**：
 装饰器是 Python 的核心利器。
 通过它，我们将 API 调用（业务逻辑）与 缓存/日志/耗时统计 彻底解耦，让代码既强大又优雅。
-

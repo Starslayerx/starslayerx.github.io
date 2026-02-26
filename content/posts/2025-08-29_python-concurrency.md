@@ -2,6 +2,7 @@
 date = '2025-08-29T8:00:00+08:00'
 draft = false
 title = 'Asyncio vs Gevents in Python'
+categories = ['Blog']
 tags = ['Python', 'Concurrency']
 +++
 

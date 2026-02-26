@@ -2,6 +2,7 @@
 date = '2025-08-04T8:00:00+08:00'
 draft = false
 title = 'Executing arbitrary Python code from a comment'
+categories = ['Blog']
 tags = ["Python", "Hack"]
 +++
 
@@ -10,7 +11,7 @@ tags = ["Python", "Hack"]
 ### 问题描述
 
 Q: 只能控制一行的.py代码中注释的内容(\n\r均会被替换为空字符), 如何执行任意代码?  
-A: 在注释#中, 构造一个.zip 文件, python 会将该内容当成一个zip包执行, 触发任意代码执行
+A: 在注释#中, 构造一个.zip 文件, python 会将该内容当成一个 zip 包执行, 触发任意代码执行
 
 ### 解决方案
 

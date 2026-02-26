@@ -2,6 +2,7 @@
 date = '2025-08-10T8:00:00+08:00'
 draft = true
 title = 'Python Asyncio Introduce'
+categories = ['Note']
 tags = ['Python', 'Asyncio']
 +++
 

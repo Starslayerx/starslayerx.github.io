@@ -2,6 +2,7 @@
 date = '2025-08-25T8:00:00+08:00'
 draft = false
 title = 'Documenting REST APIs with OpenAPI'
+categories = ['Blog']
 tags = ['REST', 'OpenAPI']
 +++
 

@@ -2,6 +2,7 @@
 date = '2025-10-24T8:00:00+08:00'
 draft = false
 title = 'Fastapi Lifespan Events'
+categories = ['Blog']
 tags = ['Fastapi']
 +++
 

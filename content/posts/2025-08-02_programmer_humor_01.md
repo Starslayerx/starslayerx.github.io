@@ -2,6 +2,7 @@
 date = '2025-08-02T8:00:00+08:00'
 draft = false
 title = '"Chaos Enginnering" In Partice'
+categories = ['Article']
 tags = ['Article']
 +++
 

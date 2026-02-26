@@ -2,6 +2,7 @@
 date = '2025-09-11T8:00:00+08:00'
 draft = false
 title = 'The Evolution of Coding in the AI Era'
+categories = ['Blog']
 tags = ['LLMs']
 +++
 

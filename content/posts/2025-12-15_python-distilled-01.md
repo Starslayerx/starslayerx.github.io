@@ -2,6 +2,7 @@
 date = '2025-12-15T8:00:00+08:00'
 draft = false
 title = 'Python Tricks Part 1: Basis'
+categories = ['Note']
 tags = ['Python']
 +++
 

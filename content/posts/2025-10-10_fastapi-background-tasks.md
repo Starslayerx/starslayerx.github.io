@@ -2,6 +2,7 @@
 date = '2025-10-10T8:00:00+08:00'
 draft = false
 title = 'Fastapi Background Tasks'
+categories = ['Blog']
 tags = ['Fastapi']
 +++
 

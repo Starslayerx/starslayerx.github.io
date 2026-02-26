@@ -2,6 +2,7 @@
 date = '2025-08-28T8:00:00+08:00'
 draft = false
 title = 'Prompt Organization'
+categories = ['Blog']
 tags = ['Prompt', 'LLMs']
 +++
 

@@ -2,6 +2,7 @@
 date = '2025-11-20T8:00:00+01:00'
 draft = true
 title = 'Postgresql 04: Data Type'
+categories = ['Note']
 tags = ['PostgreSQL', 'Database']
 +++
 

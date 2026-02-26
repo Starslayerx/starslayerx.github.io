@@ -2,6 +2,7 @@
 date = '2025-08-03T8:30:00+08:00'
 draft = false
 title = 'How FastAPI Works'
+categories = ['Note']
 tags = ["FastAPI"]
 +++
 

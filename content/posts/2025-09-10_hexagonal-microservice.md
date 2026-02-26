@@ -2,6 +2,7 @@
 date = '2025-09-10T8:00:00+08:00'
 draft = false
 title = 'Service Implementation Patterns for Microservice'
+categories = ['Note']
 tags = ['Microservice']
 +++
 

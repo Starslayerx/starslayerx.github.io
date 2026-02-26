@@ -2,6 +2,7 @@
 date = '2026-01-13T8:00:00+08:00'
 draft = false
 title = 'Python Tricks Part 7: Classes and Object-Oriented Programming'
+categories = ['Note']
 tags = ['Python']
 +++
 

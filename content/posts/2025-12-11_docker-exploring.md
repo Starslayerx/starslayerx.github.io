@@ -2,6 +2,7 @@
 date = '2025-12-11T8:00:00+08:00'
 draft = true
 title = 'Exploring Docker'
+categories = ['Note']
 tags = ['Docker']
 +++
 

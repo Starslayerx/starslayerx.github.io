@@ -2,6 +2,7 @@
 date = '2025-09-02T8:00:00+08:00'
 draft = false
 title = 'How AI Assistants Make Precise Edits to Your Files'
+categories = ['Blog']
 tags = ['LLMs', 'Agent']
 +++
 

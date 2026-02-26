@@ -2,6 +2,7 @@
 date = '2025-09-16T8:00:00+08:00'
 draft = false
 title = 'Morden Javascript Tutorial Chapter 2 - Fundamentals: 01~05'
+categories = ['Note']
 tags = ['JavaScript']
 +++
 

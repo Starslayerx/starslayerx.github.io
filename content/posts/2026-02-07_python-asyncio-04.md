@@ -2,6 +2,7 @@
 date = '2026-01-26T8:00:00+01:00'
 draft = true
 title = 'Python Asyncio 04: Concurrent web requests'
+categories = ['Note']
 tags = ['Python', 'Asyncio']
 +++
 
@@ -524,3 +525,4 @@ asyncio 中的 `wait` 和 `gather` 类似，其提供了这种情况下更加具
 当需要的时候，该函数可以解决其他 asyncio 函数的一些问题。
 
 `wait` 签名的本质是一系列 awaitable 对象的列表，伴随着可选的超时和 `return_when` 字符串。
+该字符串有几个预定义的值：`ALL_COMPLETED`, `FIRST_EXCEPTION` 和 `FIRST_COMPLETED`，默认是 `ALL_COMPLETED`。

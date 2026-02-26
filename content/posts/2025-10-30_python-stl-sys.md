@@ -2,6 +2,7 @@
 date = '2025-10-30T8:00:00+08:00'
 draft = true
 title = 'Python Standrad Library - Python Runtime Services - sys'
+categories = ['Blog']
 tags = ['Python']
 +++
 

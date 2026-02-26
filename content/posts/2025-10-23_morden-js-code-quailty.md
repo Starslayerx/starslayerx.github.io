@@ -2,6 +2,7 @@
 date = '2025-10-23T8:00:00+08:00'
 draft = false   
 title = 'Morden Javascript Tutorial Chapter 3.1 - Code Quailty'
+categories = ['Note']
 tags = ['Javascript']
 +++
 

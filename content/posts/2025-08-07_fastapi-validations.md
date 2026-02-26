@@ -2,6 +2,7 @@
 date = '2025-08-07T8:00:00+08:00'
 draft = false
 title = 'FastAPI Parameters and Validations'
+categories = ['Note']
 tags = ["FastAPI"]
 +++
 
@@ -350,6 +351,7 @@ async def read_items(
 
 - 浮点数验证示例 (Query 参数)  
    浮点类型的校验同样适用. 例如, 使用 `gt` 可以确保值 严格大于 0
+
   ```Python
   @app.get("/items/{item_id}")
   async def read_items(
