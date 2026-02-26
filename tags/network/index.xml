@@ -1,8 +1,38 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Network on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/network/</link><description>Recent content in Network on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Mon, 10 Nov 2025 08:00:00 +0100</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/network/index.xml" rel="self" type="application/rss+xml"/><item><title>Solving SSH Lag Through Proxy: A Complete Guide to SSH on Port 443</title><link>https://starslayerx.github.io/posts/solving-ssh-lag-through-proxy-a-complete-guide-to-ssh-on-port-443/</link><pubDate>Mon, 10 Nov 2025 08:00:00 +0100</pubDate><guid>https://starslayerx.github.io/posts/solving-ssh-lag-through-proxy-a-complete-guide-to-ssh-on-port-443/</guid><description>&lt;h1 id="解决代理环境下的-ssh-卡顿ssh-over-443-端口完全指南">解决代理环境下的 SSH 卡顿：SSH over 443 端口完全指南&lt;/h1>
-&lt;h2 id="问题描述">问题描述&lt;/h2>
-&lt;p>从内地 SSH 连接到香港的云服务器时，出现严重的卡顿现象：&lt;/p>
-&lt;ul>
-&lt;li>输入延迟明显，每个字符都有停顿&lt;/li>
-&lt;li>但通过服务商提供的 noVNC Console（Web 终端）却非常流畅&lt;/li>
-&lt;/ul>
-&lt;p>明明都是连接同一台香港服务器，为什么体验差距如此之大？&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Network on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/network/</link><description>Recent content in Network on Starslayerx' Blog</description><image><title>Starslayerx' Blog</title><url>https://starslayerx.github.io/images/og-default.avif</url><link>https://starslayerx.github.io/images/og-default.avif</link></image><generator>Hugo -- 0.154.5</generator><language>en-US</language><lastBuildDate>Mon, 10 Nov 2025 08:00:00 +0100</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/network/index.xml" rel="self" type="application/rss+xml"/><item><title>Solving SSH Lag Through Proxy: A Complete Guide to SSH on Port 443</title><link>https://starslayerx.github.io/posts/solving-ssh-lag-through-proxy-a-complete-guide-to-ssh-on-port-443/</link><pubDate>Mon, 10 Nov 2025 08:00:00 +0100</pubDate><guid>https://starslayerx.github.io/posts/solving-ssh-lag-through-proxy-a-complete-guide-to-ssh-on-port-443/</guid><description>&lt;h1 id="解决代理环境下的-ssh-卡顿ssh-over-443-端口完全指南"&gt;解决代理环境下的 SSH 卡顿：SSH over 443 端口完全指南&lt;/h1&gt;
+&lt;h2 id="问题描述"&gt;问题描述&lt;/h2&gt;
+&lt;p&gt;从内地 SSH 连接到香港的云服务器时，出现严重的卡顿现象：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;输入延迟明显，每个字符都有停顿&lt;/li&gt;
+&lt;li&gt;但通过服务商提供的 noVNC Console（Web 终端）却非常流畅&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;明明都是连接同一台香港服务器，为什么体验差距如此之大？&lt;/p&gt;
+&lt;h2 id="环境信息"&gt;环境信息&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;本地位置&lt;/strong&gt;: 大陆&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;服务器位置&lt;/strong&gt;: 香港（IP: &lt;code&gt;&amp;lt;hk-server-ip&amp;gt;&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;代理工具&lt;/strong&gt;: Clash Verge（有香港代理节点）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;操作系统&lt;/strong&gt;: macOS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="问题诊断"&gt;问题诊断&lt;/h2&gt;
+&lt;h3 id="第一步基础网络测试"&gt;第一步：基础网络测试&lt;/h3&gt;
+&lt;p&gt;首先测试直连服务器的网络质量：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 测试延迟和丢包率&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ping -c &lt;span class="m"&gt;20&lt;/span&gt; &amp;lt;hk-server-ip&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 结果：&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# - 平均延迟：170-180ms&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# - 丢包率：4%&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# - 延迟抖动：标准差 5-7ms&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;分析&lt;/strong&gt;：对于大陆到香港的连接，这个延迟和丢包率虽然不理想，但也算&amp;quot;正常的糟糕&amp;quot;。真正的问题是：为什么 noVNC 不卡，而 SSH 卡？&lt;/p&gt;
+&lt;h3 id="第二步路由追踪"&gt;第二步：路由追踪&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;traceroute -I &amp;lt;hk-server-ip&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 结果显示只有1跳就到达目标&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 这说明中间路由器没有响应 ICMP，无法看到完整路径&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="第三步ip-归属查询"&gt;第三步：IP 归属查询&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -s &lt;span class="s2"&gt;&amp;#34;http://ip-api.com/json/&amp;lt;hk-server-ip&amp;gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 服务器：香港，ISP: Lucidacloud Limited&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -s ifconfig.me
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 本地公网 IP 显示：香港，ISP: Nearoute Limited&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;关键发现&lt;/strong&gt;：本地公网 IP 显示为香港，但我人在大陆！这说明当前网络已经走了 Clash 代理。&lt;/p&gt;</description></item></channel></rss>

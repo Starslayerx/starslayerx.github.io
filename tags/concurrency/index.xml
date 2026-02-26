@@ -1,4 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Concurrency on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/concurrency/</link><description>Recent content in Concurrency on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Fri, 29 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/concurrency/index.xml" rel="self" type="application/rss+xml"/><item><title>Asyncio vs Gevents in Python</title><link>https://starslayerx.github.io/posts/asyncio-vs-gevents-in-python/</link><pubDate>Fri, 29 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/asyncio-vs-gevents-in-python/</guid><description>&lt;p>python 中 asyncio 和 gevent 是两种协程(在一个线程内实现并发)的实现, 这篇文章对比介绍这两者实现.&lt;br>
-下面先介绍一下基础概念:&lt;/p>
-&lt;h3 id="coroutines-协程">Coroutines 协程&lt;/h3>
-&lt;p>在 Python 中, 协程是可以暂停和继续运行的函数, 使得其是否适合并发编程. 定义使用 &lt;code>async def&lt;/code> 语法, 协程运行编写非阻塞的操作. 在协程内, &lt;code>await&lt;/code> 关键字用于暂停执行, 直到给定的任务完成, 从而运行其他协程在此其间并发运行.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Concurrency on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/concurrency/</link><description>Recent content in Concurrency on Starslayerx' Blog</description><image><title>Starslayerx' Blog</title><url>https://starslayerx.github.io/images/og-default.avif</url><link>https://starslayerx.github.io/images/og-default.avif</link></image><generator>Hugo -- 0.154.5</generator><language>en-US</language><lastBuildDate>Fri, 29 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/concurrency/index.xml" rel="self" type="application/rss+xml"/><item><title>Asyncio vs Gevents in Python</title><link>https://starslayerx.github.io/posts/asyncio-vs-gevents-in-python/</link><pubDate>Fri, 29 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/asyncio-vs-gevents-in-python/</guid><description>&lt;p&gt;python 中 asyncio 和 gevent 是两种协程(在一个线程内实现并发)的实现, 这篇文章对比介绍这两者实现.&lt;br&gt;
+下面先介绍一下基础概念:&lt;/p&gt;
+&lt;h3 id="coroutines-协程"&gt;Coroutines 协程&lt;/h3&gt;
+&lt;p&gt;在 Python 中, 协程是可以暂停和继续运行的函数, 使得其是否适合并发编程. 定义使用 &lt;code&gt;async def&lt;/code&gt; 语法, 协程运行编写非阻塞的操作. 在协程内, &lt;code&gt;await&lt;/code&gt; 关键字用于暂停执行, 直到给定的任务完成, 从而运行其他协程在此其间并发运行.&lt;/p&gt;
+&lt;h3 id="event-loop-事件循环"&gt;Event Loop 事件循环&lt;/h3&gt;
+&lt;p&gt;事件循环是一种控制结构, 它不断地处理一系列事件, 处理任务并管理程序的执行流程. 等待事件发生, 处理后再等待下一个事件. 这种机制确保程序能够以高效有序的方式响应事件, 例如用户输入、计时器或者消息.&lt;/p&gt;
+&lt;p&gt;下面是事件循环如何管理协程:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;任务提交: 当向事件循环提交一个协程时, 其被封装在一个 &lt;code&gt;Task&lt;/code&gt; 对象中, 然后任务被安排在事件循环上运行.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;内部队列: 事件循环使用几个内部数据结构来管理和调度这些任务&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;就绪队列 (Ready Queue): 包含可以立即运行的任务.&lt;/li&gt;
+&lt;li&gt;I/O 选择器 (I/O Selector): 监控文件描述符, 并根据 I/O 准备情况调度任务&lt;/li&gt;
+&lt;li&gt;计划回调 (Scheduled Callbacks): 管理计划在一定延迟后运行的任务.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;调度: 事件循环不断检查这些队列和数据结构, 以确定哪些任务已准备好执行. 然后它运行这些任务, 在遇到 await 语句时, 根据需要暂停和恢复它们.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;并发管理: 通过交错执行多个协程, 事件循环无需多个线程即可实现并发. 在任何时候, 只有一个任务会运行, 但如果一个任务是 I/O 密集型的, 它会切换到另一个任务, 给人一种并行的错觉.&lt;/p&gt;</description></item></channel></rss>

@@ -1,11 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>REST on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/rest/</link><description>Recent content in REST on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Mon, 25 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/rest/index.xml" rel="self" type="application/rss+xml"/><item><title>Documenting REST APIs with OpenAPI</title><link>https://starslayerx.github.io/posts/documenting-rest-apis-with-openapi/</link><pubDate>Mon, 25 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/documenting-rest-apis-with-openapi/</guid><description>&lt;p>本章介绍如何使用 OpenAPI 来为 API 编写文档. OpenAPI 是描述 RESTful API 最流行的标准, 拥有丰富的生态系统, 可以用于测试、验证和可视化 API. 大多数编程语言都支持 OpenAPI 规范的库.&lt;/p>
-&lt;p>OpenAPI 使用 JSON Schema 来描述 API 的结构和模型, 因此首先介绍 JSON Schema 的工作原理. JSON Schema 是一种用于定义 JSON 文档结构的规范, 包括文档中值的类型和格式.&lt;/p></description></item><item><title>Designing and Building REST APIs</title><link>https://starslayerx.github.io/posts/designing-and-building-rest-apis/</link><pubDate>Sun, 17 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/designing-and-building-rest-apis/</guid><description>&lt;p>这篇文章延续之前微服务的内容, 将介绍关于 REST API 的以下几个方面:&lt;/p>
-&lt;ul>
-&lt;li>REST API 的设计原则&lt;/li>
-&lt;li>Richardson maturity model (RMM) 如何帮助理解 REST 的优势和设计原则&lt;/li>
-&lt;li>REST API 中资源(resource)和端点(endpoints)设计的概念&lt;/li>
-&lt;/ul>
-&lt;p>表达性状态转移 representational state transfer (REST) 描述了一种通过网络进行通信的应用程序架构风格.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>REST on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/rest/</link><description>Recent content in REST on Starslayerx' Blog</description><image><title>Starslayerx' Blog</title><url>https://starslayerx.github.io/images/og-default.avif</url><link>https://starslayerx.github.io/images/og-default.avif</link></image><generator>Hugo -- 0.154.5</generator><language>en-US</language><lastBuildDate>Mon, 25 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/rest/index.xml" rel="self" type="application/rss+xml"/><item><title>Documenting REST APIs with OpenAPI</title><link>https://starslayerx.github.io/posts/documenting-rest-apis-with-openapi/</link><pubDate>Mon, 25 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/documenting-rest-apis-with-openapi/</guid><description>&lt;p&gt;本章介绍如何使用 OpenAPI 来为 API 编写文档. OpenAPI 是描述 RESTful API 最流行的标准, 拥有丰富的生态系统, 可以用于测试、验证和可视化 API. 大多数编程语言都支持 OpenAPI 规范的库.&lt;/p&gt;
+&lt;p&gt;OpenAPI 使用 JSON Schema 来描述 API 的结构和模型, 因此首先介绍 JSON Schema 的工作原理. JSON Schema 是一种用于定义 JSON 文档结构的规范, 包括文档中值的类型和格式.&lt;/p&gt;
+&lt;h3 id="using-json-schema-to-model-data"&gt;Using JSON Schema to model data&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;使用 JSON Schema 对数据建模&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;JSON Schema 是一种规范标准, 用于定义 JSON 文档的结构及其属性的类型和格式. JSON Schema 规范通常定义一个具有特定属性或特性的对象, 由键值对的关联数组表示, 如下面这样:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-JSON" data-lang="JSON"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;status&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;string&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;在 JSON Schema 规范中, 每个属性都以键值对的形式出现, 其中值是该属性的描述符&lt;/li&gt;
+&lt;li&gt;一个属性最基本的描述符就是 &lt;code&gt;type&lt;/code&gt;, 上面例子中, 指定类型为字符串&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;JSON Schema 支持以下基本数据类型:&lt;/p&gt;</description></item><item><title>Designing and Building REST APIs</title><link>https://starslayerx.github.io/posts/designing-and-building-rest-apis/</link><pubDate>Sun, 17 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/designing-and-building-rest-apis/</guid><description>&lt;p&gt;这篇文章延续之前微服务的内容, 将介绍关于 REST API 的以下几个方面:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;REST API 的设计原则&lt;/li&gt;
+&lt;li&gt;Richardson maturity model (RMM) 如何帮助理解 REST 的优势和设计原则&lt;/li&gt;
+&lt;li&gt;REST API 中资源(resource)和端点(endpoints)设计的概念&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;表达性状态转移 representational state transfer (REST) 描述了一种通过网络进行通信的应用程序架构风格.
 最初, REST 的概念包含了一组用于设计分布式、可扩展 Web 应用的约束条件.
 随着时间推移, 出现了更为细致的协议和规范, 为 REST API 的设计提供了明确的指导方针.
-如今, REST 已经成为构建 Web API 的最流行选择.&lt;/p></description></item></channel></rss>
+如今, REST 已经成为构建 Web API 的最流行选择.&lt;/p&gt;
+&lt;p&gt;下面将继续在 CoffeeMesh 项目上, 设计相关订单 API.&lt;/p&gt;
+&lt;h2 id="what-is-rest"&gt;What is REST?&lt;/h2&gt;
+&lt;p&gt;REST 由 Roy Fielding 在他的博士论文 &amp;ldquo;Architectural Styles and the Design of Network-based Software Atchitecture&amp;rdquo; (PhD diss. University of California,Irvine,2000,p. 109) 中创造.&lt;/p&gt;</description></item></channel></rss>

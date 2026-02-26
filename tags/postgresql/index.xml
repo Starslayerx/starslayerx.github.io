@@ -1,13 +1,66 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PostgreSQL on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/postgresql/</link><description>Recent content in PostgreSQL on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Mon, 17 Nov 2025 08:00:00 +0100</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/postgresql/index.xml" rel="self" type="application/rss+xml"/><item><title>Postgresql 03: psql Tool Introduction</title><link>https://starslayerx.github.io/posts/postgresql-03-psql-tool-introduction/</link><pubDate>Mon, 17 Nov 2025 08:00:00 +0100</pubDate><guid>https://starslayerx.github.io/posts/postgresql-03-psql-tool-introduction/</guid><description>&lt;h3 id="psql-介绍">psql 介绍&lt;/h3>
-&lt;p>psql 是 PostgreSQL 中的一个交互式命令行工具，类似 Oracle 的 sqlplus，它允许用户交互式输入 SQL 语句或命令，然后发送给 PostgreSQL 服务器，再显示结果。
-此外，psql 还有大量类似 shell 的特性来编写脚本，实现自动化操作。&lt;/p></description></item><item><title>PostgreSQL 02: SQL Basis</title><link>https://starslayerx.github.io/posts/postgresql-02-sql-basis/</link><pubDate>Fri, 07 Nov 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/postgresql-02-sql-basis/</guid><description>&lt;h2 id="sql-入门">SQL 入门&lt;/h2>
-&lt;p>SQL (Structured Query Language) 是关系数据库最重要的操作语言，且影响已经超出了数据库领域，这篇文章介绍基础部分。&lt;/p>
-&lt;h3 id="语句分类">语句分类&lt;/h3>
-&lt;p>SQL 命令一般分为 DQL、DML、DDL 三类：&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>DQL: Data Query Language 数据查询语句，基本就是 SELECT 查询命令，用于数据查询。&lt;/p></description></item><item><title>PostgreSQL 01: Introduction</title><link>https://starslayerx.github.io/posts/postgresql-01-introduction/</link><pubDate>Wed, 05 Nov 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/postgresql-01-introduction/</guid><description>&lt;h2 id="postgresql-的安装与配置">PostgreSQL 的安装与配置&lt;/h2>
-&lt;h3 id="安装">安装&lt;/h3>
-&lt;p>brew 安装后 &lt;code>brew services start postgresql@17&lt;/code> 可以启动服务，使用 &lt;code>brew services list&lt;/code> 查看服务状态。
-也可以通过设定环境变量 &lt;code>export PGDATA=/opt/homebrew/var/postgresql@17&lt;/code> 后使用命令 &lt;code>initdb&lt;/code> 创建数据库簇，然后 &lt;code>pg_ctl start -D $PGDATA&lt;/code> 启动。
-停止命令为 &lt;code>pg_ctl stop -D $PGDATA [-m SHOWDOWN-MODE]&lt;/code>，其中 -m 是服务器停止方法：&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>PostgreSQL on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/postgresql/</link><description>Recent content in PostgreSQL on Starslayerx' Blog</description><image><title>Starslayerx' Blog</title><url>https://starslayerx.github.io/images/og-default.avif</url><link>https://starslayerx.github.io/images/og-default.avif</link></image><generator>Hugo -- 0.154.5</generator><language>en-US</language><lastBuildDate>Mon, 17 Nov 2025 08:00:00 +0100</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/postgresql/index.xml" rel="self" type="application/rss+xml"/><item><title>Postgresql 03: psql Tool Introduction</title><link>https://starslayerx.github.io/posts/postgresql-03-psql-tool-introduction/</link><pubDate>Mon, 17 Nov 2025 08:00:00 +0100</pubDate><guid>https://starslayerx.github.io/posts/postgresql-03-psql-tool-introduction/</guid><description>&lt;h3 id="psql-介绍"&gt;psql 介绍&lt;/h3&gt;
+&lt;p&gt;psql 是 PostgreSQL 中的一个交互式命令行工具，类似 Oracle 的 sqlplus，它允许用户交互式输入 SQL 语句或命令，然后发送给 PostgreSQL 服务器，再显示结果。
+此外，psql 还有大量类似 shell 的特性来编写脚本，实现自动化操作。&lt;/p&gt;
+&lt;p&gt;在安装 postgresql 的时候，会创建一个与初始化数据库时的操作系统同名的数据库用户，这个用户是这个数据库的超级用户。
+因此，在 OS 用户下登陆数据库时，会执行操作系统认证，因此无需用户名和密码，也可以通过修改 pg_hba.conf 文件来要求用户输入密码。&lt;/p&gt;
+&lt;p&gt;psql 也支持使用命令行参数来查询信息和执行 SQL，这种非交互模式与 linux 命令就没有太大区别了。
+例如使用 &lt;code&gt;psql -l&lt;/code&gt; 查看数据库，当然也可以通过命令进入数据库后，输出 &lt;code&gt;\l&lt;/code&gt; 命令查看有哪些数据库。
+默认会有一个叫 postgres 的数据库，这是默认安装后就有的一个数据库。
+还有两个模板数据库，template0 和 template1。&lt;/p&gt;
+&lt;p&gt;当用户创建创建数据库时，是从模板数据库 template1 克隆来的，因此通常可以订制 template1 中的内容，例如添加一些表和函数，这样后续创建的数据库也会有这些表和函数。
+template0 是一个最简化的数据库，如果指明从此数据库克隆，将创建出一个最简化的数据库。&lt;/p&gt;
+&lt;p&gt;使用 &lt;code&gt;\d&lt;/code&gt; 查看有哪些表，使用 &lt;code&gt;\c&lt;/code&gt; 连接到某数据库。连接命令格式如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;psql -h &amp;lt;hostname or ip&amp;gt; -p &amp;lt;port&amp;gt; &lt;span class="o"&gt;[&lt;/span&gt;数据库名称&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;用户名称&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;也可以通过环境变量指定&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PGDATABASE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;db_name
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PGHOST&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ip
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PGPORT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;port
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PGUSER&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;postgres
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="psql-常用命令"&gt;psql 常用命令&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;\h&lt;/code&gt; 命令查询 SQL 语法&lt;/p&gt;</description></item><item><title>PostgreSQL 02: SQL Basis</title><link>https://starslayerx.github.io/posts/postgresql-02-sql-basis/</link><pubDate>Fri, 07 Nov 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/postgresql-02-sql-basis/</guid><description>&lt;h2 id="sql-入门"&gt;SQL 入门&lt;/h2&gt;
+&lt;p&gt;SQL (Structured Query Language) 是关系数据库最重要的操作语言，且影响已经超出了数据库领域，这篇文章介绍基础部分。&lt;/p&gt;
+&lt;h3 id="语句分类"&gt;语句分类&lt;/h3&gt;
+&lt;p&gt;SQL 命令一般分为 DQL、DML、DDL 三类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;DQL: Data Query Language 数据查询语句，基本就是 SELECT 查询命令，用于数据查询。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;DML: Data Manipulation Language 数据操纵语言，主要用于插入、更新、删除数据，即 INSERT、UPDATE、DELETE 三类。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;DDL: Data Definition Language 数据定义语言，用于创建、删除、修改表、索引等数据库对象的语言。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="词法结构"&gt;词法结构&lt;/h3&gt;
+&lt;p&gt;每次执行的 SQL 语句可以由多条 SQL 命令组成，多条 SQL 语句命令之间由分号 (;) 分隔。&lt;/p&gt;
+&lt;p&gt;SQL 命令由一系列记号组成，这些记号可以由关键字、标识符、双引号包围的标识符、常量和单引号包围的常量组成。
+SQL 命令中可以有注释，这些注释在 PostgreSQL 中等同于空白。&lt;/p&gt;
+&lt;p&gt;例如下面这些 SQL 命令&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-SQL" data-lang="SQL"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;FROM&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;OSDBA_TABLE01&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;UPDATE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;OSDBA_TABLE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;SET&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;COL1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;64&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;INSERT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;INTO&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;OSDBA_TABLE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;VALUES&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;232&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;hello osdba&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="ddl-语句"&gt;DDL 语句&lt;/h4&gt;
+&lt;p&gt;使用 &lt;code&gt;psql&lt;/code&gt; 会默认连接到和用户名一样的数据库中，也可以使用命令 &lt;code&gt;psql postgres&lt;/code&gt; 来连接到默认数据库，或者 &lt;code&gt;creatdb db_name&lt;/code&gt; 创建新数据库。&lt;/p&gt;</description></item><item><title>PostgreSQL 01: Introduction</title><link>https://starslayerx.github.io/posts/postgresql-01-introduction/</link><pubDate>Wed, 05 Nov 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/postgresql-01-introduction/</guid><description>&lt;h2 id="postgresql-的安装与配置"&gt;PostgreSQL 的安装与配置&lt;/h2&gt;
+&lt;h3 id="安装"&gt;安装&lt;/h3&gt;
+&lt;p&gt;brew 安装后 &lt;code&gt;brew services start postgresql@17&lt;/code&gt; 可以启动服务，使用 &lt;code&gt;brew services list&lt;/code&gt; 查看服务状态。
+也可以通过设定环境变量 &lt;code&gt;export PGDATA=/opt/homebrew/var/postgresql@17&lt;/code&gt; 后使用命令 &lt;code&gt;initdb&lt;/code&gt; 创建数据库簇，然后 &lt;code&gt;pg_ctl start -D $PGDATA&lt;/code&gt; 启动。
+停止命令为 &lt;code&gt;pg_ctl stop -D $PGDATA [-m SHOWDOWN-MODE]&lt;/code&gt;，其中 -m 是服务器停止方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;smart: 等所有连接终止后，关闭数据库。如果客户端连不上，则无法关闭数据库。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;fast: 快速关闭数据库，断开客户端连接，让已有的事务回滚，然后关闭数据库。相当于 Oracle 关闭时的 immediate 模式。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;immediate: 立即关闭数据库，相当于数据库进程立即停止，直接退出，下次启动数据库需要恢复。相当于 Oracle 关闭时的 abort 模式。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PostgreSQL 数据库中的 immediate 关机模式相当于 Oracle 数据库中的 abort 关机模式，而 Oracle 中的 immediate 关机模式实际上对应的是 PostgreSQL 中的 fast 模式。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="配置"&gt;配置&lt;/h3&gt;
+&lt;p&gt;PostgreSQL 数据库的配置主要通过修改数据目录下的 postgresql.conf 和 pg_hba.conf 文件来实现的。&lt;/p&gt;</description></item></channel></rss>

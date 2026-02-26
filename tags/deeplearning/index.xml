@@ -1,45 +1,76 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DeepLearning on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/deeplearning/</link><description>Recent content in DeepLearning on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Sun, 21 Mar 2021 05:20:08 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/deeplearning/index.xml" rel="self" type="application/rss+xml"/><item><title>Dive into DeepLearning - 02 - Preliminaries</title><link>https://starslayerx.github.io/posts/dive-into-deeplearning-02-preliminaries/</link><pubDate>Sun, 21 Mar 2021 05:20:08 +0800</pubDate><guid>https://starslayerx.github.io/posts/dive-into-deeplearning-02-preliminaries/</guid><description>&lt;ul>
-&lt;li>Course Note: d2l-video-05 - 线性代数&lt;/li>
-&lt;li>Jupyter Notebook: chapter_preliminaries/linear-algebra.ipynb&lt;/li>
-&lt;/ul>
-&lt;p>预备知识中 Liner Algebra 的部分&lt;/p>
-&lt;h3 id="线性代数">线性代数&lt;/h3>
-&lt;ul>
-&lt;li>
-&lt;p>Scalars 标量: 指只有一个元素的张量 tensors&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">torch&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tensor&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mf">3.0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># scalar&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">y&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tensor&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mf">2.0&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;li>
-&lt;p>Vectors 向量: 可以视作标量构成的列表&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">torch&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">arange&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">x&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="c1"># 通过张量索引访问任一元素&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 访问张量长度&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">x&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">shape&lt;/span> &lt;span class="c1"># torch.Size([4]) 只有一个轴的张量, 形状只有一个元素&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;li>
-&lt;p>Matrices 矩阵: 类似向量的推广, 可以构建更多轴的数据结构&lt;/p></description></item><item><title>Dive into DeepLearning - 01 - Preliminaries</title><link>https://starslayerx.github.io/posts/dive-into-deeplearning-01-preliminaries/</link><pubDate>Sun, 21 Mar 2021 05:05:25 +0800</pubDate><guid>https://starslayerx.github.io/posts/dive-into-deeplearning-01-preliminaries/</guid><description>&lt;ul>
-&lt;li>Course Note: d2l-video-04 - 数据操作+数据预处理&lt;/li>
-&lt;li>Jupyter Notebook: chapter_preliminaries/pandas.ipynb&lt;/li>
-&lt;/ul>
-&lt;p>预备知识中 Data Manipulation 和 Data Preprocessing 的部分&lt;/p>
-&lt;h3 id="介绍">介绍&lt;/h3>
-&lt;p>&lt;strong>N 纬数组介绍&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>0-d (标量)&lt;/p>
-&lt;pre tabindex="0">&lt;code>1.0
-&lt;/code>&lt;/pre>&lt;p>一个类别&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>1-d (向量)&lt;/p>
-&lt;pre tabindex="0">&lt;code>[1.0, 2.7, 3.4]
-&lt;/code>&lt;/pre>&lt;p>一个特征向量&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>2-d (矩阵)&lt;/p>
-&lt;pre tabindex="0">&lt;code>[[1.0, 2.7, 3.4],
- [1.0, 2.7, 3.4],
- [1.0, 2.7, 3.4]]
-&lt;/code>&lt;/pre>&lt;p>一个样本 - 特征矩阵&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>DeepLearning on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/deeplearning/</link><description>Recent content in DeepLearning on Starslayerx' Blog</description><image><title>Starslayerx' Blog</title><url>https://starslayerx.github.io/images/og-default.avif</url><link>https://starslayerx.github.io/images/og-default.avif</link></image><generator>Hugo -- 0.154.5</generator><language>en-US</language><lastBuildDate>Sun, 21 Mar 2021 05:20:08 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/deeplearning/index.xml" rel="self" type="application/rss+xml"/><item><title>Dive into DeepLearning - 02 - Preliminaries</title><link>https://starslayerx.github.io/posts/dive-into-deeplearning-02-preliminaries/</link><pubDate>Sun, 21 Mar 2021 05:20:08 +0800</pubDate><guid>https://starslayerx.github.io/posts/dive-into-deeplearning-02-preliminaries/</guid><description>&lt;ul&gt;
+&lt;li&gt;Course Note: d2l-video-05 - 线性代数&lt;/li&gt;
+&lt;li&gt;Jupyter Notebook: chapter_preliminaries/linear-algebra.ipynb&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;预备知识中 Liner Algebra 的部分&lt;/p&gt;
+&lt;h3 id="线性代数"&gt;线性代数&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Scalars 标量: 指只有一个元素的张量 tensors&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;torch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;3.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# scalar&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;2.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Vectors 向量: 可以视作标量构成的列表&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# 通过张量索引访问任一元素&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# 访问张量长度&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt; &lt;span class="c1"&gt;# torch.Size([4]) 只有一个轴的张量, 形状只有一个元素&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Matrices 矩阵: 类似向量的推广, 可以构建更多轴的数据结构&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 构建矩阵&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reshape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt; &lt;span class="c1"&gt;# 转置&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 对称矩阵&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="p"&gt;([[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;形状相同张量的计算&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dtype&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;float32&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reshape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;clone&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="c1"&gt;# 对应元素相乘: Hadamard 积&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;计算元素的和&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;detype&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;float64&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# 任意形状张量的和&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;计算平均值&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# 均值&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;numel&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# 另一种计算均值的方法: 和 / 数量&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;点乘是相同位置元素乘积的和&lt;/p&gt;</description></item><item><title>Dive into DeepLearning - 01 - Preliminaries</title><link>https://starslayerx.github.io/posts/dive-into-deeplearning-01-preliminaries/</link><pubDate>Sun, 21 Mar 2021 05:05:25 +0800</pubDate><guid>https://starslayerx.github.io/posts/dive-into-deeplearning-01-preliminaries/</guid><description>&lt;ul&gt;
+&lt;li&gt;Course Note: d2l-video-04 - 数据操作+数据预处理&lt;/li&gt;
+&lt;li&gt;Jupyter Notebook: chapter_preliminaries/pandas.ipynb&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;预备知识中 Data Manipulation 和 Data Preprocessing 的部分&lt;/p&gt;
+&lt;h3 id="介绍"&gt;介绍&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;N 纬数组介绍&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;0-d (标量)&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;1.0
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;一个类别&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;1-d (向量)&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;[1.0, 2.7, 3.4]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;一个特征向量&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2-d (矩阵)&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;[[1.0, 2.7, 3.4],
+[1.0, 2.7, 3.4],
+[1.0, 2.7, 3.4]]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;一个样本 - 特征矩阵&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;3-d RGB 图片(宽 x 高 x 通道)&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;[[[1.0, 2.7, 3.4],
+[1.0, 2.7, 3.4],
+[1.0, 2.7, 3.4]],
+[[1.0, 2.7, 3.4],
+[1.0, 2.7, 3.4],
+[1.0, 2.7, 3.4]]]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;4-d 一个 RGB 图片批量 (批量大小 x 宽 x 高 x 通道)&lt;/p&gt;</description></item></channel></rss>

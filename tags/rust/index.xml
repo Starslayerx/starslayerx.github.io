@@ -1,14 +1,86 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rust on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/rust/</link><description>Recent content in Rust on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Sat, 23 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/rust/index.xml" rel="self" type="application/rss+xml"/><item><title>Rust Alternaitve Tools</title><link>https://starslayerx.github.io/posts/rust-alternaitve-tools/</link><pubDate>Sat, 23 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/rust-alternaitve-tools/</guid><description>&lt;p>常用工具的 rust 替代品.&lt;/p>
-&lt;h3 id="introduction">Introduction&lt;/h3>
-&lt;p>在 Unix 生态中, 许多命令行工具都是用 C 编写的, 经过几十年的优化, 性能和稳定性都非常优秀.
-然而, 近年来, Rust 以其安全性、内存管理优势和现代化开发体验, 成为系统级工具开发的理想选择.&lt;/p></description></item><item><title>Tokei</title><link>https://starslayerx.github.io/posts/tokei/</link><pubDate>Fri, 22 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/tokei/</guid><description>&lt;h3 id="tokei-介绍">Tokei 介绍&lt;/h3>
-&lt;p>&lt;a href="https://github.com/XAMPPRocky/tokei">Tokei&lt;/a>是一款 Rust 编写的开源工具, 用于统计项目代码行数, 支持上百种语言, 能够扫描整个代码库, 包括:&lt;/p>
-&lt;ul>
-&lt;li>语言&lt;/li>
-&lt;li>文件数量&lt;/li>
-&lt;li>代码行数&lt;/li>
-&lt;li>注释行数&lt;/li>
-&lt;li>空行数&lt;/li>
-&lt;/ul>
-&lt;p>得益于 Rust 的高性能实现, Tokei 即使在超大规模代码库中也能保持极快的统计速度&lt;br>
-(Rust 轮子真不错)&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Rust on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/rust/</link><description>Recent content in Rust on Starslayerx' Blog</description><image><title>Starslayerx' Blog</title><url>https://starslayerx.github.io/images/og-default.avif</url><link>https://starslayerx.github.io/images/og-default.avif</link></image><generator>Hugo -- 0.154.5</generator><language>en-US</language><lastBuildDate>Sat, 23 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/rust/index.xml" rel="self" type="application/rss+xml"/><item><title>Rust Alternaitve Tools</title><link>https://starslayerx.github.io/posts/rust-alternaitve-tools/</link><pubDate>Sat, 23 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/rust-alternaitve-tools/</guid><description>&lt;p&gt;常用工具的 rust 替代品.&lt;/p&gt;
+&lt;h3 id="introduction"&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;在 Unix 生态中, 许多命令行工具都是用 C 编写的, 经过几十年的优化, 性能和稳定性都非常优秀.
+然而, 近年来, Rust 以其安全性、内存管理优势和现代化开发体验, 成为系统级工具开发的理想选择.&lt;/p&gt;
+&lt;p&gt;首先更新 cargo, 不同系统都可以使用 cargo 安装, 当然也可以使用系统的包管理器安装&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;rustup update stable
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;有需要的话修改源, 一般在 &lt;code&gt;~/.cargo/config.toml&lt;/code&gt;, 下面是科大源&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;source&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;crates-io&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;replace-with&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ustc&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;source&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ustc&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;registry&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;sparse+https://mirrors.ustc.edu.cn/crates.io-index/&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;registries&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ustc&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;index&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;sparse+https://mirrors.ustc.edu.cn/crates.io-index/&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="filesystem--archiving-文件系统与归档"&gt;Filesystem &amp;amp; Archiving 文件系统与归档&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/ogham/exa"&gt;exa&lt;/a&gt; 替代 &lt;code&gt;ls&lt;/code&gt;: 彩色支持 Git 状态的 ls 替代品&lt;br&gt;
+常用参数:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-1&lt;/code&gt;: 一行显示一个文件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-l&lt;/code&gt;: 显示文件细节信息&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-F&lt;/code&gt;: 在目录文件名末添加斜杠符号&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-T&lt;/code&gt;: 树状显示&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-R&lt;/code&gt;: 递归显示所有文件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--icons&lt;/code&gt;: 显示图标&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/ajeetdsouza/zoxide"&gt;zoxide&lt;/a&gt; 替代 &lt;code&gt;cd&lt;/code&gt;: 基于访问频率的快速目录跳转工具&lt;br&gt;
+常用参数:
+&lt;ul&gt;
+&lt;li&gt;z foo # 匹配 foo 的路径&lt;/li&gt;
+&lt;li&gt;z foo bar # 匹配 foo &amp;amp; bar 的路径&lt;/li&gt;
+&lt;li&gt;z - # 回到之前目录&lt;/li&gt;
+&lt;li&gt;zi foo # fzf&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="file--text-processing-文件与文本处理"&gt;File &amp;amp; Text Processing 文件与文本处理&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/sharkdp/bat?tab=readme-ov-file"&gt;bat&lt;/a&gt; 替代 &lt;code&gt;cat&lt;/code&gt;: 具备语法高亮、行号显示、Git 集成等功能, 让查看文件内容更加美观&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/BurntSushi/ripgrep"&gt;ripgrep&lt;/a&gt; 替代 &lt;code&gt;grep&lt;/code&gt;: 使用 Rust 编写的极速文本搜索工具, 支持递归搜索、正则表达式、忽略规则(.gitignore)等&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/sharkdp/fd"&gt;fd&lt;/a&gt; 替代 &lt;code&gt;find&lt;/code&gt;: 提供简单直观的语法、更快的搜索性能, 并默认支持彩色输出和忽略 .gitignore 文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="system-monitoring--management-系统监控与管理"&gt;System Monitoring &amp;amp; Management 系统监控与管理&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/ClementTsang/bottom"&gt;bottom&lt;/a&gt; 替代 &lt;code&gt;top&lt;/code&gt; / &lt;code&gt;htop&lt;/code&gt;: 一个现代化的系统资源监控工具, 支持 CPU、内存、磁盘、网络等多种指标显示, 并提供交互式界面&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/dalance/procs"&gt;procs&lt;/a&gt; 替代 &lt;code&gt;ps&lt;/code&gt;: 更人性化的进程信息显示, 支持彩色输出、树状显示、搜索与过滤&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="wrapping-up"&gt;Wrapping up&lt;/h2&gt;
+&lt;p&gt;Rust 的安全性和高性能使其成为编写现代 Linux 工具的理想选择.
+这些替代品不仅提供了更好的用户体验, 还利用 Rust 的并发优势和零成本抽象提升了性能.
+其他一些 rust 工具:&lt;/p&gt;</description></item><item><title>Tokei</title><link>https://starslayerx.github.io/posts/tokei/</link><pubDate>Fri, 22 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/tokei/</guid><description>&lt;h3 id="tokei-介绍"&gt;Tokei 介绍&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://github.com/XAMPPRocky/tokei"&gt;Tokei&lt;/a&gt;是一款 Rust 编写的开源工具, 用于统计项目代码行数, 支持上百种语言, 能够扫描整个代码库, 包括:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;语言&lt;/li&gt;
+&lt;li&gt;文件数量&lt;/li&gt;
+&lt;li&gt;代码行数&lt;/li&gt;
+&lt;li&gt;注释行数&lt;/li&gt;
+&lt;li&gt;空行数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;得益于 Rust 的高性能实现, Tokei 即使在超大规模代码库中也能保持极快的统计速度&lt;br&gt;
+(Rust 轮子真不错)&lt;/p&gt;
+&lt;h3 id="安装"&gt;安装&lt;/h3&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;brew install tokei
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;或者&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;cargo install tokei
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="使用"&gt;使用&lt;/h3&gt;
+&lt;p&gt;在项目根目录执行&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;tokei .
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;输出类似下面这样&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;===============================================================================
+Language Files Lines Code Comments Blanks
+===============================================================================
+Dockerfile 1 25 9 8 8
+Python 52 2914 2372 96 446
+TOML 1 65 58 0 7
+YAML 2 49 45 0 4
+-------------------------------------------------------------------------------
+Markdown 1 194 0 158 36
+|- BASH 1 13 13 0 0
+(Total) 207 13 158 36
+===============================================================================
+Total 57 3247 2484 262 501
+===============================================================================
+&lt;/code&gt;&lt;/pre&gt;</description></item></channel></rss>

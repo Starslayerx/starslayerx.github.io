@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Essay on Starslayerx' Blog</title><link>https://starslayerx.github.io/zh-cn/tags/essay/</link><description>Recent content in Essay on Starslayerx' Blog</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Fri, 01 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/zh-cn/tags/essay/index.xml" rel="self" type="application/rss+xml"/><item><title>Blaugust</title><link>https://starslayerx.github.io/zh-cn/posts/blaugust/</link><pubDate>Fri, 01 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/zh-cn/posts/blaugust/</guid><description>&lt;p>🎈 八月你好! 是时候开启 Blaugust 了。&lt;/p>
-&lt;h3 id="blaugust-让写作成为开发者的习惯">Blaugust: 让写作成为开发者的习惯&lt;/h3>
-&lt;p>今年我决定参与 &lt;strong>Blaugust&lt;/strong> —— 这是一个持续一个月的博客写作挑战, 鼓励大家在整个八月坚持写作&lt;/p>
-&lt;p>对开发者来说, 写博客不仅仅是分享, 更是整理思路, 记录经验, 构建长期参考资料的过程&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Essay on Starslayerx' Blog</title><link>https://starslayerx.github.io/zh-cn/tags/essay/</link><description>Recent content in Essay on Starslayerx' Blog</description><image><title>Starslayerx' Blog</title><url>https://starslayerx.github.io/images/og-default.avif</url><link>https://starslayerx.github.io/images/og-default.avif</link></image><generator>Hugo -- 0.154.5</generator><language>zh-CN</language><lastBuildDate>Fri, 01 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/zh-cn/tags/essay/index.xml" rel="self" type="application/rss+xml"/><item><title>Blaugust</title><link>https://starslayerx.github.io/zh-cn/posts/blaugust/</link><pubDate>Fri, 01 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/zh-cn/posts/blaugust/</guid><description>&lt;p&gt;🎈 八月你好! 是时候开启 Blaugust 了。&lt;/p&gt;
+&lt;h3 id="blaugust-让写作成为开发者的习惯"&gt;Blaugust: 让写作成为开发者的习惯&lt;/h3&gt;
+&lt;p&gt;今年我决定参与 &lt;strong&gt;Blaugust&lt;/strong&gt; —— 这是一个持续一个月的博客写作挑战, 鼓励大家在整个八月坚持写作&lt;/p&gt;
+&lt;p&gt;对开发者来说, 写博客不仅仅是分享, 更是整理思路, 记录经验, 构建长期参考资料的过程&lt;/p&gt;
+&lt;h3 id="打算写些什么"&gt;打算写些什么?&lt;/h3&gt;
+&lt;p&gt;这个月我计划围绕以下几个主题进行写作:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;每日开发实践：工具使用, 日志处理, 项目结构设计等&lt;/li&gt;
+&lt;li&gt;Python 技术生态：FastAPI, Pydantic, LangChain, Pytest 等&lt;/li&gt;
+&lt;li&gt;AI 项目日志：构建 AI Agent 和编排工作流的过程记录&lt;/li&gt;
+&lt;li&gt;架构笔记：异步模式, 微服务, 数据流设计&lt;/li&gt;
+&lt;li&gt;学习笔记 &amp;amp; 技术文章翻译：深入源码分析与优质技术博客的整理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;但不一定每天写一篇文章, 有时候会提前写好几篇, 但目标是 &lt;strong&gt;每天发布一篇&lt;/strong&gt;, 并专注于内容的 &lt;strong&gt;持续性, 可复用性和实际价值&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id="写作平台与环境"&gt;写作平台与环境&lt;/h3&gt;
+&lt;p&gt;这个博客使用 &lt;strong&gt;Hugo + GitHub Pages&lt;/strong&gt; 搭建, 采用了 &lt;code&gt;narrow&lt;/code&gt; 主题.&lt;br&gt;
+用 Markdown 写作简单高效, 版本控制通过 Git 管理.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;支持 RSS 订阅 (欢迎互换博客链接!)&lt;br&gt;
+如果你也在写博客或者正在参加 Blaugust, 欢迎&lt;a href="https://github.com/Starslayerx/starslayerx.github.io/issues"&gt;留言&lt;/a&gt;交流 👋&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

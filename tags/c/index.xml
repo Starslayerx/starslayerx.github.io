@@ -1,8 +1,29 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>C on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/c/</link><description>Recent content in C on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Mon, 18 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/c/index.xml" rel="self" type="application/rss+xml"/><item><title>IEEE-754 Introduce</title><link>https://starslayerx.github.io/posts/ieee-754-introduce/</link><pubDate>Mon, 18 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/ieee-754-introduce/</guid><description>&lt;p>IEEE 754 标准数值类型及分类&lt;/p>
-&lt;h2 id="整数-integer">整数 Integer&lt;/h2>
-&lt;p>整数是没有小数部分的值, 在计算机内通常有两种表示方式:&lt;/p>
-&lt;ul>
-&lt;li>有符号整数: 可以表示正数和负数, 最常用的是二补码表示. 例如 8 位二进制的范围为[-2^7, 2^7-1]&lt;/li>
-&lt;li>无符号整数: 仅表示非负数, 8 位二进制的范围为 [0, 2^8-1]&lt;/li>
-&lt;/ul>
-&lt;p>其中补码(Two&amp;rsquo;s Complement)用于表示负数&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>C on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/c/</link><description>Recent content in C on Starslayerx' Blog</description><image><title>Starslayerx' Blog</title><url>https://starslayerx.github.io/images/og-default.avif</url><link>https://starslayerx.github.io/images/og-default.avif</link></image><generator>Hugo -- 0.154.5</generator><language>en-US</language><lastBuildDate>Mon, 18 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/c/index.xml" rel="self" type="application/rss+xml"/><item><title>IEEE-754 Introduce</title><link>https://starslayerx.github.io/posts/ieee-754-introduce/</link><pubDate>Mon, 18 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/ieee-754-introduce/</guid><description>&lt;p&gt;IEEE 754 标准数值类型及分类&lt;/p&gt;
+&lt;h2 id="整数-integer"&gt;整数 Integer&lt;/h2&gt;
+&lt;p&gt;整数是没有小数部分的值, 在计算机内通常有两种表示方式:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;有符号整数: 可以表示正数和负数, 最常用的是二补码表示. 例如 8 位二进制的范围为[-2^7, 2^7-1]&lt;/li&gt;
+&lt;li&gt;无符号整数: 仅表示非负数, 8 位二进制的范围为 [0, 2^8-1]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其中补码(Two&amp;rsquo;s Complement)用于表示负数&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;正数补码与原码相同&lt;/li&gt;
+&lt;li&gt;负数的补码 = 该数绝对值的二进制取反 + 1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;通过补码, 可以使得加减运算统一, 溢出检测更加简单&lt;/p&gt;
+&lt;h2 id="浮点数-floating-point"&gt;浮点数 Floating-point&lt;/h2&gt;
+&lt;p&gt;浮点数用于表示带小数的实数, 尤其适合科学计算和近似表示很大或很小的数值. IEEE 754 定义了浮点数的标准格式, 类似科学计数法:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;value = (-1)^(sign) x mantissa x 2^(exponent)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;浮点数由三部分组成:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;符号位 sign: 0/1代表正负&lt;/li&gt;
+&lt;li&gt;阶码 exponent: 通常使用偏移表示法&lt;/li&gt;
+&lt;li&gt;尾数 fraction/mantissa: 小数部分&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;常见浮点数类型:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;单精度 float32: 1 位符号 + 8 位阶码 + 23 位尾数&lt;/li&gt;
+&lt;li&gt;双精度 float64: 1 位符号 + 11 位阶码 + 52 位尾数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="浮点数的分类-categories"&gt;浮点数的分类 Categories&lt;/h3&gt;
+&lt;p&gt;以 64 精度为例&lt;/p&gt;</description></item></channel></rss>

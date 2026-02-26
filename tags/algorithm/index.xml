@@ -1,4 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Algorithm on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/algorithm/</link><description>Recent content in Algorithm on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Sun, 31 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/algorithm/index.xml" rel="self" type="application/rss+xml"/><item><title>KMP Algorithm</title><link>https://starslayerx.github.io/posts/kmp-algorithm/</link><pubDate>Sun, 31 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/kmp-algorithm/</guid><description>&lt;h2 id="kmp-算法">KMP 算法&lt;/h2>
-&lt;h3 id="思想">思想&lt;/h3>
-&lt;p>KMP 算法, 全程 Knuth-Morris-Pratt 算法, 是一种高效的字符串匹配算法. 它的核心思想是:&lt;br>
-在匹配过程中, 当发生文本串(text)与模式串(pattern)不匹配时, 能够利用已匹配过的部分信息, 智能地移动模式串, 从而避免从头开始匹配, 达到提高匹配效率的目的.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Algorithm on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/algorithm/</link><description>Recent content in Algorithm on Starslayerx' Blog</description><image><title>Starslayerx' Blog</title><url>https://starslayerx.github.io/images/og-default.avif</url><link>https://starslayerx.github.io/images/og-default.avif</link></image><generator>Hugo -- 0.154.5</generator><language>en-US</language><lastBuildDate>Sun, 31 Aug 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/algorithm/index.xml" rel="self" type="application/rss+xml"/><item><title>KMP Algorithm</title><link>https://starslayerx.github.io/posts/kmp-algorithm/</link><pubDate>Sun, 31 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/kmp-algorithm/</guid><description>&lt;h2 id="kmp-算法"&gt;KMP 算法&lt;/h2&gt;
+&lt;h3 id="思想"&gt;思想&lt;/h3&gt;
+&lt;p&gt;KMP 算法, 全程 Knuth-Morris-Pratt 算法, 是一种高效的字符串匹配算法. 它的核心思想是:&lt;br&gt;
+在匹配过程中, 当发生文本串(text)与模式串(pattern)不匹配时, 能够利用已匹配过的部分信息, 智能地移动模式串, 从而避免从头开始匹配, 达到提高匹配效率的目的.&lt;/p&gt;
+&lt;p&gt;KMP算法的巧妙之处在于:&lt;br&gt;
+它认为, 当发生不匹配时, 将模式串仅仅右移一位是&amp;quot;愚蠢&amp;quot;的. 当某个地方不匹配时, 表明前面实际上有部分内容已经匹配了. 如果直接从头开始匹配, 就浪费了这些信息. 有时前面已经匹配部分会有&amp;quot;重复&amp;quot;的性质, 可以利用这种性质, 让子串一次多移动几步, 从而加速匹配速度.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;举例&lt;/strong&gt;
+主串S和模式串P&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;S = BBC ABCDAB ABCDABCDABDE
+P = ABCDABD
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;当匹配到下面这种情况时:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;S = BBC ABCDAB ABCDABCDABDE
+P = ABCDABD
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里的 D 和上面空格不匹配, 此时保理匹配就直接向右移动一位, 但是通过观察已经匹配的部分 &amp;ldquo;ABCDAB&amp;rdquo; 可以发现, 该部分有相同的前后缀 &amp;ldquo;AB&amp;rdquo;, 因此可以直接将子串的 &amp;ldquo;A&amp;rdquo; 对准主串中后缀 &amp;ldquo;AB&amp;rdquo; 里面的 &amp;ldquo;A&amp;rdquo;:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;S = BBC ABCDAB ABCDABCDABDE
+P = ABCDABD
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;此时, S 的指针不用改变, 将 P 的指针回到 &amp;ldquo;C&amp;rdquo; 的位置就行了. 通过这种方法, 大大提升了效率.&lt;/p&gt;</description></item></channel></rss>

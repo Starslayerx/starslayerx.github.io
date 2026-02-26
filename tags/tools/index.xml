@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tools on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/tools/</link><description>Recent content in Tools on Starslayerx' Blog</description><generator>Hugo</generator><language>en-US</language><lastBuildDate>Sat, 27 Dec 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/tools/index.xml" rel="self" type="application/rss+xml"/><item><title>Taskwarrior Server Config Guide</title><link>https://starslayerx.github.io/posts/taskwarrior-server-config-guide/</link><pubDate>Sat, 27 Dec 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/taskwarrior-server-config-guide/</guid><description>&lt;h1 id="taskwarrior-3x-同步服务器配置指南">Taskwarrior 3.x 同步服务器配置指南&lt;/h1>
-&lt;p>本文介绍如何使用 Docker 部署 taskchampion-sync-server，为 Taskwarrior 3.x 提供跨设备同步功能。&lt;/p>
-&lt;h2 id="背景知识">背景知识&lt;/h2>
-&lt;p>Taskwarrior 是一款强大的命令行任务管理工具。从 3.0 版本开始，官方不再支持 taskd 服务器，改用新的 taskchampion-sync-server。&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Tools on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/tools/</link><description>Recent content in Tools on Starslayerx' Blog</description><image><title>Starslayerx' Blog</title><url>https://starslayerx.github.io/images/og-default.avif</url><link>https://starslayerx.github.io/images/og-default.avif</link></image><generator>Hugo -- 0.154.5</generator><language>en-US</language><lastBuildDate>Sat, 27 Dec 2025 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/tools/index.xml" rel="self" type="application/rss+xml"/><item><title>Taskwarrior Server Config Guide</title><link>https://starslayerx.github.io/posts/taskwarrior-server-config-guide/</link><pubDate>Sat, 27 Dec 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/taskwarrior-server-config-guide/</guid><description>&lt;h1 id="taskwarrior-3x-同步服务器配置指南"&gt;Taskwarrior 3.x 同步服务器配置指南&lt;/h1&gt;
+&lt;p&gt;本文介绍如何使用 Docker 部署 taskchampion-sync-server，为 Taskwarrior 3.x 提供跨设备同步功能。&lt;/p&gt;
+&lt;h2 id="背景知识"&gt;背景知识&lt;/h2&gt;
+&lt;p&gt;Taskwarrior 是一款强大的命令行任务管理工具。从 3.0 版本开始，官方不再支持 taskd 服务器，改用新的 taskchampion-sync-server。&lt;/p&gt;
+&lt;p&gt;与 taskd 相比，新同步服务器的优势：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;无需手动配置 SSL 证书&lt;/li&gt;
+&lt;li&gt;无需预先创建用户账户&lt;/li&gt;
+&lt;li&gt;客户端数据端到端加密&lt;/li&gt;
+&lt;li&gt;部署和维护更简单&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="服务器端配置"&gt;服务器端配置&lt;/h2&gt;
+&lt;h3 id="使用-docker-部署"&gt;使用 Docker 部署&lt;/h3&gt;
+&lt;p&gt;创建数据目录并启动容器：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo mkdir -p /var/lib/taskchampion-sync-server
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo chmod &lt;span class="m"&gt;777&lt;/span&gt; /var/lib/taskchampion-sync-server
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker run -d &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --name taskchampion &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -p 53589:8080 &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -e &lt;span class="nv"&gt;RUST_LOG&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;info &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; -v taskchampion-data:/var/lib/taskchampion-sync-server &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; --restart unless-stopped &lt;span class="se"&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ghcr.io/gothenburgbitfactory/taskchampion-sync-server:main
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;端口说明&lt;/strong&gt;：容器内部使用 8080，映射到宿主机的 53589（可自定义）。&lt;/p&gt;
+&lt;h3 id="配置防火墙"&gt;配置防火墙&lt;/h3&gt;
+&lt;p&gt;确保服务器防火墙开放相应端口。以常见的云服务器防火墙为例：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;类型：入站&lt;/li&gt;
+&lt;li&gt;行动：允许&lt;/li&gt;
+&lt;li&gt;协议：TCP&lt;/li&gt;
+&lt;li&gt;目的端口：53589&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="验证服务运行"&gt;验证服务运行&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker ps &lt;span class="p"&gt;|&lt;/span&gt; grep taskchampion
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker logs taskchampion
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;正常运行时应看到：&lt;/p&gt;</description></item></channel></rss>
