@@ -1,0 +1,1331 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Note on Starslayerx' Blog</title><link>https://starslayerx.github.io/categories/note/</link><description>Recent content in Note on Starslayerx' Blog</description><image><title>Starslayerx' Blog</title><url>https://starslayerx.github.io/images/og-default.avif</url><link>https://starslayerx.github.io/images/og-default.avif</link></image><generator>Hugo -- 0.154.5</generator><language>en-US</language><lastBuildDate>Tue, 13 Jan 2026 08:00:00 +0800</lastBuildDate><atom:link href="https://starslayerx.github.io/categories/note/index.xml" rel="self" type="application/rss+xml"/><item><title>Python Tricks Part 7: Classes and Object-Oriented Programming</title><link>https://starslayerx.github.io/posts/python-tricks-part-7-classes-and-object-oriented-programming/</link><pubDate>Tue, 13 Jan 2026 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-tricks-part-7-classes-and-object-oriented-programming/</guid><description>&lt;p&gt;使用 &lt;code&gt;vars()&lt;/code&gt; 方法返回对象的属性和值的字典对象，不带参数时，返回当前局部作用域的变量字典&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# 相当于 locals()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;age&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;age&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;age&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;age&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;city&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Beijing&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Alice&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;25&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="attribute-access"&gt;Attribute Access&lt;/h2&gt;
+&lt;p&gt;一个示例只有三种基础的方法：getting, setting 和 deleting 属性&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Attribute&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;owner&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;blance&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;owner&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;balance&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;owner&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;owner&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;balance&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;balance&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__repr__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Account(&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;owner&lt;/span&gt;&lt;span class="si"&gt;!r}&lt;/span&gt;&lt;span class="s2"&gt;, &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;balance&lt;/span&gt;&lt;span class="si"&gt;!r}&lt;/span&gt;&lt;span class="s2"&gt;)&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;deposite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;balance&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;withdraw&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;balance&lt;/span&gt; &lt;span class="o"&gt;-=&lt;/span&gt; &lt;span class="n"&gt;amount&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;inquiry&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;balance&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;例如&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Account&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Guido&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1000.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;owner&lt;/span&gt; &lt;span class="c1"&gt;# get&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;balance&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;75&lt;/span&gt; &lt;span class="c1"&gt;# set&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;del&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;balance&lt;/span&gt; &lt;span class="c1"&gt;# delete&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Python 中的一切都是一个动态过程，几乎没有什么限制。
+例如，可以给已创建的对象添加新属性：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Account&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Guido&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1000.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;creation_date&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;2019-02-14&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nickname&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Fromer BDFL&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;有时候不适用点 &lt;code&gt;.&lt;/code&gt; 操作符来执行任务，而是通过将属性名传递给 &lt;code&gt;getattr()&lt;/code&gt;, &lt;code&gt;setattr()&lt;/code&gt; 和 &lt;code&gt;delattr()&lt;/code&gt; 函数来实现。
+&lt;code&gt;hasattr()&lt;/code&gt; 函数允许你测试一个已存在的属性：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Account&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Guido&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1000.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;owner&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;setattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;balance&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;750.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;delattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;balance&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;hasattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;balance&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# False&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;withdraw&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# Method Call&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# a = Account(&amp;#34;Guido&amp;#34;, 650.0)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;getattr()&lt;/code&gt; 函数可以携带一个默认值，如果想要查看一个可能不存在的属性，可以这样实现：&lt;/p&gt;</description></item><item><title>Python Tricks Part 8: Modules and Packages</title><link>https://starslayerx.github.io/posts/python-tricks-part-8-modules-and-packages/</link><pubDate>Tue, 13 Jan 2026 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-tricks-part-8-modules-and-packages/</guid><description>&lt;p&gt;Python 程序由 modules 和 packages 组成，使用 &lt;code&gt;import&lt;/code&gt; 语句导入。&lt;/p&gt;
+&lt;h2 id="modules-and-the-import-statement"&gt;Modules and the import Statement&lt;/h2&gt;
+&lt;p&gt;任何 Python 源文件都可以作为一个模块导入，例如下面 &lt;code&gt;module.py&lt;/code&gt; 代码：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;37&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;func&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;func says that a is &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SomeClass&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;method&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;method says hi&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;loaded module&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;改文件包含一些常见的编程元素，包括一个全局变量、一个函数、一个类定义 和 最后的语句。
+通过下面方法导入：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;module&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;module&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;module&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;module&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SomeClass&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;method&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;执行 import 会发送下面这几件事：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;加载模块源码，如果找不到抛出 &lt;code&gt;ImportError&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;创建新模块对象。该对象作为模块内所有全局定义 global defintions 的容器，被称为 “命名空间” namespace&lt;/li&gt;
+&lt;li&gt;该模块源码在新创建的模块命名空间内执行&lt;/li&gt;
+&lt;li&gt;如果没有错误发生，调用者会创建一个名称，指向新的模块对象。该名称与模块名称一致，但不包含任何文件后缀。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这些步骤中，第一步是最复杂的。新手容易犯的错误就是使用错误的名称或将代码放到了未知的位置。
+且模块文件必须放在 &lt;code&gt;sys.path&lt;/code&gt; 所包含的文件路径中，且文件名称要遵循和 python 变量一样的规则。&lt;/p&gt;
+&lt;p&gt;剩下的步骤都隔离在一个模块中，因此不用担心不同模块间命名冲突的问题。
+Python &lt;code&gt;import&lt;/code&gt; 会执行所有导入的源码，因此导入上面模块会输出 &lt;code&gt;loaded module&lt;/code&gt;。&lt;/p&gt;</description></item><item><title>Python Tricks Part 6: Generators</title><link>https://starslayerx.github.io/posts/python-tricks-part-6-generators/</link><pubDate>Fri, 09 Jan 2026 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-tricks-part-6-generators/</guid><description>&lt;p&gt;生成器是 Python 中一种强大的特性，其通常被介绍为一种定义新型迭代模式的便捷方式。
+但生成器从根本上改变了整个函数执行的模式，本篇文章重点关注：生成器、生成器委托、基于生成器的协程，以及生成器的其他内部机制。&lt;/p&gt;
+&lt;h2 id="generators-and-yield"&gt;Generators and yield&lt;/h2&gt;
+&lt;p&gt;如果一个函数使用 &lt;code&gt;yield&lt;/code&gt; 关键字，这定义了一个生成器。
+生成器的主要用户是生成用于迭代的值。&lt;/p&gt;
+&lt;p&gt;例如：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;countdown&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Counting down from&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;-=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Example use&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;countdown&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;T-minus&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果调用该函数则不会开始执行：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;countdown&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# &amp;lt;generator object countdown at 0x106faa260&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;相反，会创建一个生成器对象。
+该生成器对象只有在你迭代它的时候才会开始执行，使用的一种方式是调用 &lt;code&gt;next()&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;例如：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;next&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# Counting down from 10&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 10&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;next&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 9&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;当调用 &lt;code&gt;next()&lt;/code&gt; 时，生成器函数会执行语句直到遇到 &lt;code&gt;yield&lt;/code&gt; 语句。
+&lt;code&gt;yield&lt;/code&gt; 语句会返回一个结果，此时函数的执行被挂起，直到再次调用 &lt;code&gt;next()&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;当其暂停的时候，函数会保留所有的本地变量和执行环境。
+恢复执行时，程序会从 &lt;code&gt;yield&lt;/code&gt; 之后的语句继续运行。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;next()&lt;/code&gt; 是调用生成器上 &lt;code&gt;__next__()&lt;/code&gt; 方法的简写形式。
+例如，你可以这样：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="fm"&gt;__next__&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 8&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="fm"&gt;__next__&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 7&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通常不会在生成器直接使用 &lt;code&gt;next()&lt;/code&gt;，而是使用 &lt;code&gt;for&lt;/code&gt; 或其他一些语句：&lt;/p&gt;</description></item><item><title>Python Tricks Part 5: Functions</title><link>https://starslayerx.github.io/posts/python-tricks-part-5-functions/</link><pubDate>Fri, 19 Dec 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-tricks-part-5-functions/</guid><description>&lt;p&gt;函数是 Python 的基础模块，本篇会介绍 function application 函数定义、function application 函数应用、scoping rules 作用域规则、closures 闭包、decorators 装饰器和其他函数式编程特性。
+特别关注不同的编程习惯 idioms、求值模型以及与函数相关的模式。&lt;/p&gt;
+&lt;h2 id="default-arguments"&gt;Default Arguments&lt;/h2&gt;
+&lt;p&gt;你可以通过在函数定义处赋值的方式，给函数的参数添加默认值，例如：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;delimiter&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;,&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;statements&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;当一个函数定义了默认参数的时候，其右侧都必须是含有默认值的可选参数。&lt;/p&gt;
+&lt;p&gt;默认函数参数会在函数首次定义的时候调用一次，这有时会导致出乎意料的行为：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[]):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# returns [1]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# returns [1, 2]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# returns [1, 2, 3]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;注意到每次掉都将函数默认值给修改了，要避免这种行为，使用 &lt;code&gt;None&lt;/code&gt; 并进行检查：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;items&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通常来说，建议只使用不可变对象作为默认参数值。&lt;/p&gt;
+&lt;h2 id="variadic-arguments"&gt;Variadic Arguments&lt;/h2&gt;
+&lt;p&gt;可变参数&lt;/p&gt;
+&lt;p&gt;如果在最后一个参数前使用 asterisk 星号作为前缀，函数就可以接受可变数量的参数。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;product&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;first&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;first&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;product&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# 200&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;product&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# 120&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在这个例子中，所有的额外参数都作为一个元组放在 &lt;code&gt;args&lt;/code&gt; 变量中。
+对于元组，你可以使用序列的标准操作处理，如迭代、切片，解包等。&lt;/p&gt;
+&lt;h2 id="keyword-arguments"&gt;Keyword Arguments&lt;/h2&gt;
+&lt;p&gt;函数参考可以通过显示命名每个参数并指定值来提供函数参数。
+这被称为 keyword arguments 关键字参数，例如：&lt;/p&gt;</description></item><item><title>Python Tricks Part 4: Objects, Types and Protocols</title><link>https://starslayerx.github.io/posts/python-tricks-part-4-objects-types-and-protocols/</link><pubDate>Thu, 18 Dec 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-tricks-part-4-objects-types-and-protocols/</guid><description>&lt;h2 id="essential-concepts"&gt;Essential Concepts&lt;/h2&gt;
+&lt;p&gt;每个存储在程序中的数据都是一个对象，每个对象都有一个 identity, type and value （身份、类型和值）。
+例如 &lt;code&gt;a = 42&lt;/code&gt; 会创建一个整数为 42 的类型，该对象的 identity 是内存中的一个数字，代表其在内存中的位置，&lt;code&gt;a&lt;/code&gt; 是这个类的标签，指向这个特定的内存位置，标签本身并非对象的一部分。&lt;/p&gt;
+&lt;p&gt;object 对象的类型，也被称为 class 类，该类定义了对象的内部数据表示，和支持的方法。
+当特定类型的对象创建后，该对象被称为该类的 instance “实例”。
+当实例创建后，其 identity 就不会改变。
+如果一个对象的值可以被修改，则该对象是可变的 mutable。
+如果一个对象的值不可以被修改，则该对象是不可变的 unmutable。
+一个持有对其他对象引用的对象，被称为容器。&lt;/p&gt;
+&lt;p&gt;对象通过其属性来表征，属性是于对象关联的值，通过点 &lt;code&gt;.&lt;/code&gt; 运算符来访问。
+属性可以是一个简单的值，例如一个数字，也可以是一个被调用以执行某些操作的函数。&lt;/p&gt;
+&lt;p&gt;这类函数被称为方法，例如下面这个例子&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;34&lt;/span&gt; &lt;span class="c1"&gt;# Create an integer&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="c1"&gt;# Get the numberator (an attribute)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# Create a list&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# Add a new element using the append method&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="object-identity-and-type"&gt;Object Identity and Type&lt;/h2&gt;
+&lt;p&gt;内置函数 &lt;code&gt;id()&lt;/code&gt; 返回对象的 identity，该 identity 是一个整数，通常对应 object 的内存地址。
+&lt;code&gt;is&lt;/code&gt; 操作符会对比两个对象的 identity，&lt;code&gt;type()&lt;/code&gt; 返回对象的类型。&lt;/p&gt;</description></item><item><title>Shell</title><link>https://starslayerx.github.io/posts/shell/</link><pubDate>Thu, 18 Dec 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/shell/</guid><description>&lt;h2 id="terminal"&gt;Terminal&lt;/h2&gt;
+&lt;p&gt;终端是提供文本用户界面的程序，早期终端是集成设备，键盘和屏幕集成在一起，现在终端知识简单的应用程序。
+除了基本的输入输出外，终端还支持将所谓转义序列或转移码，用于光标和屏幕处理，并可能支持颜色。
+例如，使用 &lt;code&gt;Ctrl-h&lt;/code&gt; 会删除前面一个字符。&lt;/p&gt;
+&lt;p&gt;环境变量 TERM 可能使用了终端模拟器，其配置可以通过 &lt;code&gt;infocmp&lt;/code&gt; 获得&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# Reconstructed via infocmp from file: /usr/share/terminfo/74/tmux-256color
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;tmux-256color|tmux with 256 colors,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; am, hs, km, mir, msgr, xenl,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; colors#256, cols#80, it#8, lines#24, pairs#32767,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; acsc=++\,\,--..00``aaffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz{{||}}~~,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; bel=^G, blink=\E[5m, bold=\E[1m, cbt=\E[Z, civis=\E[?25l,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; clear=\E[H\E[J, cnorm=\E[34h\E[?25h, cr=^M,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; ...
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;显示内容看上去很混乱，这些是&lt;/p&gt;
+&lt;h2 id="shell"&gt;Shell&lt;/h2&gt;
+&lt;p&gt;shell 是一个运行在终端内部的程序，充当命令解释器。
+shell 通过流提供输入和输出处理，支持变量，有一些内置命令，处理命令执行和状态，支持交互式和脚本使用。
+最初的 shell 叫做 Bourne shell sh，即作者名字命名，现在通常被 bash 替代，即 &amp;ldquo;Bourne Again Shell&amp;rdquo; 的缩写。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;file -h /bin/sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="stream"&gt;Stream&lt;/h3&gt;
+&lt;p&gt;shell 为每个进程提供了三个默认的文件描述符 (FD)，用于输入和输出：&lt;/p&gt;</description></item><item><title>Python Tricks Part 3: Program Structure and Control Flow</title><link>https://starslayerx.github.io/posts/python-tricks-part-3-program-structure-and-control-flow/</link><pubDate>Wed, 17 Dec 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-tricks-part-3-program-structure-and-control-flow/</guid><description>&lt;h2 id="exceptions"&gt;Exceptions&lt;/h2&gt;
+&lt;p&gt;异常 exceptions 具有一些标准属性，这些属性在需要针对错误执行进一步操作的代码中可能非常有用。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这是引发异常时提供的元组，在大多数情况下，这是一个包含描述错误字符串的单元元素元组。
+对于 OSError 异常，其值是一个包含整数错误码、字符串错误消息，以及可选文件名的 2 元组或 3 元组。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__cause__&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果该异常是在处理另一个异常时有意引起的 &lt;code&gt;raise ... from ...&lt;/code&gt;，Python 会将这两个异常链接起来，形成异常链。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__context__&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果异常是处理异常时无意间导致的，则会产生 &lt;code&gt;e.__context__&lt;/code&gt;。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__traceback__&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;与异常相关联的堆栈回溯对象。&lt;/p&gt;
+&lt;p&gt;用于存储异常值的变量仅在相关的 except 块内部可以访问，一但控制论离开该块，该变量将变为未定义。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;N/A&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Failed:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# Fails -&amp;gt; NameError. &amp;#39;e&amp;#39; not defined&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;多异常处理块通过多个异常子句指定：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# do something&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;TypeError&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# Handle Type error&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# Handle Value error&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;当然也可以在单个子句中处理多个异常类型&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# do something&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ne"&gt;TypeError&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;e&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# Handle Type or Value error&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;可以使用 pass 忽略报错&lt;/p&gt;</description></item><item><title>Python Tricks Part 2: Operators, Expressions and Data Manipulation</title><link>https://starslayerx.github.io/posts/python-tricks-part-2-operators-expressions-and-data-manipulation/</link><pubDate>Tue, 16 Dec 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-tricks-part-2-operators-expressions-and-data-manipulation/</guid><description>&lt;h2 id="literals"&gt;Literals&lt;/h2&gt;
+&lt;p&gt;整数&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mi"&gt;04&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mb"&gt;0b101010&lt;/span&gt; &lt;span class="c1"&gt;# Binary 二进制&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mo"&gt;0o52&lt;/span&gt; &lt;span class="c1"&gt;# Octal 八进制&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mh"&gt;0x2a&lt;/span&gt; &lt;span class="c1"&gt;# Hexadecimal 十六进制&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;浮点数，内部使用 IEEE 754 双精度存储&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;4.2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;42.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;4.2e+2&lt;/span&gt; &lt;span class="c1"&gt;# 科学记数法&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mf"&gt;4.2E2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;4.2e-2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;数字类型字面量还可以使用 &lt;code&gt;_&lt;/code&gt; 来方便阅读&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="mi"&gt;123_456_789&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="truth-values"&gt;Truth Values&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;true&lt;/code&gt;: 非0数字、任何非空的字符串，列表，元组或字典&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;false&lt;/code&gt;: 0、None、空列表，元组或字典&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="operations-involving-iterables"&gt;Operations Involving Iterables&lt;/h2&gt;
+&lt;p&gt;任何可迭代对象都可以展开，如 list, tuple and set，都通过星号(*)。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;items&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# [10, 1, 2, 3, 1]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# [1, 2, 3, 10, 1, 2, 3]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="c1"&gt;# {10, 11, 1, 2, 3}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在上面例子中，item 简单的被粘贴到 list, tuple, set 中，就和手动输入进去一样。
+有时候这种展开 expansion 被称为“展开操作符” splatting。&lt;/p&gt;</description></item><item><title>Python Tricks Part 1: Basis</title><link>https://starslayerx.github.io/posts/python-tricks-part-1-basis/</link><pubDate>Mon, 15 Dec 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-tricks-part-1-basis/</guid><description>&lt;p&gt;这篇文章总结一些平时容易被忽略的 Python 知识&lt;/p&gt;
+&lt;h3 id="primitives-variables-and-expressions"&gt;Primitives, Variables and Expressions&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="si"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;&amp;gt;3d&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;principal&lt;/span&gt;&lt;span class="si"&gt;:&lt;/span&gt;&lt;span class="s2"&gt;0.2f&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&amp;gt;3d&lt;/code&gt; 指至少 3 位十进制数，右对齐&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;0.2f&lt;/code&gt; 指精度为 2 位的浮点数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="arithmetic-operators"&gt;Arithmetic Operators&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;round(x, [n])&lt;/code&gt;: 该函数采用 Banker&amp;rsquo;s Rounding 银行家舍入法，也叫 四舍六入五成双，当要舍弃的数字正好是 5 时&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;前一位是偶数 → 向下舍去（向偶数靠拢）&lt;/li&gt;
+&lt;li&gt;如果前一位是奇数 → 向上进位（向偶数靠拢）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这样做的目的是减少舍入误差的累积，在统计学和金融计算中更为公平。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 常规四舍五入（Python实际行为是银行家舍入）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;round&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;1.5&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="c1"&gt;# 2 （1是奇数，5进位）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;round&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;2.5&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="c1"&gt;# 2 （2是偶数，5舍去）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;round&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;3.5&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="c1"&gt;# 4 （3是奇数，5进位）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;round&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;4.5&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="c1"&gt;# 4 （4是偶数，5舍去）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 更复杂的例子&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;round&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;1.25&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="c1"&gt;# 1.2 （2是偶数，5舍去）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;round&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;1.35&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="c1"&gt;# 1.4 （3是奇数，5进位）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;round&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;1.251&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="c1"&gt;# 1.3 （因为后面还有1，不是正好5，正常进位）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;银行家舍入法是 IEEE 754 标准推荐的方式，Python、R、NumPy 等都采用这种舍入方式，能有效减少大量数据计算时的统计偏差。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Python 二进制运算符会将整数视为 2&amp;rsquo;s complement binary representation 二进制补码，并且符号位会在左侧无限扩展。
+此外，Python 不会截断二进制，也不会溢出。&lt;/p&gt;</description></item><item><title>Python asyncio 03: A first asyncio application</title><link>https://starslayerx.github.io/posts/python-asyncio-03-a-first-asyncio-application/</link><pubDate>Mon, 01 Dec 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-asyncio-03-a-first-asyncio-application/</guid><description>&lt;h2 id="working-with-blocking-sockets"&gt;Working with blocking sockets&lt;/h2&gt;
+&lt;p&gt;socket 是在网络中读取和写入数据的一种方式。
+可以将 socket 看成一个邮件，将信封放到里面后运送到接收者的地址。&lt;/p&gt;
+&lt;p&gt;下面使用 Python 的内置 socket 模块来创建一个简单的 server&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;socket&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;server_socket&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AF_INET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SOCK_STREAM&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;server_socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;setsockopt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SOL_SOCKET&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SO_REUSEADDR&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里，给 socket 函数指定了两个参数，第一个是 &lt;code&gt;socket.AF_INET&lt;/code&gt;，这个告诉我们要与什么类型的地址进行交互，在这个例子中是 hostname 和 phonenumber。
+第二个是 &lt;code&gt;socket.SO_REUSEADDR&lt;/code&gt;，这个参数是说我们使用 TCP 协议进行交互。&lt;/p&gt;
+&lt;p&gt;然后使用 &lt;code&gt;socket.setsockopt&lt;/code&gt; 方法将 &lt;code&gt;socket.SOL_SOCKET&lt;/code&gt; 标志设置为 1。这将允许在关闭和快速重启应用，避免 &lt;em&gt;address already in use&lt;/em&gt; 这类错误，如果不这样做将会消耗操作系统一段时间来解除与 port 的绑定。&lt;/p&gt;
+&lt;p&gt;使用 &lt;code&gt;socket.socket&lt;/code&gt; 创建 socket 后，并不能开始沟通，因为还没有将其绑定到任何地址上面。
+在本例中，将使用电脑本地地址 &lt;code&gt;127.0.0.1&lt;/code&gt; 和任意 port 8000&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;server_address&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;127.0.0.1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;server_socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bind&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;server_address&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里将地址设置为 &lt;code&gt;127.0.0.1:8000&lt;/code&gt;，这意味着 client 将能够使用该地址向服务器发送数据，如果要向 client 发送数据，也会看到该地址为来源地址。&lt;/p&gt;
+&lt;p&gt;接下来，在套接字上调用 &lt;code&gt;listen&lt;/code&gt; 方法，主动监听来自客户端的连接请求。
+随后，通过调用 &lt;code&gt;accept&lt;/code&gt; 方法等待连接建立。
+该方法会保持阻塞状态直至接收到连接请求，当连接成功时，将返回一个连接对象及客户端地址。
+这个连接对象本质上是一个新的套接字，可以用于与客户端进行双向数据通信&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;server_socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listen&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;connection&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;client_address&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;server_socket&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;accept&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;有了这些组件，我们便掌握了创建基于套接字的服务器应用所需的所有基础模块。
+该应用将等待连接，并在建立连接后打印提示信息。&lt;/p&gt;</description></item><item><title>Python Asyncio 02: Asyncio Basics Part 2</title><link>https://starslayerx.github.io/posts/python-asyncio-02-asyncio-basics-part-2/</link><pubDate>Fri, 21 Nov 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-asyncio-02-asyncio-basics-part-2/</guid><description>&lt;h2 id="tasks-coroutines-furtures-and-awaitables"&gt;Tasks, coroutines, furtures, and awaitables&lt;/h2&gt;
+&lt;p&gt;Coroutines 和 tasks 都是 await 表达式，那他们的相同线程是哪个？
+下面介绍 &lt;code&gt;future&lt;/code&gt; 也被称作 &lt;code&gt;awaitable&lt;/code&gt;，理解 futures 是理解 asyncio 内部工作的重点。&lt;/p&gt;
+&lt;h3 id="introducing-futures"&gt;Introducing futures&lt;/h3&gt;
+&lt;p&gt;Future 代表一个尚未完成的异步操作的最终结果。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;asyncio&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Future&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;my_future&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Future&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Is my_future done? &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;my_future&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;my_future&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_result&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Is my_future done? &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;my_future&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;done&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;What is the result of my_future? &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;my_future&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;输出为&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Is my_future done? False
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Is my_future done? True
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;What is the result of my_future? 42
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;使用构造器 &lt;code&gt;Future&lt;/code&gt; 来创建 future，这时 future 没有值，因此调用 &lt;code&gt;done&lt;/code&gt; 结果是 False。
+然后使用 &lt;code&gt;set_result&lt;/code&gt; 设置值，这将 future 标记为 done。
+相似的，如果想要在 future 中设置异常，使用 &lt;code&gt;set_exception&lt;/code&gt; 方法。&lt;/p&gt;</description></item><item><title>Python Asyncio 02: Asyncio Basics Part 1</title><link>https://starslayerx.github.io/posts/python-asyncio-02-asyncio-basics-part-1/</link><pubDate>Thu, 20 Nov 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-asyncio-02-asyncio-basics-part-1/</guid><description>&lt;h3 id="introducing-coroutines"&gt;Introducing coroutines&lt;/h3&gt;
+&lt;p&gt;创建一个协程 coroutine 而不是创建一个函数类型，使用 &lt;code&gt;async def&lt;/code&gt; 关键字，而不是 &lt;code&gt;def&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;coroutine_add_one&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;add_one&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;function_result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;add_one&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;coroutine_result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;coroutine_add_one&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Function result is &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;function_result&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; and the type is &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;function_result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Coroutine result is &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;coroutine_result&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; and the type is &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;coroutine_result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;输出如下&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Function result is 2 and the type is &amp;lt;class &amp;#39;int&amp;#39;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Coroutine result is &amp;lt;coroutine object coroutine_add_one at 0x103000a00&amp;gt; and the type is &amp;lt;class &amp;#39;coroutine&amp;#39;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;可以看到，协程返回的不是值，而是一个协程对象。
+这里协程并没有执行，而是创建了一个协程对象可在之后运行，要运行一个协程则必须显式地在一个事件循环中运行它。
+在 Python 3.7 之后的版本，必须创建事件循环来运行它。
+asyncio 库添加了多个函数，抽象了事件循环的管理，例如 &lt;code&gt;asyncio.run()&lt;/code&gt;，可以使用它来运行协程：&lt;/p&gt;</description></item><item><title>Python Asyncio 01: Getting to know asyncio</title><link>https://starslayerx.github.io/posts/python-asyncio-01-getting-to-know-asyncio/</link><pubDate>Wed, 19 Nov 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-asyncio-01-getting-to-know-asyncio/</guid><description>&lt;h2 id="python-asyncio-基础篇"&gt;Python asyncio 基础篇&lt;/h2&gt;
+&lt;p&gt;本篇包含&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;asyncio 是什么以及如何使用它&lt;/li&gt;
+&lt;li&gt;concurrency 并发、parallelism 并行、threads 线程和 processes 进程&lt;/li&gt;
+&lt;li&gt;GIL (global interpreter lock) 全局解释器锁和其带来的并发跳转&lt;/li&gt;
+&lt;li&gt;非阻塞 sockets 如何只通过一个线程实现并发&lt;/li&gt;
+&lt;li&gt;基于事件循环 (event-loop-based) 并发的基本原理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;异步编程 (asynchronous programming) 意思是可以在主程序之外，额外运行一个特定的长时运行的任务。&lt;/p&gt;
+&lt;p&gt;一个 coroutine 协程是一种方法，协程是一种方法，当遇到可能长时间运行的任务时，它可以暂停执行，并在任务完成后恢复执行。&lt;/p&gt;
+&lt;p&gt;asyncio 这个库的名称可能让人人为其只适合编写 I/O 操作，但实际上该库可以和 threading 和 multiprocessing 库结合使用。
+基于这种 interoperability 互操作性，可以使用 async/await 关键字让工作流更加容易理解。
+这意味着，asyncio 不仅适合 I/O 的并发，也可以在 CPU 密集操作中使用。&lt;/p&gt;
+&lt;p&gt;所谓的 I/O-bound 和 CPU-bound 是指限制程序运行更快的主要因素，这意味着如果增加该方面的性能，程序就能够在更短的时间内完成。&lt;/p&gt;
+&lt;p&gt;下面是一些例子&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I/O 密集操作：网络请求、文件读取&lt;/li&gt;
+&lt;li&gt;CPU 密集操作：循环遍历文件夹、计算 pi&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://www.example.com&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# 1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;items&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;headers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;header&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# 2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;formatted_headers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# 3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;headers.txt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="c1"&gt;# 4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;formatted_headers&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;I/O-bound 网络请求&lt;/li&gt;
+&lt;li&gt;CPU-bound 响应处理&lt;/li&gt;
+&lt;li&gt;CPU-bound 字符串拼接&lt;/li&gt;
+&lt;li&gt;I/O-bound 写入磁盘&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Concurrency 并发 和 Parallelism 并行的区别这里就不多说了。&lt;/p&gt;</description></item><item><title>Postgresql 03: psql Tool Introduction</title><link>https://starslayerx.github.io/posts/postgresql-03-psql-tool-introduction/</link><pubDate>Mon, 17 Nov 2025 08:00:00 +0100</pubDate><guid>https://starslayerx.github.io/posts/postgresql-03-psql-tool-introduction/</guid><description>&lt;h3 id="psql-介绍"&gt;psql 介绍&lt;/h3&gt;
+&lt;p&gt;psql 是 PostgreSQL 中的一个交互式命令行工具，类似 Oracle 的 sqlplus，它允许用户交互式输入 SQL 语句或命令，然后发送给 PostgreSQL 服务器，再显示结果。
+此外，psql 还有大量类似 shell 的特性来编写脚本，实现自动化操作。&lt;/p&gt;
+&lt;p&gt;在安装 postgresql 的时候，会创建一个与初始化数据库时的操作系统同名的数据库用户，这个用户是这个数据库的超级用户。
+因此，在 OS 用户下登陆数据库时，会执行操作系统认证，因此无需用户名和密码，也可以通过修改 pg_hba.conf 文件来要求用户输入密码。&lt;/p&gt;
+&lt;p&gt;psql 也支持使用命令行参数来查询信息和执行 SQL，这种非交互模式与 linux 命令就没有太大区别了。
+例如使用 &lt;code&gt;psql -l&lt;/code&gt; 查看数据库，当然也可以通过命令进入数据库后，输出 &lt;code&gt;\l&lt;/code&gt; 命令查看有哪些数据库。
+默认会有一个叫 postgres 的数据库，这是默认安装后就有的一个数据库。
+还有两个模板数据库，template0 和 template1。&lt;/p&gt;
+&lt;p&gt;当用户创建创建数据库时，是从模板数据库 template1 克隆来的，因此通常可以订制 template1 中的内容，例如添加一些表和函数，这样后续创建的数据库也会有这些表和函数。
+template0 是一个最简化的数据库，如果指明从此数据库克隆，将创建出一个最简化的数据库。&lt;/p&gt;
+&lt;p&gt;使用 &lt;code&gt;\d&lt;/code&gt; 查看有哪些表，使用 &lt;code&gt;\c&lt;/code&gt; 连接到某数据库。连接命令格式如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;psql -h &amp;lt;hostname or ip&amp;gt; -p &amp;lt;port&amp;gt; &lt;span class="o"&gt;[&lt;/span&gt;数据库名称&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;用户名称&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;也可以通过环境变量指定&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PGDATABASE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;db_name
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PGHOST&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ip
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PGPORT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;port
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PGUSER&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;postgres
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="psql-常用命令"&gt;psql 常用命令&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;\h&lt;/code&gt; 命令查询 SQL 语法&lt;/p&gt;</description></item><item><title>Complete Python Logging Guide</title><link>https://starslayerx.github.io/posts/complete-python-logging-guide/</link><pubDate>Tue, 11 Nov 2025 08:00:00 +0100</pubDate><guid>https://starslayerx.github.io/posts/complete-python-logging-guide/</guid><description>&lt;h2 id="python-logging-基础指南"&gt;Python logging 基础指南&lt;/h2&gt;
+&lt;p&gt;实际项目中，&lt;code&gt;print()&lt;/code&gt; 只能满足基本的输出要求，而 &lt;code&gt;logging&lt;/code&gt; 模块提供了更灵活、分级别、可配置的日志系统。&lt;/p&gt;
+&lt;h3 id="核心概念"&gt;核心概念&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Logger 记录器&lt;br&gt;
+记录器是拿来写日志的东西&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;logger&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getLogger&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;logger&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;开始执行任务&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;接收日志消息，按级别判断是否要输出，并交给 Handler&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Handler 处理器&lt;br&gt;
+决定日志“去哪里”，有下面常见 Handler&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;StreamHandler&lt;/code&gt;: 输出到控制台&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;FileHandler&lt;/code&gt;: 写入文件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;RotatingFileHandler&lt;/code&gt;: 自动滚动文件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SMTHandler&lt;/code&gt;: 发邮件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SocketHandler&lt;/code&gt;: 发送到日志服务器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;一个 Logger 可以挂多个 Handler&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Formatter 格式器&lt;br&gt;
+负责日志的格式&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%(asctime)s&lt;/span&gt;&lt;span class="s1"&gt; - &lt;/span&gt;&lt;span class="si"&gt;%(levelname)s&lt;/span&gt;&lt;span class="s1"&gt; - &lt;/span&gt;&lt;span class="si"&gt;%(name)s&lt;/span&gt;&lt;span class="s1"&gt; - &lt;/span&gt;&lt;span class="si"&gt;%(message)s&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;所有 Handler 都可以设置自己的 Formatter，不同输出渠道可以呈现不同格式&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;LogRecord 日志记录对象&lt;br&gt;
+每次调用 &lt;code&gt;logging.info(&amp;quot;hello&amp;quot;)&lt;/code&gt; 内部都会生成一个 LogRecord 对象&lt;/p&gt;
+&lt;p&gt;LogRecord 是日志系统的“消息载体”，包括全部的元数据，例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;时间戳&lt;/li&gt;
+&lt;li&gt;模块名&lt;/li&gt;
+&lt;li&gt;文件名、行号&lt;/li&gt;
+&lt;li&gt;日志级别&lt;/li&gt;
+&lt;li&gt;写入消息 message&lt;/li&gt;
+&lt;li&gt;线程 ID、进程 ID&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Filter 过滤器&lt;br&gt;
+Filter 是更细粒度的筛选工具，可以控制某个模块的日志，阻止某些关键字，基于上下文附加标签等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="简单使用"&gt;简单使用&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;logging&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;basicConfig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 输出 INFO 及以上几倍日志&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;level&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;INFO&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 时间 - 模块名 - 级别 - 消息内容&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;format&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%(asctime)s&lt;/span&gt;&lt;span class="s1"&gt; - &lt;/span&gt;&lt;span class="si"&gt;%(name)s&lt;/span&gt;&lt;span class="s1"&gt; - &lt;/span&gt;&lt;span class="si"&gt;%(levelname)s&lt;/span&gt;&lt;span class="s1"&gt; - &lt;/span&gt;&lt;span class="si"&gt;%(message)s&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;程序已启动&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;warning&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;磁盘空间将不足&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;读取文件失败&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;使用 &lt;code&gt;Logger&lt;/code&gt; 对象：在较大的项目中，不会使用基础配置，而是为每个模块创建自己的 logger&lt;/p&gt;</description></item><item><title>PostgreSQL 02: SQL Basis</title><link>https://starslayerx.github.io/posts/postgresql-02-sql-basis/</link><pubDate>Fri, 07 Nov 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/postgresql-02-sql-basis/</guid><description>&lt;h2 id="sql-入门"&gt;SQL 入门&lt;/h2&gt;
+&lt;p&gt;SQL (Structured Query Language) 是关系数据库最重要的操作语言，且影响已经超出了数据库领域，这篇文章介绍基础部分。&lt;/p&gt;
+&lt;h3 id="语句分类"&gt;语句分类&lt;/h3&gt;
+&lt;p&gt;SQL 命令一般分为 DQL、DML、DDL 三类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;DQL: Data Query Language 数据查询语句，基本就是 SELECT 查询命令，用于数据查询。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;DML: Data Manipulation Language 数据操纵语言，主要用于插入、更新、删除数据，即 INSERT、UPDATE、DELETE 三类。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;DDL: Data Definition Language 数据定义语言，用于创建、删除、修改表、索引等数据库对象的语言。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="词法结构"&gt;词法结构&lt;/h3&gt;
+&lt;p&gt;每次执行的 SQL 语句可以由多条 SQL 命令组成，多条 SQL 语句命令之间由分号 (;) 分隔。&lt;/p&gt;
+&lt;p&gt;SQL 命令由一系列记号组成，这些记号可以由关键字、标识符、双引号包围的标识符、常量和单引号包围的常量组成。
+SQL 命令中可以有注释，这些注释在 PostgreSQL 中等同于空白。&lt;/p&gt;
+&lt;p&gt;例如下面这些 SQL 命令&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-SQL" data-lang="SQL"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;FROM&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;OSDBA_TABLE01&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;UPDATE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;OSDBA_TABLE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;SET&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;COL1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;64&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;INSERT&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;INTO&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;OSDBA_TABLE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;VALUES&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;232&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;hello osdba&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="ddl-语句"&gt;DDL 语句&lt;/h4&gt;
+&lt;p&gt;使用 &lt;code&gt;psql&lt;/code&gt; 会默认连接到和用户名一样的数据库中，也可以使用命令 &lt;code&gt;psql postgres&lt;/code&gt; 来连接到默认数据库，或者 &lt;code&gt;creatdb db_name&lt;/code&gt; 创建新数据库。&lt;/p&gt;</description></item><item><title>PostgreSQL 01: Introduction</title><link>https://starslayerx.github.io/posts/postgresql-01-introduction/</link><pubDate>Wed, 05 Nov 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/postgresql-01-introduction/</guid><description>&lt;h2 id="postgresql-的安装与配置"&gt;PostgreSQL 的安装与配置&lt;/h2&gt;
+&lt;h3 id="安装"&gt;安装&lt;/h3&gt;
+&lt;p&gt;brew 安装后 &lt;code&gt;brew services start postgresql@17&lt;/code&gt; 可以启动服务，使用 &lt;code&gt;brew services list&lt;/code&gt; 查看服务状态。
+也可以通过设定环境变量 &lt;code&gt;export PGDATA=/opt/homebrew/var/postgresql@17&lt;/code&gt; 后使用命令 &lt;code&gt;initdb&lt;/code&gt; 创建数据库簇，然后 &lt;code&gt;pg_ctl start -D $PGDATA&lt;/code&gt; 启动。
+停止命令为 &lt;code&gt;pg_ctl stop -D $PGDATA [-m SHOWDOWN-MODE]&lt;/code&gt;，其中 -m 是服务器停止方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;smart: 等所有连接终止后，关闭数据库。如果客户端连不上，则无法关闭数据库。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;fast: 快速关闭数据库，断开客户端连接，让已有的事务回滚，然后关闭数据库。相当于 Oracle 关闭时的 immediate 模式。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;immediate: 立即关闭数据库，相当于数据库进程立即停止，直接退出，下次启动数据库需要恢复。相当于 Oracle 关闭时的 abort 模式。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PostgreSQL 数据库中的 immediate 关机模式相当于 Oracle 数据库中的 abort 关机模式，而 Oracle 中的 immediate 关机模式实际上对应的是 PostgreSQL 中的 fast 模式。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="配置"&gt;配置&lt;/h3&gt;
+&lt;p&gt;PostgreSQL 数据库的配置主要通过修改数据目录下的 postgresql.conf 和 pg_hba.conf 文件来实现的。&lt;/p&gt;</description></item><item><title>Morden Javascript Tutorial Chapter 3.1 - Code Quailty</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-3.1-code-quailty/</link><pubDate>Thu, 23 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-3.1-code-quailty/</guid><description>&lt;h3 id="31-debugging-in-the-browser"&gt;3.1 Debugging in the browser&lt;/h3&gt;
+&lt;p&gt;Debugging is the process of finding and fixing errors with a script.
+All morden browsers and most other environments support debugging tools - a special UI in developer tools that makes debugging much easier.
+It also allows to trace the code step by step to see what exactly is going on.&lt;/p&gt;
+&lt;h4 id="the-sources-panel"&gt;The &amp;ldquo;Sources&amp;rdquo; panel&lt;/h4&gt;
+&lt;p&gt;The Sources panel has 3 parts:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The &lt;strong&gt;File Navigator&lt;/strong&gt; pane lists HTML, Javascript, CSS and other files, including images that are attatched to the page. Chrome extensions may appera here too.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;Code Editor&lt;/strong&gt; pane shows the source code.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;Javascript Debugging&lt;/strong&gt; pane is for debugging, we&amp;rsquo;ll explore it soon.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="console"&gt;Console&lt;/h4&gt;
+&lt;p&gt;按 &lt;code&gt;Esc&lt;/code&gt; 可以打开控制台，在其中可以输入命令，按回车执行。&lt;/p&gt;</description></item><item><title>Python Standrad Library - File and Directory Access - pathlib</title><link>https://starslayerx.github.io/posts/python-standrad-library-file-and-directory-access-pathlib/</link><pubDate>Fri, 03 Oct 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-standrad-library-file-and-directory-access-pathlib/</guid><description>&lt;h1 id="pathlib---object-oriented-filesystem-paths"&gt;pathlib - Object-oriented filesystem paths&lt;/h1&gt;
+&lt;p&gt;此模块提供表示&lt;em&gt;文件系统路径&lt;/em&gt;的类，其语义适用于不同的操作系统。
+路径类分为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用于纯计算无 I/O 的 &lt;a href="https://docs.python.org/3.12/library/pathlib.html#pure-paths"&gt;pure paths&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;继承 pure paths 但是有 I/O 操作的 &lt;a href="https://docs.python.org/3.12/library/pathlib.html#concrete-paths"&gt;concrete paths&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="pathlib" loading="lazy" src="https://docs.python.org/3.12/_images/pathlib-inheritance.png"&gt;&lt;/p&gt;
+&lt;h2 id="基本使用"&gt;基本使用&lt;/h2&gt;
+&lt;p&gt;导入 &lt;code&gt;Path&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pathlib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;列出所有子目录&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iterdir&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_dir&lt;/span&gt;&lt;span class="p"&gt;()]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;列出所有 py 源码文件&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;glob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;**/*.py&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在目录树中移动&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/etc&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;q&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;init.d&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;reboot&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# .resolve() 方法会解析所有符号链接，返回文件绝对路径&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# mac os 中的 /etc 实际上是一个符号链接，指向 /private/etc&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;resolve&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查询文件路径&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;exists&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# 文件是否存在&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;is_dir&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# 是否为目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;打开一个文件&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;q&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;file.py&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 读取第一行内容&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readline&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="pure-paths-纯路径"&gt;Pure paths 纯路径&lt;/h2&gt;
+&lt;p&gt;Pure path 对象提供路径处理操作，这些操作无需真的访问操作系统。
+有三种方法来操作这些类，也被称为 &lt;em&gt;flavours&lt;/em&gt; (风格)：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;class pathlib.PurePath(*pathsegemnts)&lt;/code&gt;&lt;br&gt;
+为一个通用的类，代表当前系统的路径风格&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;PurePath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;setup.py&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;PurePosixPath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;setup.py&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;em&gt;pathsegments&lt;/em&gt; 的每个元素即可以是代表一个路径的字符串，也可以是实现了 &lt;a href="https://docs.python.org/zh-cn/3.12/library/os.html#os.PathLike"&gt;os.PathLike&lt;/a&gt; 接口的对象，其中 &lt;a href="https://docs.python.org/zh-cn/3.12/library/os.html#os.PathLike.__fspath__"&gt;&lt;strong&gt;fspath&lt;/strong&gt;()&lt;/a&gt; 方法返回一个字符串，例如另一个路径对象：&lt;/p&gt;</description></item><item><title>Morden Javascript Tutorial Chapter 2 - Fundamentals: 11~18</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-2-fundamentals-11~18/</link><pubDate>Sun, 21 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-2-fundamentals-11~18/</guid><description>&lt;h2 id="211-logical-operators"&gt;2.11 Logical operators&lt;/h2&gt;
+&lt;p&gt;There are four logical operators in JavaScript: &lt;code&gt;||&lt;/code&gt; (ORA), &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; (AND), &lt;code&gt;!&lt;/code&gt; (NOT), &lt;code&gt;??&lt;/code&gt; (Nullish Coalescing 空值合并).&lt;/p&gt;
+&lt;h3 id="-or"&gt;|| OR&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-JavaScript" data-lang="JavaScript"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;a&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="nx"&gt;b&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;There are four logical combinations:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-JavaScript" data-lang="JavaScript"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;alter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// true
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// true
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// true
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// false
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If an operand is not a boolean it&amp;rsquo;s converted to be a boolean for the evaluation.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-JavaScript" data-lang="JavaScript"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// works like (true || false)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;alter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;truthy!&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="or--finds-the-first-truthy-value"&gt;OR &amp;ldquo;||&amp;rdquo; finds the first truthy value&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-JavaScript" data-lang="JavaScript"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;value1&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="nx"&gt;value2&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="nx"&gt;value3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The OR &lt;code&gt;||&lt;/code&gt; operator does the following:&lt;/p&gt;</description></item><item><title>Redis Bitmap</title><link>https://starslayerx.github.io/posts/redis-bitmap/</link><pubDate>Fri, 19 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-bitmap/</guid><description>&lt;h2 id="bitmap-位图"&gt;Bitmap 位图&lt;/h2&gt;
+&lt;p&gt;Redis 的位图 bitmap 是由多个二进制位组成的数组,
+数组中的每个二进制都有与之对应的偏移量(索引),
+用户通过这些偏移量可以对位图中指定的一个或多个二进制位进行操作.&lt;/p&gt;
+&lt;p&gt;Redis 为位图提供了一系列操作命令, 通过这些命令, 用户可以:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;设置或获取索引位上的二进制值&lt;/li&gt;
+&lt;li&gt;统计位图中有多少个二进制位被设置成了1&lt;/li&gt;
+&lt;li&gt;查找位图中, 第一个被设置为指定值的二进制位, 并返回其偏移量&lt;/li&gt;
+&lt;li&gt;对一个或多个位图执行逻辑并、逻辑或、逻辑异或以及逻辑非运算&lt;/li&gt;
+&lt;li&gt;将指定类型的整数存储到位图中&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="setbit-设置二进制位的值"&gt;SETBIT: 设置二进制位的值&lt;/h3&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-Redis" data-lang="Redis"&gt;SETBIT bitmap offset value
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;为位图指定偏移量上的二进制位设置值, 该命令会返回二进制位被设置之前的旧值作为结果.&lt;/p&gt;
+&lt;p&gt;当执行 SETBIT 时, 如果位图不存在, 或者位图当前的大小无法满足用户想要执行的设置操作, 那么 Redis 将对被设置的位图进行扩展, 使得位图可以满足用户的设置请求. 由于位图的扩展以字节为单位, 所以扩展后的位图包含的二进制数量可能会比用户要求的稍多一些. 且在扩展的同时, 会将未设置的二进制位初始化为 0.&lt;/p&gt;
+&lt;p&gt;与一些可以使用负数的 Redis 命令不同, SETBIT 命令只能使用正数偏移量, 尝试输入负数作为偏移量将引发一个错误&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;复杂度: O(1)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="getbit-获取二进制位的值"&gt;GETBIT: 获取二进制位的值&lt;/h3&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-Redis" data-lang="Redis"&gt;GETBIT bitmap offset
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;与 SETBIT 命令一样, GETBIT 命令也只能接受正数作为偏移量.&lt;br&gt;
+对于偏移量超过位图索引的命令, GETBIT 命令将返回 0 作为结果.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;复杂度: O(1)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="bitocunt-统计被设置的二进制数量"&gt;BITOCUNT: 统计被设置的二进制数量&lt;/h3&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-Redis" data-lang="Redis"&gt;BITCOUNT key
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;对于值为 10010100 的位图 bitmap001, 可以通过执行以下命令来统计有多少个二进制位被设置成了1:&lt;/p&gt;</description></item><item><title>Redis HyperLogLog</title><link>https://starslayerx.github.io/posts/redis-hyperloglog/</link><pubDate>Thu, 18 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-hyperloglog/</guid><description>&lt;p&gt;之前曾介绍过使用 Redis 集和构建唯一计数器, 并将这个计数器用于计算网站的唯一房客 IP.
+虽然使用集和实现唯一计数器可以实现该功能, 但这个方法有一个明显的缺陷:
+随着被计数元素的不断增多, 唯一计数器占用的内存也会越来越大; 计数器越多, 他们的体积越大, 这一情况就会越严峻.&lt;/p&gt;
+&lt;p&gt;以计算唯一访客 IP 为例:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;存储一个 IPv4 格式的 IP 地址最多需要 15 个字节&lt;/li&gt;
+&lt;li&gt;根据网站的规模不同, 每天出现的唯一 IP 可能会有数十万、数百万个&lt;/li&gt;
+&lt;li&gt;为了记录网站在不同时期的访客, 并进行相关的数据分析, 网站可能需要次序地记录每天的唯一访客 IP 数量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;综上, 如果一个网站想要长时间记录访客 IP, 就必须创建多个唯一计数器. 如果访客比较多, 那么它创建的每个唯一计数器都将包含大量元素, 并因此占用相当一部分内存.&lt;/p&gt;
+&lt;p&gt;为了高效解决计算机唯一访客 IP 数量这类问题, 其中一种方法就是 HyperLogLog.&lt;/p&gt;
+&lt;h2 id="hyperloglog-简介"&gt;HyperLogLog 简介&lt;/h2&gt;
+&lt;p&gt;HyperLogLog 是一个专门为了计算集和的基数而创建的概率算法, 对于一个给定的集和, HyperLogLog 可以计算出这个集合的近似基数:
+近似基数并非集和的实际基数, 它可能会比实际的基数大一点或者小一点, 但误差会在一个合理范围内.
+因此, 那些不需要知道实际基数的程序就可以把这个近似基数当作集合的基数来使用.&lt;/p&gt;
+&lt;p&gt;HyperLogLog 的优点在于计算近似基础所需的内存并不会因为集和的大小而改变, 无论集和包含元素有多少个, HyperLogLog 进行计算所需的内存总是固定的, 无论集和包含元素多少个, HyperLogLog 进行计算所需的内存总是固定的, 并且是非常少的.&lt;/p&gt;
+&lt;h3 id="pfadd-对集和元素进行计数"&gt;PFADD: 对集和元素进行计数&lt;/h3&gt;
+&lt;pre tabindex="0"&gt;&lt;code class="language-Redis" data-lang="Redis"&gt;PFADD hyperloglog element [element ...]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;根据给定元素是否已经进行过计数, PFADD 命令可能返回0, 也可能返回1:&lt;/p&gt;</description></item><item><title>Morden Javascript Tutorial Chapter 2 - Fundamentals: 06~10</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-2-fundamentals-06~10/</link><pubDate>Wed, 17 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-2-fundamentals-06~10/</guid><description>&lt;h2 id="26-interaction-alert-prompt-confirm"&gt;2.6 Interaction: alert, prompt, confirm&lt;/h2&gt;
+&lt;p&gt;Will introduce &lt;code&gt;alert&lt;/code&gt;, &lt;code&gt;prompt&lt;/code&gt; and &lt;code&gt;confirm&lt;/code&gt; in this chapter.&lt;/p&gt;
+&lt;h3 id="alert"&gt;alert&lt;/h3&gt;
+&lt;p&gt;It shows a message and waits for the user to press &amp;ldquo;OK&amp;rdquo;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-JavaScript" data-lang="JavaScript"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Hello&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id="prompt"&gt;prompt&lt;/h3&gt;
+&lt;p&gt;This function &lt;code&gt;prompt&lt;/code&gt; accepts two arguments&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-JavaScript" data-lang="JavaScript"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;prompt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;title&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="k"&gt;default&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;It shows a modal window with a text message, an input field for the visitor, and the buttons OK/Cancel.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;title&lt;/code&gt;: The text to show the visitor.
+&lt;code&gt;default&lt;/code&gt;: An optional second parameter, the initial value for the input field.&lt;/p&gt;</description></item><item><title>Morden Javascript Tutorial Chapter 2 - Fundamentals: 01~05</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-2-fundamentals-01~05/</link><pubDate>Tue, 16 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-2-fundamentals-01~05/</guid><description>&lt;h2 id="21-hellow-wrold"&gt;2.1 Hellow Wrold&lt;/h2&gt;
+&lt;p&gt;Firtly, let&amp;rsquo;s see how to attach a script to a webpage.
+For server-side environments (like Node.js), you can execute this script with a command like &lt;code&gt;node my.js&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id="the-script-tag"&gt;The &amp;ldquo;script&amp;rdquo; tag&lt;/h3&gt;
+&lt;p&gt;JavaScript programs can be inserted almost anywhere into an HTML docuemnt using the &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tag&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-html" data-lang="html"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Before this script...&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Hello, World!&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;...After the script...&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tag contains JavaScript code which is automatically executed when the browser process the tag.&lt;/p&gt;</description></item><item><title>Morden Javascript Tutorial Chapter 1 - An Introduction</title><link>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-1-an-introduction/</link><pubDate>Mon, 15 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/morden-javascript-tutorial-chapter-1-an-introduction/</guid><description>&lt;h2 id="an-introduction-to-javascript"&gt;An Introduction to JavaScript&lt;/h2&gt;
+&lt;p&gt;Let’s see what’s so special about JavaScript, what we can achieve with it, and what other technologies play well with it.&lt;/p&gt;
+&lt;h3 id="why-is-it-call-javascript"&gt;Why is it call JavaScript?&lt;/h3&gt;
+&lt;p&gt;JavaScript initially called &amp;ldquo;Live Script&amp;rdquo;. But Java was popular at that time, so it was decided that positioning a new language as a &amp;ldquo;younger brother&amp;rdquo; of Java would help.
+But as it evolved, JavaScript became a fully independent language with its won specification called &lt;a href="http://en.wikipedia.org/wiki/ECMAScript"&gt;ECMAScript&lt;/a&gt;, and now it has no relation to Java at all.&lt;/p&gt;</description></item><item><title>Service Implementation Patterns for Microservice</title><link>https://starslayerx.github.io/posts/service-implementation-patterns-for-microservice/</link><pubDate>Wed, 10 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/service-implementation-patterns-for-microservice/</guid><description>&lt;h2 id="hexagonal-architectures-for-microservices-微服务的六边形架构"&gt;Hexagonal architectures for microservices 微服务的六边形架构&lt;/h2&gt;
+&lt;p&gt;六边形架构 Hexagonal Architecture 也被称为接口与适配器架构 Prots and Adapters Architecture, 是一种软件架构模式, 旨在实现高内聚、低耦合和可测试性的应用程序设计. 该架构由 Alistair Cockburn 发明, 他是敏捷宣言的签署者之一.
+该架构是说, 在任何应用程序中, 都有一个核心逻辑实现服务, 并且在该服务周围&amp;quot;附加&amp;quot;上一些接口, 用于核心与外部组件的交互.&lt;/p&gt;
+&lt;p&gt;例如, 一个 web API 就是一个适配器 adapter, 帮助核心逻辑与互联网上的 web 客户端交流.
+对于数据库也是一样的, 其也是一个外部组件, 帮助服务维护数据.
+如果我们需要, 应该要能迁移到其他的数据库, 并且服务仍然是相同的.
+因此, 数据库也是一个适配器 adapter.&lt;/p&gt;
+&lt;p&gt;上述架构可通过在核心业务逻辑层与适配器之间构建接口 ports 来实现.&lt;/p&gt;
+&lt;p&gt;在处理核心业务逻辑与适配器之间的关系时, 应用依赖反转原则 dependency inversion principle:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;高层模块不应该依赖底层细节.&lt;br&gt;
+相反, 两者都应该依赖抽象. 以数据存储为例, 我们应当通过统一的接口进行操作, 无需理解数据库的具体实现细节. 无论是 SQL 数据库、NoSQL 数据库还是缓存存储系统, 都应该使用相同的接口规范.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;抽象不应依赖于具体实现, 而具体实现应依赖于抽象.&lt;br&gt;
+以业务层与数据层之间的接口设计为例, 必须确保接口不会因数据库实现细节的变动而修改, 相反地, 我们通过调整数据层实现来适配接口规范.这意味着数据层依赖于接口定义, 而非接口依赖于数据层实现.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;依赖反转的概念经常同控制反转与依赖注入的概念一同出现, 这些是相关但是不同的概念.&lt;/p&gt;</description></item><item><title>Docker - Images</title><link>https://starslayerx.github.io/posts/docker-images/</link><pubDate>Sun, 07 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-images/</guid><description>&lt;p&gt;每个 Linux 容器都基于一个镜像, 镜像重新构建运行中容器的底层定义.
+要启动一个容器, 需要下载公共镜像或者创建自己的镜像.
+每个镜像由一个或多个相互关联的文件系统层 layer 组成, 这些层通常与创建镜像的每个构建步骤大致一一对应.&lt;/p&gt;
+&lt;p&gt;由于镜像由独立的层构建而成, 这就对 Linux 内核提出了特殊要求: 内核必须提供 Docker 所需的驱动, 以便运行存储后端.
+在镜像管理, Docker 高度依赖这个存储后端, 该后端通过与底层 Linux 文件系统通信, 用来构建并管理多个层并将它们组合成一个可用的镜像.
+主要支持的后端存储有以下类型:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Overlay2&lt;/li&gt;
+&lt;li&gt;B-Tree File System&lt;/li&gt;
+&lt;li&gt;Device Mapper&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每一个后端都提供一个快速的 copy-on-write (CoW) 系统用于镜像管理. 包含:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Building images&lt;/li&gt;
+&lt;li&gt;Uploading (pushing) images to an image registry&lt;/li&gt;
+&lt;li&gt;Downloading (pulling) images from an image registry&lt;/li&gt;
+&lt;li&gt;Creating and running containers from an image&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="anatomy-of-a-dockerfile--剖析-dockerfile"&gt;Anatomy of a Dockerfile | 剖析 Dockerfile&lt;/h3&gt;
+&lt;p&gt;这个文件描述了所有构建一个容器所需的步骤, 并且通常存储在项目源码的根目录里.&lt;/p&gt;
+&lt;p&gt;一个典型的 Dockerfile 看起来像下面这样, 这里是创建一个 &lt;code&gt;Node.js&lt;/code&gt; 的应用镜像:&lt;/p&gt;</description></item><item><title>Docker - Workflow</title><link>https://starslayerx.github.io/posts/docker-workflow/</link><pubDate>Sat, 06 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-workflow/</guid><description>&lt;h2 id="the-docker-workflow"&gt;The Docker Workflow&lt;/h2&gt;
+&lt;p&gt;这篇文章介绍 Docker 工作流&lt;/p&gt;
+&lt;h3 id="revision-control-版本控制"&gt;Revision Control 版本控制&lt;/h3&gt;
+&lt;p&gt;Docker 有两种版本控制方式. 一个是用来跟踪文件系统层 layers (每个镜像的组成), 另一个是 tagging 标签系统.&lt;/p&gt;
+&lt;h3 id="filesystem-layers-文件系统层"&gt;Filesystem layers 文件系统层&lt;/h3&gt;
+&lt;p&gt;Linux 容器由堆叠文件系统层组成, 每一层由一个唯一的哈希标记, 每次 build 都在之前的修改之上.
+这意味着, 每次 build 只需要重新构建修改过的层.
+这节省了时间和网络带宽.&lt;/p&gt;
+&lt;h3 id="image-tags-镜像标签"&gt;Image Tags 镜像标签&lt;/h3&gt;
+&lt;p&gt;第二种版本控制回答了一个问题: 之前部署的应用版本是?
+非容器化应用的解决方案有很多种, 从 Git 发布标签到部署日志.
+Docker 有一个内置的处理机制: 每次 build 都有一个镜像标签.
+latest 经常被用来表示最新版本, 但由于这是一个浮动的标签, 因此在生产中使用并不好.
+正确的做法应该是使用一个特定的版本.&lt;/p&gt;
+&lt;h3 id="building-构建镜像"&gt;Building 构建镜像&lt;/h3&gt;
+&lt;p&gt;Docker 的命令行工具包含一个 build 标志, 它会读取 Dockerfile 并产生一个 Docker 镜像.
+Dockerfile 中的每一条指令都会在镜像中生成一个新的层, 因此仅通过查看 Dockerfile 就能比较容易的推断出构建会做什么.
+这样标准化的好处是, 任何熟悉 Dockerfile 的工程师都可以直接上手并修改任何其他应用的构建.
+Dockerfile 通常会提交到版本控制系统, 这也简化了对构建变更的追踪, 现代的多阶段构建还运行将构建环境与最终镜像分离, 为构建环境提供了像生产容器那样强大的可配置性.&lt;/p&gt;</description></item><item><title>Docker - Images and Registeries</title><link>https://starslayerx.github.io/posts/docker-images-and-registeries/</link><pubDate>Fri, 05 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-images-and-registeries/</guid><description>&lt;h3 id="the-docker-images--docker-镜像"&gt;The Docker Images | Docker 镜像&lt;/h3&gt;
+&lt;p&gt;Image、OCI Image、Docker Image、Container Image 都是指同一个概念镜像的不容叫法.&lt;/p&gt;
+&lt;p&gt;镜像是一个轻量、只读且不可变的蓝图, 指定了应用运行所谁要的一切, 以及在 Docker 系统上如何运行.
+就像是一份配方, 包括所有必要的原料, 诸如依赖、配置、环境设置和你的应用代码, 以及确保应用每次都能稳定运行的详细指令.&lt;/p&gt;
+&lt;p&gt;可以把镜像类比为面向对象编程中的类: 定义结构和行为, 但不能直接与类交互, 需要创建实例.&lt;/p&gt;
+&lt;h4 id="pulling-and-inspecting-an-image-拉取并查看镜像"&gt;Pulling and Inspecting an Image 拉取并查看镜像&lt;/h4&gt;
+&lt;p&gt;镜像其实就是一个 JSON 对象, 可以这样拉取一个镜像&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;% docker pull celery:latest
+latest: Pulling from library/celery
+ef0380f84d05: Pull complete
+ada810c79ed7: Pull complete
+4608a1c4fe47: Pull complete
+58086cbb21fb: Pull complete
+a7bccb4a3faa: Pull complete
+9de06a08ec25: Pull complete
+ad6feb8c6a6b: Pull complete
+7568ca85d492: Pull complete
+2d6f458f7411: Pull complete
+Digest: sha256:5c236059192a0389a2be21fc42d8db59411d953b7af5457faf501d4eec32dc31
+Status: Downloaded newer image for celery:latest
+docker.io/library/celery:latest
+What&amp;#39;s next:
+View a summary of image vulnerabilities and recommendations → docker scout quickview celery:latest
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;现在查看镜像信息&lt;/p&gt;</description></item><item><title>Docker - Engine and Netowrking</title><link>https://starslayerx.github.io/posts/docker-engine-and-netowrking/</link><pubDate>Thu, 04 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-engine-and-netowrking/</guid><description>&lt;p&gt;Docker 引擎(Docker Engine), 顾名思意，是 Docker 的核心.
+它为 Docker 提供动力, 并承担所有繁重的工作.
+本文将深入探讨这一关键组件的内部运作, 以便了解 Docker 在内核下是如何工作的.&lt;/p&gt;
+&lt;h3 id="the-evolution-of-the-docker-engine--docker-引擎的演进"&gt;The Evolution of the Docker Engine | Docker 引擎的演进&lt;/h3&gt;
+&lt;p&gt;Docker 最初是一个巨大的单体(monolith), 所有代码都塞在同一个项目里.
+对于 dotCloud来说, 这种方式一开始是可行的.
+实际上, 这个方向运作得非常好, 以至于他们放弃了其他服务、把所有赌注都押在 Docker 上, 甚至把公司重命名为 Docker, Inc.&lt;/p&gt;
+&lt;p&gt;一开始, Docker 是一个又大又混乱的单体应用.
+随着时间推移, Docker, Inc. 发现这种做法不可持续, 他们需要把系统拆分出来:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;各个部分可以独立成长&lt;/li&gt;
+&lt;li&gt;更容易升级某些部分 - 可以替换旧组件而不影响整体&lt;/li&gt;
+&lt;li&gt;让社区更容易参与贡献 - 更小的组件意味着更多人能参与进来&lt;/li&gt;
+&lt;li&gt;更易跨平台 - 他们想要 Docker 在每个平台上运行, 而不只是 Linux&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;拆分的第一步是把客户端 client 剥离出来.
+把客户端从大应用中抽出, 赋予它新职责: 把用户命令翻译成 Docker 引擎能理解的指令(也就是原来单体里&amp;quot;内核部分&amp;quot;的接口)&lt;/p&gt;
+&lt;p&gt;此时, Docker 引擎主要有两部分:&lt;/p&gt;</description></item><item><title>Docker - History</title><link>https://starslayerx.github.io/posts/docker-history/</link><pubDate>Wed, 03 Sep 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/docker-history/</guid><description>&lt;h2 id="the-docker-story---part1-docker-history"&gt;The Docker Story - Part1: Docker History&lt;/h2&gt;
+&lt;p&gt;docCloud - 也就是开发 Docker 的公司, 最初是一家 PaaS(平台即服务)公司, 他们在 PaaS 领域并没有太大的成功, 但他们构建了一个可以无缝管理客户系统与架构的工具: Docker. 2013 年, 他们决定放弃 PaaS 服务, 将全部精力投入到 Docker 这款产品上.&lt;/p&gt;
+&lt;h3 id="containers-容器"&gt;Containers 容器&lt;/h3&gt;
+&lt;p&gt;Docker 公司并没有发明容器这个概念. 实际上, 容器的概念已经演进了十多年, 很多参与者都做出了贡献, Linux 基金会和 Google 是推动整个生态走向成熟的重要力量.&lt;br&gt;
+假如你在运营一家公司, 希望将应用上线, 以前需要做的事大概是:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;购买一台服务器&lt;/li&gt;
+&lt;li&gt;安装所有必要的应用和依赖&lt;/li&gt;
+&lt;li&gt;配置环境以匹配你的开发设置&lt;/li&gt;
+&lt;li&gt;部署应用&lt;/li&gt;
+&lt;li&gt;把服务器对外开放&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;看起来很简单, 但实际操作会很复杂:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;要手动跟踪并更新每个依赖和配置&lt;/li&gt;
+&lt;li&gt;如果出问题, 需要手动去修复&lt;/li&gt;
+&lt;li&gt;基础设施团队需要估算服务器规格(内存、CPU 等) — 为了防止流量高峰崩溃, 通常会配置更高的规格(过度配置)&lt;/li&gt;
+&lt;li&gt;那台高配服务器大多数时间只是闲置着, 做最少量的工作&lt;/li&gt;
+&lt;li&gt;不能轻易扩展或在同一服务器上运行多个应用, 因为每个应用都需要独立的运行环境&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;总之, 非常混乱&lt;/p&gt;
+&lt;p&gt;后来出现了虚拟机(VM), 情况有了改善. 使用 VM 可以:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在同一台服务器上运行多个隔离的环境&lt;/li&gt;
+&lt;li&gt;为 VM 做快照并在不同服务器间复用&lt;/li&gt;
+&lt;li&gt;不再重复重复地搭建环境，这是一个很大的进步&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;但 VM 也有缺点:&lt;/p&gt;</description></item><item><title>Redis Ordered Set</title><link>https://starslayerx.github.io/posts/redis-ordered-set/</link><pubDate>Sat, 30 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-ordered-set/</guid><description>&lt;p&gt;Redis 的有序集和(ordered set)同时具有&amp;quot;有序&amp;quot;和&amp;quot;集和&amp;quot;两种性质, 这种结构中每个元素都由一个成员和一个与成员相关联的分值组成, 其中成员与字符串方式存储, 而分值以64位双精度浮点数格式存储.&lt;/p&gt;
+&lt;p&gt;例如下面一个记录薪水的集和:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;成员&lt;/th&gt;
+&lt;th style="text-align: left"&gt;分值&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&amp;ldquo;perter&amp;rdquo;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;3500&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&amp;ldquo;bob&amp;rdquo;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;3800&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&amp;ldquo;jack&amp;rdquo;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;4500&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&amp;ldquo;tom&amp;rdquo;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;5000&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;&amp;ldquo;mary&amp;rdquo;&lt;/td&gt;
+&lt;td style="text-align: left"&gt;5500&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;与集和一样, 有序集和中的元素都是唯一的, 同时, 成员将按照分值大小进行排序.&lt;br&gt;
+有序集和分值除了可以是数字外, 还可以是字符串 &amp;ldquo;+inf&amp;rdquo; 或者 &amp;ldquo;-inf&amp;rdquo;, 这两个特殊值分别表示无穷大和无穷小.&lt;br&gt;
+虽然有序集和的成员不可相同, 但是分值可以是相同的, 当两个或多个成员拥有相同的分值时，Redis 将按照这些成员在字典序中的大小对其进行排列.&lt;/p&gt;
+&lt;p&gt;有序集合是Redis提供的所有数据结构中最为灵活的一种, 它可以以多种不同的方式获取数据, 比如根据成员获取分值、根据分值获取成员、根据成员的排名获取成员、根据指定的分值范围获取多个成员等.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;ZADD: 添加或更新成员&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;ZADD sorted_set socre number [score number ...]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;默认情况下, ZADD 命令将返回成功添加的新成员数量作为返回值, 对于更新操作会返回0(未添加新成员).&lt;br&gt;
+使用 &lt;code&gt;XX | NX&lt;/code&gt; 选项来显示地指示命令 只更新 或 只添加操作&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;ZADD sorted [XX|NX] socre member [socre member ...]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;若要返回所有被修改的成员数量(新添加 + 更新数量), 可使用 CH 选项&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;ZADD sorted_set [CH] socre number [score number ...]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;复杂度: O(M * log(N)) 其中 M 为给定成员数量, N 为有序集和的成员数量&lt;/p&gt;</description></item><item><title>Redis Set</title><link>https://starslayerx.github.io/posts/redis-set/</link><pubDate>Tue, 26 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-set/</guid><description>&lt;p&gt;Redis 的集和 set 键允许用户将任意多个不同的元素存储到集和中, 既可以是文本数据, 也可以是二进制数据. 其与列表有以下两个明显的区别:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;列表可以存储重复元素, 而集和只存储非重复元素&lt;/li&gt;
+&lt;li&gt;列表以有序方式存储元素, 而集和则以无序方式存储元素&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下面介绍结合键的各个命令&lt;/p&gt;
+&lt;h2 id="set-集和"&gt;Set 集和&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;SADD: 将元素添加到集和&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;SADD set element [element ...]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;返回成功添加的新元素数量作为返回值, 由于集和不存储相同元素, 所以会自动忽略重复的元素&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;SREM: 从集和中移出元素&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;SREM set element [element ...]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;返回被移除的元素数量, 同样的, 不存在的元素会被忽略&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;SMOVE: 将元素从一个集和移动到另一个集和&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;SMOVE source target element
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;移动操作成功时返回1, 若不存在于源集和, 返回0.&lt;br&gt;
+如果 source 的元素不存在, 则返回0表示失败.&lt;br&gt;
+如果 target 的元素已存在, 则会覆盖该元素. 从结果来看, 并不会导致 target 中元素变化, 但是会导致 source 中的该元素消失.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;SMEMBERS: 获取集和包含的所有元素&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;SMEMBERS set
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;由于集和是无序的, 且 SMEMBERS 命令不会进行任何排序操作, 所以根据元素添加的顺序不同, 含相同元素的集和执行该命令结果可能不同.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;SCARD: 获取集和包含的元素数量&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;SCARD set
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;SISMEMBER: 检查给定元素是否存在于集和&lt;/p&gt;</description></item><item><title>Redis List</title><link>https://starslayerx.github.io/posts/redis-list/</link><pubDate>Sun, 24 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-list/</guid><description>&lt;h2 id="list-列表"&gt;List 列表&lt;/h2&gt;
+&lt;p&gt;Redis 的列表是一种线性的有序结构, 可以按照元素被推入列表的顺序来存储元素, 这些元素即可以是文字顺序, 也可以是二进制顺序, 且元素可重复出现.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;LPUSH: 将元素推入列表左端&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;LPUSH list item [item item ...]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;LPUSH 命令会返回当前元素数量&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;RPUSH: 将元素推入列表右端&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;RPUSH list item [item item ...]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;LPUSHX, RPUSHX: 只对已存在的列表执行推入操作&lt;br&gt;
+上面两条命令, 在列表不存在的情况下, 会自动创建空列表, 并将元素推入列表中.&lt;br&gt;
+且上面命令每次只能推入一个元素&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;LPOP: 弹出列表最左端的元素, 并返回被移出的元素&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;POP list
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;空列表 POP 会返回空值 (nil)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;RPOP: 弹出列表最右端的元素&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;RPOP list
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;RPOPLPUSH: 将列表右端弹出的元素推入列表左端&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;RPOPLPUSH source target
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;source 和 target 可以是相同列表, 也可以是不同列表. 但不能为空列表, 否则会返回空(nil)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="示例-先入先出队列"&gt;示例: 先入先出队列&lt;/h3&gt;
+&lt;p&gt;许多电商网站都会在节日时推出一些秒杀活动, 这些活动会放出数量有限的商品供用户抢购, 秒杀系统的一个特点就是短时间内会有大量用户进行相同的购买操作, 如果使用事务或者锁去实现秒杀程序, 那么会因为锁和事务的重试性而导致性能低下, 并且由于重试的存在, 成功购买商品的用户可能并不是最早购买操作的用户, 因此这种秒杀系统并不公平.&lt;br&gt;
+解决方法之一就是把用户的购买操作都放入先进先出队列里面, 然后以队列的方式处理用户购买操作, 这样的程序就可以不使用锁或者事务实现秒杀系统, 且更加公平.&lt;/p&gt;</description></item><item><title>Redis Hash</title><link>https://starslayerx.github.io/posts/redis-hash/</link><pubDate>Thu, 21 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-hash/</guid><description>&lt;h2 id="散列"&gt;散列&lt;/h2&gt;
+&lt;p&gt;Redis 散列键 hash key 会将一个键和一个散列在数据库里关联起来, 散列中可以存任意多个字段 field.
+与字符串一样, 散列字段和值既可以是文本数据, 也可以是二进制数据.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;HSET: 为字段设置值&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;HEST hash field value
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;若已给定的字段是否已经存在与散列中, 该设置为一次更新操作, 覆盖旧值后返回0.&lt;br&gt;
+相反, 则为一次创建操作, 命令将在散列里面关联起给定的字段和值, 然后返回1.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;HSETNX: 只在字段不存在的情况下设置值&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;HSETNX hash field value
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;HSETNX 命令在字段不存在且成功设置值时, 返回1.&lt;br&gt;
+字段已存在并设置值未成功时, 返回0.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;HGET: 获取字段的值&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;HGET hash field
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;若查找的不存在的散列或字段, 则会返回空(nil)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="示例-短网址生成"&gt;示例: 短网址生成&lt;/h3&gt;
+&lt;p&gt;为了给用户提供更多空间, 并记录用户在网站上的链接点击行为, 大部分社交网站都会将用户输入的网址转换为短网址. 当用户点击段网址时, 后台就会进行数据统计, 并引导用户跳转到原地址.&lt;br&gt;
+创建短网址本质上就是, 要创建出短网址ID与目标网址之间的映射, 并让用户访问短网址时, 根据短网址的ID映射记录中找出与之相对应的目标网址.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: left"&gt;短网址 ID&lt;/th&gt;
+&lt;th style="text-align: left"&gt;目标网址&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;RqRRz8n&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a href="http://redisdoc.com/geo/index.html"&gt;http://redisdoc.com/geo/index.html&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: left"&gt;RUwtQBx&lt;/td&gt;
+&lt;td style="text-align: left"&gt;&lt;a href="http://item.jd.com/117910607.html"&gt;http://item.jd.com/117910607.html&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;HINCRBY: 对字段存储的整数值执行加法或减法操作&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;HINCRBY hash field increment
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;与字符串 INCRBY 命令一样, 如果散列字段里面存储着能够被 Redis 解释为整数的数字, 那么用户就可以使用 HINCRBY 命令为该字段的值加上指定的整数增量.&lt;br&gt;
+该命令执行成功后, 将返回字段当前的值为命令的结果. 若要执行减法操作, increment 传入负数即可.&lt;/p&gt;</description></item><item><title>HTTP Methods, Status Codes and Payloads</title><link>https://starslayerx.github.io/posts/http-methods-status-codes-and-payloads/</link><pubDate>Wed, 20 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/http-methods-status-codes-and-payloads/</guid><description>&lt;p&gt;本篇文章基于 REST api 介绍HTTP请求方法、HTTP响应码和API数据载荷, 是之前介绍 REST 那篇文章的延伸&lt;/p&gt;
+&lt;h2 id="http-status-codes"&gt;HTTP Status Codes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;1xx group: Signals that an operation is in progress&lt;/li&gt;
+&lt;li&gt;2xx group: Signals that a request was successfully processed&lt;/li&gt;
+&lt;li&gt;3xx group: Signals that a resource has been moved to a new location&lt;/li&gt;
+&lt;li&gt;4xx group: Signals that someting was wrong with the request&lt;/li&gt;
+&lt;li&gt;5xx group: Signals that there was an error while processing the request&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在之前文章中, 定义的 HTTP status code 如下:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;POST /orders: 201 (Created) - 资源成功创建&lt;/li&gt;
+&lt;li&gt;GET /orders: 200 (OK) - 请求成功处理&lt;/li&gt;
+&lt;li&gt;GET /orders/{order_id}: 200 (OK) - 请求成功处理&lt;/li&gt;
+&lt;li&gt;PUT /orders/{order_id}: 200 (OK) - 资源成功更新&lt;/li&gt;
+&lt;li&gt;DELETE /orders/{order_id}: 204 (No Content) - 请求被成功处理, 但是没有响应内容, 对比其他方法, DELETE 请求不需要 payload 来删除资源&lt;/li&gt;
+&lt;li&gt;POST /orders/{order_id}/chanel: 200 (OK) - 取消成功, 由于并不创建任何资源, 故返回200&lt;/li&gt;
+&lt;li&gt;POST /orders/{orders\id}/pay: 200 (OK) - 支付成功, 同样由于未创建资源, 返回200&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;上面全是成功的响应, 下面介绍错误响应&lt;/p&gt;</description></item><item><title>Redis String</title><link>https://starslayerx.github.io/posts/redis-string/</link><pubDate>Tue, 19 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/redis-string/</guid><description>&lt;p&gt;介绍Redis中的字符串键&lt;/p&gt;
+&lt;h2 id="字符串"&gt;字符串&lt;/h2&gt;
+&lt;p&gt;字符串建是 Redis 最基本的键值对类型, 这种类型的键值对会在数据库中把单独的一个值关联起来, 被关联的键和值可以为文本, 也可以是图片, 视屏, 音频等二进制数据.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;SET: 为字符串键设置值 O(1)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;SET key value&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;```Redis
+SET number &amp;quot;10086&amp;quot;
+&amp;gt; OK
+SET book &amp;quot;Redis in action&amp;quot;
+&amp;gt; OK
+```
+对于已经存在的 key, 再次赋值会覆盖原值, 若不想覆盖后面添加参数 NX, 相反, 默认 XX 允许覆盖
+```Redis
+SET key &amp;quot;10086&amp;quot; NX
+&amp;gt; (nil)
+SET key &amp;quot;10086&amp;quot; XX
+&amp;gt; OK
+```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;GET: 获取字符串键的值 O(1)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;GET key&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;```Redis
+GET number
+&amp;gt; &amp;quot;10086&amp;quot;
+```
+对于不存在的值, 返回空
+```Redis
+GET key_new
+&amp;gt; (nil)
+```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;GETSET: 获取旧值并更新值 O(1)&lt;/p&gt;</description></item><item><title>Designing and Building REST APIs</title><link>https://starslayerx.github.io/posts/designing-and-building-rest-apis/</link><pubDate>Sun, 17 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/designing-and-building-rest-apis/</guid><description>&lt;p&gt;这篇文章延续之前微服务的内容, 将介绍关于 REST API 的以下几个方面:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;REST API 的设计原则&lt;/li&gt;
+&lt;li&gt;Richardson maturity model (RMM) 如何帮助理解 REST 的优势和设计原则&lt;/li&gt;
+&lt;li&gt;REST API 中资源(resource)和端点(endpoints)设计的概念&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;表达性状态转移 representational state transfer (REST) 描述了一种通过网络进行通信的应用程序架构风格.
+最初, REST 的概念包含了一组用于设计分布式、可扩展 Web 应用的约束条件.
+随着时间推移, 出现了更为细致的协议和规范, 为 REST API 的设计提供了明确的指导方针.
+如今, REST 已经成为构建 Web API 的最流行选择.&lt;/p&gt;
+&lt;p&gt;下面将继续在 CoffeeMesh 项目上, 设计相关订单 API.&lt;/p&gt;
+&lt;h2 id="what-is-rest"&gt;What is REST?&lt;/h2&gt;
+&lt;p&gt;REST 由 Roy Fielding 在他的博士论文 &amp;ldquo;Architectural Styles and the Design of Network-based Software Atchitecture&amp;rdquo; (PhD diss. University of California,Irvine,2000,p. 109) 中创造.&lt;/p&gt;</description></item><item><title>Microservice with FastAPI</title><link>https://starslayerx.github.io/posts/microservice-with-fastapi/</link><pubDate>Fri, 15 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/microservice-with-fastapi/</guid><description>&lt;h2 id="what-are-microservices-"&gt;What are microservices ?&lt;/h2&gt;
+&lt;p&gt;什么是微服务? 微服务可以有多种不同的定义方式, 具体取决于希望强调微服务架构的哪个方面, 不同作者会给出略有不同但相关的定义&lt;/p&gt;
+&lt;p&gt;Sam Newman, 微服务领域最有影响力的作者之一, 给出了一个极简的定义:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“Microservices are small, autonomous services that work together.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这个定义强调了这样一个事实: 微服务是彼此独立运行的应用程序, 但它们可以协作完成任务. 该定义还强调微服务是 “small (小的)”, 这里的 small 并不是指微服务代码量的大小, 而是指微服务具有狭窄且定义清晰的职责范围, 符合单一职责原则(&lt;strong&gt;Single Responsibility Principle&lt;/strong&gt;) —— 即“只做一件事，并把它做好”.&lt;/p&gt;
+&lt;p&gt;James Lewis 和 Martin Fowler 撰写的一篇开创性文章提供了一个更详细的定义, 他们将微服务定义为一种架构风格(architectural style)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API”&lt;/p&gt;</description></item><item><title>FastAPI Response Model</title><link>https://starslayerx.github.io/posts/fastapi-response-model/</link><pubDate>Tue, 12 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-response-model/</guid><description>&lt;p&gt;本篇文章介绍 FastAPI 的返回类型 response model&lt;/p&gt;
+&lt;p&gt;可以在返回函数的类型注解中声明该接口的响应数据类型&lt;/p&gt;
+&lt;p&gt;类型注解的用法和输入数据参数一样, 可以使用:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pydantic 模型&lt;/li&gt;
+&lt;li&gt;list 列表&lt;/li&gt;
+&lt;li&gt;dict 字典&lt;/li&gt;
+&lt;li&gt;scalar 标量值 (int, bool &amp;hellip;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.post&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_items&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;FastAPI 会使用返回类型完成一下事情:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;验证返回类型
+如果返回的数据无效, 说明业务代码有问题, FastAPI 会返回服务器错误, 而不是把数据发给客户端&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在 OpenAPI 中为响应添加 JSON Schema
+用于自动生成接口文档, 自动生成客户端代码&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;最重要的是
+它会限制并过滤出数据, 只保留返回类型中定义的字段&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="response_model-parameter"&gt;&lt;code&gt;response_model&lt;/code&gt; Parameter&lt;/h3&gt;
+&lt;p&gt;有时候可能需要返回的数据和类型注解不完全一致, 例如:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可能想返回字典或数据库对象, 但声明的响应类型为 Pydantic 模型&lt;/li&gt;
+&lt;li&gt;这样 Pydantic 会做数据文档、验证等工作, 即使返回的是字典或 ORM 对象&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果直接用返回类型注解, 编辑器会提示类型不匹配的错误&lt;/p&gt;
+&lt;p&gt;这种情况下, 可以用路径装饰器的 &lt;code&gt;response_model&lt;/code&gt; 参数来声明响应类型, 而不是用返回类型注解&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;price&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;tax&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;tags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.post&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;response_model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;create_item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Any&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;response_model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_items&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Any&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Portal Gun&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;price&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;42.0&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Plumbus&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;price&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;32.0&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;注意:&lt;/p&gt;</description></item><item><title>Fastapi Cookie and Header Parameters</title><link>https://starslayerx.github.io/posts/fastapi-cookie-and-header-parameters/</link><pubDate>Mon, 11 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-cookie-and-header-parameters/</guid><description>&lt;p&gt;这篇文章介绍 Fastapi 的 Cookie 和 Header 参数&lt;/p&gt;
+&lt;h3 id="cookie-parameters"&gt;Cookie Parameters&lt;/h3&gt;
+&lt;p&gt;通过定义 &lt;code&gt;Query&lt;/code&gt; 和 &lt;code&gt;Path&lt;/code&gt; 参数一样定义 &lt;code&gt;Cookie&lt;/code&gt; 参数&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;typing&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;fastapi&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Cookie&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_items&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ads_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Cookie&lt;/span&gt;&lt;span class="p"&gt;()]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;ads_id&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ads_id&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="cookie-parameters-models"&gt;Cookie Parameters Models&lt;/h4&gt;
+&lt;p&gt;如果有一组相关的 cookies, 可以使用 Pydantic model 来声明.&lt;/p&gt;
+&lt;p&gt;这样可以在多个部分复用这个模型, 同时还能一次性为所有参数声明验证规则和元数据.&lt;/p&gt;
+&lt;p&gt;下面使用 Pydantic 模型定义 Cookies, 然后将参数声明为 &lt;code&gt;Cookie&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;typing&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;fastapi&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Cookie&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pydantic&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;BaseModel&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Cookie&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;session_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;fatebook_tracker&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;googall_tracker&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_items&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cookies&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Cookies&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Cookie&lt;/span&gt;&lt;span class="p"&gt;()]):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;cookies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="forbid-extra-cookies-禁止额外的cookie"&gt;Forbid Extra Cookies 禁止额外的Cookie&lt;/h4&gt;
+&lt;p&gt;在某些场景下(虽然并不常见), 可能希望限制 API 只能接收特定的 Cookie.
+这样, API 就可以&amp;quot;自己&amp;quot;管理 Cookie 同意策略了.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;typing&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;fastapi&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Cookie&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pydantic&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;BaseModel&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Cookies&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;model_config&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;extra&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;forbid&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="c1"&gt;# forbid extra cookies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;session_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;fatebook_tracker&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;googall_tracker&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_items&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cookies&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Cookies&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Cookie&lt;/span&gt;&lt;span class="p"&gt;()]):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;cookies&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样, 如果客户端发送额外的 cookies, 则会收到一个错误响应. 例如, 客户端发送了 &lt;code&gt;santa_tracker&lt;/code&gt; 这个额外 Cookie&lt;/p&gt;</description></item><item><title>FastAPI Body Advanced Uses</title><link>https://starslayerx.github.io/posts/fastapi-body-advanced-uses/</link><pubDate>Sat, 09 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-body-advanced-uses/</guid><description>&lt;p&gt;本篇文章介绍 FastAPI Request Body 的进阶用法&lt;/p&gt;
+&lt;h3 id="body---multiple-parameters"&gt;Body - Multiple Parameters&lt;/h3&gt;
+&lt;p&gt;首先, 可以将&lt;code&gt;Path&lt;/code&gt;, &lt;code&gt;Query&lt;/code&gt; 和 request body 参数声明自由的写在一起&lt;/p&gt;
+&lt;p&gt;对于 request body 参数可以是可选的, 并且可设置为默认的 &lt;code&gt;None&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;typing&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;fastapi&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pydantic&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;BaseModel&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;BaseModel&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;price&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;tax&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.put&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&lt;/span&gt;&lt;span class="si"&gt;{item_id}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update_item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;item_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;The ID of the item to get&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ge&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;le&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;)],&lt;/span&gt; &lt;span class="c1"&gt;# Path&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;# Query&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Item&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;# body&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;results&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;item_id&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;item_id&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;q&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;item&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;results&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="multiple-body-parameters-多参数请求体"&gt;Multiple body parameters 多参数请求体&lt;/h4&gt;
+&lt;p&gt;在上面例子中, FastAPI 期望一个包含 &lt;code&gt;Item&lt;/code&gt; 属性的 JSON body, 例如&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-JSON" data-lang="JSON"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Foo&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;description&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;The pretender&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;price&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;42.0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;tax&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;3.2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;但也可以声明多个body parameters, 例如 &lt;code&gt;item&lt;/code&gt; 和 &lt;code&gt;user&lt;/code&gt;&lt;/p&gt;</description></item><item><title>FastAPI Parameters and Validations</title><link>https://starslayerx.github.io/posts/fastapi-parameters-and-validations/</link><pubDate>Thu, 07 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-parameters-and-validations/</guid><description>&lt;p&gt;这篇文章介绍 FastAPI 中的参数验证功能&lt;/p&gt;
+&lt;h3 id="query-parameters-and-string-validations"&gt;Query Parameters and String Validations&lt;/h3&gt;
+&lt;p&gt;FastAPI 允许为参数声明额外的信息和验证规则&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;fastapi&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_items&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;results&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;items&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;item_id&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Foo&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;item_id&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Bar&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;}]}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;q&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;results&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;q&lt;/code&gt; 是类型为 &lt;code&gt;str | None&lt;/code&gt; 的查询参数, 这意味着它可以是字符串, 也可以是 &lt;code&gt;None&lt;/code&gt;. 其默认值是 &lt;code&gt;None&lt;/code&gt;, 因此 FastAPI 会识别它为“可选参数”&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;FastAPI 通过 &lt;code&gt;= None&lt;/code&gt; 的默认值知道该参数是非必填的&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;使用 &lt;code&gt;str | None&lt;/code&gt; 还能帮助编辑器提供更好的类型提示和错误检测&lt;/p&gt;
+&lt;h4 id="additional-validation-额外验证"&gt;Additional validation 额外验证&lt;/h4&gt;
+&lt;p&gt;即使 &lt;code&gt;q&lt;/code&gt; 是可选的, 但仍然可以设置条件: 如果提供了 &lt;code&gt;q&lt;/code&gt;, 则长度不能超过50个字符&lt;/p&gt;
+&lt;p&gt;使用 &lt;code&gt;Query&lt;/code&gt; 和 &lt;code&gt;Annotated&lt;/code&gt; 来实现&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;typing&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;fastapi&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Query&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_items&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Annotated&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Query&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;results&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;items&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;item_id&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Foo&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;item_id&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Bar&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;}]}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;q&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;q&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;results&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;使用 &lt;code&gt;Annotated&lt;/code&gt; 包装后, 就可以传递额外的元数据(&lt;code&gt;Query(max_length=5)&lt;/code&gt;), 用于校验或者文档&lt;/p&gt;</description></item><item><title>FastAPI Parameters</title><link>https://starslayerx.github.io/posts/fastapi-parameters/</link><pubDate>Wed, 06 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/fastapi-parameters/</guid><description>&lt;p&gt;FastAPI 是一个现代、快速（高性能）的 Python Web 框架, 它自动处理参数的解析、验证和文档生成&lt;/p&gt;
+&lt;p&gt;本文将介绍 FastAPI 中三类最常用的参数: &lt;strong&gt;路径参数 (Path Parameters)&lt;/strong&gt;、&lt;strong&gt;查询参数 (Query Parameters)&lt;/strong&gt; 和 &lt;strong&gt;请求体(Request Body)&lt;/strong&gt; 的用法与原理&lt;/p&gt;
+&lt;h3 id="1-path-parameters-路径参数"&gt;1. Path Parameters 路径参数&lt;/h3&gt;
+&lt;p&gt;路径参数是 URL 路径中的动态部分, 使用 &lt;code&gt;{}&lt;/code&gt; 包裹表示&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;fastapi&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FastAPI&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&lt;/span&gt;&lt;span class="si"&gt;{item_id}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;item_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;item_id&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;item_id&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;访问 &lt;code&gt;/items/foo&lt;/code&gt; 返回:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;item_id&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;foo&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id="data-conversion--validation-类型声明与自动转换"&gt;Data conversion &amp;amp; validation 类型声明与自动转换&lt;/h4&gt;
+&lt;p&gt;可以为路径参数声明类型, FastAPI 会自动解析并验证:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/items/&lt;/span&gt;&lt;span class="si"&gt;{item_id}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_item&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;item_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;item_id&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;item_id&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;访问 &lt;code&gt;/items/3&lt;/code&gt;, &lt;code&gt;item_id&lt;/code&gt; 会被转换为 int 类型&lt;/p&gt;
+&lt;h4 id="routing-orders-路由匹配顺序"&gt;Routing orders 路由匹配顺序&lt;/h4&gt;
+&lt;p&gt;路径匹配按声明顺序执行, 例如&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/users/me&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_user_me&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;user_id&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;current_user&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nd"&gt;@app.get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/users/&lt;/span&gt;&lt;span class="si"&gt;{user_id}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;read_user&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;user_id&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;user_id&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;user_id&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;必须先声明 &lt;code&gt;/users/me&lt;/code&gt;, 否则会被 &lt;code&gt;/users/{user_id}&lt;/code&gt; 捕获&lt;/p&gt;</description></item><item><title>How FastAPI Works</title><link>https://starslayerx.github.io/posts/how-fastapi-works/</link><pubDate>Sun, 03 Aug 2025 08:30:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/how-fastapi-works/</guid><description>&lt;p&gt;FastAPI 的工作原理: 从 routing 到 lifecycle 以及在现实中的使用&lt;/p&gt;
+&lt;h3 id="fastapi"&gt;FastAPI&lt;/h3&gt;
+&lt;p&gt;FastAPI 是一个现代的 Python Web 框架, 注重&lt;strong&gt;高性能&lt;/strong&gt;和&lt;strong&gt;开发效率&lt;/strong&gt;. 旨在帮助开发者编写结构清晰、可靠的API, 同时尽量减少样板代码 (boilerplate)&lt;/p&gt;
+&lt;p&gt;其由以下两个库驱动:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Starlette&lt;/strong&gt;: 负责 Web 服务器逻辑、路由、中间件和异步能力&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pydantic&lt;/strong&gt;: 基于 Python 类型提示, 处理数据验证、解析和序列化&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;此外, Fastapi 还有输入验证、基于 Swagger UI 的自动文档生成和代码清晰化的基础&lt;/p&gt;
+&lt;h3 id="api-请求周期"&gt;API 请求周期&lt;/h3&gt;
+&lt;p&gt;Fastapi 的请求生命周期如下&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;客户端请求 (Client Request)
+↓
+FastAPI App
+↓
+中间件（Middleware）
+↓
+路由匹配 (Route Matching)
+↓
+依赖注入（Dependency Injection）
+↓
+输入验证 (Input Validation)
+↓
+端点函数 (Endpoint)
+↓
+响应序列化 (Response Serialization)
+↓
+客户端响应 (Client Response)
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;请求首先进入 FastAPI 应用 (本质就是一个 Starlette 应用)&lt;/li&gt;
+&lt;li&gt;所有中间件优先执行 (如: 日志、错误处理、CORS等)&lt;/li&gt;
+&lt;li&gt;路由器检查路径和方法, 找到对应的处理函数&lt;/li&gt;
+&lt;li&gt;FastAPI 使用&lt;code&gt;Depends&lt;/code&gt;解析依赖&lt;/li&gt;
+&lt;li&gt;使用 Pydantic 自动解析并验证输入数据&lt;/li&gt;
+&lt;li&gt;执行端点函数, 参数验证完毕&lt;/li&gt;
+&lt;li&gt;返回结果被序列化为合适的响应格式 (JSON)&lt;/li&gt;
+&lt;li&gt;响应返回给客户端&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="路由-router"&gt;路由 Router&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;在应用对象上定义&lt;br&gt;
+适合小项目或原型验证&lt;/p&gt;</description></item><item><title>Dive into DeepLearning - 02 - Preliminaries</title><link>https://starslayerx.github.io/posts/dive-into-deeplearning-02-preliminaries/</link><pubDate>Sun, 21 Mar 2021 05:20:08 +0800</pubDate><guid>https://starslayerx.github.io/posts/dive-into-deeplearning-02-preliminaries/</guid><description>&lt;ul&gt;
+&lt;li&gt;Course Note: d2l-video-05 - 线性代数&lt;/li&gt;
+&lt;li&gt;Jupyter Notebook: chapter_preliminaries/linear-algebra.ipynb&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;预备知识中 Liner Algebra 的部分&lt;/p&gt;
+&lt;h3 id="线性代数"&gt;线性代数&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Scalars 标量: 指只有一个元素的张量 tensors&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;torch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;3.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# scalar&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;2.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Vectors 向量: 可以视作标量构成的列表&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# 通过张量索引访问任一元素&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# 访问张量长度&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt; &lt;span class="c1"&gt;# torch.Size([4]) 只有一个轴的张量, 形状只有一个元素&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Matrices 矩阵: 类似向量的推广, 可以构建更多轴的数据结构&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 构建矩阵&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reshape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt; &lt;span class="c1"&gt;# 转置&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 对称矩阵&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tensor&lt;/span&gt;&lt;span class="p"&gt;([[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;]])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;形状相同张量的计算&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dtype&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;float32&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reshape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;clone&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;B&lt;/span&gt; &lt;span class="c1"&gt;# 对应元素相乘: Hadamard 积&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;计算元素的和&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;detype&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;torch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;float64&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# 任意形状张量的和&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;计算平均值&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# 均值&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;numel&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# 另一种计算均值的方法: 和 / 数量&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;点乘是相同位置元素乘积的和&lt;/p&gt;</description></item><item><title>Dive into DeepLearning - 01 - Preliminaries</title><link>https://starslayerx.github.io/posts/dive-into-deeplearning-01-preliminaries/</link><pubDate>Sun, 21 Mar 2021 05:05:25 +0800</pubDate><guid>https://starslayerx.github.io/posts/dive-into-deeplearning-01-preliminaries/</guid><description>&lt;ul&gt;
+&lt;li&gt;Course Note: d2l-video-04 - 数据操作+数据预处理&lt;/li&gt;
+&lt;li&gt;Jupyter Notebook: chapter_preliminaries/pandas.ipynb&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;预备知识中 Data Manipulation 和 Data Preprocessing 的部分&lt;/p&gt;
+&lt;h3 id="介绍"&gt;介绍&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;N 纬数组介绍&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;0-d (标量)&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;1.0
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;一个类别&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;1-d (向量)&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;[1.0, 2.7, 3.4]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;一个特征向量&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;2-d (矩阵)&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;[[1.0, 2.7, 3.4],
+[1.0, 2.7, 3.4],
+[1.0, 2.7, 3.4]]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;一个样本 - 特征矩阵&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;3-d RGB 图片(宽 x 高 x 通道)&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;[[[1.0, 2.7, 3.4],
+[1.0, 2.7, 3.4],
+[1.0, 2.7, 3.4]],
+[[1.0, 2.7, 3.4],
+[1.0, 2.7, 3.4],
+[1.0, 2.7, 3.4]]]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;4-d 一个 RGB 图片批量 (批量大小 x 宽 x 高 x 通道)&lt;/p&gt;</description></item></channel></rss>

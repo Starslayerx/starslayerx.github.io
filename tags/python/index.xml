@@ -841,7 +841,7 @@ Filter 是更细粒度的筛选工具，可以控制某个模块的日志，阻�
 &lt;p&gt;如果要构造独立列表, 应改用列表推导式&lt;/p&gt;</description></item><item><title>Executing arbitrary Python code from a comment</title><link>https://starslayerx.github.io/posts/executing-arbitrary-python-code-from-a-comment/</link><pubDate>Mon, 04 Aug 2025 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/executing-arbitrary-python-code-from-a-comment/</guid><description>&lt;p&gt;通过注释执行任意Python代码&lt;/p&gt;
 &lt;h3 id="问题描述"&gt;问题描述&lt;/h3&gt;
 &lt;p&gt;Q: 只能控制一行的.py代码中注释的内容(\n\r均会被替换为空字符), 如何执行任意代码?&lt;br&gt;
-A: 在注释#中, 构造一个.zip 文件, python 会将该内容当成一个zip包执行, 触发任意代码执行&lt;/p&gt;
+A: 在注释#中, 构造一个.zip 文件, python 会将该内容当成一个 zip 包执行, 触发任意代码执行&lt;/p&gt;
 &lt;h3 id="解决方案"&gt;解决方案&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;

@@ -47,14 +47,14 @@ set(id(item) for item in x) {4417579584}
 dis.dis("[[]] * 5") 0 0 RESUME 0 # 用于支持解释器恢复 (py3.11) 1 2 BUILD_LIST 0 # 构造一个空列表[], 压栈 4 BUILD_LIST 1 # 从栈顶取一个对象, 构造列表[[]] 6 LOAD_CONST 0 (5) # 加载常量 5 8 BINARY_OP 5 (*) # 对栈顶两个元素执行乘法 12 RETURN_VALUE # 返回栈顶结果 The alternative 如果要构造独立列表, 应改用列表推导式
 ...</p></div><footer class=entry-footer><span title='2025-08-05 08:00:00 +0800 +0800'>August 5, 2025</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>432 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer><a class=entry-link aria-label="post link to Python Tricks" href=https://starslayerx.github.io/posts/python-tricks/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>Executing arbitrary Python code from a comment</h2></header><div class=entry-content><p>通过注释执行任意Python代码
 问题描述 Q: 只能控制一行的.py代码中注释的内容(\n\r均会被替换为空字符), 如何执行任意代码?
-A: 在注释#中, 构造一个.zip 文件, python 会将该内容当成一个zip包执行, 触发任意代码执行
+A: 在注释#中, 构造一个.zip 文件, python 会将该内容当成一个 zip 包执行, 触发任意代码执行
 解决方案 从 Python 3.5 起, 可以直接执行一个 .zip 文件
 python myapp.zip 前提是ZIP 包中包含一个顶层的__main__.py文件, Python 会把它当作 zipapp, 自动解压并运行__main__.py
 Python 会从末尾找到 ZIP 的目录结构, 而不是依赖文件头, 所以前面的“垃圾”字节会被忽略
 Python 源码中的任何行, 只要以 # 开头, 解释器都会忽略后面内容, 因此可以:
 把 ZIP 文件的数据藏在 Python 源码中的注释中（开头加 #） 把 ZIP 数据直接拼接在 Python 文件的后面, 只保证文件头部分是合法 Python ZIP 不关心前缀, Python 只要最前面是有效源码, 也不会管后面 难点 ZIP 文件头包含二进制字段，比如
 偏移量（文件数据相对于 ZIP 开头的位置） 长度（文件名长度、注释长度等） 这些值写死在 header 里, 是十六进制整数 如果这些字节中出现了像 \x00、\xFF 等非 ASCII 内容, Python 就不能把它当注释 解决方法: 暴力穷举合法组合
-...</p></div><footer class=entry-footer><span title='2025-08-04 08:00:00 +0800 +0800'>August 4, 2025</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>561 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer><a class=entry-link aria-label="post link to Executing arbitrary Python code from a comment" href=https://starslayerx.github.io/posts/executing-arbitrary-python-code-from-a-comment/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://starslayerx.github.io/tags/python/page/2/>«&nbsp;Prev&nbsp;</a></nav></footer></main><footer class=footer><span>&copy; 2026 <a href=https://starslayerx.github.io/>Starslayerx' Blog</a></span> ·
+...</p></div><footer class=entry-footer><span title='2025-08-04 08:00:00 +0800 +0800'>August 4, 2025</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>563 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer><a class=entry-link aria-label="post link to Executing arbitrary Python code from a comment" href=https://starslayerx.github.io/posts/executing-arbitrary-python-code-from-a-comment/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://starslayerx.github.io/tags/python/page/2/>«&nbsp;Prev&nbsp;</a></nav></footer></main><footer class=footer><span>&copy; 2026 <a href=https://starslayerx.github.io/>Starslayerx' Blog</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
 <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
