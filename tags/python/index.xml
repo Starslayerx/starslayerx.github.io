@@ -43,7 +43,38 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;cached_call&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;make_cached_qwen&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
 &lt;h3 id="3-高阶函数-high-order-function"&gt;3. 高阶函数 (High-Order Function)&lt;/h3&gt;
-&lt;p&gt;如果我们想让缓存逻辑通用化，不只针对 &lt;code&gt;call_qwen&lt;/code&gt;，我们可以写一个接收函数作为参数的高阶函数：&lt;/p&gt;</description></item><item><title>Python Tricks Part 7: Classes and Object-Oriented Programming</title><link>https://starslayerx.github.io/posts/python-tricks-part-7-classes-and-object-oriented-programming/</link><pubDate>Tue, 13 Jan 2026 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-tricks-part-7-classes-and-object-oriented-programming/</guid><description>&lt;p&gt;使用 &lt;code&gt;vars()&lt;/code&gt; 方法返回对象的属性和值的字典对象，不带参数时，返回当前局部作用域的变量字典&lt;/p&gt;
+&lt;p&gt;如果我们想让缓存逻辑通用化，不只针对 &lt;code&gt;call_qwen&lt;/code&gt;，我们可以写一个接收函数作为参数的高阶函数：&lt;/p&gt;</description></item><item><title>Python Tricks Part 8: Modules and Packages</title><link>https://starslayerx.github.io/posts/python-tricks-part-8-modules-and-packages/</link><pubDate>Tue, 20 Jan 2026 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-tricks-part-8-modules-and-packages/</guid><description>&lt;p&gt;Python 程序由 modules 和 packages 组成，使用 &lt;code&gt;import&lt;/code&gt; 语句导入。&lt;/p&gt;
+&lt;h2 id="modules-and-the-import-statement"&gt;Modules and the import Statement&lt;/h2&gt;
+&lt;p&gt;任何 Python 源文件都可以作为一个模块导入，例如下面 &lt;code&gt;module.py&lt;/code&gt; 代码：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;37&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;func&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;func says that a is &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SomeClass&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;method&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;method says hi&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;loaded module&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;改文件包含一些常见的编程元素，包括一个全局变量、一个函数、一个类定义 和 最后的语句。
+通过下面方法导入：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;module&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;module&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;module&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;module&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SomeClass&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;method&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;执行 import 会发送下面这几件事：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;加载模块源码，如果找不到抛出 &lt;code&gt;ImportError&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;创建新模块对象。该对象作为模块内所有全局定义 global defintions 的容器，被称为 “命名空间” namespace&lt;/li&gt;
+&lt;li&gt;该模块源码在新创建的模块命名空间内执行&lt;/li&gt;
+&lt;li&gt;如果没有错误发生，调用者会创建一个名称，指向新的模块对象。该名称与模块名称一致，但不包含任何文件后缀。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这些步骤中，第一步是最复杂的。新手容易犯的错误就是使用错误的名称或将代码放到了未知的位置。
+且模块文件必须放在 &lt;code&gt;sys.path&lt;/code&gt; 所包含的文件路径中，且文件名称要遵循和 python 变量一样的规则。&lt;/p&gt;
+&lt;p&gt;剩下的步骤都隔离在一个模块中，因此不用担心不同模块间命名冲突的问题。
+Python &lt;code&gt;import&lt;/code&gt; 会执行所有导入的源码，因此导入上面模块会输出 &lt;code&gt;loaded module&lt;/code&gt;。&lt;/p&gt;</description></item><item><title>Python Tricks Part 7: Classes and Object-Oriented Programming</title><link>https://starslayerx.github.io/posts/python-tricks-part-7-classes-and-object-oriented-programming/</link><pubDate>Tue, 13 Jan 2026 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-tricks-part-7-classes-and-object-oriented-programming/</guid><description>&lt;p&gt;使用 &lt;code&gt;vars()&lt;/code&gt; 方法返回对象的属性和值的字典对象，不带参数时，返回当前局部作用域的变量字典&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="c1"&gt;# 相当于 locals()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -97,38 +128,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# False&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;withdraw&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# Method Call&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# a = Account(&amp;#34;Guido&amp;#34;, 650.0)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;getattr()&lt;/code&gt; 函数可以携带一个默认值，如果想要查看一个可能不存在的属性，可以这样实现：&lt;/p&gt;</description></item><item><title>Python Tricks Part 8: Modules and Packages</title><link>https://starslayerx.github.io/posts/python-tricks-part-8-modules-and-packages/</link><pubDate>Tue, 13 Jan 2026 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-tricks-part-8-modules-and-packages/</guid><description>&lt;p&gt;Python 程序由 modules 和 packages 组成，使用 &lt;code&gt;import&lt;/code&gt; 语句导入。&lt;/p&gt;
-&lt;h2 id="modules-and-the-import-statement"&gt;Modules and the import Statement&lt;/h2&gt;
-&lt;p&gt;任何 Python 源文件都可以作为一个模块导入，例如下面 &lt;code&gt;module.py&lt;/code&gt; 代码：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;37&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;func&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;func says that a is &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;SomeClass&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;method&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;method says hi&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;loaded module&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;改文件包含一些常见的编程元素，包括一个全局变量、一个函数、一个类定义 和 最后的语句。
-通过下面方法导入：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;module&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;module&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;module&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;module&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SomeClass&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;method&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;执行 import 会发送下面这几件事：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;加载模块源码，如果找不到抛出 &lt;code&gt;ImportError&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;创建新模块对象。该对象作为模块内所有全局定义 global defintions 的容器，被称为 “命名空间” namespace&lt;/li&gt;
-&lt;li&gt;该模块源码在新创建的模块命名空间内执行&lt;/li&gt;
-&lt;li&gt;如果没有错误发生，调用者会创建一个名称，指向新的模块对象。该名称与模块名称一致，但不包含任何文件后缀。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;这些步骤中，第一步是最复杂的。新手容易犯的错误就是使用错误的名称或将代码放到了未知的位置。
-且模块文件必须放在 &lt;code&gt;sys.path&lt;/code&gt; 所包含的文件路径中，且文件名称要遵循和 python 变量一样的规则。&lt;/p&gt;
-&lt;p&gt;剩下的步骤都隔离在一个模块中，因此不用担心不同模块间命名冲突的问题。
-Python &lt;code&gt;import&lt;/code&gt; 会执行所有导入的源码，因此导入上面模块会输出 &lt;code&gt;loaded module&lt;/code&gt;。&lt;/p&gt;</description></item><item><title>Python Tricks Part 6: Generators</title><link>https://starslayerx.github.io/posts/python-tricks-part-6-generators/</link><pubDate>Fri, 09 Jan 2026 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-tricks-part-6-generators/</guid><description>&lt;p&gt;生成器是 Python 中一种强大的特性，其通常被介绍为一种定义新型迭代模式的便捷方式。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;getattr()&lt;/code&gt; 函数可以携带一个默认值，如果想要查看一个可能不存在的属性，可以这样实现：&lt;/p&gt;</description></item><item><title>Python Tricks Part 6: Generators</title><link>https://starslayerx.github.io/posts/python-tricks-part-6-generators/</link><pubDate>Fri, 09 Jan 2026 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-tricks-part-6-generators/</guid><description>&lt;p&gt;生成器是 Python 中一种强大的特性，其通常被介绍为一种定义新型迭代模式的便捷方式。
 但生成器从根本上改变了整个函数执行的模式，本篇文章重点关注：生成器、生成器委托、基于生成器的协程，以及生成器的其他内部机制。&lt;/p&gt;
 &lt;h2 id="generators-and-yield"&gt;Generators and yield&lt;/h2&gt;
 &lt;p&gt;如果一个函数使用 &lt;code&gt;yield&lt;/code&gt; 关键字，这定义了一个生成器。
