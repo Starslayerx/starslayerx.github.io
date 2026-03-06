@@ -1,5 +1,5 @@
 +++
-date = '2026-01-13T8:00:00+08:00'
+date = '2026-01-20T8:00:00+08:00'
 draft = false
 title = 'Python Tricks Part 8: Modules and Packages'
 categories = ['Note']

@@ -526,3 +526,322 @@ asyncio 中的 `wait` 和 `gather` 类似，其提供了这种情况下更加具
 
 `wait` 签名的本质是一系列 awaitable 对象的列表，伴随着可选的超时和 `return_when` 字符串。
 该字符串有几个预定义的值：`ALL_COMPLETED`, `FIRST_EXCEPTION` 和 `FIRST_COMPLETED`，默认是 `ALL_COMPLETED`。
+
+> 实际上，现代版本的 Python `asyncio.wait` 只接受 `task` 对象。
+
+### Waiting for all tasks to complete
+
+不指定 `return_when` 的默认情况下，会在所有任务完成后再返回，这和 `asyncio.gather` 很像，但有店差别。
+
+```Python
+import asyncio
+import aiohttp
+from aiohttp import ClientSession
+from util import async_timed
+
+async def fetch_status(session: ClientSession, url: str) -> int:
+    async with session.get(url, ssl=False) as result:
+        return result.status
+
+@async_timed()
+async def main():
+    async with aiohttp.ClientSession() as session:
+        fetchers = [
+            asyncio.create_task(fetch_status(session, 'https://example.com')),
+            asyncio.create_task(fetch_status(session, 'https://example.com')),
+        ]
+        done, pending = await asyncio.wait(fetchers)
+
+        print('Done task count:', len(done))
+        print('Pending task count:', len(pending))
+
+        for done_task in done:
+            result = await done_task
+            print(result)
+
+asyncio.run(main())
+```
+
+输出如下：
+
+```text
+Starting <function main at 0x102d19da0> with args () {}
+Done task count: 2
+Pending task count: 0
+200
+200
+Finished <function main at 0x102d19da0> in 0.6201 second(s)
+```
+
+如果有一个请求报错，`asyncio.wait` 并不会像 `asyncio.gather` 那样抛出（第一个）异常。
+在这种情况下，有这些异常处理方法。
+可以使用 `await` 并抛出异常，也可以使用 `await` 将其包裹在 `try except` 块中以处理异常。
+或者可以使用 `task.result()` 和 `task.exception()` 方法。
+我们可以安全地调用这些方法，因为 `done` 集合中的任务都是已完成的任务；如果尚未完成就调用这些方法则会抛出异常。
+
+下面使用两个 Task 方法来处理异常：处理完成打印结果，如果报错则记录日志。
+
+```Python
+import asyncio
+import logging
+
+@async_timed()
+async def main():
+    async with aiohttp.ClientSession() as session:
+        good_request = fetch_status(session, 'https://www.example.com')
+        bad_request = fetch_status(session, 'python://bad')
+
+        fetchers = [
+            asyncio.create_task(good_request),
+            asyncio.create_task(bad_request),
+        ]
+        done, pending = await asyncio.wait(fetchers)
+
+        print('Done task count:', len(done))
+        print('Pending task count:', len(pending))
+
+        for done_task in done:
+            # result = await done_task will throw an exception
+            if done_task.exception() is None:
+                print(done_task.result())
+            else:
+                logging.error('Request got an exception', exc_info=done_task.exception())
+
+asyncio.run(main())
+```
+
+使用 `done_task.exception()` 会检查是否有报错。
+如果没有则可以使用 `done_task.result()` 获取结果。
+如果 `exception` 不是 `None`，那么就产生了报错，需要进行处理。
+这里简单打印了异常栈跟踪，运行该代码会输出类似内容：
+
+```text
+ERROR:root:Request got an exception
+Traceback (most recent call last):
+  File "/Users/starslayerx/GitHub/book_asyncio/async_wait.py", line 8, in fetch_status
+    async with session.get(url, ssl=False) as result:
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/client.py", line 1510,
+in __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/client.py", line 558, i
+n _request
+    raise NonHttpUrlClientError(url)
+aiohttp.client_exceptions.NonHttpUrlClientError: python://bad
+```
+
+### Waiting for exceptions
+
+`ALL_COMPLETED` 的缺点和 `gather` 函数一样。
+即无法在运行中处理异常，必须等待所有任务处理完成。
+这会导致一个问题，即对于某些异常，我们可能会希望取消剩下的所有任务。
+因此我们希望立刻处理产生错误的异常，然后继续运行剩下的任务。
+
+为了支持这种情况，`wait` 使用 `FIRST_EXCEPTION` 选项。
+下面是一个在遇到异常时取消请求的例子。
+
+```Python
+import aiohttp
+import asyncio
+import loggin
+from util import async_timed
+
+
+async def fetch_status(session: ClientSession, url: str, delay: int | None = None) -> int:
+    if delay:
+        asyncio.sleep(delay)
+    async with session.get(url, ssl=False) as result:
+        return result.status
+
+@async_timed()
+async def main():
+    async with aiohttp.ClientSession() as session:
+        fetchers = [
+            asyncio.create_task(fetch_status(session, 'python://bad.com')),
+            asyncio.create_task(fetch_status(session, 'https://www.example.com', delay=3)),
+            asyncio.create_task(fetch_status(session, 'https://www.example.com', delay=3)),
+        ]
+
+        done, pending = await asyncio.wait(fetchers, return_when=asyncio.FIRST_EXCEPTION)
+
+        print('Done task count:', len(done))
+        print('Pending task count:', len(pending))
+
+        for done_task in done:
+            if done_task.exception() is None:
+                print(done_task.result())
+            else:
+                logging.error('Request got an exception', exc_info=done_task.exception())
+
+        for pending_task in pending:
+            pending_task.cancel()
+
+asyncio.run(main())
+```
+
+在当前列表中，有一个错误请求和两个正确请求，每个持续 3 秒。
+当 `await asyncio.wait` 语句时，会立刻返回错误请求。
+然后循环 `done` 任务集合，这种情况下，只有一个已完成任务。
+然后，会执行分支代码，并打印异常。
+
+在 `pending` set 中有两个元素，每个请求消耗大概 3 秒，而且第一个请求几乎立刻失败。
+因为这里希望停止运行，对 task 调用 `cancel` 方法。
+有以下的输出：
+
+```text
+Starting <function main at 0x102af1e40> with args () {}
+Done task count: 1
+Pending task count: 2
+ERROR:root:Request got an exception
+Traceback (most recent call last):
+  File "/Users/starslayerx/GitHub/book_asyncio/async_wait.py", line 10, in fetch_status
+    async with session.get(url, ssl=False) as result:
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/client.py", line 1510, i
+n __aenter__
+    self._resp: _RetType = await self._coro
+                           ^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/aiohttp/client.py", line 558, in
+ _request
+    raise NonHttpUrlClientError(url)
+aiohttp.client_exceptions.NonHttpUrlClientError: python://bad.com
+Finished <function main at 0x102af1e40> in 0.0015 second(s)
+```
+
+### Processing results as they complete
+
+`ALL_COMPLETED` 和 `FIRST_EXCEPTION` 都有一个缺陷，即如果没有出现异常，他们都必须等到所有任务完成。
+如果希望在结果返回后能立刻处理它，类似 `as_completed` 函数那样，但该函数看不到哪些任务完成了，哪些任务还在运行。
+此时，可以使用 `return_when` 的 `FIRST_COMPLETED` 选项。
+
+该选项会让 `wait` 有至少一个返回值后返回，可能是 task 完成或出现异常。
+然后可以据此，取消其他任务，或调整还在运行中的任务。
+下面通过该选项发送几个 web 请求，并处理最先完成的哪个。
+
+```Python
+import asyncio
+import aiohttp
+from util import async_timed
+
+@async_timed()
+async def main():
+    async with aiohttp.ClientSession() as session:
+        url = 'https://www.example.com'
+        fetchers = [
+            asyncio.create_task(fetch_status(session, url)),
+            asyncio.create_task(fetch_status(session, url)),
+            asyncio.create_task(fetch_status(session, url)),
+        ]
+        done, pending = await asyncio.wait(fetchers, return_when=asyncio.FIRST_COMPLETED)
+
+        print('Done task count:', len(done))
+        print('Pending task count:', len(pending))
+
+        for done_task in done:
+            print(await done_task)
+
+asyncio.run(main())
+```
+
+输出如下，一个请求完成后立刻返回：
+
+```text
+Starting <function main at 0x104ee59e0> with args () {}
+Done task count: 1
+Pending task count: 2
+200
+Finished <function main at 0x104ee59e0> in 0.6419 second(s)
+```
+
+这些请求几乎可以在同一时间完成，因此还可能会看到输出显示有两到三个任务已完成。
+
+下面例子中，循环判断 `pending` 集合中是否还有任务。
+一旦 `wait` 获得结果，就更新 `done` 和 `pending` 集合，然后打印出所有已完成的任务。
+这将产生类似于 `as_completed` 的行为，不同之处在于能更清晰地了解哪些任务已完成。
+
+```Python
+import asyncio
+import aiohttp
+from util import async_timed
+
+async def fetch_status(session: aiohttp.ClientSession, url: str) -> int:
+    async with session.get(url, ssl=False) as result:
+        return result.status
+
+@async_timed()
+async def main():
+    async with aiohttp.ClientSession() as session:
+        url = 'https://www.example.com'
+        pending = [
+            asyncio.create_task(fetch_status(session, url)),
+            asyncio.create_task(fetch_status(session, url)),
+            asyncio.create_task(fetch_status(session, url)),
+        ]
+
+        while pending:
+            done, pending = asyncio.wait(pending, return_when=asyncio.FIRST_COMPLETED)
+            print('Done task count:', len(done))
+            print('Pending task count:', len(pending))
+
+            for done_task in done:
+                print(await done_task)
+
+asyncio.run(main())
+```
+
+输出如下
+
+```text
+Starting <function main at 0x10222dda0> with args () {}
+Done task count: 1
+Pending task count: 2
+200
+Done task count: 2
+Pending task count: 0
+200
+200
+Finished <function main at 0x10222dda0> in 0.7814 second(s)
+
+```
+
+也可能这样
+
+```text
+Starting <function main at 0x1028fdda0> with args () {}
+Done task count: 1
+Pending task count: 2
+200
+Done task count: 1
+Pending task count: 1
+200
+Done task count: 1
+Pending task count: 0
+200
+Finished <function main at 0x1028fdda0> in 0.7221 second(s)
+```
+
+### Handling timeouts
+
+为了更细粒度的控制，`wait` 还允许我们设置超时时间。
+可以通过设置 `timeout` 参数来指定最大的秒数。
+如果超出超时时间，`wait` 会返回 `done` 和 `pending` 任务集合。
+对比之前的 `wait_for` 和 `as_completed`，`wait` 在处理超时方面有一些差异。
+
+- `asyncio.wait_for` 将单个特定任务设置"硬性时间"，一旦超时会自动取消正在运行的任务，抛出 `asyncio.TimeoutError` 或 `TimeoutError` (Python 3.11+)
+
+  ```Python
+  try:
+      result = await asyncio.wait_for(my_coro(), tiemout=5.0)
+  except asyncio.TimeoutError:
+      print('任务超时，且已被自动取消')
+  ```
+
+- `asyncio.as_completed` 并发处理多个任务，并在任何一个任务完成时处理结果，其超时时间是对于整个迭代过程的。超时并不会自动取消剩余任务，需要手动处理剩下任务。
+
+  ```Python
+  for coro in asyncio.as_completed([task1, task2], timeout=2.0)
+    try:
+        result = await coro
+        print(f'得到结果: {result}')
+    except asyncio.TimeoutError:
+        print('时间到了，剩下的任务还在后台跑，但我等不到了')
+  ```

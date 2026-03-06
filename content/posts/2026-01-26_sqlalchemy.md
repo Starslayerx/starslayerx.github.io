@@ -4,6 +4,7 @@ draft = true
 title = 'SQLALchemy - Database Tables'
 categories = ['Note']
 tags = ['Python', 'Database']
+
 +++
 
 ### SQLALchemy Core and SQLALchemy ORM
@@ -336,7 +337,7 @@ print(q)
 最常见的方法是使用 `execute()` 命令：
 
 ```Python
-r = session.execute()
+r = session.execute(q)
 list(r)
 # [(Product(1, Acorn Atom),),
 #  (Product(2, BBC Micro),),
