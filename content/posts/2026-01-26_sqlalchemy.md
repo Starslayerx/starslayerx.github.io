@@ -1,10 +1,9 @@
 +++
 date = '2026-01-26T8:00:00+01:00'
-draft = true
+draft = false
 title = 'SQLALchemy - Database Tables'
 categories = ['Note']
 tags = ['Python', 'Database']
-
 +++
 
 ### SQLALchemy Core and SQLALchemy ORM
@@ -337,7 +336,7 @@ print(q)
 最常见的方法是使用 `execute()` 命令：
 
 ```Python
-r = session.execute(q)
+r = session.execute()
 list(r)
 # [(Product(1, Acorn Atom),),
 #  (Product(2, BBC Micro),),
@@ -772,3 +771,20 @@ A, B, C, D, E, F, G
 但这会更加复杂，此外，`where()` 方案不允许随机跳转，用户一次只能移动一页。
 
 #### Obtain an Element by its Primary Key
+
+根据主键查询十分有用，且查询结果只可能为 1 个或没有。
+
+```Python
+q = select(Product).where(Product.id == 23)
+session.scalar(q)  # Product(23, 'CT-80')
+```
+
+这种查询十分常见，SQLAlchemy 实际上有一个更简单的方法
+
+```Python
+session.get(Product, 23)  # Product(23, 'CT-80')
+```
+
+如果结果不存在，则会返回 `None`。
+
+## Indexs
