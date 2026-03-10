@@ -8,7 +8,7 @@ tags = ['Python', 'Database']
 
 ### SQLALchemy Core and SQLALchemy ORM
 
-SQLALchemy 分位两个模块：Core 和 ORM (Object-Relational Mapping)。
+SQLALchemy 分为两个模块：Core 和 ORM (Object-Relational Mapping)。
 Core 模块包含对所有受支持数据库方言的集成逻辑，一组用于描述数据库表的类，用于 Python 语言生成 SQL 语句。
 ORM 模块在 Python 应用程序中引入了一层抽象，使得许多数据库操作可以根据对 Python 对象执行的操作自动推导出来。
 
@@ -139,6 +139,8 @@ class Product(Model):
 Model 子类通过类属性定义：
 
 `__tablename__` 属性定义数据库表名称，常见命名规范是表名称使用复数小写形式，这和模型名称形成对比，即使用单数的 camel case 驼峰命名法。
+
+> `Mapped[]` 是一个范型容器，主要作用是告诉 IDE 和静态检查器，这个属性在 Python 层属于什么类型。
 
 剩余定义的属性是表中的列，`Mapped[t]` 类型声明用于定义每个列，其中 `t` 是 Python 类型，例如 `int`, `str` 或 `datetime`。
 对于 year 这样的普通列来说完全足够了，如果列需要额外的功能，就要将其赋值给一个 `mapped_column()` 构造器。
@@ -788,3 +790,211 @@ session.get(Product, 23)  # Product(23, 'CT-80')
 如果结果不存在，则会返回 `None`。
 
 ## Indexs
+
+数据库在搜索信息的时候，实际上有多种不同的算法。
+当给予一个查询时，数据库会决定使用更合适更高效的算法。
+
+有一种算法总是可用的：表扫描 table scan。
+表扫描 table scan 操作包括在按顺序读取条目时，对所有行依次评估 evaluate 查询过滤器 query filters。
+
+表扫描是数据库没有其他方法后，最后会使用的算法，或者当的表足够小，没必要使用复杂算法时。
+作为数据库的设计者，需要确保数据通过合适的方式进行索引，从而支持更加复杂的搜索算法。
+
+当列被标记为索引后，数据库会维护一个二叉树结构的数据结构，来让该列的查询和排序更加高效。
+
+例如下面的例子：
+
+- id
+- name
+- manufacturer
+- year
+
+`id` 列是主键，数据库会自动将该列索引，因此根据主键搜索有很多优化。
+而 `name`, `manufacturer` 和 `year` 这样的列经常用于 `where()`, `group_by()` 和 `order_by()` 之类的查询，当前没有被索引，因此会一行一行查询。
+
+对于需要索引的列，在模型定义中添加 `index=True`:
+
+```Python
+class Product(Model):
+    __tablename__ = 'products'
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(String(64), index=True)
+    manufacturer: Mapped[str] = mapped_column(String(64), index=True)
+    year: Mapped[int] = mapped_column(index=True)
+    country: Mapped[str] = mapped_column(String(32))
+    cpu: Mapped[str] = mapped_column(String(32))
+
+    def __repr__(self):
+        return f'Product({self.id}, "{self.name}")'
+```
+
+## Constrains
+
+另一个好的数据库设计实践是为数据库分配约束。
+`Product` 模型有一个叫做 `PRIMARY KEY` 的约束，即 `primary_key=True` 参数。
+除了主键外，还有 `UNIQUE` 和 `NOT NULL` 这些其他列常用的约束。
+
+有唯一约束 `UNIQUE` 的列不能有重复值，通过参数 `unique=True` 实现。
+非空约束 `NOT NULL` 防止列拥有一个空的或为定义的值。
+通过 `Mapped[t]` 定义的字段默认会有 `NOT NULL` 约束，如果需要允许空值，则使用 `Mapped[Optional[t]]`。
+
+下面是添加约束的 `Product` 类：
+
+```Python
+from typing import Optional
+from sqlalchemy import String
+
+class Product(Model):
+    __tablename__ = 'products'
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(String(64), index=True, unique=True)
+    manufacturer: Mapped[str] = mapped_column(String(64), index=True)
+    year: Mapped[int] = mapped_column(index=True)
+    country: Mapped[Optional[str]] = mapped_column(Sting(32))
+    cpu: Mapped[Optional[str]] = mapped_column(String(32))
+
+    def __repr__(self):
+        return f'Product({self.id}, "{self.name}")'
+```
+
+## Deletions
+
+在之前已经介绍了通过 `add()` 来添加项，我们也可以通过 `delete()` 删除项。
+
+```Python
+session = Session()
+p = session.get(Product, 23)
+session.delete(p)
+session.commit()
+```
+
+一旦该删除被提交，将无法恢复
+
+```Python
+p = session.get(Product, 23)
+print(p)  # None
+```
+
+## Exercises
+
+1. 1983 年的前 3 个字母表排序的结果
+
+```Python
+from sqlalchemy import select
+
+with Session() as session:
+    query = select(Product).where(Product.year == 1983).order_by(Product.name).limit(3)
+    products = session.scalars(query).all()
+
+    for p in products:
+        print(p)
+```
+
+2. 含有 "Z80" 的 CPU
+
+```Python
+with Session() as session:
+    query = select(Product).where(Product.cpu.like('%Z80%'))
+    # query = select(Product).where(Product.cpu.contains('Z80'))
+    products = session.scalars(query).all()
+
+    for p in products:
+        print(p)
+```
+
+3. 1990 年前，CPU 含有 "Z80" 或 "6502" 的产品，并按名称字母表排序
+
+```Python
+with Session() as session:
+    query = (
+        select(Product)
+        .where(
+        or_(Product.cpu.contains('Z80'), Product.cpu.contains('6502')),
+        Product.year < 1990
+        )
+        .order_by(Product.name)
+    )
+    products = session.scalars(query).all()
+
+    for p in products:
+        print(p)
+```
+
+4. 在 1980s 年代有产品的制造商
+
+```Python
+with Session() as session:
+    query = (
+        select(Manufacturer)
+        .join(Manufacturer.products)
+        .distinct()
+        .where(Product.year >= 1980, Product.year < 1990)
+    )
+    manufacturers = session.scalars(query).all()
+
+    for m in manufacturers:
+        print(m)
+```
+
+5. 名称以 T 字母开头的生产商名称，并按照字母表排序
+
+```Python
+with Session() as session:
+    query = select(Manufacturer).where(Manufacturer.name.startswith('T')).order_by(Manufacturer.name)
+    manufacturers = session.scalars(query).all()
+
+    for m in manufacturers:
+        print(m)
+```
+
+6. 在 Croatia 制造产品的最早、最晚的年份，以及产品数量
+
+```Python
+from sqlalchemy import func
+
+with Session() as session:
+    query = (
+        select(
+            func.min(Product.year),
+            func.max(Product.year),
+            func.count()
+        )
+        .where(Product.country == 'Croatia')
+    )
+    results = session.execute(query).one()
+
+    print(results)
+```
+
+7. 每年发布的产品：结果应从产品数量最多的开始排序，没有产品的年份应该忽略
+
+```Python
+with Session() as session:
+    query = (
+        select(Product.year, func.count())
+        .group_by(Product.year)
+        .order_by(func.count().desc())
+    )
+    results = session.execute(query).all()
+
+    for year, count in results:
+        print(year, count)
+```
+
+8. 国家在 USA 的生产商
+
+```Python
+with Session() as session:
+    query = (
+        select(Manufacturer)
+        .join(Manufacturer.products)
+        .where(Product.country == 'USA')
+        .distinct()
+    )
+    manufacturers = session.scalars(query).all()
+
+    for m in manufacturers:
+        print(m)
+```

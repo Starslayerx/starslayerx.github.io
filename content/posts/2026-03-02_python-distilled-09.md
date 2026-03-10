@@ -384,3 +384,42 @@ os.environ['NAME'] = 'VALUE'
 与命令行选项类似，编码错误的环境变了可能会生成使用 `surrogateescape` 错误处理策略的字符串。
 
 ## Files and File Objects
+
+如果要打开一个文件，使用内置的 `open()` 函数。
+它也结合上下文管理器打开文件：
+
+```Python
+# read text file all at once
+with open('filename.txt', 'rt') as file:
+    data = file.read()
+
+# read a file line-by-line
+with open('filename.txt', 'rt') as file:
+    for line in file:
+        ...
+
+# write to a text file
+with open('out.txt', 'wt') as file:
+    file.write('Some output\n')
+    print('More output', file=file)
+```
+
+在大多数情况下，使用 `open()` 是编辑文件的直接方式：
+
+```Python
+open('name.txt')        # Open name.txt for reading
+open('name.txt', 'rt')  # Same above
+open('name.txt', 'wt')  # Open for writing
+open('name.txt', 'r+t') # Read and write
+open('name.txt', 'at')  # Append to file
+open('name.txt', 'bt')  # Binary mode read
+open('name.txt', 'wt')  # Binary mode write
+# 't' means text
+```
+
+## Filenames
+
+为了打开文件，需要文件名。
+该名称既可以是绝对路径，也可以是相对路径。
+对于相对路径，是相对于当前文件路径的，可以通过 `os.getcwd()` 获取，即当前工作目录。
+如果要修改，使用 `os.chadir(newdir)` 来修改工作目录。
