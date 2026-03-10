@@ -44,7 +44,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
 &lt;h3 id="3-高阶函数-high-order-function"&gt;3. 高阶函数 (High-Order Function)&lt;/h3&gt;
 &lt;p&gt;如果我们想让缓存逻辑通用化，不只针对 &lt;code&gt;call_qwen&lt;/code&gt;，我们可以写一个接收函数作为参数的高阶函数：&lt;/p&gt;</description></item><item><title>SQLALchemy - Database Tables</title><link>https://starslayerx.github.io/posts/sqlalchemy-database-tables/</link><pubDate>Mon, 26 Jan 2026 08:00:00 +0100</pubDate><guid>https://starslayerx.github.io/posts/sqlalchemy-database-tables/</guid><description>&lt;h3 id="sqlalchemy-core-and-sqlalchemy-orm"&gt;SQLALchemy Core and SQLALchemy ORM&lt;/h3&gt;
-&lt;p&gt;SQLALchemy 分位两个模块：Core 和 ORM (Object-Relational Mapping)。
+&lt;p&gt;SQLALchemy 分为两个模块：Core 和 ORM (Object-Relational Mapping)。
 Core 模块包含对所有受支持数据库方言的集成逻辑，一组用于描述数据库表的类，用于 Python 语言生成 SQL 语句。
 ORM 模块在 Python 应用程序中引入了一层抽象，使得许多数据库操作可以根据对 Python 对象执行的操作自动推导出来。&lt;/p&gt;
 &lt;h3 id="database-engine"&gt;Database Engine&lt;/h3&gt;
