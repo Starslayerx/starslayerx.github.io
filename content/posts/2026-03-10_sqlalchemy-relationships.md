@@ -1,6 +1,6 @@
 +++
 date = '2026-03-10T8:00:00+01:00'
-draft = true
+draft = false
 title = 'SQLALchemy - Relationships'
 categories = ['Note']
 tags = ['Python', 'Database']
@@ -441,4 +441,236 @@ session.commit()
 
 如果制造商拥有上述被删除的那款产品，则删除操作本应该成功。
 但由于制造商还拥有其他几款产品，这些产品仍然存在，并且他们的 `manufacturer_id` 都指向这条记录。
-如果删除制造商，这些产品的外键将会变为无效
+如果删除制造商，这些产品的外键将会变为无效。
+SQLAlchemy 能够识别这种情况，并尝试将失效的外键设置为 NULL。
+然而，`manufacturer_id` 没有设置为可选的，因此尝试设置为 NULL 会失败，然后产生上面报错。
+
+要注意，当一个提交 commit 失败产生时，该 session 会变成错误状态，并切在 rollback 之前无法再次使用。
+如果使用上下文管理器则不会导致任何问题，因为发生错误后 session 总是会回滚，然后关闭退出。
+如果是手动管理，则需要显示回滚：
+
+```Python
+session.rollback()
+```
+
+例如尝试删被删除项的外键的这种自动操作，被成为 cascades 级联，并且不限于删除操作。
+还有其他一些情况，SQLAlchemy 也会将子对象的修改结果应用到父对象上。
+例如，之前的添加产品代码，当创建一个 `Product` 对象实例后，并不会显示的将其加入 session。
+因为父级对象已被添加，切父级在会话中的包含会 “级联” cascades 到其子集。
+
+期望的级联 cascades 行为在每个关系 relationship 对象中定义，在很多情况下，默认就是最好的配置。
+可以通过 `relationships()` 的 `cascade` 参数中传入以逗号分割的选项字符串。
+由于该参数十分复杂，这里只讨论两个最常见的类型：
+
+- `'save-update, merge'`: 这是一种保守的级联 cascading 行为，也是默认设置，推荐用于大多数关联关系。
+  这种情况下，如果父对象被添加到 session 中，也会包含在内。
+  此外，当删除操作导致外键失效时，将其设置为 NULL 的行为，实际上是通过该列表中不设置 delete 选项来定义的。
+
+- `'all, delete-orphan'`: 这是一种更激进的级联配置。
+  它使父对象执行的大多数操作同样适用于其子对象，特别是随父对象一同删除子对象。
+  all 选项常会引起混淆，因为尽管其名称如此，它涵盖了出 delete-orphan 之外所有级联操作。
+  而 delete-orphan 作用是：当子对象从关联关系中移除并成为孤儿时，即使父对象仍在数据库中，这些子对象也会被删除。
+
+后一种级联 cascade 设置更加适合 products 和 manufacturers 之间的关系。
+如果修改成这种，当删除一个 manufacturer 后，任何相关产品也会被删除。
+下面是修改方式：
+
+```Python
+class Manufacturer(Model):
+    # ...
+    products: Mapped[list['Product']] = relationship(
+        cascade='all, delete-orphan', back_populates='manufacturer'
+    )
+```
+
+重启一个 Python 会话，然后再删除制造商，就会发现相关产品也都被删除了：
+
+```Python
+from db import Session
+from models import Product, Manufacturer
+session = Session()
+
+m = session.get(Manufacturer, 8)
+session.delete(m)
+session.commit()
+```
+
+### Detaching Related Objects
+
+有时候删除两个对象之间的关系是有必要的，但并不删除对象本书。
+这可以被认为一种 "分离" detach 操作，这会拆开两个对象键的连接。
+
+对于一对多关系有两种方式删除对象间联系，取决于从哪一侧进行次操作。
+当从 "一" 方向进行操作时，关系对象会以类似列表的形式呈现 "多" 方所有相关的对象。
+在这种情况下，关系的 `remove()` 方法可以用来移除一个元素，遵循熟悉的列表语义。
+
+下面例子获取到一个 product 和 manufacturer 并取消他们之间的联系：
+
+```Python
+p = session.get(Product, 1)
+m = p.manufacturer
+
+m.products.remove(p)
+session.commit()
+```
+
+当该 session 提交后，这些产品和制造商之间就不再有联系了。
+但这会导致一个意料之外的结果，如果现在尝试获取产品，会发现已经不存在了：
+
+```Python
+p = session.get(Product, 1)
+print(p)  # None
+```
+
+relationship 中的 `delete-orphan` 级联选项覆盖了产品变为孤儿的情况，这表明孤儿对象需要被删除。
+如果没有 `delete-orphan` 选项，SQLAlchemy 会将产品的外键 `manufacturer_id` 修改外 None 来破坏 parent 的链接。
+但是该列无法接受空值，因此提交操作会失败，关系不会被移除。
+
+对于一对多关系，从 "多" 方的对象必须通过添加 `Optional` 类型提示，来允许对象处于孤立状态，这样可以避免错误。
+
+也可以从 "多" 方分离一对多关系：
+
+```Python
+p = session.get(Product, 2)
+p.manufacturer = None
+session.commit()
+```
+
+当从 product 端处理时，通过将父对象设置为 None 来断开关系：
+对于一些特定的关系，孤儿产品是不被允许的，因为关系对象或外键没有设置 `Optional` 类型提示，故 SQLAlchemy 会产生报错。
+
+## Exercises
+
+1. IBM 或 Texas Instruments 的产品列表
+
+```Python
+
+query = (
+    select(Product)
+    .join(Product.manufacturer)
+    .where(
+        Mnaufacturer.name.in_(['IBM', 'Texas Instruments'])
+    )
+)
+result = session.scalars(query).all()
+```
+
+2. 在 Brazil 运营的制造商
+
+```Python
+query = (
+    select(Manufacturer)
+    .join(Manufacturer.products)
+    .where(Product.country == 'Brazil')
+)
+```
+
+3. 制造商名称含有 Research 的产品
+
+```Python
+query = (
+    select(Product)
+    .join(Product.manufacturer)
+    .where(Manufacturer.name.contains("Research"))
+)
+```
+
+4. 拥有基于 Z80 CPU 产品的制造商
+
+```Python
+query = (
+    select(Manufacturer)
+    .join(Manufacturer.products)
+    .where(Product.cpu.contains('Z80'))
+    .distinct()
+)
+```
+
+或性能更好的方法
+
+```Python
+from sqlalchemy import exits
+
+query = (
+    select(Manufacturer)
+    .where(
+        exits()
+        .where(Product.manufacturer_id == Manufacturer.id)
+        .where(Product.cpu.contains('Z80'))
+    )
+)
+```
+
+这样无需笛卡尔积后再去重
+
+5. 产品不基于 6502 CPU 的制造商
+
+```Python
+# 定义子查询：存在且包含 6502 CPU 产品的制造商
+manufacturer_6502 = (
+    exists()
+    .where(Manufacturer.id == Product.manufacturer_id)
+    .where(Product.cpu.contains('6502'))
+)
+
+query = select(Manufacturer).where(~manufacturer_6502)
+```
+
+或者使用 `NOT IN` 子查询
+
+```Python
+# 定义子查询：找出所有生产 6502 CPU  厂商 id 列表
+manufacturer_6502_id = (
+    select(Product.manufacturer_id)
+    .where(Product.cpu.contains('6502'))
+    .scalar_subquery()
+)
+
+query = select(Manufacturer).where(
+    Manufacturer.id.not_in(manufacturer_6502_id)
+)
+```
+
+6. 查询每个制造商各自最早的产品名称和发布年份
+
+```Python
+# 自定义聚合列
+first_year = func.min(Product.year).label('first_year')
+
+query = (
+    select(Manufacturer, first_year)
+    .join(Manufacturer.products)
+    .group_by(Manufacturer)
+    .order_by(first_year)
+)
+session.execute(query).all()
+```
+
+7. 查询产品数量在 `[3, 5]` 之间的制造商
+
+```Python
+query = (
+    select(Manufacturer)
+    .join(Mnaufacturer.products)
+    .group_by(Manufacturer)
+    .having(  # having: 用于处理聚合函数
+        func.count(Product.id)
+        .between(3, 5)
+    )
+)
+session.scalars(query).all()
+```
+
+8. 运营时间超过 5 年的制造商
+
+```Python
+query = (
+    select(Manufacturer)
+    .join(Manufacturer.products)
+    .group_by(Manufacturer)
+    .having(
+        func.max(Product.year) - func.min(Product.year) > 5
+    )
+)
+session.scalars(query).all()
+```
