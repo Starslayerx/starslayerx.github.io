@@ -1,7 +1,7 @@
 +++
 date = '2026-03-10T8:00:00+01:00'
 draft = false
-title = 'SQLALchemy - Relationships'
+title = 'SQLALchemy - Relationships: One-To-Many Relationships'
 categories = ['Note']
 tags = ['Python', 'Database']
 +++

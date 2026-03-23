@@ -1,5 +1,5 @@
 +++
-date = '2026-03-16T8:00:00+01:00'
+date = '2026-03-30T8:00:00+01:00'
 draft = false
 title = 'SQLALchemy - Asynchronous'
 categories = ['Note']
@@ -317,3 +317,8 @@ class Language(Model):
     )
     # ...
 ```
+
+## Alembic Configuration
+
+数据库迁移是另一个迁移到异步模型需要修改的地方。
+Alembic 使用使用 `templates` 模版的概念生成迁移仓库 repositories，里面会创建 `init` 命令，特别是 `env.py` 和 `alembic.ini` 文件。
