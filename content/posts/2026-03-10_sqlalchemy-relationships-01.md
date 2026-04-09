@@ -85,6 +85,8 @@ class Product(Model):
 ```Python
 from sqlalchemy.orm import relationship
 
+
+# Mapped[关联表类名] = relationship(back_populates=关联的对应属性)
 class Product(Model):
     # ...
     manufacturer: Mapped['Manufacturer'] = relationship(back_populates='products')
