@@ -1,5 +1,5 @@
 +++
-date = '2026-03-02T8:00:00+01:00'
+date = '2026-04-14T8:00:00+01:00'
 draft = false
 title = 'SQL Performance Explained: Anatomy of an Index'
 categories = ['Note']
