@@ -1,4 +1,34 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Home on Starslayerx' Blog</title><link>https://starslayerx.github.io/</link><description>Recent content in Home on Starslayerx' Blog</description><image><title>Starslayerx' Blog</title><url>https://starslayerx.github.io/images/og-default.avif</url><link>https://starslayerx.github.io/images/og-default.avif</link></image><generator>Hugo -- 0.154.5</generator><language>en-US</language><lastBuildDate>Mon, 30 Mar 2026 08:00:00 +0100</lastBuildDate><atom:link href="https://starslayerx.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>SQLALchemy - Asynchronous</title><link>https://starslayerx.github.io/posts/sqlalchemy-asynchronous/</link><pubDate>Mon, 30 Mar 2026 08:00:00 +0100</pubDate><guid>https://starslayerx.github.io/posts/sqlalchemy-asynchronous/</guid><description>&lt;h2 id="engines-metadata-and-sessions"&gt;Engines, Metadata and Sessions&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Home on Starslayerx' Blog</title><link>https://starslayerx.github.io/</link><description>Recent content in Home on Starslayerx' Blog</description><image><title>Starslayerx' Blog</title><url>https://starslayerx.github.io/images/og-default.avif</url><link>https://starslayerx.github.io/images/og-default.avif</link></image><generator>Hugo -- 0.154.5</generator><language>en-US</language><lastBuildDate>Tue, 14 Apr 2026 08:00:00 +0100</lastBuildDate><atom:link href="https://starslayerx.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>SQL Performance Explained: Anatomy of an Index</title><link>https://starslayerx.github.io/posts/sql-performance-explained-anatomy-of-an-index/</link><pubDate>Tue, 14 Apr 2026 08:00:00 +0100</pubDate><guid>https://starslayerx.github.io/posts/sql-performance-explained-anatomy-of-an-index/</guid><description>&lt;p&gt;Index 索引是数据库中一个独特的结构，通过使用 &lt;code&gt;create index&lt;/code&gt; 语句来构建。
+这意味着一个索引是冗余的，创建索引不会改变表数据。
+它会创建一个新的数据结构，并指向该表。
+总而言之，索引有自己的空间，且高度冗余 &lt;em&gt;redundant&lt;/em&gt;，并指向存储在不同位置的实际信息。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Clustered Indexes&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;SQL Server 和 Mysql (InnoDB) 对索引是什么有更加广泛的视角。
+它们将完全由索引结构构成的表，称为聚集索引 &lt;em&gt;clustered indexes&lt;/em&gt;。
+这些表在 Oracle 叫 Index Organized Tables (IOT)。&lt;/p&gt;
+&lt;p&gt;搜索数据库索引就像查找电话目录一样，核心思想是所有实例都是按顺序排列的。
+查找有序的数据快速且简单，因为顺序决定了条目位置。&lt;/p&gt;
+&lt;p&gt;数据库索引比电话目录更加复杂一些，因为它会不断变化。
+每次变化都去修改目录是不可行的，因为实体之间没有额外空间。
+目录修改一般会等到累计到足够的变化后再处理，而数据库等不了那么久，
+它必须处理 insert 插入，delete 删除和 update 更新。&lt;/p&gt;
+&lt;p&gt;数据库结合了两种数据结构来应对挑战：
+双向链表 double linked list 和搜索树 search tree，这两种结构解释了数据库的大部分性能特征。&lt;/p&gt;
+&lt;h3 id="the-index-leaf-nodes"&gt;The Index Leaf Nodes&lt;/h3&gt;
+&lt;p&gt;索引的首要目标是提供索引数据的排序表示。
+然而，由于插入语句 insert statement 需要为新的数据移动后续条目。
+移动大量数据是十分耗时的，这样会导致 insert 插入语句很慢。
+解决方案是建立一个独立于内存物理顺序的逻辑顺序。&lt;/p&gt;
+&lt;p&gt;逻辑顺序通过双向链表建立，每个头都有指向两侧邻居的指针。
+新 node 插入的时候，修改两侧的指针指向。
+node 的物理地址不重要，因为双向链表维护的是逻辑顺序。&lt;/p&gt;
+&lt;p&gt;数据库使用双向链表来连接所谓是索引叶节点 &lt;em&gt;leaf nodes&lt;/em&gt;。
+每个叶节点存储在一个数据库块 &lt;em&gt;database block&lt;/em&gt; 或叶 &lt;em&gt;page&lt;/em&gt; 中，即数据库的最小存储单元。
+每块都是一样的大小，通常几千字节 &lt;em&gt;kilobytes&lt;/em&gt;。
+数据库会尽可能利用每个块的空间，并在每个块中存储尽可能多的索引条目。
+这意味着索引顺序在两个层面维护：每个叶节点内的索引条目，以及叶节点之间通过双向链表连接。&lt;/p&gt;</description></item><item><title>SQLALchemy - Asynchronous</title><link>https://starslayerx.github.io/posts/sqlalchemy-asynchronous/</link><pubDate>Mon, 30 Mar 2026 08:00:00 +0100</pubDate><guid>https://starslayerx.github.io/posts/sqlalchemy-asynchronous/</guid><description>&lt;h2 id="engines-metadata-and-sessions"&gt;Engines, Metadata and Sessions&lt;/h2&gt;
 &lt;p&gt;下面是一个异步的数据库链接示例：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sqlalchemy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;MetaData&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sqlalchemy.orm&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;DeclarativeBase&lt;/span&gt;
@@ -105,37 +135,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__repr__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Product(&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;id&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;, &amp;#34;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#34;)&amp;#39;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;引用其他表的主键的列，被称为外键 foreign key，并会给予一个外键约束。
-一个好的命名惯例是使用被引用的表，并添加后缀 &lt;code&gt;_id&lt;/code&gt;。&lt;/p&gt;</description></item><item><title>SQL Performance Explained: Anatomy of an Index</title><link>https://starslayerx.github.io/posts/sql-performance-explained-anatomy-of-an-index/</link><pubDate>Mon, 02 Mar 2026 08:00:00 +0100</pubDate><guid>https://starslayerx.github.io/posts/sql-performance-explained-anatomy-of-an-index/</guid><description>&lt;p&gt;Index 索引是数据库中一个独特的结构，通过使用 &lt;code&gt;create index&lt;/code&gt; 语句来构建。
-这意味着一个索引是冗余的，创建索引不会改变表数据。
-它会创建一个新的数据结构，并指向该表。
-总而言之，索引有自己的空间，且高度冗余 &lt;em&gt;redundant&lt;/em&gt;，并指向存储在不同位置的实际信息。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Clustered Indexes&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;SQL Server 和 Mysql (InnoDB) 对索引是什么有更加广泛的视角。
-它们将完全由索引结构构成的表，称为聚集索引 &lt;em&gt;clustered indexes&lt;/em&gt;。
-这些表在 Oracle 叫 Index Organized Tables (IOT)。&lt;/p&gt;
-&lt;p&gt;搜索数据库索引就像查找电话目录一样，核心思想是所有实例都是按顺序排列的。
-查找有序的数据快速且简单，因为顺序决定了条目位置。&lt;/p&gt;
-&lt;p&gt;数据库索引比电话目录更加复杂一些，因为它会不断变化。
-每次变化都去修改目录是不可行的，因为实体之间没有额外空间。
-目录修改一般会等到累计到足够的变化后再处理，而数据库等不了那么久，
-它必须处理 insert 插入，delete 删除和 update 更新。&lt;/p&gt;
-&lt;p&gt;数据库结合了两种数据结构来应对挑战：
-双向链表 double linked list 和搜索树 search tree，这两种结构解释了数据库的大部分性能特征。&lt;/p&gt;
-&lt;h3 id="the-index-leaf-nodes"&gt;The Index Leaf Nodes&lt;/h3&gt;
-&lt;p&gt;索引的首要目标是提供索引数据的排序表示。
-然而，由于插入语句 insert statement 需要为新的数据移动后续条目。
-移动大量数据是十分耗时的，这样会导致 insert 插入语句很慢。
-解决方案是建立一个独立于内存物理顺序的逻辑顺序。&lt;/p&gt;
-&lt;p&gt;逻辑顺序通过双向链表建立，每个头都有指向两侧邻居的指针。
-新 node 插入的时候，修改两侧的指针指向。
-node 的物理地址不重要，因为双向链表维护的是逻辑顺序。&lt;/p&gt;
-&lt;p&gt;数据库使用双向链表来连接所谓是索引叶节点 &lt;em&gt;leaf nodes&lt;/em&gt;。
-每个叶节点存储在一个数据库块 &lt;em&gt;database block&lt;/em&gt; 或叶 &lt;em&gt;page&lt;/em&gt; 中，即数据库的最小存储单元。
-每块都是一样的大小，通常几千字节 &lt;em&gt;kilobytes&lt;/em&gt;。
-数据库会尽可能利用每个块的空间，并在每个块中存储尽可能多的索引条目。
-这意味着索引顺序在两个层面维护：每个叶节点内的索引条目，以及叶节点之间通过双向链表连接。&lt;/p&gt;</description></item><item><title>Python Decorators: 从入门到实战</title><link>https://starslayerx.github.io/posts/python-decorators-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/</link><pubDate>Thu, 29 Jan 2026 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-decorators-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/</guid><description>&lt;p&gt;这篇文章将通过一个**“为阿里云 Qwen API 添加缓存”**的例子，带你彻底理解 Python 装饰器。&lt;/p&gt;
+一个好的命名惯例是使用被引用的表，并添加后缀 &lt;code&gt;_id&lt;/code&gt;。&lt;/p&gt;</description></item><item><title>Python Decorators: 从入门到实战</title><link>https://starslayerx.github.io/posts/python-decorators-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/</link><pubDate>Thu, 29 Jan 2026 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-decorators-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/</guid><description>&lt;p&gt;这篇文章将通过一个**“为阿里云 Qwen API 添加缓存”**的例子，带你彻底理解 Python 装饰器。&lt;/p&gt;
 &lt;p&gt;首先，我们定义一个基础的调用函数：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
