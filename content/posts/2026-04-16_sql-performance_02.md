@@ -373,7 +373,7 @@ CREATE INDEX emp_name ON employees (last_name);
 
 有合适索引的执行计划如下：
 
-```sql
+```ascii
 --------------------------------------------------------------
 | Id | Operation                   | Name      | Rows | Cost |
 --------------------------------------------------------------
@@ -388,7 +388,7 @@ Predicate Information (identified by operation id):
    2 - access("LAST_NAME"='WINAND')
 ```
 
-根据优化器的故及，索引访问仅返回一行数据。
+根据优化器的估计，索引访问仅返回一行数据。
 因此，数据库只需从表中获取这一行：这显然比全表扫描更快。
 一个正确定义的索引仍然优于原始的全表扫描。
 
@@ -399,3 +399,639 @@ Predicate Information (identified by operation id):
 使用索引不自动意味着语句以最佳方式执行。
 
 ### Functions
+
+使用 `last_name` 索引显著提升了性能，但是要求使用数据库中一样的写法（大写、小写）。
+这节介绍如何解除这方面的限制，并且不降低性能。
+
+#### Case-Insensitive Search Using `UPPER` or `LOWER`
+
+在 `where` 中忽略写法是很容易的。
+例如，将两边的写法都转换为大写：
+
+```sql
+SELECT first_name, last_name, phone_number
+FROM employees
+WHERE UPPER(last_name) = UPPER('winand');
+```
+
+无论搜索词或 `last_name` 列使用何种大小写，`UPPER` 函数都能使他们按预期匹配。
+
+> 另一种实现不区分大小写匹配的方法是使用不同的 “排序规则”。
+> SQL Server 和 MySQL 默认使用的排序规则，默认情况下不区分大小写字母。
+
+该查询逻辑看上去很合理，但是执行计划并非如此：
+
+```ascii
+----------------------------------------------------
+| Id | Operation         | Name      | Rows | Cost |
+----------------------------------------------------
+|  0 | SELECT STATEMENT  |           |   10 |  477 |
+| *1 | TABLE ACCESS FULL | EMPLOYEES |   10 |  477 |
+----------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+   1 - filter(UPPER("LAST_NAME")='WINAND')
+```
+
+计划器又选择进行全表扫描。
+即使在 `last_name` 建立了索引，但这里并没有使用，因为搜索并非基于 `last_name`，而是 `UPPER(last_name)`。
+从数据库的视角来看，这是完全不同的。
+
+这是一个可能落入的陷阱。
+我们能意识到 `last_name` 和 `UPPER(last_name)` 之间的关系，但从数据库来看。
+优化器的视角是这样：
+
+```sql
+SELECT first_name, last_name, phone_number
+FROM employees
+WHERE BLACKBOX(...) = 'WINAND';
+```
+
+> Compile Time Evaluation
+
+优化器可以在“编译时”评估右侧的表达式，因为它拥有所有输入参数。
+因此 Oracle 执行计划仅显示搜索词的大写形式。
+这种行为与在编译时评估常量表达式的编译期非常类似。
+
+---
+
+为了支持该查询，需要一个覆盖实际搜索条件的索引。
+这意味着，不需要在 `last_name` 上建立索引，而是需要在 `UPPER(last_name)` 上建立索引。
+
+```sql
+CREATE INDEX emp_up_name
+ON employees (UPPER(last_name));
+```
+
+包含函数或表达式的索引，称为函数索引 _function-based index, (FBI)_。
+它不会将列数据直接拷贝到索引中，函数索引会使用函数，然后将结果放入索引中。
+因此，所以全以大写存储名称。
+
+如果 SQL 语句中出现了索引定义的确切表达式，数据库可以使用基于函数的索引：
+
+```ascii
+-----------------------------------------------------------------
+| Id | Operation                   | Name         | Rows | Cost |
+-----------------------------------------------------------------
+|  0 | SELECT STATEMENT            |              |  100 |   41 |
+|  1 | TABLE ACCESS BY INDEX ROWID | EMPLOYEES    |  100 |   41 |
+| *2 | INDEX RANGE SCAN            | EMP_UP_NAME  |   40 |    1 |
+-----------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+   2 - access(UPPER("LAST_NAME")='WINAND')
+```
+
+这是一种常规的索引范围扫描。
+数据库遍历 B 树并沿着叶子节点链进行。
+对于基于函数的索引，没有专门的操作或关键字。
+
+> 有时候 ORM 工具会自动使用 `UPPER` 和 `LOWER`。
+> 例如 Hibernate 会为大小写敏感的搜索注入 `LOWER`。
+
+执行计划仍然与之前不带 `UPPER` 函数的情况不同，其行数估计过高。
+奇怪的是，优化器预期从表中获取的行数比之前索引范围扫描交付的行数还多。
+
+这种矛盾的估算通常表明统计信息存在问题。
+在这个例子中，是因为 Oracle 数据库在创建新索引时，不会自动更新表统计信息。
+
+重新更新统计数据后，优化器会得到更加准确的估计
+
+```ascii
+-----------------------------------------------------------------
+| Id | Operation                   | Name         | Rows | Cost |
+-----------------------------------------------------------------
+|  0 | SELECT STATEMENT            |              |    1 |    3 |
+|  1 | TABLE ACCESS BY INDEX ROWID | EMPLOYEES    |    1 |    3 |
+| *2 | INDEX RANGE SCAN            | EMP_UP_NAME  |    1 |    1 |
+-----------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+   2 - access(UPPER("LAST_NAME")='WINAND')
+```
+
+SQL Server 不支持函数索引，它提供了可以替代使用的计算列 _computed columns_。
+
+```sql
+ALTER TABLE employees
+ADD last_name_up AS UPPER(last_name);
+
+CREATE INDEX emu_up_name
+ON employees (last_name_up);
+```
+
+每当索引表达式出现在语句时，SQL Server 都能使用这个索引。
+
+> Oracle Statistics for Function-Based Indexes
+
+Oracle 数据库将不同列值的信息作为统计的一部分进行维护。
+如果一个列属于所个索引，这些数据库会被重复使用。
+
+基于函数的索引 FBI 的统计信息也以虚拟列 _virtual columns_ 的形式在表级别进行维护。
+尽管 Oracle 数据库会自动为新索引搜集统计信息，但从 10g 版本起，它不会更新统计信息。
+对于这个原因，Oracle 文档推荐在创建函数索引后更新表统计信息：
+
+```
+创建基于函数的索引后，使用 DBMS_STATS 包收集该索引及其基表的统计信息。
+这些统计信息将帮助Oracle数据库正确判断何时使用该索引。
+    -- Oracle Database SQL Language Reference
+```
+
+建议每次索引变更后，更新表及其所有索引的统计信息。
+然而，这也可能导致不必要的副作用。
+请与 DBA 协调此活动，并备份原始统计信息。
+
+#### User-Defined Functions
+
+基于函数的索引是一个非常通用的方式。
+除了 `UPPER` 这样的函数，还可以使用 `A + B` 这样的表达式，甚至用户定义的函数。
+
+有一个重要的例外情况。
+例如，在索引定义中，无论是直接还是间接地引用当前时间都是不可能的：
+
+```sql
+CREATE FUNCTION get_age(date_of_birth DATE)
+RETURN NUMBER
+AS
+BEGIN
+  RETURN
+    TRUNC(MONTHS_BETWEEN(SYSDATE, date_of_birth) / 12);
+END;
+/
+```
+
+函数 `get_age` 使用当前日期 `SYSDATE` 和提供的出生日期，来计算年龄。
+可以使用该函数作为 SQL 查询的一部分：
+
+```sql
+SELECT first_name, last_name, get_age(date_of_birth)
+FROM employees
+WHERE get_age(date_of_birth) < 42;
+```
+
+该查询计算所有小于 42 岁的员工。
+使用基于函数的索引明显是一个很好的查询优化，但并不能在索引中使用 `get_age` 函数，因为它不是确定的。
+这意味着函数调用的结果并不完全有其参数决定。
+只有同样参数总是返回同样结果的，这种确定的函数，才能作为索引。
+
+除了要求确定性，PostgreSQL 和 Oracle 数据库还要求函数在索引中使用时必须声明为确定性。
+因此必须使用关键字 `DETERMINISTIC` (Oracle) 或 `IMMUTABLE` (PostgreSQL)。
+
+其他不能被索引的函数例子有随机数生生成器，或者依赖环境变量的函数。
+
+#### Over-Indexing
+
+如果对基于函数的索引概念感到陌生，可能会倾向于对所有内容都建立索引，但这实际上是最不应该做的事情。
+原因是所有索引都需要持续的维护。
+基于函数的索引尤其棘手，因为它们使得创建冗余索引变得非常容易。
+
+上面的大小写敏感的搜索也可以使用 `LOWER` 函数实现：
+
+```sql
+SELECT first_name, last_name, phone_number
+FROM employees
+WHERE LOWER(last_name) = LOWER('winand');
+```
+
+单个索引无法同时支持大小写两种方法。
+当然可以再为小写创建一个索引，但是这会导致数据库维护两份索引。
+每次 insert, update 和 delete 都会去修改索引。
+单个索引就足够了，并且应该在应用代码中始终使用同一个函数。
+
+### Parameterized Queries
+
+本节会讲解大部分 SQL 书籍都会跳过的部分：参数化查询 _parameterized queries_ 和绑定参数 _bind parameters_。
+
+绑定参数 _bind parameters_ 也称作动态参数 _dynamic parameters_，是向数据库传递数据的另一种方式。
+不同于直接将值放入 SQL 语句中，只需要使用像 `?, :name` 或 `@name` 这样的占位符，并通过单独的 API 调用来提供实际值。
+
+直接将数字化写入临时语句并无不妥，然而，在程序中直接绑定参数有两个好处：
+
+- 安全
+
+  绑定变量是最好的避免 SQL 注入的方式
+
+- 性能
+
+  像 SQL Server 和 Oracle 数据库这样带有执行计划缓存的数据库，在执行相同语句多次时，重复使用执行计划。
+  这会节约重建执行计划的消耗，但只有在 SQL 完全相同的使用才触发。
+  如果在 SQL 语句中放入不同的值，则数据库会将其视为不同的 SQL 语句，导致重建执行计划。
+
+  当使用绑定参数的时候，不需要编写实际的值，而是在 SQL 语句里面插入占位符。
+  这样一来，即使使用不同的值执行这些语句，它们都不会发生变化。
+
+自然的，会有例外情况。
+例如，如果受影响的数据量取决于实际的值：
+
+```ascii
+99 rows selected.
+
+SELECT first_name, last_name
+FROM employees
+WHERE subsidiary_id = 20;
+
+----------------------------------------------------------------
+| Id | Operation                   | Name        | Rows | Cost |
+----------------------------------------------------------------
+|  0 | SELECT STATEMENT            |             |   99 |   70 |
+|  1 | TABLE ACCESS BY INDEX ROWID | EMPLOYEES   |   99 |   70 |
+| *2 | INDEX RANGE SCAN            | EMPLOYEE_PK |   99 |    2 |
+----------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+   2 - access("SUBSIDIARY_ID"=20)
+```
+
+对于小型子公司，所以查找能提供最佳性能，但对于大型公司，全表扫描可能比索引更高效。
+
+```ascii
+1000 rows selected.
+
+SELECT first_name, last_name
+FROM employees
+WHERE subsidiary_id = 30;
+
+----------------------------------------------------
+| Id | Operation         | Name      | Rows | Cost |
+----------------------------------------------------
+|  0 | SELECT STATEMENT  |           | 1000 |  478 |
+| *1 | TABLE ACCESS FULL | EMPLOYEES | 1000 |  478 |
+----------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+   1 - filter("SUBSIDIARY_ID"=30)
+```
+
+在这种情况下，`subsidiary_id` 的直方图 _histogram_ 发挥了它的作用。
+优化器利用它来确定 SQL 查询中提到的 `subsidiary_id` 的出现频率。
+因此，它为这两个查询得到了不同的行数估算。
+
+`TABLE ACCESS BY INDEX ROWID` 操作的成本对行数估计高度敏感。
+选择十倍数量的行将使成本值相应提升，使用索引的总体成本甚至比全表扫描还高。
+因此，优化器为较大的子公司选择另一种执行计划。
+
+当使用绑定参数的时候，优化器无法获取具体数值来确定其出现频率。
+随后，它便假设了一个均匀分布，并始终得出相同的行数估计和成本值。
+最终，它总是会选择相同的执行计划。
+
+> TIP
+
+Column histograms 列直方图在数据分布不均匀的时候最有用。
+对于均匀分布的列，通常只需要将不同值的数量除以表中的行数。
+这种方法在使用绑定参数时同样有效。
+
+---
+
+如果将优化器和编译器对比，绑定参数 _bind variables_ 就像程序变量一样。
+如果直接填值，就类似常量。
+数据库可以使用 SQL 语句的值进行优化，就像编译器可以在编译器计算常量一样。
+绑定参数对于优化器来说是不可见的，就像运行时变量对于编译器。
+
+从这个角度来看，如果不使用绑定参数，就能让优化器选择最佳计划。
+那么绑定参数反而能提升性能，这显得有点自相矛盾。
+但代价是，生成和估计执行计划要耗费大量资源，如果每次生成的结果都一样就会不划算。
+
+> TIP: 不使用绑定参数就像是每次都要重新编译程序
+
+为数据库选择专门的还是通用的执行计划是一个两难的选择。
+
+为了确保每次都能获得最优的执行计划，数据库必须每次执行时都评估所有可能的计划变体。
+要么为了节省优化开销，在可能的情况下尽量使用缓存的执行计划。
+但这需要承担使用次优 _suboptimal_ 计划的风险。
+
+这种困境在于：如果不实际进行完整的优化流程，数据库就无法欲知该流程是否会产生不同的执行计划。
+数据库厂商试图通过启发式方法 _heuristic methods_ 来解决这一难题，但取得的成效非常有限。
+
+作为开发者，可以刻意使用绑定参数来解决这一问题。
+即，除非变量会影响执行计划，否则应该总是使用绑定参数。
+
+不均匀分布的状态码，例如 "todo" 和 "done" 状态码就是一个很好的例子。
+通常，"done" 条目的数量比 "todo" 多出一个数量级。
+这种情况下，使用索引仅在搜索 "todo" 条目时才有意义。
+
+分区 _partitioning_ 是另一个例子，如果将表和索引拆分到多个存储区域。
+在这种情况下，实际的数值会影响到哪些分区 _partitions_ 需要被扫描。
+此外，LIKE 查询的性能也会受到绑定参数的影响。
+
+> TIP: 在现实情况中，只有在少数情况下，变量会影响执行计划。
+> 因此，应该毫不犹豫地使用绑定参数，即使只是为了防止 SQL 注入。
+
+不使用绑定参数：
+
+```python
+import psycopg
+
+subsidiary_id = 101
+
+# 错误做法：字符串格式化
+sql = "SELECT first_name, last_name FROM employees WHERE subsidiary_id = " + str(subsidiary_id)
+
+with psycopy.connect('dbname=test user=postgres') as conn:
+    with conn.cursor() as cur:
+        cur.execute(sql)
+```
+
+使用绑定参数：
+
+```python
+import psycopg
+
+subsidiary_id = 101
+
+# 正确做法：使用 %s 占位符
+sql = "SELECT first_name, last_name FROM employees WHERE subsidiary_id = %s"
+
+with psycopy.connect("dbname=test user=postgres") as conn:
+    with conn.cursor() as cur:
+        # 参数作为元组传入
+        cur.execute(sql, (subsidiary_id,))
+
+        for record in cur:
+            print(record)
+```
+
+如果数据库驱动是 sqlite，则占位符使用 `?`，例如：
+
+```python
+sql = "SELECT first_name, last_name FROM employees WHERE subsidiary_id = ?"
+```
+
+问号 `?` 是 SQL 标准定义的唯一占位符字符。
+属于位置参数，这意味着问号是按照从左到右的顺序进行编号的。
+若要将某个值绑定到特定的问号上，必须指定它的编号。
+
+然而，这种方式在实际操作中可能非常不便，因为一旦增加或删除占位符，原有的编号顺序就会发生改变。
+为了解决这个问题，许多数据库提供了针对命名参数 _named parameters_ 的私有扩展。
+例如，使用 at 符号 `@name` 或冒号 `:name`。
+
+绑定参数不能修改 SQL 语句的结构。
+这意味着，不能使用其作为表或者列的名称。
+下面这样写无法执行：
+
+```python
+sql = "SELECT * FROM ? WHERE ? = ?"
+params = ('employees', 'id', 1)
+```
+
+> Cursor Sharing and Auto Parameterization
+
+SQL Server 和 Oracle 数据库都具备自动将 SQL 字符串中的字面量值 _Literal Values_ 替换为绑定参数的功能。
+这些特性在 Oracle 中被称为 `CURSOR_SHARING`，在 SQL Server 中被称为强制参数化 `Forced Parameterization`。
+
+### Sharing For Ranges
+
+不等号，例如 `>, <` 和 `between` 可以使用索引，会像上面解释的等于运算符一样使用索引。
+甚至 `LIKE` 过滤器在某些情况下，也会像范围查询一样使用索引。
+
+这些操作会限制复合索引 _multi-column indexes_ 中列顺序的选择。
+这种限制甚至可能排除所有最优的索引选项，在某些查询中，根本无法定义一个正确的列顺序。
+
+#### Greater, Less and Between
+
+索引范围扫描 `INDEX RANGE SCAN` 最大的性能风险是叶子节点检索。
+因此索引的黄金标准是要让索引范围尽可能的小。
+
+例如这个查询的范围就很明确：
+
+```sql
+SELECT first_name, last_name, date_of_birth
+  FROM employees
+ WHERE date_of_birth >= TO_DATE(?, 'YYYY-MM-DD')
+   AND date_of_birth <= TO_DATE(?, 'YYYY-MM-DD')
+```
+
+对出生日期 `date_of_birth` 上的索引只能根据特定的范围搜索。
+扫描从第一个日期开始，到第二个日期结束，无法进一步缩小扫描的范围。
+
+如果涉及到第二列，起始和停止条件就不那么明显了：
+
+```sql
+SELECT first_name, last_name, date_of_birth
+  FROM employees
+ WHERE date_of_birth >= TO_DATE(?, 'YYYY-MM-DD')
+   AND date_of_birth <= TO_DATE(?, 'YYYY-MM-DD')
+   AND subsidiary_id = ?
+```
+
+一个理想的索引应该同时包含这两列，但问题是以哪种顺序呢？
+正确的方式是 `subsidiary_id` 在前，如果日期在前，则叶子节点还需要访问并判断子公司 ID。
+如果子公司 ID 放在前面，在叶子节点就不需要额外判断了。
+
+> TIP: 经验法则 - 先为相等性建立索引，再为范围建立索引。
+
+实际性能取决于数据和搜索条件。
+如果 `date_of_birth` 上的过滤器本身具有很高的选择性，那么这种差异可以忽略不计。
+日期范围越大，性能差异也会越显著。
+
+通过该例子，可以证伪 _falsify_ 一个谬论：选择性最强的列应该位于最左侧的索引位置。
+如果查看数据，并仅考虑第一列的选择性，会发现两个条件都匹配了 13 条记录。
+无论仅按 `date_of_birth` 筛选，还是仅按 `subsidiary_id` 筛选，情况都是如此。
+选择性在这里没有用处，但一种列顺序仍然优于另一种。
+
+为了优化性能，了解索引扫描范围很重要。
+在大多数数据库中，甚至可以在执行计划中看到这一点，只需要知道该寻找什么即可。
+一下来自 Oracle 数据库执行计划明确表明 `EMP_TEST` 索引以 `date_of_birth` 列开头。
+
+```ascii
+--------------------------------------------------------------
+| Id | Operation                   | Name      | Rows | Cost |
+--------------------------------------------------------------
+|  0 | SELECT STATEMENT            |           |    1 |    4 |
+|* 1 | FILTER                      |           |      |      |
+|  2 | TABLE ACCESS BY INDEX ROWID | EMPLOYEES |    1 |    4 |
+|* 3 | INDEX RANGE SCAN            | EMP_TEST  |    2 |    2 |
+--------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+   1 - filter(:END_DT >= :START_DT)
+   3 - access(DATE_OF_BIRTH >= :START_DT
+          AND DATE_OF_BIRTH <= :END_DT)
+       filter(SUBSIDIARY_ID = :SUBS_ID)
+```
+
+索引范围扫描 INDEX RANGE SCAN 的谓词 _predicate_ 信息提供了关键线索。
+它标识了 WHERE 子句中的条件是作为访问谓词还是过滤谓词。
+这正是数据库告诉我们它如何使用每个条件的方式。
+
+`date_of_birth` 列的条件是唯一列出的访问谓词。
+他们限制了扫描的索引范围。
+因此 `date_of_birth` 是 `EMP_TEST` 索引中的第一列，`subsidiary_id` 列仅作用过滤器。
+
+> 访问谓词 _access predicates_ 是索引检索的开始和结束条件，他们定义了扫描范围。
+> 索引过滤谓词仅在叶节点遍历其间应用，他们不会缩小扫描的索引范围。
+
+如果我们将索引定义反过来，数据库可以使用所有的条件和访问谓词信息：
+
+```ascii
+--------------------------------------------------------------
+| Id | Operation                   | Name      | Rows | Cost |
+--------------------------------------------------------------
+|  0 | SELECT STATEMENT            |           |    1 |    3 |
+| *1 | FILTER                      |           |      |      |
+|  2 | TABLE ACCESS BY INDEX ROWID | EMPLOYEES |    1 |    3 |
+| *3 | INDEX RANGE SCAN            | EMP_TEST2 |    1 |    2 |
+--------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+   1 - filter(:END_DT >= :START_DT)
+   3 - access(SUBSIDIARY_ID = :SUBS_ID
+          AND DATE_OF_BIRTH >= :START_DT
+          AND DATE_OF_BIRTH <= :END_T)
+```
+
+最后，又一个 `between` 操作符。
+它可以在单个条件中指定上下边界：
+
+```sql
+DATE_OF_BIRTH BETWEEN '01-JAN-71' AND '10-JAN-71'
+```
+
+注意 `between` 总是包含特定的值，就像使用小于或等于和大于等于符号一样：
+
+```sql
+DATE_OF_BIRTH >= '01-JAN-71' AND
+DATE_OF_BIRTH <= '10-JAN-71'
+```
+
+#### Indexing LIKE Filters
+
+SQL 中的 `LIKE` 操作符经常会导致意料之外的性能影响，因为某些搜索词会阻止索引的有效使用。
+这意味着，有些项可以高效地索引，但是其他的不行。
+关键在于通配符的位置。
+
+下面的例子在搜索词中间使用了 % 通配符：
+
+```sql
+SELECT first_name, last_name, date_of_birth
+FROM employees
+WHERE UPPER(last_name) LIKE 'WIN%D'
+```
+
+执行计划如下
+
+```ascii
+-----------------------------------------------------------------
+| Id | Operation                   | Name         | Rows | Cost |
+-----------------------------------------------------------------
+|  0 | SELECT STATEMENT            |              |    1 |    4 |
+|  1 | TABLE ACCESS BY INDEX ROWID | EMPLOYEES    |    1 |    4 |
+| *2 | INDEX RANGE SCAN            | EMP_UP_NAME  |    1 |    2 |
+-----------------------------------------------------------------
+```
+
+`LIKE` 过滤器在树遍历过程中只能使用第一个通配符之前的字符。
+剩余的字符知识过滤谓词，不会缩小扫描的索引范围。
+因此，一个单一的 `LIKE` 表达式可以包含两种谓词类型。
+
+1. 第一个通配符之前的部分作为访问谓词 _access predicate_
+2. 其他字符作为过滤谓词 _filter predicate_
+
+> Caution
+
+对于 Postgres 数据库，可能需要指定 operator class 以使用 LIKE 表达式作为 access predicates。
+详见 Operator Classes and Operator Families 的 Postgres 文档。
+
+---
+
+首个通配符前的前缀选择性越高，索引搜索范围就越小，从而让索引查询更快。
+
+| LIKE 'WI%ND' | LIKE 'WIN%D' | LIKE 'WINA%' |
+| ------------ | ------------ | ------------ |
+| `WI`AW       | WIAW         | WIAW         |
+| `WI`BLQQNPUA | WIBLQQNPUA   | WIBLQQNPUA   |
+| `WI`BYHSNZ   | WIBYHSNZ     | WIBYHSNZ     |
+| `WI`FMDWUQMB | WIFMDWUQMB   | WIFMDWUQMB   |
+| `WI`GLZX     | WIGLZX       | WIGLZX       |
+| `WI`H        | WIH          | WIH          |
+| `WI`HTFVZNLC | WIHTFVZNLC   | WIHTFVZNLC   |
+| `WI`JYAXPP   | WIJYAXPP     | WIJYAXPP     |
+| **`WI`NAND** | **`WIN`AND** | **`WINA`ND** |
+| `WI`NBKYDSKW | `WIN`BKYDSKW | WINBKYDSKW   |
+| `WI`POJ      | WIPOJ        | WIPOJ        |
+| `WI`SRGPK    | WISRGPK      | WISRGPK      |
+| `WI`TJIVQJ   | WITJIVQJ     | WITJIVQJ     |
+| `WI`W        | WIW          | WIW          |
+| `WI`WGPJMQGG | WIWGPJMQGG   | WIWGPJMQGG   |
+| `WI`WKHLBJ   | WIWKHLBJ     | WIWKHLBJ     |
+| `WI`YETHN    | WIYETHN      | WIYETHN      |
+| `WI`YJ       | WIYJ         | WIYJ         |
+
+第一个表达式在通配符之前有两个字符匹配。
+它将索引范围限制到了 18 行，只有一个匹配到了 `LIKE` 表达式，剩下的 17 个都丢弃了。
+第二个表达式前缀长一点，将索引范围缩小到了 2 行，这样数据库只多读了一行数据。
+最后一个表达式没有过滤谓词，数据库会读取所有匹配项。
+
+> Important: 只有第一个通配符之前的会作为访问谓词 _access predicate_
+> 剩下的字符不会缩小索引扫描范围，不匹配的条目只会被排除在结果之外
+
+相反的情况也是可能的：一个以通配符开头的 `LIKE` 表达式。
+这样的表达式不能作为谓词使用，如果没有其他访问谓词的条件，数据库必须全表扫描。
+
+> Tip: 避免使用 `%TERM` 这种通配符在前的表达式
+
+通配符字符 _wildcard characters_ 的位置会影响索引的使用，至少在理论上是如此。
+实际上，搜索词通过绑定参数提供时，优化器会生成一个通用的执行计划。
+这种情况下，优化器必须猜测大多数执行是否会有前导通配符。
+
+大多数数据库在优化带有绑定参数的 `LIKE` 条件时，都假设没有前导通配符。
+但如果 `LIKE` 表达式用于全文搜索 _full-text search_，这个假设就是错误的。
+遗憾的是，没有直接方法可以将 `LIKE` 条件标记为全文搜索。
+
+不使用绑定参数而直接指定搜索词是一种解决方案，但问题是这回增加优化开销。
+并可能引发 SQL 注入漏洞，一种解决方案是故意模糊化 _obfuscate_。
+
+> Labeling Full-Text `LIKE` Expressions
+
+当使用 `LIKE` 操作符进行全文搜索的时候，我们可以将通配符和搜索条件分开：
+
+```sql
+WHERE text_column LIKE '%' || ? || '%'
+```
+
+这样写有两个好处：
+
+1. 可以复用执行计划
+2. `'%' || ? || '%'` 会自动拼接起来，并且防止 SQL 注入
+
+之前介绍过，如果使用绑定参数会影响查询命中率，则会导致优化器不一定使用最优的方案。
+而这种情况刚好避开了这个问题，因为全文搜索无论怎么写都会去全表扫描。
+
+---
+
+PostgreSQL 在 `LIKE` 参数未知时会采用保守策略，不假设存在固定前缀，因此通常不会使用索引。
+如果要让其使用索引，就需要将要搜索的实际词汇放到 SQL 语句里面，不过这就需要通过其他方式来防御 SQL 注入。
+
+即使数据库针对前缀通配符优化了执行计划，性能可能仍然不如预期。
+可以考虑使用各数据库厂商提供的专用于全文搜索解决方案：
+
+- MySQL
+
+  MySQL 提供了 `MATCH` 和 `AGAINST` 关键字用于全文搜索。
+  从 MySQL 5.6 版本开始，也可以为 InnoDB 引擎的表创建全文索引（此前仅支持 MyISAM 表）。
+  详情请参阅 MySQL 文档中的 Full-Text Search Functions。
+
+- Oracle Databse
+
+  Oracle 数据库提供了 CONTAINS 关键字。
+  具体请参考 Oracle Text Application Developer’s Guide。
+
+- PostgreSQL
+
+  PostgreSQL 通过 `@@` 符号实现全文搜索，详见 Full Text Search。
+  另一种选择是使用 WildSpeed2 扩展来直接优化 LIKE 表达式。
+  该扩展会将文本以所有可能的旋转 *Rotations* 方式存储，确保每个字符都有一次机会出现在字符串的开头。
+  这意味着索引后的文本不仅存储一次，而是根据字符串长度重复存储多次——因此它会占用大量的存储空间。
+
+- SQL Server
+
+  SQL Server 同样提供了 CONTAINS 关键字。
+  详见 SQL 的 Full-Text Search 文档。
+
+#### Index Merge

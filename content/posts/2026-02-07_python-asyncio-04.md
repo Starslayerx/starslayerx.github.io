@@ -845,3 +845,18 @@ Finished <function main at 0x1028fdda0> in 0.7221 second(s)
     except asyncio.TimeoutError:
         print('时间到了，剩下的任务还在后台跑，但我等不到了')
   ```
+
+> Coroutines are not canceled
+
+当使用 `wait_for`，如果协程 coroutines 超时，它会自动请求结束。
+这和 `wait` 的行为不一样，与 `gather` 和 `as_completed` 行为更加相似。
+这种情况下，我们希望因超时取消协程，就必须显示遍历 tasks 并取消他们。
+
+> Timeout errors are not raised
+
+`wait` 在超时事件上并不依赖异常，这与 `wait_for` 和 `as_completed` 不同。
+如果发送超时，`wait` 会返回所有已完成、和还在 pending 中的任务 tasks。
+
+---
+
+例如，
