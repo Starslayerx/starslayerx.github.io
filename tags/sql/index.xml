@@ -4,11 +4,11 @@
 即使 &lt;code&gt;where&lt;/code&gt; 语句对性能有很大影响，但它常常被随意使用，导致数据库不得不扫描索引的大部分内容。
 结果导致：一个编写不当的 &lt;code&gt;where&lt;/code&gt; 子句是导致查询缓慢的首要因素。&lt;/p&gt;
 &lt;p&gt;本章解释不同运算符如何影响索引的使用，以及如何确保索引能适用于尽可能多的查询。&lt;/p&gt;
-&lt;h3 id="the-equality-operator"&gt;The Equality Operator&lt;/h3&gt;
+&lt;h2 id="the-equality-operator"&gt;The Equality Operator&lt;/h2&gt;
 &lt;p&gt;等号是 SQL 中最简单也最常用的符号。
 影响性能的索引错误仍然非常普遍，尤其是结合多个条件的 &lt;code&gt;where&lt;/code&gt; 子句中，这种错误尤为常见。&lt;/p&gt;
 &lt;p&gt;本章展示如何验证索引的使用，并解释如何通过连接索引 &lt;em&gt;combined conditions&lt;/em&gt; 来优化组合条件。&lt;/p&gt;
-&lt;h4 id="primary-keys"&gt;Primary Keys&lt;/h4&gt;
+&lt;h3 id="primary-keys"&gt;Primary Keys&lt;/h3&gt;
 &lt;p&gt;下面从最简单的 &lt;code&gt;where&lt;/code&gt; 子句开始：主键查询。
 这里使用 &lt;code&gt;EMPLOYEES&lt;/code&gt; 表做示例：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;CREATE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;TABLE&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;employees&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt;
@@ -37,7 +37,7 @@
 它必须处理 insert 插入，delete 删除和 update 更新。&lt;/p&gt;
 &lt;p&gt;数据库结合了两种数据结构来应对挑战：
 双向链表 double linked list 和搜索树 search tree，这两种结构解释了数据库的大部分性能特征。&lt;/p&gt;
-&lt;h3 id="the-index-leaf-nodes"&gt;The Index Leaf Nodes&lt;/h3&gt;
+&lt;h2 id="the-index-leaf-nodes"&gt;The Index Leaf Nodes&lt;/h2&gt;
 &lt;p&gt;索引的首要目标是提供索引数据的排序表示。
 然而，由于插入语句 insert statement 需要为新的数据移动后续条目。
 移动大量数据是十分耗时的，这样会导致 insert 插入语句很慢。
