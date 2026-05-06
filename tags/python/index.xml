@@ -1,4 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Python on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/python/</link><description>Recent content in Python on Starslayerx' Blog</description><image><title>Starslayerx' Blog</title><url>https://starslayerx.github.io/images/og-default.avif</url><link>https://starslayerx.github.io/images/og-default.avif</link></image><generator>Hugo -- 0.154.5</generator><language>en-US</language><lastBuildDate>Mon, 30 Mar 2026 08:00:00 +0100</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>SQLALchemy - Asynchronous</title><link>https://starslayerx.github.io/posts/sqlalchemy-asynchronous/</link><pubDate>Mon, 30 Mar 2026 08:00:00 +0100</pubDate><guid>https://starslayerx.github.io/posts/sqlalchemy-asynchronous/</guid><description>&lt;h2 id="engines-metadata-and-sessions"&gt;Engines, Metadata and Sessions&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Python on Starslayerx' Blog</title><link>https://starslayerx.github.io/tags/python/</link><description>Recent content in Python on Starslayerx' Blog</description><image><title>Starslayerx' Blog</title><url>https://starslayerx.github.io/images/og-default.avif</url><link>https://starslayerx.github.io/images/og-default.avif</link></image><generator>Hugo -- 0.154.5</generator><language>en-US</language><lastBuildDate>Sat, 02 May 2026 08:00:00 +0100</lastBuildDate><atom:link href="https://starslayerx.github.io/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>Learning concurrency - a deep dive into multithreading with Python</title><link>https://starslayerx.github.io/posts/learning-concurrency-a-deep-dive-into-multithreading-with-python/</link><pubDate>Sat, 02 May 2026 08:00:00 +0100</pubDate><guid>https://starslayerx.github.io/posts/learning-concurrency-a-deep-dive-into-multithreading-with-python/</guid><description>&lt;p&gt;这篇文章讲 Python 中的并发，例如多线程 &lt;em&gt;multithreading&lt;/em&gt;, 多进程 &lt;em&gt;multiprocessing&lt;/em&gt;, 竟态条件 &lt;em&gt;race conditions&lt;/em&gt; 以及同步状态 &lt;em&gt;synchronization&lt;/em&gt; 的机制，例如锁。
+然后会探讨如何关闭 GIT 来实现 Python 中真正的多线程，并通过清晰的代码来突出差异、优点以及注意事项。&lt;/p&gt;
+&lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;你可能会好奇为什么会需要并发。
+大多数情况下，并不需要，但如果是以下情况可能需要：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据处理 &lt;em&gt;data processing&lt;/em&gt; 和*&lt;a href="https://en.wikipedia.org/wiki/Extract,_transform,_load"&gt;ETL&lt;/a&gt;* - 解析大量文本文件、清理混乱的数据、或将复杂的正则表达式应用到数百万行上&lt;/li&gt;
+&lt;li&gt;加密 &lt;em&gt;cryptography&lt;/em&gt; 和哈希 &lt;em&gt;hashing&lt;/em&gt; - 读取文件并计算每一行的加密哈希 (例如 SHA-256)&lt;/li&gt;
+&lt;li&gt;数据科学 - 计算蒙特卡罗模拟 &lt;em&gt;Monte Carlo simulations&lt;/em&gt; 要求大量数学计算，例如 numpy, pandas 或 scikit-learn&lt;/li&gt;
+&lt;li&gt;网络操作 - 下载文件，爬取网站或调用 REST API&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;但首先，这里先把术语理清楚：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Sequential&lt;/strong&gt; 串行：单个进程一次只做一件事，在做下一件事情之前会等待直到完成后再开始下一个进程&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Concurrency&lt;/strong&gt; 并发：单个进程同时做多件事，但不一定在同一时刻做&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Event Loop&lt;/strong&gt; 事件循环: 一种控制接口，持续等待事件（例如 I/O 操作、定时触发或用户操作），分派对应的任务，然后重复这个过程&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Parallelism/Multiprocessing&lt;/strong&gt; 并行/多进程: 在同一时刻做多件事&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multithreading&lt;/strong&gt; 多线程: 这种编程模型是单个进程生成多个独立的执行线程，从而达到并发。所有线程都共享内存空间和资源。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;线程安全 &lt;em&gt;thread safety&lt;/em&gt; 是指程序或系统的一种特性，它允许多个线程同时访问和修改共享内存与资源，而不会造成数据损坏、内存泄漏或程序崩溃。&lt;/p&gt;</description></item><item><title>SQLALchemy - Asynchronous</title><link>https://starslayerx.github.io/posts/sqlalchemy-asynchronous/</link><pubDate>Mon, 30 Mar 2026 08:00:00 +0100</pubDate><guid>https://starslayerx.github.io/posts/sqlalchemy-asynchronous/</guid><description>&lt;h2 id="engines-metadata-and-sessions"&gt;Engines, Metadata and Sessions&lt;/h2&gt;
 &lt;p&gt;下面是一个异步的数据库链接示例：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-Python" data-lang="Python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sqlalchemy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;MetaData&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sqlalchemy.orm&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;DeclarativeBase&lt;/span&gt;
