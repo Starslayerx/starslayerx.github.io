@@ -17,7 +17,7 @@
 &lt;li&gt;&lt;strong&gt;Parallelism/Multiprocessing&lt;/strong&gt; 并行/多进程: 在同一时刻做多件事&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Multithreading&lt;/strong&gt; 多线程: 这种编程模型是单个进程生成多个独立的执行线程，从而达到并发。所有线程都共享内存空间和资源。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;线程安全 &lt;em&gt;thread safety&lt;/em&gt; 是指程序或系统的一种特性，它允许多个线程同时访问和修改共享内存与资源，而不会造成数据损坏、内存泄漏或程序崩溃。&lt;/p&gt;</description></item><item><title>Python Decorators: 从入门到实战</title><link>https://starslayerx.github.io/posts/python-decorators-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/</link><pubDate>Thu, 29 Jan 2026 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-decorators-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98/</guid><description>&lt;p&gt;这篇文章将通过一个**“为阿里云 Qwen API 添加缓存”**的例子，带你彻底理解 Python 装饰器。&lt;/p&gt;
+&lt;p&gt;线程安全 &lt;em&gt;thread safety&lt;/em&gt; 是指程序或系统的一种特性，它允许多个线程同时访问和修改共享内存与资源，而不会造成数据损坏、内存泄漏或程序崩溃。&lt;/p&gt;</description></item><item><title>Python: Decorators</title><link>https://starslayerx.github.io/posts/python-decorators/</link><pubDate>Thu, 29 Jan 2026 08:00:00 +0800</pubDate><guid>https://starslayerx.github.io/posts/python-decorators/</guid><description>&lt;p&gt;这篇文章将通过一个**“为阿里云 Qwen API 添加缓存”**的例子，带你彻底理解 Python 装饰器。&lt;/p&gt;
 &lt;p&gt;首先，我们定义一个基础的调用函数：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
