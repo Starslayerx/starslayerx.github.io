@@ -1,7 +1,7 @@
 +++
 date = '2026-01-29T8:00:00+08:00'
 draft = false
-title = 'Python Decorators: 从入门到实战'
+title = 'Python: Decorators'
 categories = ['Blog']
 tags = ['Python']
 +++
