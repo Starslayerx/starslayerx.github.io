@@ -1687,3 +1687,4 @@ SELECT first_name, last_name, subsidiary_id, employee_id
 ```
 
 该查询使用命名绑定参数变得更加可读，
+

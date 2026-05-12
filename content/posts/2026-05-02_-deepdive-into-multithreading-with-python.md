@@ -6,7 +6,7 @@ categories = ['Blog']
 tags = ['Python']
 +++
 
-这篇文章讲 Python 中的并发，例如多线程 _multithreading_, 多进程 _multiprocessing_, 竟态条件 _race conditions_ 以及同步状态 _synchronization_ 的机制，例如锁。
+这篇文章讲 Python 中的并发，例如多线程 _multithreading_, 多进程 _multiprocessing_, 竞态条件 _race conditions_ 以及同步状态 _synchronization_ 的机制，例如锁。
 然后会探讨如何关闭 GIT 来实现 Python 中真正的多线程，并通过清晰的代码来突出差异、优点以及注意事项。
 
 ## Introduction
