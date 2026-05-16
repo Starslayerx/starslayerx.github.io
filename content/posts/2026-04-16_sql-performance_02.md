@@ -1663,7 +1663,7 @@ SELECT last_name, first_name, employee_id
 
 ### Smart Logic
 
-数据库其中的一个关键特性就是对临时查询 *ad-hoc queries* 的支持：新的查询可以在任何时间执行。
+数据库其中的一个关键特性就是对临时查询 _ad-hoc queries_ 的支持：新的查询可以在任何时间执行。
 这只有在查询优化器在运行时工作才行。
 它会分析每个收到的语句，并立刻生成一个合理的执行计划。
 通过绑定参数，就能把运行时优化带来的额外开销降到最低。
@@ -1682,9 +1682,136 @@ SELECT last_name, first_name, employee_id
 SELECT first_name, last_name, subsidiary_id, employee_id
   FROM employees
  WHERE ( subsidiary_id    = :sub_id OR :sub_id IS NULL )
- WHERE ( employee_id      = :emp_id OR :emp_id IS NULL )
- WHERE ( UPPER(last_name) = :name   OR :name   IS NULL )
+   AND ( employee_id      = :emp_id OR :emp_id IS NULL )
+   AND ( UPPER(last_name) = :name   OR :name   IS NULL )
 ```
 
-该查询使用命名绑定参数变得更加可读，
+该查询使用命名绑定参数，让代码更易读。
+所有可能的过滤条件都静态地写在了语句里。
+当某个过滤条件不需要时，只需要用 `NULL` 代替搜索词，就能通过 OR 逻辑将该条件禁用。
 
+这是一个非常合理的 SQL 语句。
+其中对 NULL 的用法甚至符合 SQL 三值逻辑 _three valued logic_ 的定义。
+它却是最糟糕的反模式 _anit-pattern_ 之一。
+
+- Three-valued logic 三值逻辑：在 SQL 中逻辑判断不仅仅是真 `True` 或假 `False`，还包括未知，这通常由 `NULL` 引起。
+- Anit-pattern 反模式：指在实践中经常出现但效率低下或会引发问题的典型错误模式。虽然代码语法正确，但在生产环境中会导致性能下降。
+
+数据库无法为某个特定的筛选条件优化执行计划，因为任何一个筛选条件都可能在运行时被取消。
+数据库必须做好最坏的打算，也就是假设所有筛选条件都为 `NULL` 的情况。
+
+```ascii
+-----------------------------------------------------
+| Id | Operation          | Name      | Rows | Cost |
+-----------------------------------------------------
+| 0  | SELECT STATEMENT   |           | 2    | 478  |
+|* 1 | TABLE ACCESS FULL  | EMPLOYEES | 2    | 478  |
+-----------------------------------------------------
+
+Predicate Information (identified by operation id):
+-----------------------------------------------------
+1 - filter((:NAME IS NULL OR UPPER("LAST_NAME")=:NAME)
+       AND (:EMP_ID IS NULL OR "EMPLOYEE_ID"=:EMP_ID)
+       AND (:SUB_ID IS NULL OR "SUBSIDIARY_ID"=:SUB_ID))
+```
+
+结果就是，即使每个列都有索引，数据库也会走全表扫描。
+这并不是数据库无法解析 "smart" logic。
+由于使用了绑定参数，它会生产一个通用的执行计划，这样就能被缓存起来，以后再用其他值来重复使用。
+如果不使用绑定参数，而是在 SQL 语句中使用真实的值，则优化器会为活动筛选器选择合适的索引：
+
+```sql
+SELECT first_name, last_name, subsidiary_id, employee_id
+  FROM employees
+ WHERE ( subsidiary_id    = NULL    OR NULL IS NULL )
+   AND ( employee_id      = NULL    OR NULL IS NULL )
+   AND ( UPPER(last_name) = 'WINAND'OR 'WINAND'   IS NULL )
+```
+
+执行计划如下
+
+```ascii
+----------------------------------------------------------------
+| Id | Operation                   | Name        | Rows | Cost |
+----------------------------------------------------------------
+| 0  | SELECT STATEMENT            |             | 1    | 2    |
+| 1  | TABLE ACCESS BY INDEX ROWID | EMPLOYEES   | 1    | 2    |
+|* 2 | INDEX RANGE SCAN            | EMP_UP_NAME | 1    | 1    |
+----------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+2 - access(UPPER("LAST_NAME")='WINAND')
+```
+
+然而，这并非解决方案。
+它知识证明了数据库能够解决这种情况。
+
+> WARNING
+> 使用字面值会让数据库容易遭受注入攻击，并且由于优化开销增加了，可能导致性能问题
+
+一个动态查询显而易见的解决方案是动态 SQL。
+根据 KISS 原则，直接告诉数据库现在需要什么，不包含其他内容。
+
+```sql
+SELECT first_name, last_name, subsidiary_id, employee_id
+  FROM employees
+ WHERE UPPER(last_name) := name;
+```
+
+注意到该查询会使用一个绑定参数。
+
+这里说的 "smart" logic 问题普遍存在。
+所有共享执行计划缓存的数据库都会有响应的对应功能，但常常会因此引入新的问题和漏洞。
+
+想要得到最好的最新计划，最好的方法还是要避免 SQL 语句中不必要的过滤条件。
+
+
+### Math
+
+还有一种更高明的混淆方式，它会妨碍正常使用索引。
+它不是通过逻辑表达式，而是通过计算来实现的。
+
+考虑下面语句，能否在 `NUMBERIC_NUMBER` 上使用索引？
+
+```sql
+SELECT numberic_number
+  FROM table_name
+ WHERE numberic_number - 1000 > ?
+```
+
+类似的，下面语句能否在 A 或 B 上使用索引，顺序由你来选：
+
+```sql
+SELECT a, b
+  FROM table_name
+ WHERE 3*a + 5 = b
+```
+
+可以换个角度看问题，如果你在开发一个 SQL 数据库，你会加一个方程求解器吗？
+大多数数据库厂商会说 "No"。因此，这两个例子都没有使用索引。
+
+你甚至可以用数学来故意混淆一个条件，就像之前对全文 `LIKE` 搜索做的那样。
+例如，加个零就够了：
+
+```sql
+SELECT numberic_number
+  FROM table_name
+ WHERE numberic_number + 0 = ?
+```
+
+尽管如此，我们可以通过巧妙地进行计算，并把 `where` 子句改成方程一样的形式。
+来用基于函数的索引，给这些表达式建立索引。
+
+```sql
+SELECT a, b
+  FROM table_name
+ WHERE 3*a - b = -5
+```
+
+我们刚刚吧表的引用都放到了一边，常量挪到了另一边。
+然后就可以为等式的左侧创建一个基于函数的索引了。
+
+```sql
+CREATE INDEX math ON table_name(3*a - b)
+```
