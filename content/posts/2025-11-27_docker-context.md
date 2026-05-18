@@ -67,4 +67,4 @@ docker context remove company-server
 
 那么使用 docker context 和登陆服务器再用 docker 相比有什么好处呢？
 
-一大优势就是，当前的 AI Agent 还不能登陆到服务器里面去，如果你的 docker 镜像出了问题，想要 ai 帮你排查，那么使用 context 就很方便，ai 运行 docker 命令直接作用于服务器。
+一大优势就是，如果 docker 镜像出了问题，想要 ai 帮你排查，那么使用 context 就很方便，并且不会直接影响服务器环境，一定程度上避免执行危险命令。
