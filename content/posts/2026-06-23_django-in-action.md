@@ -124,3 +124,29 @@ INSTALLED_APPS = [
     'home',
 ]
 ```
+
+### First Django View
+
+然后就可以在 `home/views.py` 编写下面路由
+
+```Python
+from django.http import HttpRequest, HttpResponse
+
+def credits(request: HttpRequest):
+    content = 'Nicky\nYour Name'
+    return HttpResponse(content, content_type='text/plain')
+```
+
+现在又路由了, 但还需要映射到 URL 上面, 可以通过编辑 `urls.py` 来实现
+
+
+### Registering a route
+
+当用户访问一个 Django 控制的 URL, web 服务器会携带 HTTP 请求信息，调用 `wsgi.py` 中定义的 WSGI 应用程序。
+Django 会使用 `urls.py` 中定义的 URL 模式列表，并尝试寻找匹配项。
+如果找到匹配项，就会调用与该 URL 模式相关联的视图。
+上面已经在 `home` 应用的 `views.py` 文件中定义了 `credits()` 视图，现在需要为该视图注册一个 URL 路由。
+
+在 `urls.py` 中定义的 URL 映射包含在一个叫 `urlpatterns` 的列表中。
+使用 `path` 对象定义一个映射。
+当需要 `startproject` 来创建项目的时候，会创建一个最基本的 *bare-bones* `url.py` 文件。
