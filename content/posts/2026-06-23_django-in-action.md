@@ -54,6 +54,7 @@ complete -f -d -W "runserver createsuperuser test shell dbshell migrate makemigr
 ### First Django App
 
 `app` 是 django 中的基础概念, 类似初始化一样, 创建 `app` 也有专门的命令, django 会自动创建下面结构的骨架:
+
 - `apps.py`: app 配置
 - `views.py`: 展示 web 页面内容的代码
 - `models.py`: 定义数据库模型的代码
@@ -64,13 +65,15 @@ complete -f -d -W "runserver createsuperuser test shell dbshell migrate makemigr
 `apps.py` 中包含默认的 app 配置, 会帮助 django 将该目录指定为 app, 一般不需要修改它.
 另外四个 Python 文件是桩文件, 其中包含了类文件最常用的 django 模块的导入语句.
 
-`manage.py` 脚本是 Django 管理命令 *management commands* 的入口.
-*management command* 是希望使用 Django 在命令行来做的一些事情, 也可以编写自己的命令.
+`manage.py` 脚本是 Django 管理命令 _management commands_ 的入口.
+_management command_ 是希望使用 Django 在命令行来做的一些事情, 也可以编写自己的命令.
 
 使用 `startapp` 管理命令来创建 app 目录和需要的桩文件:
+
 ```shell
 uv run python manage.py startapp home
 ```
+
 该命令是一个静态命令, 你会有任何返回, 创建后项目结构大概这样:
 
 ```text
@@ -139,7 +142,6 @@ def credits(request: HttpRequest):
 
 现在又路由了, 但还需要映射到 URL 上面, 可以通过编辑 `urls.py` 来实现
 
-
 ### Registering a route
 
 当用户访问一个 Django 控制的 URL, web 服务器会携带 HTTP 请求信息，调用 `wsgi.py` 中定义的 WSGI 应用程序。
@@ -149,4 +151,59 @@ Django 会使用 `urls.py` 中定义的 URL 模式列表，并尝试寻找匹配
 
 在 `urls.py` 中定义的 URL 映射包含在一个叫 `urlpatterns` 的列表中。
 使用 `path` 对象定义一个映射。
-当需要 `startproject` 来创建项目的时候，会创建一个最基本的 *bare-bones* `url.py` 文件。
+当需要 `startproject` 来创建项目的时候，会创建一个最基本的 _bare-bones_ `url.py` 文件。
+生成的文件会包含 `path` 对象的导入，每个 `path` 对象要求至少两个参数：
+
+- URL 模式 _pattern_
+- 映射 _mapping_
+
+这里的 mapping 是对 `credits()` 函数的引用，映射也可以是对其他映射文件的引用，从而能够创建层级结构的映射。
+
+`DjangoAction/DjangoAction/urls.py` 是所有 URL 定义的中心。
+所有的 apps 都通过这个文件注册路由，但这很容易让人混淆。
+可以重命名模块，而不是都使用 views，例如：将 `from home import views` 修改为 `from home improt views as home_views`。
+
+Django 有一个叫 DjangoAdmin 的管理工具，不要和 `django-admin` 命令混淆，这两者完全无关。
+默认 `urlspatterns` 列表包含了一个到 Django Admin 的映射。
+在注册 `credits` 视图时，需要将其与现有的映射一起添加。
+
+```Python
+# DjangoAction/DjangoAction/urls.py
+
+from django.contrib import admin
+
+from django.urls import path
+
+from home import views as home_views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('credits/', home_views.credits),
+]
+```
+
+注意 `path` pattern 没有前导斜杠 /, django 会自动添加前导斜杠.
+URL `/credits/` 使用 `path('credits/')`, 这是对该函数的引用, 并没有调用它, 因此不要加括号.
+
+Django 会跟踪数据库模型的变化, 并会创建特殊的脚本, 叫做迁移 `migrations`.
+运行数据库迁移的管理命令是 `migrate`, 在运行开发服务器之前, 运行 `python manage.py migrate` 来运行未应用的迁移.
+
+```shell
+uv run --env-file .env.dev python manage.py migrate
+```
+
+运行迁移会产生很多输出, 会出现一些需要迁移的 apps
+
+```text
+Apply all migrations: admin, auth, contenttypes, sessions
+```
+
+输出会包含 app 的完整名称, 例如:
+
+```text
+Applying admin.0001_initial... OK
+```
+
+表明脚本 `0001_initial` 迁移成功了.
+
+`migrate` 命令应用的迁移脚本会跨多个模块.
