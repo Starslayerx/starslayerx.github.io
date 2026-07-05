@@ -207,3 +207,223 @@ Applying admin.0001_initial... OK
 表明脚本 `0001_initial` 迁移成功了.
 
 `migrate` 命令应用的迁移脚本会跨多个模块.
+
+## Templates
+
+django 提供了命令来使用 REPL(Read, Eval, Print, Loop) 环境：
+
+```shell
+uv run --env-file .env.dev python manage.py shell
+```
+
+### Rendering a Template
+
+首先导入需要的类
+
+```Python
+from django.template import Template, Context
+```
+
+创建一个模板对象 和 一个上下文对象，然后在模板对象上使用 `.render()` 方法渲染该上下文
+
+```Python
+t = Template('Hello {{ name }}')
+c = Context({'name': 'World'})
+t.render(c)
+# 'Hello World'
+```
+
+模板语言可以使用 `.` 访问对象、字典、列表和元组的数据。
+例如 `{{ person.name }}` 访问 `person` 对象或字典的 `name` 属性。
+使用 `fruit.2` 访问 `fruit` 的第三个对象。
+点引用还可以调用无参数的可调用对象，例如 `{{ person.show_name }}` 会调用 `person.show_name()` 方法并渲染结果。
+
+除了使用双大括号来替换变量之外，还可以使用模板标签 _Tag_ 来控制最终显示的内容。
+最常见的标签是条件块和循环，但也有一些用于直接替换的。
+
+`{% lorem %}` 标签会被渲染成 lorem ipsum 文本，这是一段拉丁文，通常用于印刷行业表示占位文本。
+
+示例如下：
+
+```Python
+t = Template('Cicero said: "{% lorem %}", amongst other things')
+t.render(Context({}))
+# 'Cicero said: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", amongst other things'
+```
+
+和其他 tags 一样，`{% lorem %}` 有可选参数，前两个是数量和方法。
+方法可以为 `w`, `p` 或 `b`，对应 `words`, `paragraphs` 或 `blocks`。
+
+例如：
+
+```Python
+t = Template('{% lorem 5 w %}')
+t.render(Context({}))
+# lorem ipsum dolor sit amet'
+```
+
+### Common tags and filters
+
+#### Conditional blocks
+
+条件语句标签
+
+```Python
+{% if first_page %}
+<h1>
+    Welcome to <i> Django Action</i>
+</h1>
+{% endif %}
+```
+
+如果 `first_page` 是 `0`, `False`, 空容器（列表、集和、字典等），或者不存在于 context 中则不会渲染这块。
+
+块标签通常不关心换行或空格，`{% if %}` 和 `{% endif %}` 标签可以放在同一行。
+通常可以在 `<title>` 标签里放一个条件块，根据情况在默认的简短名称上加上页面名称：
+
+```Python
+<title>DjangoAction{% if title_suffix %} &mdash; {{ title_suffix }}
+{% endif %}</title>
+```
+
+这里 `{% if %}` tag 同样支持 Python 的操作符，可以使用 `==`, `!=`, `<`, `>`, `<=`, `>=`, `in`, `not`, `is` 和 `is not`。例如：
+
+```Python
+{% if num_drummers > 1 %}
+    <b>You only need one drummer!</b>
+{% endif %}
+```
+
+当比较的变量在 context 中不存在时，条件就会变成 `False`，注意这里不会报错。
+
+要构建更加复制的条件判断快，可以在条件语句加上 `{% elif %}` 和 `{% else %}` 标签。
+这些标签的行为和 Python 里的对应标签一样。
+
+#### Looping blocks
+
+假如你有一系列乐器需要显示，这时候可以使用 `{% for %}` tag 来遍历数据。
+一种常见的使用方式是用于构建 `<ul>`, `<ol>` 或 `<table>` HTML 结构。
+在这些情况下， `{% for %}` 标签都放在外面的结构里。
+`{% for %}` 块里面的内容就是需要重复的部分。
+
+下面代码会输出一个 `<ul>` 标签，它的内部通过循环遍历 `instruments` 的值来构建，并渲染出 `<li>` 标签：
+
+```html
+<ul>
+  {% for instrument in instruments %}
+  <li>{{ instrument.name }}: {{ instrument.cost }}</li>
+  {% endfor %}
+</ul>
+```
+
+如果传递给 `{% for %}` 的可迭代对象是空的，那么块里面的内容就什么都不会显示。
+这可能导致出现一个空列表或空表格，或者使用循环里可选的 `{% empty %}` 功能。
+`{% for %}` 标签中 `{% empty %}` 部分里的内容，只有在被循环的可迭代对象里没有任何东西时才会渲染。
+
+```html
+<ul>
+  {% for instrument in instruments %}
+  <li>{{ instrument.name }}: {{ instrument.cost }}</li>
+  {% empty %}
+  <li><i>No instruments found</i></li>
+  {% endfor %}
+</ul>
+```
+
+除了在 `{% for %}` 中定义的循环变量外，还有一个隐式变量 `forloop`。
+这个对象包括一些属性，记录了循环迭代过程中的状态信息。
+其中，`forloop.counter` 属性表示当前是第几次循环（从 1 开始计数）。
+布尔值 `forloop.first` 和 `forloop.last` 则分别表示当前是否是循环的第一次或最后一次迭代。
+可以把前面例子中的 `<ul>` 列表改成一个句子：
+
+```html
+My favorite instruments are: {% for instrument in instruments %} {% if
+forloop.first %} and {% endif %} {{ forloop.counter }}. {{instrument.name}} {%
+if forloop.last %}. {% else %}, {% endif %} {% endfor %}
+```
+
+下面是所有的 forloop 属性：
+
+- `forloop.counter` 迭代计数器，从 1 开始
+- `forloop.counter0` 迭代计数器，从 0 开始
+- `forloop.revcounter` 剩余的迭代次数，最有一个是 1
+- `forloop.revcounter0` 剩余的迭代次数，最有一个是 0
+- `forloop.first` 第一次迭代为 `True`
+- `forloop.last` 最后一次迭代为 `True`
+- `forloop.parentloop` 嵌套循环的情况下，表示外层循环的 `forloop` 对象
+
+#### Comment blocks
+
+Django 模板中有两种注释：inline 内嵌和多行 multiline tag。
+Inline comment 使用 `{#  #}` 大括号，而 multiline comment 使用 `{% comment %}` tag。
+多行形式对于在调试时，临时注释模板的部分很有用。
+
+```html
+<ul>
+  <li>Guitar {# cool instrument #}</li>
+  <li>Drums</li>
+  {% comment "For orchestras only" %}
+  <li>Oboe</li>
+  <li>Basson</li>
+  {% endcomment %}
+</ul>
+```
+
+#### Verbatim blocks
+
+> verbatim blocks 原样块
+
+在代码中，会有许多 HTML 里有特殊含义的字符，这可能导致 HTML 混乱。
+比如，要在网页中编写比较运算符的 Python if 语句，就得用 `&gt;` 和 `&lt;` 这样的字符实体才能正确显示。
+
+这种情况可以使用 `{% verbatim %}` tag 解决，该块会告诉模板引擎保留块内不变。甚至可以嵌套定义。
+
+```html
+{% verbatim myblock %} Many JavaScript template use {{}} operators which overlap
+with the Django Template Engine. A similar problem exits if you wish to show a
+tag like {% verbatim %}. {% endverbatim myblock %}
+```
+
+#### Referencing URLs
+
+有很多情况下 HTML 内会出现 URL。可能需要链接到其他页面，引用 CSS 文件，或者展示图片。
+在大多数情况下，URL 会指向另一个 Django view 视图或 Django 控制的资产。
+
+为了帮助解决这种问题，Django 提供了一种命名 URL mapping 映射的方法。
+回想之前的 `django.urls.path` 对象在 `urls.py` 中将 URL 映射到一个 view 视图。
+该对象有一个可选参数，允许用来命名 path。
+并且可以在 URL 中通过 `{% url %}` tag 来引用该代码。
+
+```Python
+# DjangoAction/DjangoAction/urls.py
+from home import views as home_views
+
+urlpatterns = [
+    ...,
+    path('credits/', home_views.credits, name="credits"),
+]
+```
+
+通过添加 `name="credits"` 属性，URL 映射可以在代码或模板中，使用字符串 `"credits"` 引用。
+
+```html
+<a href="{% url 'credits' %}">Credits Page</a>
+```
+
+前面的锚标签的 href 参数会使用 credits 页面的网址来渲染。
+如果决定更改 `credits()` 这个视图的网址，只需要在 `urls.py` 文件里改一次，`{% url %}` 标签会自动处理好剩下的。
+
+> ALWAYS NAME YOUR ROUTES
+
+应该总是在代码中使用命名的 URL，否则就像在代码中不使用常量一样。
+
+在本例中，HTML 使用双引号来标记标签的属性，在 `{% url %}` 标签里面就需要使用单引号。
+
+#### Common filters
+
+Tags 有时候用于渲染具体的值，例如 `{% now %}` 或 `{% url %}`。
+但大多数都用于控制流，例如 `{% if %}` 和 `{% for %}`。
+通常还需要修改数据的展示格式，例如 `datetime` 对象，它存储日期和时间，但需要通过 `strftime()` 的参数去修改展示。
+Django 的过滤器是一种通用的，处理各种数据的实现方式。
+
+
