@@ -426,4 +426,207 @@ Tags 有时候用于渲染具体的值，例如 `{% now %}` 或 `{% url %}`。
 通常还需要修改数据的展示格式，例如 `datetime` 对象，它存储日期和时间，但需要通过 `strftime()` 的参数去修改展示。
 Django 的过滤器是一种通用的，处理各种数据的实现方式。
 
+过滤器在双花括号内的变量中生效，在变量被渲染之前，会先应用过滤器。
+在双括号中，使用管道符 pipe operator `|`，过滤器 filter 的输入是变量的内容，而它的输出是对数据执行的一个操作。
 
+两个常用的过滤器有 `| upper` 和 `| lower`，类似 `str.upper()` 和 `str.lower()` 调用。
+还有其他一些常用的过滤器：
+
+- `{{ num | pluralize }}`: 如果数量大于 1 则返回 s
+- `{{ words | first }}`: 返回列表中第一项，也可以使用 `{{ words.0 }}` 来获取第一项
+- `{{ words | last }}`: 返回列表中最后一项，注意模板并不支持负数索引
+
+类似 tags ，filters 也可以通接受参数。可以使用 colon `:` 字符传递参数。
+使用 `| join` 过滤器，类似 Python 的 `str.join()` 方法，接收一个列表并构造一个字符串。
+这个过滤器需要一个参数来指定连接项目之间的分隔符，最常用的是逗号 comma `,`。
+模板 `{{ words | join:"," }}` 类似 Python 中的 `",".join(words)`。
+
+### Using render() in a view
+
+`django.shortcuts.render(request, filename, data)` 函数封装了大部分渲染啊 HTML 需要的功能。
+而手动实现需要以下流程：
+
+- 获取模板引擎
+- 从文件加载模板
+- 创建对象上下文
+- 渲染模板
+- 返回 `HttpResponse` 对象
+
+`render()` 函数有两个必要的参数：
+一个是传入视图的 `HttpRequest` 对象，另一个是要从磁盘加载模板名称。
+
+通过修改 `settings.py` 里面的 `TEMPLATES` 配置来告诉 django 哪里去加载模板, 它由 4 个键构成:
+
+- `BACKEND`: 指明在项目中使用哪个模板引擎, 默认是 Django Template 但也有 Jinja2 支持, 或者使用其他第三方模板
+- `DIRS`: django 寻找模板的目录列表
+- `APP_DIRS`: 布尔值. 当为 True 时 Django 会在 app 目录下寻找模板目录. 会按照 INSTALLED_APPS 的顺序寻找.
+- `OPTIONS`: 嵌套字典, 用来给模板引擎传递配置选项, 通常默认值就已经够用了.
+
+默认情况下, DIRS 属性是空列表, 需要修改成自己放模板的地方.
+常见的做法是, 在项目目录下创建一个模板目录, 格式类似下面这样:
+
+```text
+├── DjangoAction
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── home
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations
+│   ├── models.py
+│   ├── tests.py
+│   └── views.py
+├── manage.py
+└── templates
+```
+
+`TEMPLATES` 配置中的 `APP_DIRS` 允许告诉 Django 是否要从 apps 内部找模板.
+当 `APP_DIRS` 为 `True` 时, Django 会在 apps 内部寻找一个叫 templates 的目录.
+使用那种是一种风格选择, 一般来说将模板目录放在外层会更加简洁, 但如果要开发可复用的 app, 那么一般需要放在内层.
+
+例如这种扁平的配置:
+
+```Python
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'],
+        'APP_DIRS': False,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+```
+
+Django 在 `settings.py` 顶部声明的配置 `BASE_DIR` 是项目的目录地址.
+
+> APP_DIRS 写 True 会同时扫描根目录和 apps 目录下面的模板目录.
+> 如果写 False 则只会扫描项目根目录下面的模板目录.
+
+
+### Escaping special characters
+
+HTML 使用尖括号 *angle brackets* 作为标签，可尖括号也能当大于号和小于号用。
+因此，如果要编写大于号，就要使用 `&gt;`。
+
+模板变量就是数据，这些数据来自各种地方，可能包含 HTML 里的特殊字符。
+为了让数据在页面上正常显示，就需要进行转换。
+Django 会自动完成这个转换，叫做转义字符 *escaping characters*。
+
+加入在 `templates` 下面有 `expirment.html`
+
+```html
+<!DOCTYPE>
+<html>
+    <head>
+    </head>
+    <body>
+        I love {{ instrument }}.
+    </body>
+</html>
+```
+
+然后不使用 `django.shortcuts.render` 渲染：
+```Python
+# uv run python manage.py shell
+from django.template import Engine, Context
+
+engine = Engine.get_default()
+t = engine.get_template('./experiment.html')
+data = {'instrument': 'trombone'}
+t.render(Context(data))
+# '<!DOCTYPE>\n<html>\n    <head>\n    </head>\n    <body>\n        I love trombone.\n    </body>\n</html>\n'
+
+data = {'instrument': 'tuba > baritone'}
+t.render(Context(data))
+# '<!DOCTYPE>\n<html>\n    <head>\n    </head>\n    <body>\n        I love tuba &gt; baritone.\n    </body>\n</html>\n'
+```
+
+可以看到结果为一行，且换行符、比较符 `>` 都转义了。
+Django 有很多控制自动转义的方式，`| safe` 过滤器标记为安全，不转义，`| escape` 过滤器则完全相反。
+`{% autoescape %}` 块可以用于开关自动转义。
+
+```html
+I love the sound a {{ instrument }} makes.
+A shiny {{ instrument | safe }} is good.
+
+{% autoescape off %}
+Don't put a {{ instrument }} too close to your ear.
+{% endautoescape %}
+```
+
+```Python
+from django.template import Engine, Context
+
+engine = Engine.get_default()
+t = engine.get_template('./experiment.html')
+
+data = {'instrument': 'flute'}
+t.render(Context(data))
+# "I love the sound a flute makes.\nA shiny flute is good.\n\n\nDon't put a flute too close to your ear.\n\n\n"
+
+data = {'instrument': '<b>sax</b>'}
+t.render(Context(data))
+# "I love the sound a &lt;b&gt;sax&lt;/b&gt; makes.\nA shiny <b>sax</b> is good.\n\n\nDon't put a <b>sax</b> too close to your ear.\n\n\n"
+```
+
+如果要在数据中显示 HTML 就可以使用这种方法。
+
+此外，还可以通过改变数据来影响自动转义的行为。
+Django 有一个 Python 字符串的子类叫 `SafeString`，通过对字符串调用 `mark_safe()` 来获得。
+如果是动态地构建 HTML，可以使用 `format_html()`，该方法也返回一个 `SafeString` 类型。
+任何标记为 safe 的字符串都不会被转义。
+
+```Python
+from django.utils.safestring import mark_safe
+
+instrument = mark_safe('drum<br/>')
+data = {'instrument': 'instrument'}
+t.render(Context(data))
+```
+
+函数 `format_html()` 工作方式类似 `str.format()`, 使用花括号 braces 作为占位符, 并传参填充 *populate* 字符串.
+如果要拼一段 HTML 代码,使用 `format_html()` 能省很多打字功夫.
+不然就要自己拼凑, 还得对每一小块使用 `mark_safe()`.
+
+```Python
+from django.utils.html import format_html
+
+instrument = 'bass'
+instrument = format_html('big <i>{}</i>', instrument)
+data = {'instrument': instrument}
+t.render(Context(data))
+# "I love the sound a big <i>bass</i> makes.\nA shiny big <i>bass</i> is good.\n\n\nDon't put a big <i>bass</i> too close to your ear.\n\n\n"
+```
+
+> User Input and the Safety of Strings
+
+当开始处理用户输入时, 需要额外小心.
+恶意用户可能故意输入一些数据来破坏网页, 使用任何关闭转义的工具都要小心.
+
+在 `django.utils.html` 里还有更多字符串管理工具, 用来处理 JSON 渲染, 标签处理, 以及应付用户的烦人字符串.
+
+---
+
+转义完全是关于 HTML 的微观层面: 确保数据按照意图渲染.
+在宏观层面, 会面临另一个问题: HTML 是重复的.
+Django 模板语言包含了一种组合和继承区块的方法, 帮助写更少的 HTML.
+
+
+### Composing templates out of blocks
+
+现在 HTML 一般有很多移动的部分, 导航栏, 页脚, 侧边栏, 面包屑导航 *breadcrumbs* 等等.
+除了有很多组成部分, 网页的结构也可能很复杂, 这样才能在不同平台和浏览器上做到自适应.
+管理这种复杂性的很多代码, 在网站的大多数页面里都会重复出现.
+Django Template Engine 允许定义可复用的组件, 叫做块 *blocks*.
+
+一个模板块使用成对的 `{% block %}` 和 `{% endblock %}` 标签, 给页面的某一块区域取个名字.
