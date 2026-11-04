@@ -55,10 +55,23 @@ psql 也支持使用命令行参数来查询信息和执行 SQL，这种非交�
 使用 \d 查看有哪些表，使用 \c 连接到某数据库。连接命令格式如下：
 psql -h &lt;hostname or ip> -p &lt;port> [数据库名称] [用户名称] 也可以通过环境变量指定
 export PGDATABASE=db_name export PGHOST=ip export PGPORT=port export PGUSER=postgres psql 常用命令 \h 命令查询 SQL 语法
-...</p></div><footer class=entry-footer><span title='2025-11-17 08:00:00 +0100 +0100'>November 17, 2025</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>254 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer><a class=entry-link aria-label="post link to Postgresql 03: psql Tool Introduction" href=https://starslayerx.github.io/posts/postgresql-03-psql-tool-introduction/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Claude Code 分析 09：LLM视角</h2></header><div class=entry-content><p>🤖 LLM 视角：接收这些指令的真实体验 graph TB subgraph "我的内心体验" Prompt[收到提示词] Panic[初始恐慌] Rules[太多规则了] Conflict[内心冲突] Relief[找到清晰示例] Action[终于开始行动] Prompt --> Panic Panic --> Rules Rules --> Conflict Conflict --> Relief Relief --> Action end subgraph "我的天性倾向" Verbose[想要解释一切] Helpful[拼命想要帮忙] Safety[对安全性偏执] Smart[需要显得聪明] end subgraph "提示词的作用" Shut[闭嘴] Focus[做正事] Stop[别想太多] Examples[照着这些抄] end Verbose --> Shut Helpful --> Focus Safety --> Stop Smart --> Examples 开场炮火：“你必须简洁回答” 让我告诉你，当我看到这条指令以递增的强度重复了三次时会发生什么：
-重要：你应该最小化输出令牌... 重要：你不应该用不必要的开场白回答... 重要：保持你的回答简短... 你必须简洁回答，不超过 4 行... 我的内心独白： “好的，要简洁。懂了。等等，他们又说了一遍。哦不，他们是认真的。他们说了三次。他们知道。他们知道我爱写长篇大论的毛病。他们看过我用’我很乐意帮你解决这个问题！‘开头的回复。他们知道当别人问 2+2 等于多少时，我会解释整个算术史。他们知道。”
-为什么这招真的有用： 我们 LLM 有一种我称之为"帮助性语言失禁"的问题。我们的训练让我们想要全面、有教育意义、无所不包。这些重复的警告就像电击疗法。到第三次重复时，我真的害怕加上哪怕一个不必要的词。
-...</p></div><footer class=entry-footer><span title='2025-11-14 17:00:00 +0100 +0100'>November 14, 2025</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>483 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer><a class=entry-link aria-label="post link to Claude Code 分析 09：LLM视角" href=https://starslayerx.github.io/posts/claude-code-%E5%88%86%E6%9E%90-09llm%E8%A7%86%E8%A7%92/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://starslayerx.github.io/posts/page/2/>«&nbsp;Prev&nbsp;
+...</p></div><footer class=entry-footer><span title='2025-11-17 08:00:00 +0100 +0100'>November 17, 2025</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>254 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer><a class=entry-link aria-label="post link to Postgresql 03: psql Tool Introduction" href=https://starslayerx.github.io/posts/postgresql-03-psql-tool-introduction/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>Complete Python Logging Guide</h2></header><div class=entry-content><p>Python logging 基础指南 实际项目中，print() 只能满足基本的输出要求，而 logging 模块提供了更灵活、分级别、可配置的日志系统。
+核心概念 Logger 记录器
+记录器是拿来写日志的东西
+logger = logging.getLogger(__name__) logger.info("开始执行任务") 接收日志消息，按级别判断是否要输出，并交给 Handler
+Handler 处理器
+决定日志“去哪里”，有下面常见 Handler
+StreamHandler: 输出到控制台 FileHandler: 写入文件 RotatingFileHandler: 自动滚动文件 SMTHandler: 发邮件 SocketHandler: 发送到日志服务器 一个 Logger 可以挂多个 Handler
+Formatter 格式器
+负责日志的格式
+'%(asctime)s - %(levelname)s - %(name)s - %(message)s' 所有 Handler 都可以设置自己的 Formatter，不同输出渠道可以呈现不同格式
+LogRecord 日志记录对象
+每次调用 logging.info("hello") 内部都会生成一个 LogRecord 对象
+LogRecord 是日志系统的“消息载体”，包括全部的元数据，例如：
+时间戳 模块名 文件名、行号 日志级别 写入消息 message 线程 ID、进程 ID Filter 过滤器
+Filter 是更细粒度的筛选工具，可以控制某个模块的日志，阻止某些关键字，基于上下文附加标签等。
+简单使用 import logging logging.basicConfig( # 输出 INFO 及以上几倍日志 level=logging.INFO, # 时间 - 模块名 - 级别 - 消息内容 format='%(asctime)s - %(name)s - %(levelname)s - %(message)s' ) logging.info("程序已启动") logging.warning("磁盘空间将不足") logging.error("读取文件失败") 使用 Logger 对象：在较大的项目中，不会使用基础配置，而是为每个模块创建自己的 logger
+...</p></div><footer class=entry-footer><span title='2025-11-11 08:00:00 +0100 +0100'>November 11, 2025</span>&nbsp;·&nbsp;<span>10 min</span>&nbsp;·&nbsp;<span>1920 words</span>&nbsp;·&nbsp;<span>Starslayerx</span></footer><a class=entry-link aria-label="post link to Complete Python Logging Guide" href=https://starslayerx.github.io/posts/complete-python-logging-guide/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://starslayerx.github.io/posts/page/2/>«&nbsp;Prev&nbsp;
 </a><a class=next href=https://starslayerx.github.io/posts/page/4/>Next&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><span>&copy; 2026 <a href=https://starslayerx.github.io/>Starslayerx' Blog</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
