@@ -21,7 +21,7 @@ WHERE 行过滤条件
 GROUP BY 分组列
 HAVING 分组后过滤条件
 [WINDOW 窗口定义]
-ORDER BY 排序列
+ORDER BY [ROLLUP] 排序列
 LIMII n OFFSET m;
 ```
 
@@ -91,6 +91,8 @@ WINDOW w AS (PARTITION BY facid)
 ```sql
 ORDER BY total_slots DESC
 ```
+
+可以使用 `ROLLUP` 进行分层汇总
 
 9. `LIMIT / OFFSET / FETCH` 限制最终返回的行数，或跳过若干行
 
