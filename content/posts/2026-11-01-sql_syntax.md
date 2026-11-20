@@ -1,6 +1,6 @@
 +++
 date = '2026-11-01T8:00:00+01:00'
-draft = False
+draft = false
 title = 'SQL Lexical Order and Syntax Order'
 categories = ['Blog']
 tags = ['SQL']

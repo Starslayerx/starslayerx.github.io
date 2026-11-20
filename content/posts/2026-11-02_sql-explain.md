@@ -1,12 +1,12 @@
 +++
 date = '2026-11-02T8:00:00+01:00'
-draft = False
+draft = false
 title = 'Using EXPLAIN'
 categories = ['Blog']
 tags = ['SQL', 'Postgres']
 +++
 
-(Source)[https://www.postgresql.org/docs/current/using-explain.html#USING-EXPLAIN-ANALYZE]
+[Source](https://www.postgresql.org/docs/current/using-explain.html#USING-EXPLAIN-ANALYZE)
 
 Postgres 为收到的每条查询制定查询计划 (query plan)，要获得良好的性能，选择和查询结构 (query structure) 和数据特征 (properties of the data) 想匹配的正确计划至关重要，因此系统内置了一个复杂的规划器 planner。
 可以使用 EXPLAIN 命令查看规划器生成的查询计划，本篇文章介绍相关知识。
